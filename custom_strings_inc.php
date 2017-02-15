@@ -1,0 +1,29 @@
+<?php
+$s_status_enum_string = '10:New,20:Info Required,30:Info Returned,35:Approval Required,40:Approved,50:Assigned,55:In Progress,70:In Test,75:Recurring,80:Resolved,65:Failed UAT,85:On Hold,90:Closed';
+$s_resolution_enum_string = '10:open,20:fixed,25:query replied,30:reopened,40:unable to duplicate,50:not fixable,60:duplicate,70:not a bug,80:suspended,90:wont fix';
+$s_severity_enum_string = '10:unspecified,20:nice to have,50:important,60:critical,70:crash,80:block';
+$s_feedback_bug_title = "Request information for this issue";
+$s_feedback_bug_button = "Set to INFO REQUIRED";
+$s_email_notification_title_for_status_bug_feedback = "This Issue is INFO REQUIRED.";
+$s_acknowledged_bug_title = "Return information for this Issue";
+$s_acknowledged_bug_button = 'Set to INFO RETURNED';
+$s_email_notification_title_for_status_bug_acknowledged = 'This Issue is INFO RETURNED.';
+$s_approval_bug_title = "Request Approval for this issue";
+$s_approval_bug_button = 'Request APPROVAL';
+$s_email_notification_title_for_status_bug_approval = 'This Issue requires APPROVAL.';
+$s_progress_bug_title = "Progress this issue";
+$s_progress_bug_button = "Set to IN PROGRESS";
+$s_email_notification_title_for_status_bug_progress = "This Issue is IN PROGRESS.";
+$s_recurring_bug_title = "Mark this issue as recurring";
+$s_recurring_bug_button = "Mark as RECURRING";
+$s_email_notification_title_for_status_bug_recurring = "This Issue is RECURRING.";
+$s_hold_bug_title = "Hold progress on this issue";
+$s_hold_bug_button = "Set to ON HOLD";
+$s_email_notification_title_for_status_bug_hold = "This Issue is ON HOLD.";
+$s_test_bug_title = "Send this issue for testing";
+$s_test_bug_button = "Set to IN TEST";
+$s_email_notification_title_for_status_bug_test = "This Issue is IN TEST.";
+$s_fail_bug_title = "Fail acceptance testing for this issue";
+$s_fail_bug_button = "Fail UAT";
+$s_email_notification_title_for_status_bug_fail = "This Issue has FAILED test or UAT.";
+?>

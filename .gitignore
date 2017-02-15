@@ -1,0 +1,25 @@
+# Config files
+config_inc.php
+.htaccess
+
+# Data
+attachments/
+
+# Docs
+doc/
+docbook/
+
+# Build output
+build/
+
+#libraries
+library/
+
+# IDE/Editor temporary files
+*~
+*.swp
+*.bak
+.buildpath
+.cache
+.project
+.settings
