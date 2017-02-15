@@ -31,13 +31,12 @@ if ( file_exists( dirname( __FILE__ ).DIRECTORY_SEPARATOR.'config_db_inc.php' ) 
 	require_once( dirname( __FILE__ ).DIRECTORY_SEPARATOR.'config_db_inc.php' );
 
 # --- Anonymous Access / Signup ---
-$g_allow_signup				= ON;
+$g_allow_signup				= OFF;
 $g_allow_anonymous_login	= OFF;
 $g_anonymous_account		= '';
 
 # --- Email Configuration ---
 $g_email_receive_own	= OFF;
-$g_email_send_using_cronjob = OFF;
 
 /**
  * email separator and padding
@@ -45,12 +44,11 @@ $g_email_send_using_cronjob = OFF;
  */
 $g_email_padding_length	= 14;
 $g_email_separator1		= str_pad('', 34, '=');
-$g_email_separator2		= str_pad('', 36, '—');
+$g_email_separator2		= str_pad('', 144, '—');
 
 # --- Attachments / File Uploads ---
 $g_allow_file_upload	= ON;
 $g_file_upload_method	= DISK; # or DATABASE
-$g_absolute_path_default_upload_folder = 'attachments\\'; # used with DISK, must contain trailing \ or /.
 $g_max_file_size		= 5000000;	# in bytes
 $g_preview_attachments_inline_max_size = 256 * 1024;
 $g_allowed_files		= '';		# extensions comma separated, e.g. 'php,html,java,exe,pl'
@@ -193,14 +191,10 @@ $g_time_tracking_reporting_threshold = MANAGER;
 $g_time_tracking_without_note = ON;
 
 /* Date Format */
-$g_short_date_format = 'j M Y';
-$g_normal_date_format = 'd M Y H:i';
+$g_short_date_format = 'd/m/Y';
+$g_normal_date_format = 'j M Y \a\t H:i';
 $g_complete_date_format = 'd-m-y H:i T';
 $g_default_timezone = 'Europe/Paris';
-
-/* Log */
-$g_log_level = LOG_EMAIL | LOG_EMAIL_RECIPIENT; // LOG_FILTERING | LOG_AJAX | LOG_DATABASE | LOG_LDAP
-$g_log_destination = 'file:d:/Web/WWWROOT/mantis/email.log';
 
 /**
  * These are the valid html tags for multi-line fields (e.g. description)
