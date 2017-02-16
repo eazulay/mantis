@@ -598,8 +598,6 @@ function email_generic( $p_bug_id, $p_notify_type, $p_message_id = null, $p_head
 				if ( $p_notify_type == 'bugnote' ){
 					$t_bugnote_id = bugnote_get_latest_id( $p_bug_id );
 					$t_bugnote_view = bugnote_get_field( $t_bugnote_id, 'view_state' );
-/*					if ( $t_bugnote_view == VS_PRIVATE )
-						$p_header_optional_params[0] = 'PRIVATE '; */
 				}
 				$t_visible_bug_data['notify_type'] = $p_notify_type;
 				$t_ok = email_bug_info_to_one_user( $t_visible_bug_data, $p_message_id, $t_project_id, $t_user_id, $p_header_optional_params ) && $t_ok;
