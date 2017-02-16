@@ -44,7 +44,7 @@ $g_email_receive_own	= OFF;
  */
 $g_email_padding_length	= 14;
 $g_email_separator1		= str_pad('', 34, '=');
-$g_email_separator2		= str_pad('', 144, '—');
+$g_email_separator2		= str_pad('', 120, 'â€”');
 
 # --- Attachments / File Uploads ---
 $g_allow_file_upload	= ON;
@@ -143,6 +143,12 @@ $g_due_date_view_threshold = REPORTER;
  * @global int $g_monitor_add_others_bug_threshold
  */
 $g_monitor_add_others_bug_threshold = UPDATER;
+
+/**
+ * Threshold needed to be able to use stored queries
+ * @global int $g_stored_query_use_threshold
+ */
+$g_stored_query_use_threshold = VIEWER;
 
 /*****************
  * Time tracking *
