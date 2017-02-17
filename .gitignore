@@ -8,7 +8,7 @@ attachments/
 
 # Logs
 debug/
-error.log
+error_log
 email.log
 
 # Docs
