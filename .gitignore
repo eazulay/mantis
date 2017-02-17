@@ -5,7 +5,11 @@ config_db_inc.php
 
 # Data
 attachments/
+
+# Logs
 debug/
+error.log
+email.log
 
 # Docs
 doc/
