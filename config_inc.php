@@ -44,7 +44,7 @@ $g_email_receive_own	= OFF;
  */
 $g_email_padding_length	= 14;
 $g_email_separator1		= str_pad('', 34, '=');
-$g_email_separator2		= str_pad('', 120, '—');
+$g_email_separator2		= str_pad('', 114, '—');
 
 # --- Attachments / File Uploads ---
 $g_allow_file_upload	= ON;
