@@ -806,7 +806,7 @@
 	 * disable the feature.
 	 * @global int $g_severity_significant_threshold
 	 */
-	$g_severity_significant_threshold = MAJOR;
+	$g_severity_significant_threshold = CRITICAL;
 
 	/**
 	 * The default columns to be included in the View Issues Page.
@@ -1127,7 +1127,7 @@
 	 * Default bug severity when reporting a new bug
 	 * @global int $g_default_bug_severity
 	 */
-	$g_default_bug_severity = MINOR;
+	$g_default_bug_severity = UNSPECIFIED;
 
 	/**
 	 * Default bug priority when reporting a new bug
@@ -1360,13 +1360,11 @@
 	 * result in an increase in reporter effectiveness.
 	 * @global array $g_severity_multipliers
 	 */
-	$g_severity_multipliers = array( FEATURE => 1,
-	                                 TRIVIAL => 2,
-	                                 TEXT    => 3,
-	                                 TWEAK   => 2,
-	                                 MINOR   => 5,
-	                                 MAJOR   => 8,
-	                                 CRASH   => 8,
+	$g_severity_multipliers = array( UNSPECIFIED => 5,
+	                                 NICE_TO_HAVE => 3,
+	                                 IMPORTANT    => 7,
+	                                 CRITICAL   => 8,
+	                                 CRASH   => 9,
 	                                 BLOCK   => 10 );
 
 	/**
