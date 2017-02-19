@@ -30,6 +30,7 @@ class HelpNotesPlugin extends MantisPlugin {
 			'EVENT_VIEW_BUGNOTES_START' => 'view_bugnotes_help',
 			'EVENT_HELPNOTES_POPULATE' => 'populate_helpnotes',
 			'EVENT_HELPNOTES_UPDATE_HASHELP' => 'update_bugnote_hashelp',
+			'EVENT_DISPLAY_FORMATTED' => 'format_help_string',
 		);
 	}
 	
@@ -99,11 +100,17 @@ class HelpNotesPlugin extends MantisPlugin {
 		return $p_bugnotes;
 	}
 	
-/*	function bugnote_has_help($p_event, $p_bugnote_id) {
-		print_r($this->$cached_notes_have_help);
-		die();
-		return $this->$cached_notes_have_help[$p_bugnote_id];
-	}*/
+	function update_bugnote_hashelp($p_event, $p_bugnote_id, $has_help) {
+		if (access_has_global_level(DEVELOPER)){
+			$t_help_table = plugin_table('bugnote_help');
+			$t_query = "REPLACE INTO $t_help_table (bugnote_id, has_help) values(" . db_param() . "," . db_param() . ")";
+			db_query_bound($t_query, array($p_bugnote_id, $has_help));
+		}
+	}
+	
+	function format_help_string($p_event, $str, $multi_line=false) {
+		return preg_replace('/\{\{(.+)\}\}/sU', '<strong>$1</strong>', $str);
+	}
 
 	/**
 	 * Plugin schema.
@@ -115,14 +122,6 @@ class HelpNotesPlugin extends MantisPlugin {
 				has_help		L		NOTNULL DEFAULT '0'
 				" ) ),
 		);
-	}
-	
-	function update_bugnote_hashelp($p_event, $p_bugnote_id, $has_help) {
-		if (access_has_global_level(DEVELOPER)){
-			$t_help_table = plugin_table('bugnote_help');
-			$t_query = "REPLACE INTO $t_help_table (bugnote_id, has_help) values(" . db_param() . "," . db_param() . ")";
-			db_query_bound($t_query, array($p_bugnote_id, $has_help));
-		}
 	}
 }
 
