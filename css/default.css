@@ -159,6 +159,7 @@ td.bugnote-public		{ background-color: #DBDBF0; color: #525252; font-weight: bol
 td.bugnote-private		{ background-color: #EEF3FB; color: #525252; font-weight: bold; width: 25%; line-height: 1.4; vertical-align: top; }
 td.bugnote-note-public	{ background-color: #F3F2F7; color: #525252; width: 75%; vertical-align: top; }
 td.bugnote-note-private	{ background-color: #EEF3FB; color: #525252; width: 75%; vertical-align: top; }
+tr.bugnote-hashelp td:first-child { border-right: 5px solid #9393D2; }
 
 td.login-info-left		{ width: 33%; padding: 0px; text-align: left; }
 td.login-info-middle		{ width: 33%; padding: 0px; text-align: center; }

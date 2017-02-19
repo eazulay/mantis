@@ -22,7 +22,7 @@ class EditNoteDatePlugin extends MantisPlugin {
 	}
 	
 	function create_bug_form($p_event, $p_bug_id) {
-		event_signal( 'EVENT_BUGNOTE_EDIT_FORM', array( $p_bug_id, 0 ) );
+		$this->update_bug_form($p_event, $p_bug_id, 0);
 	}
 	
 	function update_bug_form($p_event, $p_bug_id, $p_bugnote_id) {

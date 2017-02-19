@@ -80,6 +80,8 @@ $num_notes = count( $t_bugnotes );
 
 	event_signal( 'EVENT_VIEW_BUGNOTES_START', array( $f_bug_id, $t_bugnotes ) );
 
+	$t_bugnotes = event_signal( 'EVENT_HELPNOTES_POPULATE', array( $f_bug_id, $t_bugnotes ) );
+
 	$t_normal_date_format = config_get( 'normal_date_format' );
 	$t_total_time = 0;
 
@@ -108,8 +110,11 @@ $num_notes = count( $t_bugnotes );
 			$t_bugnote_css		= 'bugnote-public';
 			$t_bugnote_note_css	= 'bugnote-note-public';
 		}
+		$t_bugnote_row_css = '';
+		if ($t_bugnote->has_help)
+			$t_bugnote_row_css = ' bugnote-hashelp';
 ?>
-<tr class="bugnote" id="c<?php echo $t_bugnote->id ?>">
+<tr class="bugnote <?php echo $t_bugnote_row_css ?>" id="c<?php echo $t_bugnote->id ?>">
         <td class="<?php echo $t_bugnote_css ?>">
 		<?php if ( ON  == config_get("show_avatar") ) print_avatar( $t_bugnote->reporter_id ); ?>
 		<span class="small">(<a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id) ?>" title="<?php echo lang_get( 'bugnote_link_title' ) ?>"><?php echo $t_bugnote_id_formatted ?>)</a></span><br />
@@ -131,46 +136,48 @@ $num_notes = count( $t_bugnotes );
 		if ( $t_bugnote_modified ) {
 			echo '<span class="small">' . lang_get( 'edited_on') . lang_get( 'word_separator' ) . date( $t_normal_date_format, $t_bugnote->last_modified ) . '</span><br />';
 		}
-		?>
-		<br /><div class="small">
-		<?php
-			# bug must be open to be editable
-			if ( !bug_is_readonly( $f_bug_id ) ) {
-				$t_can_edit_note = false;
-				$t_can_delete_note = false;
+		
+		# Has Help
+		$bugnote_id = $t_bugnote->id;
+		echo '<input type="hidden" name="has_help['.$bugnote_id.']" value="0"> <input type="checkbox" id="has_help_'.$bugnote_id.'" name="has_help['.$bugnote_id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"> <label for="has_help_'.$bugnote_id.'">Help</label> <span id="span_has_help_'.$bugnote_id.'" style="font-weight:normal;"></span>';
+		# bug must be open to be editable
+		if ( !bug_is_readonly( $f_bug_id ) ) {
+			echo '<div class="small">';
+			$t_can_edit_note = false;
+			$t_can_delete_note = false;
 
-				# admins and the bugnote creator can edit/delete this bugnote
-				if ( ( access_has_bug_level( config_get( 'manage_project_threshold' ), $f_bug_id ) ) ||
-					( ( $t_bugnote->reporter_id == $t_user_id ) && ( ON == config_get( 'bugnote_allow_user_edit_delete' ) ) ) ) {
-					$t_can_edit_note = true;
-					$t_can_delete_note = true;
-				}
+			# admins and the bugnote creator can edit/delete this bugnote
+			if ( ( access_has_bug_level( config_get( 'manage_project_threshold' ), $f_bug_id ) ) ||
+				( ( $t_bugnote->reporter_id == $t_user_id ) && ( ON == config_get( 'bugnote_allow_user_edit_delete' ) ) ) ) {
+				$t_can_edit_note = true;
+				$t_can_delete_note = true;
+			}
 
-				# users above update_bugnote_threshold should be able to edit this bugnote
-				if ( $t_can_edit_note || access_has_bug_level( config_get( 'update_bugnote_threshold' ), $f_bug_id ) ) {
-					print_button( 'bugnote_edit_page.php?bugnote_id='.$t_bugnote->id, lang_get( 'bugnote_edit_link' ) );
-				}
+			# users above update_bugnote_threshold should be able to edit this bugnote
+			if ( $t_can_edit_note || access_has_bug_level( config_get( 'update_bugnote_threshold' ), $f_bug_id ) ) {
+				print_button( 'bugnote_edit_page.php?bugnote_id='.$t_bugnote->id, lang_get( 'bugnote_edit_link' ) );
+			}
 
-				# users above delete_bugnote_threshold should be able to delete this bugnote
-				if ( $t_can_delete_note || access_has_bug_level( config_get( 'delete_bugnote_threshold' ), $f_bug_id ) ) {
+			# users above delete_bugnote_threshold should be able to delete this bugnote
+			if ( $t_can_delete_note || access_has_bug_level( config_get( 'delete_bugnote_threshold' ), $f_bug_id ) ) {
+				echo " ";
+				print_button( 'bugnote_delete.php?bugnote_id='.$t_bugnote->id, lang_get( 'delete_link' ) );
+			}
+
+			# users with access to both update and change view status (or the bugnote author) can change public/private status
+			if ( $t_can_edit_note || ( access_has_bug_level( config_get( 'update_bugnote_threshold' ), $f_bug_id ) &&
+				access_has_bug_level( config_get( 'change_view_status_threshold' ), $f_bug_id ) ) ) {
+				if ( VS_PRIVATE == $t_bugnote->view_state ) {
 					echo " ";
-					print_button( 'bugnote_delete.php?bugnote_id='.$t_bugnote->id, lang_get( 'delete_link' ) );
-				}
-
-				# users with access to both update and change view status (or the bugnote author) can change public/private status
-				if ( $t_can_edit_note || ( access_has_bug_level( config_get( 'update_bugnote_threshold' ), $f_bug_id ) &&
-					access_has_bug_level( config_get( 'change_view_status_threshold' ), $f_bug_id ) ) ) {
-					if ( VS_PRIVATE == $t_bugnote->view_state ) {
-						echo " ";
-						print_button( 'bugnote_set_view_state.php?private=0&bugnote_id=' . $t_bugnote->id, lang_get( 'make_public' ) );
-					} else {
-						echo " ";
-						print_button( 'bugnote_set_view_state.php?private=1&bugnote_id=' . $t_bugnote->id, lang_get( 'make_private' ) );
-					}
+					print_button( 'bugnote_set_view_state.php?private=0&bugnote_id=' . $t_bugnote->id, lang_get( 'make_public' ) );
+				} else {
+					echo " ";
+					print_button( 'bugnote_set_view_state.php?private=1&bugnote_id=' . $t_bugnote->id, lang_get( 'make_private' ) );
 				}
 			}
+			echo '</div>';
+		}
 		?>
-		</div>
 	</td>
 	<td class="<?php echo $t_bugnote_note_css ?>">
 		<?php
@@ -224,3 +231,22 @@ $num_notes = count( $t_bugnotes );
 </table>
 <?php
 	collapse_end( 'bugnotes' );
+	
+	if ( ON == config_get( 'use_javascript' ) ): ?>
+<script type="text/javascript">
+	function hasHelpChanged(cb) {
+		var queryString = 'entrypoint=bugnote_update_hashelp&note_id=' + cb.id.substr(9) + '&has_help=' + (cb.checked ? '1' : '0');
+		AjaxSave(queryString, update_row_class, [cb.id.substr(9), cb.checked ? '1' : '0']);
+	}
+	
+	function update_row_class(args) {
+		var bugnoteId = args[0];
+		var hasHelp = args[1];
+		rowEl = document.getElementById('c'+bugnoteId);
+		if (hasHelp == 1)
+			rowEl.classList.add('bugnote-hashelp');
+		else
+			rowEl.classList.remove('bugnote-hashelp');
+	}
+</script>
+<?php endif;

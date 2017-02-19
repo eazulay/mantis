@@ -45,7 +45,9 @@
 	<td class="category" width="25%">
 		Write a <?php echo lang_get( 'bugnote' ) ?> here:<br>
 <br>
-OR, to email someone who does not receive Mantis Notes, click [Open Email Client] to create a new email in your default Email program, with Subject and cc to Mantis pre-populated, and write your content there. A Note will be added automatically when Mantis receives the email.
+OR,<br>
+<br>
+To email someone who does not receive Mantis Notes, click [Open Email Client] to create an email in your default Email program, with Subject and cc to Mantis pre-populated. Write your content there. A Note will be added automatically when Mantis receives the email.
 	</td>
 	<td width="75%">
 		<textarea name="bugnote_text" cols="80" rows="10"></textarea>
@@ -61,9 +63,9 @@ OR, to email someone who does not receive Mantis Notes, click [Open Email Client
 		$t_default_bugnote_view_status = config_get( 'default_bugnote_view_status' );
 		if ( access_has_bug_level( config_get( 'set_view_status_threshold' ), $f_bug_id ) ) {
 ?>
-			<input type="checkbox" name="private" <?php check_checked( $t_default_bugnote_view_status, VS_PRIVATE ); ?> />
+			<input type="checkbox" id="private" name="private" <?php check_checked( $t_default_bugnote_view_status, VS_PRIVATE ); ?> />
+			<label for="private"><?php echo lang_get( 'private' ); ?></label>
 <?php
-			echo lang_get( 'private' );
 		} else {
 			echo get_enum_element( 'project_view_state', $t_default_bugnote_view_status );
 		}

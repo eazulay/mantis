@@ -112,7 +112,7 @@
 
 <?php /* This block was added by Eyal Azulay */
 	if ( access_has_bug_level( config_get( 'time_tracking_edit_threshold' ), $t_bug_id ) ) { ?>
-<tr class="row-1">
+<tr <?php echo helper_alternate_class(); ?>>
 	<td class="center" colspan="2">
 		<b><?php echo 'Move Note to Issue #' ?></b><br />
 		<input type="text" name="move_to_bug_id" size="9" value="<?php echo $t_bug_id ?>" />

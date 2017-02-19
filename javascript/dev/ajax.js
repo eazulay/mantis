@@ -65,3 +65,23 @@ function liveReqProcessReqChange( targetElementId, elementIdToHide ) {
 		document.getElementById(elementIdToHide).innerHTML = '';
 	}
 }
+
+function AjaxSave( queryString, callBack, callParams ) {
+	if (liveReq && liveReq.readyState < 4)
+		liveReq.abort();
+
+	if (window.XMLHttpRequest) {
+		// branch for IE/Windows ActiveX version
+	} else if (window.ActiveXObject) {
+		liveReq = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	liveReq.onreadystatechange = function() {
+		if (callBack != null)
+			callBack(callParams);
+	};
+
+	liveReq.open("GET", processURI + "?" + queryString);
+
+	liveReq.send(null);
+}
