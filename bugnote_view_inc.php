@@ -80,7 +80,8 @@ $num_notes = count( $t_bugnotes );
 
 	event_signal( 'EVENT_VIEW_BUGNOTES_START', array( $f_bug_id, $t_bugnotes ) );
 
-	$t_bugnotes = event_signal( 'EVENT_HELPNOTES_POPULATE', array( $f_bug_id, $t_bugnotes ) );
+	if (class_exists('HelpNotesPlugin'))
+		$t_bugnotes = event_signal( 'EVENT_HELPNOTES_POPULATE', array( $f_bug_id, $t_bugnotes ) );
 
 	$t_normal_date_format = config_get( 'normal_date_format' );
 	$t_total_time = 0;
@@ -111,8 +112,10 @@ $num_notes = count( $t_bugnotes );
 			$t_bugnote_note_css	= 'bugnote-note-public';
 		}
 		$t_bugnote_row_css = '';
-		if ($t_bugnote->has_help)
-			$t_bugnote_row_css = ' bugnote-hashelp';
+		if (class_exists('HelpNotesPlugin')){
+			if ($t_bugnote->has_help)
+				$t_bugnote_row_css = ' bugnote-hashelp';
+		}
 ?>
 <tr class="bugnote <?php echo $t_bugnote_row_css ?>" id="c<?php echo $t_bugnote->id ?>">
         <td class="<?php echo $t_bugnote_css ?>">
@@ -138,8 +141,9 @@ $num_notes = count( $t_bugnotes );
 		}
 		
 		# Has Help
-		$bugnote_id = $t_bugnote->id;
-		echo '<input type="hidden" name="has_help['.$bugnote_id.']" value="0"> <input type="checkbox" id="has_help_'.$bugnote_id.'" name="has_help['.$bugnote_id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"> <label for="has_help_'.$bugnote_id.'">Help</label> <span id="span_has_help_'.$bugnote_id.'" style="font-weight:normal;"></span>';
+		if (class_exists('HelpNotesPlugin')){
+			echo '<input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"> <label for="has_help_'.$t_bugnote->id.'">Help</label> <span id="span_has_help_'.$t_bugnote->id.'" style="font-weight:normal;"></span>';
+		}
 		# bug must be open to be editable
 		if ( !bug_is_readonly( $f_bug_id ) ) {
 			echo '<div class="small">';
@@ -232,7 +236,7 @@ $num_notes = count( $t_bugnotes );
 <?php
 	collapse_end( 'bugnotes' );
 	
-	if ( ON == config_get( 'use_javascript' ) ): ?>
+	if ( ON == config_get('use_javascript') && (class_exists('HelpNotesPlugin')) ): ?>
 <script type="text/javascript">
 	function hasHelpChanged(cb) {
 		var queryString = 'entrypoint=bugnote_update_hashelp&note_id=' + cb.id.substr(9) + '&has_help=' + (cb.checked ? '1' : '0');
