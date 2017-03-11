@@ -141,7 +141,7 @@ $num_notes = count( $t_bugnotes );
 		}
 		
 		# Has Help
-		if (class_exists('HelpNotesPlugin')){
+		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)){
 			echo '<input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"> <label for="has_help_'.$t_bugnote->id.'">Help</label> <span id="span_has_help_'.$t_bugnote->id.'" style="font-weight:normal;"></span>';
 		}
 		# bug must be open to be editable
