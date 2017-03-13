@@ -575,17 +575,29 @@ function bugnote_set_view_state( $p_bugnote_id, $p_private ) {
  * @param int $p_bugnote_id bugnote id
  * @param int $p_bug_id bug id
  */
-function bugnote_set_bug_id( $p_bugnote_id, $p_bug_id ) {
+function bugnote_set_bug_id( $p_bugnote_id, $p_bug_id, $record_move = false ) {
 	$t_bug_id = bugnote_get_field( $p_bugnote_id, 'bug_id' );
-	
 	if ($p_bug_id > 0 && $p_bug_id != $t_bug_id && bug_get_row( $p_bug_id ) ) {
+		if ($record_move){
+			$t_view_state = bugnote_get_field( $p_bugnote_id, 'view_state');
+			$t_note_reporter_id = bugnote_get_field( $p_bugnote_id, 'reporter_id' );
+			$t_current_user_name = current_user_get_field( 'realname' );
+			bugnote_add($t_bug_id,
+						"Note ~".$p_bugnote_id." moved on ".date("d M Y H:i"). " by ".$t_current_user_name,
+						null,
+						$t_view_state == VS_PRIVATE,	// Private if original Note is private
+						0,
+						'',
+						$t_note_reporter_id,			// Original Note reporter
+						false);							// do not send email notification
+		}
 		$c_bugnote_id = db_prepare_int( $p_bugnote_id );
 		$c_bug_id = db_prepare_int( $p_bug_id );
 		$t_bugnote_table = db_get_table( 'mantis_bugnote_table' );
 
 		$query = "UPDATE $t_bugnote_table
-					SET bug_id=" . db_param() . "
-					WHERE id=" . db_param();
+SET bug_id=" . db_param() . "
+WHERE id=" . db_param();
 		db_query_bound( $query, Array( $c_bug_id, $c_bugnote_id ) );
 
 		$old_text = bugnote_get_text( $p_bugnote_id );

@@ -111,14 +111,15 @@
 <?php } ?>
 
 <?php /* This block was added by Eyal Azulay */
-	if ( access_has_bug_level( config_get( 'time_tracking_edit_threshold' ), $t_bug_id ) ) { ?>
+	if ( access_has_bug_level( config_get( 'time_tracking_edit_threshold' ), $t_bug_id ) ) : ?>
 <tr <?php echo helper_alternate_class(); ?>>
 	<td class="center" colspan="2">
-		<b><?php echo 'Move Note to Issue #' ?></b><br />
-		<input type="text" name="move_to_bug_id" size="9" value="<?php echo $t_bug_id ?>" />
+		<b><?php echo lang_get('move_note_to_issue'); ?></b><br />
+		<input type="text" name="move_to_bug_id" size="9" value="<?php echo $t_bug_id ?>" /><br />
+		<input type="checkbox" id="record_transfer" name="record_transfer" value="1" checked /> <label for="record_transfer"><?php echo lang_get('record_note_transfer'); ?></label>
 	</td>
 </tr>
-<?php } ?>
+<?php endif; ?>
 
 <?php event_signal( 'EVENT_BUGNOTE_EDIT_FORM', array( $t_bug_id, $f_bugnote_id ) ); ?>
 

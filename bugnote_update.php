@@ -38,7 +38,9 @@
 	$f_time_tracking  = gpc_get_string( 'time_tracking', '0:00' );
 	$f_move_to_bug_id = 0;									/* Added by Eyal Azulay */
 	if (isset($_POST['move_to_bug_id']))					/* Added by Eyal Azulay */
-		$f_move_to_bug_id= gpc_get_int( 'move_to_bug_id' );	/* Added by Eyal Azulay */
+		$f_move_to_bug_id = gpc_get_int( 'move_to_bug_id' );	/* Added by Eyal Azulay */
+	if (isset($_POST['record_transfer']))
+		$record_move = gpc_get_bool( 'record_transfer' );
 
 	# Check if the current user is allowed to edit the bugnote
 	$t_user_id = auth_get_current_user_id();
@@ -60,7 +62,7 @@
 	bugnote_set_text( $f_bugnote_id, $f_bugnote_text );
 	bugnote_set_time_tracking( $f_bugnote_id, $f_time_tracking );
 	if ($f_move_to_bug_id > 0)									/* Added by Eyal Azulay */
-		bugnote_set_bug_id( $f_bugnote_id, $f_move_to_bug_id );	/* Added by Eyal Azulay */
+		bugnote_set_bug_id( $f_bugnote_id, $f_move_to_bug_id, $record_move );	/* Added by Eyal Azulay */
 
 	# Plugin integration
 	event_signal( 'EVENT_BUGNOTE_EDIT', array( $t_bug_id, $f_bugnote_id ) );

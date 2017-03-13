@@ -1588,3 +1588,7 @@ $s_month_september = 'September';
 $s_month_october = 'October';
 $s_month_november = 'November';
 $s_month_december = 'December';
+
+# Added by Eyal Azulay
+$s_move_note_to_issue = 'Move Note to Issue #';
+$s_record_note_transfer = 'Record Note transfer on original Issue';
