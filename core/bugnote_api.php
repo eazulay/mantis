@@ -583,7 +583,7 @@ function bugnote_set_bug_id( $p_bugnote_id, $p_bug_id, $record_move = false ) {
 			$t_note_reporter_id = bugnote_get_field( $p_bugnote_id, 'reporter_id' );
 			$t_current_user_name = current_user_get_field( 'realname' );
 			bugnote_add($t_bug_id,
-						"Note ~".$p_bugnote_id." moved on ".date("d M Y H:i"). " by ".$t_current_user_name,
+						"[Note ~".$p_bugnote_id." moved to #".$p_bug_id." on ".date("d M Y H:i"). " by ".$t_current_user_name."]",
 						null,
 						$t_view_state == VS_PRIVATE,	// Private if original Note is private
 						0,
