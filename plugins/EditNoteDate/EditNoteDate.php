@@ -62,7 +62,8 @@ class EditNoteDatePlugin extends MantisPlugin {
 				$date = getdate();
 				$month = $date[mon];
 				$day = $date[mday];
-				if ($month == 3 && $day >=30 || $month > 3 && $month < 10 || $month == 10 && $day < 26)
+				$wday = $date[wday];
+				if ($month == 3 && $day-$wday >=25 && || $month > 3 && $month < 10 || $month == 10 && $day-$wday < 25)
 					$tz_offset -= 3600;
 				$t_query = 'UPDATE mantis_bugnote_table SET date_submitted = unix_timestamp(' . db_param() . ') - '.$tz_offset.' WHERE id=' . db_param();
 				db_query_bound($t_query, array($date_submitted, $p_bugnote_id));
