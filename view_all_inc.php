@@ -145,6 +145,7 @@
 						}
 
 						foreach ( $t_callback_menu_options as $t_menu_option ) {
+							echo '&#160;';
 							print_bracket_link_prepared( $t_menu_option );
 						}
 					}
