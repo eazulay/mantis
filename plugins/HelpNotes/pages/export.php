@@ -49,13 +49,13 @@ fputcsv($file, array('Issue','Note','Issue Summary','Note Help','Created','Edite
 
 # export the rows
 foreach( $t_issues as $t_issue ) {
-	$line = array();
 	$issue_id = $t_issue->id;
 	$summary = $t_issue->summary;
 	$t_bugnotes = bugnote_get_all_visible_bugnotes( $issue_id, $t_bugnote_order, 0, $t_user_id );
 	$t_bugnotes = event_signal( 'EVENT_HELPNOTES_POPULATE', array( $f_bug_id, $t_bugnotes ) );
 	foreach( $t_bugnotes as $t_bugnote ) {
 		if ($t_bugnote->has_help){
+			$line = array();
 			$line[] = $issue_id;
 			$line[] = $t_bugnote->id;
 			$line[] = $summary;
