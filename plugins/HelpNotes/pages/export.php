@@ -66,8 +66,8 @@ foreach( $t_issues as $t_issue ) {
 				$line[] = $t_bugnote->note;
 			$line[] = csv_format_date_submitted($t_bugnote->date_submitted);
 			$line[] = csv_format_date_submitted($t_bugnote->last_modified);
+			fputcsv($file, $line);
 		}
 	}
-	fputcsv($file, $line);
 }
 fclose($file);
