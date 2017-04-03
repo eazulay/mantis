@@ -453,11 +453,11 @@ define( 'TOKEN_COLLAPSE', 5 );
 define( 'TOKEN_USER', 1000 );
 
 # token expirations
-define( 'TOKEN_EXPIRY', 60 * 60 );
+define( 'TOKEN_EXPIRY', 4 * 60 * 60 ); // Default was one hour
 
 # Default expiration of 60 minutes ( 3600 seconds )
 define( 'TOKEN_EXPIRY_LAST_VISITED', 24 * 60 * 60 );
-define( 'TOKEN_EXPIRY_AUTHENTICATED', 5 * 60 );
+define( 'TOKEN_EXPIRY_AUTHENTICATED', 45 * 60 ); // Default was 5 minutes, accesing admin area
 define( 'TOKEN_EXPIRY_COLLAPSE', 365 * 24 * 60 * 60 );
 
 # config types
