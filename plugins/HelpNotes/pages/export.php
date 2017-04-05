@@ -45,7 +45,7 @@ header( 'Content-Disposition: attachment; filename="' . $t_filename . '"' );
 
 $file = fopen("php://output","w");
 
-fputcsv($file, array('Issue','Note','Issue Summary','Note Help','Created','Edited'));
+fputcsv($file, array('Issue','Note','Issue Summary','Created','Edited','Note Help'));
 
 # export the rows
 foreach( $t_issues as $t_issue ) {
@@ -59,13 +59,12 @@ foreach( $t_issues as $t_issue ) {
 			$line[] = $issue_id;
 			$line[] = $t_bugnote->id;
 			$line[] = $summary;
-			
+			$line[] = csv_format_date_submitted($t_bugnote->date_submitted);
+			$line[] = csv_format_date_submitted($t_bugnote->last_modified);
 			if (preg_match_all('/\{\{(.+)\}\}/sU', $t_bugnote->note, $matches))
 				$line[] = implode("\n", $matches[1]);
 			else
 				$line[] = $t_bugnote->note;
-			$line[] = csv_format_date_submitted($t_bugnote->date_submitted);
-			$line[] = csv_format_date_submitted($t_bugnote->last_modified);
 			fputcsv($file, $line);
 		}
 	}
