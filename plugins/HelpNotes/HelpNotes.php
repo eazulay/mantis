@@ -115,8 +115,8 @@ class HelpNotesPlugin extends MantisPlugin {
 	
 	function help_notes_menu() {
 		return array(
-			'<a href="' . plugin_page( 'view' ) . '">View Help Notes</a>',
-			'<a href="' . plugin_page( 'export' ) . '">Help CSV Export</a>'
+			'<a href="' . plugin_page( 'view' ) . '">Help Notes</a>',
+			'<a href="' . plugin_page( 'export' ) . '">Help CSV</a>'
 		);
 	}
 

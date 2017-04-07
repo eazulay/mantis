@@ -92,6 +92,9 @@
 	}
 	?>
 <table id="buglist" class="width100" cellspacing="1">
+	<tr>
+		<td class="form-title" colspan="6"><span class="floatleft">View Help Notes</span></td>
+	</tr>
 	<tr class='row-category'>
 		<th class="form-title">Issue</th>
 		<th class="form-title">Note</th>
