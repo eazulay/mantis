@@ -109,8 +109,8 @@
 		foreach( $t_bugnotes as $t_bugnote ) {
 			if ($t_bugnote->has_help){
 				echo "	<tr valign='top'>
-		<td>".$issue_id."</td>
-		<td>".$t_bugnote->id."</td>
+		<td>".string_get_bug_view_link($issue_id, $t_user_id)."</td>
+		<td>".string_get_bugnote_view_link($issue_id, $t_bugnote->id, $t_user_id)."</td>
 		<td>".$summary."</td>
 		<td style='white-space: nowrap'>".date($date_format, $t_bugnote->date_submitted)."</td>
 		<td style='white-space: nowrap'>".date($date_format, $t_bugnote->last_modified)."</td>
