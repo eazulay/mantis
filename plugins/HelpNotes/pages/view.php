@@ -98,7 +98,7 @@
 		<th class="form-title" style="min-width:15%;">Issue Summary</th>
 		<th class="form-title">Created</th>
 		<th class="form-title">Edited</th>
-		<th class="form-title">Note Help</th>
+		<th class="form-title">Help</th>
 	</tr>
 <?php
 	foreach( $t_issues as $t_issue ) {
