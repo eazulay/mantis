@@ -31,7 +31,7 @@ class HelpNotesPlugin extends MantisPlugin {
 			'EVENT_HELPNOTES_POPULATE' => 'populate_helpnotes',
 			'EVENT_HELPNOTES_UPDATE_HASHELP' => 'update_bugnote_hashelp',
 			'EVENT_DISPLAY_FORMATTED' => 'format_help_string',
-			'EVENT_MENU_FILTER' => 'export_help_notes_menu', 
+			'EVENT_MENU_FILTER' => 'help_notes_menu', 
 		);
 	}
 	
@@ -113,8 +113,11 @@ class HelpNotesPlugin extends MantisPlugin {
 		return preg_replace('/\{\{(.+)\}\}/sU', '<strong>$1</strong>', $str);
 	}
 	
-	function export_help_notes_menu() {
-		return array( '<a href="' . plugin_page( 'export' ) . '">Help CSV Export</a>' );
+	function help_notes_menu() {
+		return array(
+			'<a href="' . plugin_page( 'view' ) . '">View Help Notes</a>',
+			'<a href="' . plugin_page( 'export' ) . '">Help CSV Export</a>'
+		);
 	}
 
 	/**
