@@ -120,11 +120,11 @@
 				else
 					echo $t_bugnote->note;
 				echo "</td>
-	</tr>
-</table>";
+	</tr>\n";
 			}
 		}
 	}
+	echo "</table>";
 
 	if ( ( $t_filter_position & FILTER_POSITION_BOTTOM ) == FILTER_POSITION_BOTTOM ) {
 		filter_draw_selection_area( $f_page_number );
