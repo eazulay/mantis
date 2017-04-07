@@ -116,9 +116,9 @@
 		<td style='white-space: nowrap'>".date($date_format, $t_bugnote->last_modified)."</td>
 		<td>";
 				if (preg_match_all('/\{\{(.+)\}\}/sU', $t_bugnote->note, $matches))
-					echo implode("\n", $matches[1]);
+					echo string_display_links(implode("<br>", $matches[1]));
 				else
-					echo $t_bugnote->note;
+					echo string_display_links($t_bugnote->note);
 				echo "</td>
 	</tr>\n";
 			}
