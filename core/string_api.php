@@ -395,6 +395,7 @@ $string_process_bugnote_link_callback = array();
  */
 function string_process_bugnote_link( $p_string, $p_include_anchor = true, $p_detail_info = true, $p_fqdn = false ) {
 	global $string_process_bugnote_link_callback;
+	
 	$t_tag = config_get( 'bugnote_link_tag' );
 
 	# bail if the link tag is blank
@@ -476,7 +477,10 @@ function string_insert_hrefs( $p_string ) {
 		$s_url_regex = "/(([[:alpha:]][-+.[:alnum:]]*):\/\/(${t_url_part1}*?${t_url_part2}+))/sue";
 	}
 
-	$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\">\\1</a> [<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">^</a>]'", $p_string );
+	if (gpc_isset('page') && gpc_get('page') == 'HelpNotes/view')
+		$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">\\1</a>'", $p_string );
+	else
+		$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\">\\1</a> [<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">^</a>]'", $p_string );
 	if( $t_change_quotes ) {
 		ini_set( 'magic_quotes_sybase', true );
 	}
