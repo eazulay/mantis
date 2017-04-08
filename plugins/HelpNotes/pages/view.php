@@ -33,6 +33,21 @@
 	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="/mantis/browser_search_plugin.php?type=text" />	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="https://get-it-write.com/mantis/browser_search_plugin.php?type=id" />	<title>View Help Notes - Get-It-Write Tracking System</title>
 <script type="text/javascript" src="/mantis/javascript/min/common.js"></script>
 <script type="text/javascript">var loading_lang = "Loading...";</script><script type="text/javascript" src="/mantis/javascript/min/ajax.js"></script>
+<script type="text/javascript">
+function selectElement(element) {
+    if (window.getSelection) {
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        var range = document.createRange();
+        range.selectNodeContents(element);
+        sel.addRange(range);
+    } else if (document.selection) {
+        var textRange = document.body.createTextRange();
+        textRange.moveToElementText(element);
+        textRange.select();
+    }
+}
+</script>
 <?php
 	$t_page_number = 1;
 	$t_per_page = -1;
@@ -114,7 +129,7 @@
 		<td>".string_display_links($summary)."</td>
 		<td style='white-space: nowrap'>".date($date_format, $t_bugnote->date_submitted)."</td>
 		<td style='white-space: nowrap'>".date($date_format, $t_bugnote->last_modified)."</td>
-		<td>";
+		<td ondblclick='selectElement(this)'>";
 				$note_content = $t_bugnote->note;
 				if (preg_match_all('/\{\{(.+)\}\}/sU', $note_content, $matches))
 					$note_content =  implode("</p><p>", $matches[1]);
