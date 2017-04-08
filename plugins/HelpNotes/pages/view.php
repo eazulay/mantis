@@ -14,10 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with MantisBT.  If not, see <http://www.gnu.org/licenses/>.
 
-	require_once( 'core.php' );
-
 	auth_ensure_user_authenticated( );
-	// helper_begin_long_process( );
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -118,11 +115,14 @@
 		<td style='white-space: nowrap'>".date($date_format, $t_bugnote->date_submitted)."</td>
 		<td style='white-space: nowrap'>".date($date_format, $t_bugnote->last_modified)."</td>
 		<td>";
-				if (preg_match_all('/\{\{(.+)\}\}/sU', $t_bugnote->note, $matches))
-					echo string_display_links(implode("<br>", $matches[1]));
-				else
-					echo string_display_links($t_bugnote->note);
-				echo "</td>
+				$note_content = $t_bugnote->note;
+				if (preg_match_all('/\{\{(.+)\}\}/sU', $note_content, $matches))
+					$note_content =  implode("</p><p>", $matches[1]);
+				$note_content = string_display_links($note_content);
+				$note_content = str_replace("</p><p>", "</p>\r\n<p>", $note_content);
+				$note_content = str_replace("<br />\r\n-", "</p>\r\n<p style='margin:0;'>-", $note_content);
+				$note_content = str_replace("<br />\r\n<br />\r\n", "</p>\r\n<p>", $note_content);
+				echo '<p style="margin-top:0;">'.$note_content."</p></td>
 	</tr>\n";
 			}
 		}
