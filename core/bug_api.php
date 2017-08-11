@@ -349,13 +349,13 @@ class BugData {
 
 		# Insert the rest of the data
 		$query = "INSERT INTO $t_bug_table
-					    ( project_id,reporter_id, handler_id,duplicate_id,
-					      priority,severity, reproducibility,status,
-					      resolution,projection, category_id,date_submitted,
-					      last_updated,eta, bug_text_id,
-					      os, os_build,platform, version,build,
-					      profile_id, summary, view_state, sponsorship_total, sticky, fixed_in_version,
-					      target_version, due_date
+					    ( project_id, reporter_id, handler_id, duplicate_id,
+					      priority, severity, reproducibility, status,
+					      resolution, projection, category_id, date_submitted,
+					      last_updated, eta, bug_text_id,
+					      os, os_build, platform, version, build,
+					      profile_id, summary, view_state, sponsorship_total,
+						  sticky, fixed_in_version, target_version, due_date
 					    )
 					  VALUES
 					    ( " . db_param() . ',' . db_param() . ',' . db_param() . ',' . db_param() . ",

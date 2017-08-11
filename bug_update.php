@@ -192,13 +192,13 @@
 			// but if a Status was submitted, the we do want to overwrite it
 			if ($t_bug_data->status == null)
 				$t_bug_data->status = bug_get_field( $f_bug_id, 'status' );
-		} else if ( $t_bug_data->status >= $t_closed
+		} elseif ( $t_bug_data->status >= $t_closed
 			&& $t_old_bug_status < $t_closed ) {
 			# bug_close updates the status and bugnote and sends message
 			bug_close( $f_bug_id, $f_bugnote_text, $f_private, $f_time_tracking );
 			$t_notify = false;
 			$t_bug_note_set = true;
-		} else if ( $t_bug_data->status == config_get( 'bug_reopen_status' )
+		} elseif ( $t_bug_data->status == config_get( 'bug_reopen_status' )
 			&& $t_old_bug_status >= $t_resolved ) {
 			bug_set_field( $f_bug_id, 'handler_id', $t_bug_data->handler_id ); # fix: update handler_id before calling bug_reopen
 			# bug_reopen updates the status and bugnote and sends message
@@ -210,6 +210,8 @@
 			// in bug_update() call below.
 			$t_bug_data->status = bug_get_field( $f_bug_id, 'status' );
 			$t_bug_data->resolution = bug_get_field( $f_bug_id, 'resolution' );
+		} elseif ( $t_bug_data->status < $t_resolved && $t_bug_data->resolution == SUSPENDED) {
+			$t_bug_data->resolution = OPEN;
 		}
 		// Remove priority when Status is set to Closed or to On Hold
 		if ( $t_bug_data->status == HOLD || $t_bug_data->status == CLOSED )
