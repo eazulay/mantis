@@ -1624,7 +1624,6 @@ function bug_resolve( $p_bug_id, $p_resolution, $p_fixed_in_version = '', $p_bug
 	if( $t_duplicate ) {
 		if( $p_bug_id == $p_duplicate_id ) {
 			trigger_error( ERROR_BUG_DUPLICATE_SELF, ERROR );
-
 			# never returns
 		}
 
@@ -1634,7 +1633,7 @@ function bug_resolve( $p_bug_id, $p_resolution, $p_fixed_in_version = '', $p_bug
 		# check if there is other relationship between the bugs...
 		$t_id_relationship = relationship_same_type_exists( $p_bug_id, $p_duplicate_id, BUG_DUPLICATE );
 
-		 if( $t_id_relationship > 0 ) {
+		if( $t_id_relationship > 0 ) {
 			# Update the relationship
 			relationship_update( $t_id_relationship, $p_bug_id, $p_duplicate_id, BUG_DUPLICATE );
 
