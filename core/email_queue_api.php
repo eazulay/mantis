@@ -172,13 +172,25 @@ function email_queue_delete( $p_email_id ) {
 function email_queue_get_ids() {
 	$t_email_table = db_get_table( 'mantis_email_table' );
 
-	$query = 'SELECT email_id FROM ' . $t_email_table . ' ORDER BY email_id ASC';
+	$query = 'SELECT email_id, email, subject FROM ' . $t_email_table . ' ORDER BY email, subject, email_id ASC';
 	$result = db_query_bound( $query );
 
 	$t_ids = array();
+	$prev_email = '';
+	$prev_subject = '';
+	$prev_id = 0;
 	while(( $t_row = db_fetch_array( $result ) ) !== false ) {
-		$t_ids[] = $t_row['email_id'];
+		if ($t_row['email'] != $prev_email || $t_row['subject'] != $prev_subject){
+			if ($prev_id > 0)
+				$t_ids[] = $prev_id;
+		} else {
+			email_queue_delete($t_row['email_id']);
+			$prev_email = $t_row['email'];
+			$prev_subject = $t_row['subject'];
+		}
+		$prev_id = $t_row['email_id'];
 	}
-
+	if ($prev_id > 0)
+		$t_ids[] = $prev_id;
 	return $t_ids;
 }
