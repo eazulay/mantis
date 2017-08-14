@@ -186,7 +186,7 @@ function email_queue_get_ids() {
 			$prev_email = $t_row['email'];
 			$prev_subject = $t_row['subject'];
 		} else
-			email_queue_delete($t_row['email_id']);
+			email_queue_delete($prev_id);
 		$prev_id = $t_row['email_id'];
 	}
 	if ($prev_id > 0)
