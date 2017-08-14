@@ -183,11 +183,10 @@ function email_queue_get_ids() {
 		if ($t_row['email'] != $prev_email || $t_row['subject'] != $prev_subject){
 			if ($prev_id > 0)
 				$t_ids[] = $prev_id;
-		} else {
-			email_queue_delete($t_row['email_id']);
 			$prev_email = $t_row['email'];
 			$prev_subject = $t_row['subject'];
-		}
+		} else
+			email_queue_delete($t_row['email_id']);
 		$prev_id = $t_row['email_id'];
 	}
 	if ($prev_id > 0)
