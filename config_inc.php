@@ -218,3 +218,6 @@ $g_filter_custom_fields_per_row = 6;
 $g_default_bug_priority = NONE;
 $g_bug_readonly_status_threshold = CLOSED;
 $g_update_readonly_bug_threshold = UPDATER;
+
+/* Enable/disable features */
+$g_form_security_validation = OFF;

@@ -59,7 +59,7 @@ class EditNoteDatePlugin extends MantisPlugin {
 				$p_tz = new DateTimeZone($t_prefs->timezone);
 				$tz_time = new DateTime("now", $p_tz);
 				$tz_offset = $tz_time->getOffset();
-				$tz_offset -= 3600; // Correct server offset (server is in NL)
+//				$tz_offset -= 3600; // Correct server offset (server is in NL)
 				$date = getdate();
 				$month = $date[mon];
 				$day = $date[mday];
