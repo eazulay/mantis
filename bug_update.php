@@ -149,19 +149,17 @@
 		$t_new_custom_field_value = gpc_get_custom_field( "custom_field_$t_id", $t_def['type'], '' );
 		$t_old_custom_field_value = custom_field_get_value( $t_id, $f_bug_id );
 		
-		if ($t_id > 3 && $t_id < 8 && $approval_status == '') { // Clear all Approval fields if Approval Status is cleared.
+		if ($t_id == 3)
+			$approval_status = $t_new_custom_field_value;
+		elseif ($t_id > 3 && $t_id < 8 && $approval_status == '') // Clear all Approval fields if Approval Status is cleared.
 			$t_new_custom_field_value = null;
-		}
-
+		
 		# Don't update the custom field if the new value both matches the old value and is valid
 		# This ensures that changes to custom field validation will force the update of old invalid custom field values
 		if( $t_new_custom_field_value === $t_old_custom_field_value && custom_field_validate( $t_id, $t_new_custom_field_value ) ) {
 			continue;
 		}
 
-		if ($t_id == 3) {
-			$approval_status = $t_new_custom_field_value;
-		}
 		# Attempt to set the new custom field value
 		if ( !custom_field_set_value( $t_id, $f_bug_id, $t_new_custom_field_value ) ) {
 			error_parameters( lang_get_defaulted( custom_field_get_field( $t_id, 'name' ) ) );
