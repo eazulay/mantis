@@ -743,7 +743,7 @@
 	# Summary
 	if ( $tpl_show_summary ) {
 		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" width="15%"><b>', lang_get( 'summary' ), '</b></td>';
+		echo '<td class="category" width="17%"><b>', lang_get( 'summary' ), '</b></td>';
 		echo '<td colspan="3"><b>', $tpl_summary, '</b></td>';
 		echo '</tr>';
 	}

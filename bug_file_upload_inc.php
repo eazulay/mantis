@@ -49,7 +49,7 @@
 	</td>
 </tr>
 <tr class="row-1">
-	<td class="category" width="15%">
+	<td class="category" width="17%">
 		<?php echo lang_get( 'select_file' ) ?><br />
 		<?php echo '<span class="small">(' . lang_get( 'max_file_size' ) . ': ' . number_format( $t_max_file_size/1000 ) . 'k)</span>'?>
 	</td>
