@@ -23,6 +23,9 @@
 	 * @link http://www.mantisbt.org
 	 */
 
+/*
+** 29/09/2018 NO LONGER CALLED FROM bug_view_inc.php
+*/
 	require_once( 'file_api.php' );
 
 	# check if we can allow the upload... bail out if we can't

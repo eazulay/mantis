@@ -99,7 +99,7 @@ th					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; pa
 					  background-color: #E5E6EF; color: #525252; font-weight: bold; vertical-align : top; font-variant:small-caps;}
 td 					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; padding: 9px 12px; text-align: left; }
 #filter_open tr.row-2 td	{ text-align: center; }
-tr.bug-primary.row-2 td	{ text-align: center; }
+/*tr.bug-primary.row-2 td	{ text-align: center; } */
 .row-2 td.small-caption	{ text-align: center; }
 #history_open .row-2 td.small-caption, #bugnotestats_open .row-2 td.small-caption	{ text-align: left; }
 .row-2 td.small-caption #due_date { width:102px; }
@@ -112,6 +112,7 @@ td.category			{ background-color: #EEF3FB; color: #525252; vertical-align: top;
 	background: -moz-linear-gradient(#EEF3FB, #DBDBF0);
 	background: linear-gradient(#EEF3FB, #DBDBF0);
 }
+tr.bug-primary td	{ font-size: 8pt; vertical-align: top; }
 td.overdue			{ background-color: #ff6060; color: #525252; font-weight: bold; }
 td.disabled			{ background-color: #EEF3FB; color: #AAA;
 	background: -webkit-linear-gradient(#EEF3FB, #DBDBF0);
