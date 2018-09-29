@@ -610,8 +610,10 @@
 	# Attachments
 	if ( $tpl_show_attachments ) {
 		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2"><a name="attachments" id="attachments" />', lang_get( 'attached_files' ), '</td>';
+		echo '<td class="category" colspan="2">', lang_get( 'attached_files' ), '</td>';
 		echo '<td colspan="12">';
+		echo '<div id="attachments_open">';
+		echo '<a href="" onclick="ToggleDiv( \'attachments\' ); return false;"><img src="images/minus.png" alt="-" border="0" /></a> ';
 		# File upload
 		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
 			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
@@ -621,10 +623,26 @@
 			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
 			echo '<input name="file" type="file" size="40" />';
 			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
-			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span><br>';
-			echo '</form>';
+			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
+			echo '</form><br>';
 		}
 		print_bug_attachments_list( $tpl_bug_id );
+		echo '</div>';
+		echo '<div id="attachments_closed" class="hidden">';
+		echo '<a href="" onclick="ToggleDiv( \'attachments\' ); return false;"><img src="images/plus.png" alt="+" border="0" /></a> ';
+		# File upload
+		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
+			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
+			echo '<form method="post" enctype="multipart/form-data" action="bug_file_add.php">';
+			echo form_security_field( 'bug_file_add' );
+			echo '<input type="hidden" name="bug_id" value="', $f_bug_id, '" />';
+			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
+			echo '<input name="file" type="file" size="40" />';
+			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
+			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
+			echo '</form>';
+		}
+		echo '</div>';
 		echo '</td></tr>';
 	}
 
