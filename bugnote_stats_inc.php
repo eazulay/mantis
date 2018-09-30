@@ -68,7 +68,7 @@ if ( ON != config_get('time_tracking_enabled') ) {
 <form method="post" action="<?php echo form_action_self() . '#bugnotestats' ?>">
 	<input type="hidden" name="id" value="<?php echo $f_bug_id ?>" />
 	<table border=0 class="width100" cellspacing="0">
-		<tr>
+		<tr class="header">
 			<td class="form-title" colspan="4">
 				<?php
 					collapse_icon( 'bugnotestats' );
@@ -90,19 +90,7 @@ if ( ON != config_get('time_tracking_enabled') ) {
 					print_filter_do_filter_by_date( true );
 				?>
 			</td>
-		</tr>
-		<tr>
-			<td class="center" colspan="2">
-				<input type="submit" class="button"
-					name="get_bugnote_stats_button"
-					value="<?php echo lang_get( 'time_tracking_get_info_button' ) ?>"
-				/>
-			</td>
-		</tr>
-	</table>
-</form>
-
-
+			<td>
 <?php
 	# Print time tracking information if requested
 
@@ -127,12 +115,12 @@ if ( ON != config_get('time_tracking_enabled') ) {
 		unset( $t_sort_name );
 ?>
 <br />
-<table border=0 class="width100" cellspacing="0">
-	<tr class="row-category-history">
-		<td class="small-caption">
+<table border=0 class="width100" cellspacing="0" style="border:none;">
+	<tr class="row-category-history footer">
+		<td class="small-caption" style="padding:8px;">
 			<?php echo lang_get( $t_name_field ) ?>
 		</td>
-		<td class="small-caption">
+		<td class="small-caption" style="padding:8px;">
 			<?php echo lang_get( 'time_tracking' ) ?>
 		</td>
 	</tr>
@@ -156,7 +144,7 @@ if ( ON != config_get('time_tracking_enabled') ) {
 <?php
 		} # end for loop
 ?>
-	<tr <?php echo helper_alternate_class() ?>>
+	<tr class="footer">
 		<td class="small-caption">
 			<?php echo lang_get( 'total_time' ) ?>
 		</td>
@@ -168,12 +156,27 @@ if ( ON != config_get('time_tracking_enabled') ) {
 
 <?php 
 	} # end if
+?>
+			</td>
+		</tr>
+		<tr class="footer">
+			<td class="center" colspan="2">
+				<input type="submit" class="button"
+					name="get_bugnote_stats_button"
+					value="<?php echo lang_get( 'time_tracking_get_info_button' ) ?>"
+				/>
+			</td>
+		</tr>
+	</table>
+</form>
 
+
+<?php
 	collapse_closed( 'bugnotestats' );
 ?>
 
 <table class="width100" cellspacing="0">
-	<tr>
+	<tr class="header">
 		<td class="form-title" colspan="4">
 			<?php
 				collapse_icon( 'bugnotestats' );

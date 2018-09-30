@@ -367,7 +367,7 @@ function columns_remove_invalid( $p_columns, $p_columns_all ) {
  * @access public
  */
 function print_column_title_selection( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td> &#160; </td>';
+	echo '<th> &#160; </th>';
 }
 
 /**
@@ -379,7 +379,7 @@ function print_column_title_selection( $p_sort, $p_dir, $p_columns_target = COLU
  * @access public
  */
 function print_column_title_edit( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td> &#160; </td>';
+	echo '<th> &#160; </th>';
 }
 
 /**
@@ -391,10 +391,10 @@ function print_column_title_edit( $p_sort, $p_dir, $p_columns_target = COLUMNS_T
  * @access public
  */
 function print_column_title_id( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'id' ), 'id', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'id' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -406,10 +406,10 @@ function print_column_title_id( $p_sort, $p_dir, $p_columns_target = COLUMNS_TAR
  * @access public
  */
 function print_column_title_project_id( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'email_project' ), 'project_id', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'project_id' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -421,10 +421,10 @@ function print_column_title_project_id( $p_sort, $p_dir, $p_columns_target = COL
  * @access public
  */
 function print_column_title_reporter_id( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'reporter' ), 'reporter_id', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'reporter_id' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -436,10 +436,10 @@ function print_column_title_reporter_id( $p_sort, $p_dir, $p_columns_target = CO
  * @access public
  */
 function print_column_title_handler_id( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'assigned_to' ), 'handler_id', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'handler_id' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -451,10 +451,10 @@ function print_column_title_handler_id( $p_sort, $p_dir, $p_columns_target = COL
  * @access public
  */
 function print_column_title_priority( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'priority_abbreviation' ), 'priority', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'priority' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -466,10 +466,10 @@ function print_column_title_priority( $p_sort, $p_dir, $p_columns_target = COLUM
  * @access public
  */
 function print_column_title_reproducibility( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'reproducibility' ), 'reproducibility', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'reproducibility' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -481,10 +481,10 @@ function print_column_title_reproducibility( $p_sort, $p_dir, $p_columns_target 
  * @access public
  */
 function print_column_title_projection( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'projection' ), 'projection', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'projection' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -496,10 +496,10 @@ function print_column_title_projection( $p_sort, $p_dir, $p_columns_target = COL
  * @access public
  */
 function print_column_title_eta( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'eta' ), 'eta', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'eta' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -511,10 +511,10 @@ function print_column_title_eta( $p_sort, $p_dir, $p_columns_target = COLUMNS_TA
  * @access public
  */
 function print_column_title_resolution( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'resolution' ), 'resolution', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'resolution' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -526,10 +526,10 @@ function print_column_title_resolution( $p_sort, $p_dir, $p_columns_target = COL
  * @access public
  */
 function print_column_title_fixed_in_version( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'fixed_in_version' ), 'fixed_in_version', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'fixed_in_version' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -541,10 +541,10 @@ function print_column_title_fixed_in_version( $p_sort, $p_dir, $p_columns_target
  * @access public
  */
 function print_column_title_target_version( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'target_version' ), 'target_version', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'target_version' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -557,12 +557,12 @@ function print_column_title_target_version( $p_sort, $p_dir, $p_columns_target =
  */
 function print_column_title_view_state( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	global $t_icon_path;
-	echo '<td>';
+	echo '<th>';
 	$t_view_state_text = lang_get( 'view_status' );
 	$t_view_state_icon = '<img src="' . $t_icon_path . 'protected.gif" alt="' . $t_view_state_text . '" title="' . $t_view_state_text . '" />';
 	print_view_bug_sort_link( $t_view_state_icon, 'view_state', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'view_state' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -574,10 +574,10 @@ function print_column_title_view_state( $p_sort, $p_dir, $p_columns_target = COL
  * @access public
  */
 function print_column_title_os( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'os' ), 'os', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'os' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -589,10 +589,10 @@ function print_column_title_os( $p_sort, $p_dir, $p_columns_target = COLUMNS_TAR
  * @access public
  */
 function print_column_title_os_build( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'os_version' ), 'os_build', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'os_build' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -605,10 +605,10 @@ function print_column_title_os_build( $p_sort, $p_dir, $p_columns_target = COLUM
  */
 function print_column_title_build( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	if( $p_columns_target != COLUMNS_TARGET_CSV_PAGE ) {
-		echo '<td>';
+		echo '<th>';
 		print_view_bug_sort_link( lang_get( 'build' ), 'build', $p_sort, $p_dir, $p_columns_target );
 		print_sort_icon( $p_dir, $p_sort, 'build' );
-		echo '</td>';
+		echo '</th>';
 	} else {
 		echo lang_get( 'build' );
 	}
@@ -623,10 +623,10 @@ function print_column_title_build( $p_sort, $p_dir, $p_columns_target = COLUMNS_
  * @access public
  */
 function print_column_title_platform( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'platform' ), 'platform', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'platform' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -638,10 +638,10 @@ function print_column_title_platform( $p_sort, $p_dir, $p_columns_target = COLUM
  * @access public
  */
 function print_column_title_version( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'product_version' ), 'version', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'version' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -653,10 +653,10 @@ function print_column_title_version( $p_sort, $p_dir, $p_columns_target = COLUMN
  * @access public
  */
 function print_column_title_date_submitted( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'date_submitted' ), 'date_submitted', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'date_submitted' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -671,7 +671,7 @@ function print_column_title_attachment_count( $p_sort, $p_dir, $p_columns_target
 	global $t_icon_path;
 	$t_attachment_count_text = lang_get( 'attachment_count' );
 	$t_attachment_count_icon = "<img src=\"${t_icon_path}attachment.png\" alt=\"$t_attachment_count_text\" title=\"$t_attachment_count_text\" />";
-	echo "\t<td>$t_attachment_count_icon</td>\n";
+	echo "\t<th>$t_attachment_count_icon</th>\n";
 }
 
 /**
@@ -683,10 +683,10 @@ function print_column_title_attachment_count( $p_sort, $p_dir, $p_columns_target
  * @access public
  */
 function print_column_title_category( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'category' ), 'category', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'category' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -698,10 +698,10 @@ function print_column_title_category( $p_sort, $p_dir, $p_columns_target = COLUM
  * @access public
  */
 function print_column_title_sponsorship_total( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo "\t<td>";
+	echo "\t<th>";
 	print_view_bug_sort_link( sponsorship_get_currency(), 'sponsorship_total', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'sponsorship_total' );
-	echo "</td>\n";
+	echo "</th>\n";
 }
 
 /**
@@ -713,10 +713,10 @@ function print_column_title_sponsorship_total( $p_sort, $p_dir, $p_columns_targe
  * @access public
  */
 function print_column_title_severity( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'severity' ), 'severity', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'severity' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -728,10 +728,10 @@ function print_column_title_severity( $p_sort, $p_dir, $p_columns_target = COLUM
  * @access public
  */
 function print_column_title_status( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'status' ), 'status', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'status' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -743,10 +743,10 @@ function print_column_title_status( $p_sort, $p_dir, $p_columns_target = COLUMNS
  * @access public
  */
 function print_column_title_last_updated( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'updated' ), 'last_updated', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'last_updated' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -758,10 +758,10 @@ function print_column_title_last_updated( $p_sort, $p_dir, $p_columns_target = C
  * @access public
  */
 function print_column_title_summary( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	print_view_bug_sort_link( lang_get( 'summary' ), 'summary', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'summary' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -773,7 +773,7 @@ function print_column_title_summary( $p_sort, $p_dir, $p_columns_target = COLUMN
  * @access public
  */
 function print_column_title_bugnotes_count( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td> # </td>';
+	echo '<th> # </th>';
 }
 
 /**
@@ -785,9 +785,9 @@ function print_column_title_bugnotes_count( $p_sort, $p_dir, $p_columns_target =
  * @access public
  */
 function print_column_title_description( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	echo lang_get( 'description' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -799,9 +799,9 @@ function print_column_title_description( $p_sort, $p_dir, $p_columns_target = CO
  * @access public
  */
 function print_column_title_steps_to_reproduce( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	echo lang_get( 'steps_to_reproduce' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -813,19 +813,19 @@ function print_column_title_steps_to_reproduce( $p_sort, $p_dir, $p_columns_targ
  * @access public
  */
 function print_column_title_additional_information( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	echo lang_get( 'additional_information' );
-	echo '</td>';
+	echo '</th>';
 }
 
 function print_column_title_overdue( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	global $t_icon_path;
-	echo '<td>';
+	echo '<th>';
 	$t_overdue_text = lang_get( 'overdue' );
 	$t_overdue_icon = '<img src="' . $t_icon_path . 'overdue.png" alt="' . $t_overdue_text . '" title="' . $t_overdue_text . '" />';
 	print_view_bug_sort_link( $t_overdue_icon, 'due_date', $p_sort, $p_dir, $p_columns_target );
 	print_sort_icon( $p_dir, $p_sort, 'due_date' );
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -857,14 +857,14 @@ function print_column_selection( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW
  * @access public
  */
 function print_column_title_plugin( $p_column, $p_column_object, $p_sort, $p_dir, $p_columns_target=COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	echo '<th>';
 	if ( $p_column_object->sortable ) {
 		print_view_bug_sort_link( string_display_line( $p_column_object->title ), $p_column, $p_sort, $p_dir, $p_columns_target );
 		print_sort_icon( $p_dir, $p_sort, $p_column );
 	} else {
 		echo string_display_line( $p_column_object->title );
 	}
-	echo '</td>';
+	echo '</th>';
 }
 
 /**
@@ -876,9 +876,9 @@ function print_column_title_plugin( $p_column, $p_column_object, $p_sort, $p_dir
  */
 function print_column_plugin( $p_column_object, $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	if ( $p_columns_target != COLUMNS_TARGET_CSV_PAGE ) {
-		echo '<td>';
+		echo '<th>';
 		$p_column_object->display( $p_bug, $p_columns_target );
-		echo '</td>';
+		echo '</th>';
 	} else {
 		$p_column_object->display( $p_bug, $p_columns_target );
 	}

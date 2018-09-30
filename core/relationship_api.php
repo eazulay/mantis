@@ -822,8 +822,8 @@ function relationship_view_box( $p_bug_id ) {
 <br />
 
 <?php collapse_open( 'relationships' );?>
-<table class="width100" cellspacing="1">
-<tr class="row-2" valign="top">
+<table class="width100" cellspacing="0">
+<tr class="row-2 header" valign="top">
 	<td width="15%" class="form-title" colspan="2">
 		<?php
 			collapse_icon( 'relationships' );
@@ -859,7 +859,7 @@ function relationship_view_box( $p_bug_id ) {
 		}
 	}
 	?>
-<tr>
+<tr class="footer">
 	<td colspan="2"><?php echo relationship_get_summary_html( $p_bug_id )?></td>
 </tr>
 </table>

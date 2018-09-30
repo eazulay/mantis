@@ -109,7 +109,7 @@
 <form name="bug_action" method="get" action="bug_actiongroup_page.php">
 <?php # CSRF protection not required here - form does not result in modifications ?>
 <table id="buglist" class="width100" cellspacing="1">
-<tr>
+<tr class="header">
 	<td class="form-title" colspan="<?php echo $col_count; ?>">
 		<span class="floatleft">
 		<?php

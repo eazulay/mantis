@@ -31,17 +31,17 @@ class EditNoteDatePlugin extends MantisPlugin {
 				$t_query = "SELECT date_submitted as date_submitted FROM mantis_bugnote_table WHERE id=" . db_param();
 				$t_result = db_query_bound( $t_query, array($p_bugnote_id));
 				if (db_num_rows($t_result) < 1)
-					echo '<tr ', helper_alternate_class(), '><td colspan=2>EditNoteDatePlugin Error: bugnote id not found</td></tr>';
+					echo '<tr ', helper_alternate_class(), '><td colspan="2">EditNoteDatePlugin Error: bugnote id not found</td></tr>';
 				else {
 					$t_row = db_fetch_array($t_result);
-					echo '<tr ', helper_alternate_class(), '><td colspan=2>Submit Date: <input type=text id="date_submitted" name="date_submitted" value="', Date ( 'Y-m-d H:i:s', $t_row['date_submitted'] ),'">';
+					echo '<tr ', helper_alternate_class(), '><td colspan="2">Submit Date: <input type=text id="date_submitted" name="date_submitted" value="', Date ( 'Y-m-d H:i:s', $t_row['date_submitted'] ),'">';
 					
 					date_print_calendar('trigger_note');
 					date_finish_calendar( 'date_submitted', 'trigger_note');
 					echo '</td></tr>';
 				}
 			} else {
-				echo '<tr ', helper_alternate_class(), '><td class="category">Submit Date</td><td colspan=10><input type=text id="date_submitted" name="date_submitted" value="">';
+				echo '<tr ', helper_alternate_class(), '><td class="category" colspan="', is_page_name('bug_update_page.php') ? '2' : '1', '">Submit Date</td><td colspan="8"><input type=text id="date_submitted" name="date_submitted" value="">';
 				
 				date_print_calendar('trigger_note');
 				date_finish_calendar( 'date_submitted', 'trigger_note');

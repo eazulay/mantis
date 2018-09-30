@@ -214,18 +214,18 @@
 	# Project
 	echo '<td class="small-caption">', $tpl_project_name;
 	# Summary
-	echo ' ',$tpl_summary, '</td><td class="gap" />';
+	echo ' ',$tpl_summary, '</td>';
 	# Category
-	echo '<td class="small-caption center">', $tpl_category, '</td><td class="gap" />';
+	echo '<td class="small-caption center">', $tpl_category, '</td>';
 	# Type (Custom field)
 	echo '<td class="small-caption center">';
 	if ( $tpl_show_type) # has read access
 		print_custom_field_value( $t_type_def, 1, $f_bug_id );
-	echo '</td><td class="gap" />';
+	echo '</td>';
 	# Handler
 	echo '<td class="small-caption center">';
 	print_user_with_subject( $tpl_bug->handler_id, $tpl_bug_id );
-	echo '</td><td class="gap" />';
+	echo '</td>';
 	# Status
 	if ( $tpl_show_status ) {
 		echo '<td class="small-caption center" bgcolor="', get_status_color( $tpl_bug->status ), '">', $tpl_status, '</td>';
@@ -266,10 +266,10 @@
 	collapse_open( 'issue_details' );
 	
 	echo '<table class="width100" cellspacing="0">';
-	echo '<tr>';
+	echo '<tr class="header">';
 
 	# Form Title
-	echo '<td class="form-title" colspan="', $t_bugslist ? '8' : '7', '">';
+	echo '<td class="form-title" colspan="', $t_bugslist ? '6' : '8', '">';
 
 	collapse_icon( 'issue_details' );
 
@@ -309,7 +309,7 @@
 
 	# prev/next links
 	if ( $t_bugslist ) {
-		echo '<td class="center" colspan="4"><span class="small">';
+		echo '<td class="center" colspan="2"><span class="small">';
 
 		$t_bugslist = explode( ',', $t_bugslist );
 		$t_index = array_search( $f_bug_id, $t_bugslist );
@@ -353,34 +353,34 @@
 
 	# Labels
 	echo '<tr>';
-	echo '<th colspan="2">ID</th><td class="gap" /><th colspan="2">Time</th><td class="gap" /><th colspan="2">People</th><td class="gap" /><th colspan="2">Class</th><td class="gap" /><th colspan="2">Progress</th>';
+	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
 	echo '</tr>';
 	
 	if ( $tpl_show_id || $tpl_show_date_submitted || $tpl_show_reporter || $tpl_show_category || $tpl_show_status ) {
 		echo '<tr class="bug-primary row-2">';
 		# Bug ID
 		echo '<td class="category" width="7%">', $tpl_show_id ? lang_get( 'issue_id' ) : '', '</td>';
-		echo '<td class="center" width="10%">', $tpl_formatted_bug_id, '</td><td class="gap" />';
+		echo '<td class="center" width="10%">', $tpl_formatted_bug_id, '</td>';
 		# Date Submitted
 		echo '<td class="category" width="9%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
-		echo '<td class="center" width="12%">', $tpl_date_submitted, '</td><td class="gap" />';
+		echo '<td class="center" width="12%">', $tpl_date_submitted, '</td>';
 		# Reporter
 		echo '<td class="category" width="8%">', $tpl_show_reporter ? lang_get( 'reporter' ) : '', '</td>';
 		echo '<td class="center" width="17%">';
 		if ( $submitter != '' && $submitter != user_get_name( $tpl_bug->reporter_id ) )
 			echo $submitter . ' for ';
 		print_user_with_subject( $tpl_bug->reporter_id, $tpl_bug_id );
-		echo '</td><td class="gap" />';
+		echo '</td>';
 /*		# Profile
-		echo '<td class="disabled" width="15%">', lang_get( 'profile' ), '</td>';
-		echo '<td /><td class="gap" />'; */
+		echo '<td class="category disabled" width="15%">', lang_get( 'profile' ), '</td>';
+		echo '<td />'; */
 		# Category
 		echo '<td class="category" width="8%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
-		echo '<td class="center" width="10%">', $tpl_category, '</td><td class="gap" />';
+		echo '<td class="center" width="10%">', $tpl_category, '</td>';
 		# Status
-		echo '<td class="category" width="8%">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
+		echo '<td class="category" width="8%" rowspan="2">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
 		if ( $tpl_show_status ) {
-			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%">', $tpl_status, '</td>';
+			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%" rowspan="2">', $tpl_status, '</td>';
 		}
 		echo '</tr>';
 	}
@@ -392,18 +392,18 @@
 		echo '<td class="center';
 		if ($tpl_is_root_project)
 			echo ' error';
-		echo '">', $tpl_project_name, '</td><td class="gap" />';
+		echo '">', $tpl_project_name, '</td>';
 		# Date Updated
 		echo '<td class="category">', $tpl_show_last_updated ? lang_get( 'last_update' ) : '','</td>';
-		echo '<td class="center">', $tpl_last_updated, '</td><td class="gap" />';
+		echo '<td class="center">', $tpl_last_updated, '</td>';
 		# Handler
 		echo '<td class="category">', $tpl_show_handler ? lang_get( 'assigned_to' ) : '', '</td>';
 		echo '<td class="center">';
 		print_user_with_subject( $tpl_bug->handler_id, $tpl_bug_id );
-		echo '<td class="gap" />';
+		echo '';
 		# Platform
 //		echo '<td class="category">', $tpl_show_platform ? lang_get( 'platform' ) : '', '</td>';
-//		echo '<td class="center">',$tpl_show_platform ? $tpl_platform : '', '</td><td class="gap" />';
+//		echo '<td class="center">',$tpl_show_platform ? $tpl_platform : '', '</td>';
 		# Type (Custom field)
 		$t_type_def = custom_field_get_definition( 1 );
 		$tpl_show_type = custom_field_has_read_access( 1, $f_bug_id );
@@ -411,10 +411,7 @@
 		echo '<td class="center">';
 		if ( $tpl_show_type) # has read access
 			print_custom_field_value( $t_type_def, 1, $f_bug_id );
-		echo '</td><td class="gap" />';
-		# Hide Status
-		echo '<td class="disabled">', lang_get( 'hide_status' ), '</td>';
-		echo '<td />';
+		echo '</td>';
 		echo '</tr>';
 	}
 
@@ -422,7 +419,7 @@
 		echo '<tr class="bug-primary row-2">';
 		# View Status (Visibility)
 		echo '<td class="category">', $tpl_show_view_state ? lang_get( 'view_status' ) : '', '</td>';
-		echo '<td class="center">', $tpl_bug_view_state_enum, '</td><td class="gap" />';
+		echo '<td class="center">', $tpl_bug_view_state_enum, '</td>';
 		# Due Date
 		echo '<td class="category">', $tpl_show_due_date ? lang_get( 'due_date' ) : '', '</td>';
 		if ( $tpl_show_due_date ) {
@@ -433,18 +430,18 @@
 			}
 		} else
 			echo '<td />';
-		echo '<td class="gap" />';
+		echo '';
 		# Notes By
 		echo '<td class="category">', 'Notes By', '</td>';
 		echo '<td class="center">';
 		include( $tpl_mantis_dir . 'bugnote_userlist_inc.php' );
-		echo '</td><td class="gap" />';
+		echo '</td>';
 		# Operating System
 //		echo '<td class="category">', $tpl_show_os ? lang_get( 'os' ) : '', '</td>';
-//		echo '<td class="center">', $tpl_os, '</td><td class="gap" />';
+//		echo '<td class="center">', $tpl_os, '</td>';
 		# Severity
 		echo '<td class="category">', $tpl_show_severity ? lang_get( 'severity' ) : '', '</td>';
-		echo '<td class="center">', $tpl_severity, '</td><td class="gap" />';
+		echo '<td class="center">', $tpl_severity, '</td>';
 		# Priority
 		echo '<td class="category">', $tpl_show_priority ? lang_get( 'priority' ) : '', '</td>';
 		echo '<td class="center">', $tpl_priority, '</td>';
@@ -455,22 +452,22 @@
 		echo '<tr class="bug-primary row-1">';
 		# No. of Notes
 		echo '<td class="category">', lang_get( 'notes' ), '</td>';
-		echo '<td class="center">', $t_bugnote_count == 0 ? lang_get( 'none' ) : $t_bugnote_count, '</td><td class="gap" />';
+		echo '<td class="center">', $t_bugnote_count == 0 ? lang_get( 'none' ) : $t_bugnote_count, '</td>';
 		# ETA
 		echo '<td class="category">', $tpl_show_eta ? lang_get( 'eta' ) : '', '</td>';
-		echo '<td class="center">', $tpl_eta, '</td><td class="gap" />';
+		echo '<td class="center">', $tpl_eta, '</td>';
 		# User list monitoring the bug
 		echo '<td class="category">', $tpl_show_monitor_box ? lang_get( 'users_monitoring_bug' ) : '', '</td>';
 		echo '<td class="center">';
 		if ( $tpl_show_monitor_box )
 			include( $tpl_mantis_dir . 'bug_monitor_list_view_inc.php' );
-		echo '</td><td class="gap" />';
+		echo '</td>';
 		# OS Version
 //		echo '<td class="category">', $tpl_show_os_version ? lang_get( 'os_version' ) : '', '</td>';
-//		echo '<td class="center">', $tpl_os_version, '</td><td class="gap" />';
+//		echo '<td class="center">', $tpl_os_version, '</td>';
 		# Reproducibility
 		echo '<td class="category">', $tpl_show_reproducibility ? lang_get( 'reproducibility' ) : '', '</td>';
-		echo '<td class="center">', $tpl_reproducibility, '</td><td class="gap" />';
+		echo '<td class="center">', $tpl_reproducibility, '</td>';
 		# Resolution
 		echo '<td class="category">', $tpl_show_resolution ? lang_get( 'resolution' ) : '', '</td>';
 		echo '<td class="center">', $tpl_resolution, '</td>';
@@ -481,16 +478,16 @@
 		echo '<tr class="bug-primary row-2">';
 		# Product Version
 		echo '<td class="category">', $tpl_show_product_version ? lang_get( 'product_version' ) : '', '</td>';
-		echo '<td class="center">', $tpl_product_version_string, '</td><td class="gap" />';
+		echo '<td class="center">', $tpl_product_version_string, '</td>';
 		# Product Build
 		echo '<td class="category">', $tpl_show_product_build ? lang_get( 'product_build' ) : '', '</td>';
-		echo '<td class="center">', $tpl_product_build, '</td><td class="gap" />';
+		echo '<td class="center">', $tpl_product_build, '</td>';
 		# Target Version
 		echo '<td class="category">', $tpl_show_target_version ? lang_get( 'target_version' ) : '', '</td>';
-		echo '<td class="center">', $tpl_target_version_string, '</td><td class="gap" />';
+		echo '<td class="center">', $tpl_target_version_string, '</td>';
 		# Fixed in Version
 		echo '<td class="category">', $tpl_show_fixed_in_version ? lang_get( 'fixed_in_version' ) : '', '</td>';
-		echo '<td class="center">', $tpl_fixed_in_version_string, '</td><td class="gap" />';
+		echo '<td class="center">', $tpl_fixed_in_version_string, '</td>';
 		# Projection
 		echo '<td class="category">', $tpl_show_projection ? lang_get( 'projection' ) : '', '</td>';
 		echo '<td class="center">', $tpl_projection, '</td>';
@@ -502,18 +499,17 @@
 	#
 	event_signal( 'EVENT_VIEW_BUG_DETAILS', array( $tpl_bug_id ) );
 
-	# spacer
-	echo '<tr class="spacer"><td colspan="9"></td></tr>';
-
 	#
 	# Bug Details (screen wide fields)
 	#
+	
+	echo '<tr class="footer"><td colspan="10" style="padding:2px;" /></tr>';
 
 	# Summary
 	if ( $tpl_show_summary ) {
-		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2"><b>', lang_get( 'summary' ), '</b></td>';
-		echo '<td colspan="12"><b>', $tpl_summary, '</b></td>';
+		echo '<tr class="row-2 new-section">';
+		echo '<th class="category" colspan="2">', lang_get( 'summary' ), '</td>';
+		echo '<td colspan="8">', $tpl_summary, '</td>';
 		echo '</tr>';
 	}
 
@@ -521,7 +517,7 @@
 	if ( $tpl_show_description ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'description' ), '</td>';
-		echo '<td colspan="12">', $tpl_description, '</td>';
+		echo '<td colspan="8">', $tpl_description, '</td>';
 		echo '</tr>';
 	}
 
@@ -529,7 +525,7 @@
 	if ( $tpl_show_steps_to_reproduce ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'steps_to_reproduce' ), '</td>';
-		echo '<td colspan="12">', $tpl_steps_to_reproduce, '</td>';
+		echo '<td colspan="8">', $tpl_steps_to_reproduce, '</td>';
 		echo '</tr>';
 	}
 
@@ -537,7 +533,7 @@
 	if ( $tpl_show_additional_information ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'additional_information' ), '</td>';
-		echo '<td colspan="12">', $tpl_additional_information, '</td>';
+		echo '<td colspan="8">', $tpl_additional_information, '</td>';
 		echo '</tr>';
 	}
 
@@ -545,7 +541,7 @@
 	if ( $tpl_show_tags ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tags' ), '</td>';
-		echo '<td colspan="12">';
+		echo '<td colspan="8">';
 		tag_display_attached( $tpl_bug_id );
 		echo '</td></tr>';
 	}
@@ -554,7 +550,7 @@
 	if ( $tpl_can_attach_tag ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tag_attach_long' ), '</td>';
-		echo '<td colspan="12">';
+		echo '<td colspan="8">';
 		print_tag_attach_form( $tpl_bug_id );
 		echo '</td></tr>';
 	}
@@ -579,7 +575,7 @@
 
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', string_display( lang_get_defaulted( $t_def['name'] ) ), '</td>';
-		echo '<td colspan="12">';
+		echo '<td colspan="8">';
 		print_custom_field_value( $t_def, $t_id, $f_bug_id );
 		echo '</td></tr>';
 	}
@@ -587,7 +583,7 @@
 	# Approval
 	echo '<tr ', helper_alternate_class(), '>';
 	echo '<td class="category" colspan="2">', string_display( 'Approval' ), '</td>';
-	echo '<td colspan="12">';
+	echo '<td colspan="8">';
 	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
 	if ( $auth_status != null && $auth_status != '' ){
 		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
@@ -611,7 +607,7 @@
 	if ( $tpl_show_attachments ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'attached_files' ), '</td>';
-		echo '<td colspan="12">';
+		echo '<td colspan="8">';
 		echo '<div id="attachments_open">';
 		echo '<a href="" onclick="ToggleDiv( \'attachments\' ); return false;"><img src="images/minus.png" alt="-" border="0" /></a> ';
 		# File upload
@@ -647,7 +643,7 @@
 	}
 
 	if ( $tpl_bottom_buttons_enabled ) {
-		echo '<tr align="center"><td align="center" colspan="14">';
+		echo '<tr class="footer" align="center"><td align="center" colspan="14">';
 		html_buttons_view_bug_page( $tpl_bug_id );
 		echo '</td></tr>';
 	}
@@ -657,10 +653,10 @@
 	collapse_closed( 'issue_details' );
 	
 	echo '<table class="width100" cellspacing="0">';
-	echo '<tr>';
+	echo '<tr class="header">';
 
 	# Form Title
-	echo '<td class="form-title" colspan="', $t_bugslist ? '2' : '4', '" width="', $t_bugslist ? '58%' : '81%', '">';
+	echo '<td class="form-title" colspan="', $t_bugslist ? '2' : '3', '" width="', $t_bugslist ? '58%' : '81%', '">';
 
 	collapse_icon( 'issue_details' );
 
@@ -746,8 +742,8 @@
 		echo '</tr>';
 	}
 
-		echo '<tr align="center">';
-		echo '<td align="center" colspan="4">';
+		echo '<tr class="footer" align="center">';
+		echo '<td align="center" colspan="5">';
 		html_buttons_view_bug_page( $tpl_bug_id );
 		echo '</td>';
 		echo '</tr>';

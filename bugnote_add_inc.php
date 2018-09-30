@@ -34,7 +34,7 @@
 <?php echo form_security_field( 'bugnote_add' ) ?>
 <input type="hidden" name="bug_id" value="<?php echo $f_bug_id ?>" />
 <table class="width100" cellspacing="0">
-<tr>
+<tr class="header">
 	<td class="form-title" colspan="2">
 <?php
 	collapse_icon( 'bugnote_add' );
@@ -45,9 +45,10 @@
 	<td class="category" width="25%">
 		Write a <?php echo lang_get( 'bugnote' ) ?> here:<br>
 <br>
+<span style="font-weight:normal;">
 OR,<br>
 <br>
-To email someone who does not receive Mantis Notes, click [Open Email Client] to create an email in your default Email program, with Subject and cc to Mantis pre-populated. Write your content there. A Note will be added automatically when Mantis receives the email.
+To email someone who does not receive Mantis Notes, click [Open Email Client] to create an email in your default Email program, with Subject and cc to Mantis pre-populated. Write your content there. A Note will be added automatically when Mantis receives the email.</span>
 	</td>
 	<td width="75%">
 		<textarea name="bugnote_text" cols="80" rows="10"></textarea>
@@ -134,7 +135,7 @@ To email someone who does not receive Mantis Notes, click [Open Email Client] to
 
 	$recipients = implode(';',$t_recipients);
  ?>
-<tr>
+<tr class="footer">
 	<td class="center" colspan="2">
 		<input type="submit" class="button" value="<?php echo lang_get( 'add_bugnote_button' ) ?>"  onclick="this.disabled=1;document.bugnoteadd.submit();" />
 		<input type="button" class="button" value="Open Email Client" onclick="window.location='mailto:<?php echo $recipients."?cc=GIW%20Issue%20Tracker<mantis@get-it-write.com>&subject=".rawurlencode($tpl_project_name).'%200'.$f_bug_id.':%20'.rawurlencode($tpl_bug->summary); ?>';" />
@@ -147,7 +148,7 @@ To email someone who does not receive Mantis Notes, click [Open Email Client] to
 ?>
 <table class="width100" cellspacing="0">
 <tr>
-	<td class="form-title" colspan="2">
+	<td class="form-title">
 	<?php	collapse_icon( 'bugnote_add' );
 		echo lang_get( 'add_bugnote_title' ) ?>
 	</td>

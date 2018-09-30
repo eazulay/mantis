@@ -39,7 +39,7 @@
 	$t_history = history_get_events_array( $f_bug_id );
 ?>
 <table class="width100" cellspacing="0">
-<tr>
+<tr class="header">
 	<td class="form-title" colspan="4">
 <?php
 	collapse_icon( 'history' );
@@ -85,7 +85,7 @@
 	collapse_closed( 'history' );
 ?>
 <table class="width100" cellspacing="0">
-<tr>
+<tr class="header">
 	<td class="form-title" colspan="4">
 	<?php	collapse_icon( 'history' );
 		echo lang_get( 'bug_history' ) ?>

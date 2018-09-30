@@ -241,7 +241,7 @@ function custom_function_default_print_column_title( $p_column, $p_columns_targe
 	$t_custom_field = column_get_custom_field_name( $p_column );
 	if( $t_custom_field !== null ) {
 		if( COLUMNS_TARGET_CSV_PAGE != $p_columns_target ) {
-			echo '<td>';
+			echo '<th>';
 		}
 
 		$t_field_id = custom_field_get_id_from_name( $t_custom_field );
@@ -260,7 +260,7 @@ function custom_function_default_print_column_title( $p_column, $p_columns_targe
 		}
 
 		if( COLUMNS_TARGET_CSV_PAGE != $p_columns_target ) {
-			echo '</td>';
+			echo '</th>';
 		}
 	} else {
 		$t_plugin_columns = columns_get_plugin_columns();
@@ -274,10 +274,10 @@ function custom_function_default_print_column_title( $p_column, $p_columns_targe
 			print_column_title_plugin( $p_column, $t_column_object, $t_sort, $t_dir, $p_columns_target );
 
 		} else {
-			echo '<td>';
+			echo '<th>';
 			print_view_bug_sort_link( column_get_title( $p_column ), $p_column, $t_sort, $t_dir, $p_columns_target );
 			print_sort_icon( $t_dir, $t_sort, $p_column );
-			echo '</td>';
+			echo '</th>';
 		}
 	}
 }

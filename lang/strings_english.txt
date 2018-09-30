@@ -1138,7 +1138,7 @@ $s_select_reproducibility = 'Select Reproducibility';
 $s_select_severity = 'Select Severity';
 $s_or_fill_in = 'Or Fill In';
 $s_assign_to = 'Assign To';
-$s_additional_information = 'Additional Information';
+$s_additional_information = 'Extra Info';
 $s_submit_report_button = 'Submit Issue';
 $s_check_report_more_bugs = 'check to raise more Issues';
 
@@ -1265,7 +1265,7 @@ $s_bug_assign_to_button = 'Assign To:';
 $s_bug_status_to_button = 'Change Status To:';
 $s_reopen_bug_button = 'Reopen';
 $s_move_bug_button = 'Move';
-$s_attached_files = 'Attached Files';
+$s_attached_files = 'Attachments';
 $s_publish = 'Publish';
 $s_cached = 'Cached';
 $s_add_user_to_monitor = 'Add';

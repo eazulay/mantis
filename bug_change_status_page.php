@@ -105,7 +105,7 @@
 
 
 <!-- Title -->
-<tr>
+<tr class="header">
 	<td class="form-title" colspan="2">
 		<input type="hidden" name="bug_id" value="<?php echo $f_bug_id ?>" />
 		<input type="hidden" name="status" value="<?php echo $f_new_status ?>" />

@@ -47,8 +47,8 @@ class HelpNotesPlugin extends MantisPlugin {
 					$has_help = $t_row['has_help'];
 				}
 			}
-			echo '<tr ' . helper_alternate_class() . '><td class="category">Contains Help</td>
-<td><input type="hidden" name="has_help" value="0"> <input type="checkbox" id="has_help" name="has_help" value="1"'.($has_help==1?' checked':'').'> <label for="has_help">Help</label></td></tr>';
+			echo '<tr ' . helper_alternate_class() . '><td class="category" colspan="', is_page_name('bug_update_page.php') ? '2' : '1', '">Contains Help</td>
+<td colspan="8"><input type="hidden" name="has_help" value="0"> <input type="checkbox" id="has_help" name="has_help" value="1"'.($has_help==1?' checked':'').'> <label for="has_help">Help</label></td></tr>';
 		}
 	}
 	
