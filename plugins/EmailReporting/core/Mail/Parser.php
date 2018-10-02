@@ -348,9 +348,9 @@ class ERP_Mail_Parser
 
 		if ( 'text' === $this->_ctype['primary'] &&	'plain' === $this->_ctype['secondary'] )
 		{
-			$body = str_replace("\r\n \r\n", "<<<p/>>>", $body);
+			$body = str_replace("\r\n\r\n \r\n", "<<<p/>>>", $body);
 			$body = str_replace("\r\n\r\n", "<<<br/>>>", $body);
-			$body = preg_replace("/\r\n(?!([0-9a-zA-Z]{1,2}[\.\)]?\t)|(To:)|(Subject:)|(CC:)|(Cc:))/", " ", $body);
+			$body = preg_replace("/(?!\>{3})\r\n(?!([0-9a-zA-Z]{1,2}[\.\)]?\t)|(To:)|(Subject:)|(CC:)|(Cc:))/", " ", $body);
 			$body = str_replace("<<<br/>>>", "\r\n", $body);
 			$this->_body = str_replace("<<<p/>>>", "\r\n\r\n", $body);
 		}
