@@ -350,7 +350,8 @@ class ERP_Mail_Parser
 		{
 			$body = str_replace("\r\n \r\n", "<<<p/>>>", $body);
 			$body = str_replace("\r\n\r\n", "<<<br/>>>", $body);
-			$body = str_replace("\r\n", "", $body);
+			//$body = str_replace("\r\n", "", $body);
+			$body = preg_replace("/\r\n(?![a-zA-Z0-9]{1,2}\t)/", "", $body);
 			$body = str_replace("<<<br/>>>", "\r\n", $body);
 			$this->_body = str_replace("<<<p/>>>", "\r\n\r\n", $body);
 		}
