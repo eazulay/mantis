@@ -348,10 +348,11 @@ class ERP_Mail_Parser
 
 		if ( 'text' === $this->_ctype['primary'] &&	'plain' === $this->_ctype['secondary'] )
 		{
-			$body = str_replace("\r\n \r\n", "\r\n\r\n", $body);
-			$body = str_replace("\r\n\r\n", "<<<br>>>", $body);
+			$body = str_replace("\r\n \r\n", "<<<p/>>>", $body);
+			$body = str_replace("\r\n\r\n", "<<<br/>>>", $body);
 			$body = str_replace("\r\n", "", $body);
-			$this->_body = str_replace("<<<br>>>", "\r\n\r\n", $body);
+			$body = str_replace("<<<br/>>>", "\r\n", $body);
+			$this->_body = str_replace("<<<p/>>>", "\r\n\r\n", $body);
 		}
 		elseif ( $this->_parse_html && 'text' === $this->_ctype['primary'] && 'html' === $this->_ctype['secondary'] )
 		{
