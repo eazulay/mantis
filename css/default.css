@@ -35,6 +35,7 @@ input[type="button"], input[type="submit"], input.button, input.button-small {
 	-moz-border-radius: 5px;
 	padding: 4px 8px;
 	font-weight: bold;
+	border-color: RGBA(232,245,232,0.8) RGBA(63,118,53,0.8) RGBA(63,118,53,0.8) RGBA(232,245,232,0.8);
 }
 input[type="file"]::-webkit-file-upload-button {
 	background-color: #BDE3BC;
@@ -43,7 +44,10 @@ input[type="file"]::-webkit-file-upload-button {
 	background: -moz-linear-gradient(#E1E6C3, #BDE3BC);
 	background: linear-gradient(#E1E6C3, #BDE3BC);
 	color: #2e343b;
+	border-width: 1px;
+	border-radius: 5px;
 	-moz-border-radius: 5px;
+	border-color: RGBA(232,245,232,0.8) RGBA(63,118,53,0.8) RGBA(63,118,53,0.8) RGBA(232,245,232,0.8);
 }
 input.button-small { 	font-size: 8pt; }
 input[type="button"]:hover, input[type="submit"]:hover, input.button:hover, input.button-small:hover {
@@ -76,7 +80,7 @@ span.dependency_unmet		{ color: red; }
 span.dependency_upgrade		{ color: orange; }
 
 table				{ }
-table.hide			{ width: 100%; border: solid 0px #ffffff; border-spacing: 0; }
+table.hide			{ width: 100%; border: solid 0px #ffffff; border-spacing: 0; margin: 5px 0; }
 table.width100		{ width: 100%; border: solid 1px #212121; }
 table.width90		{ width: 90%;  border: solid 1px #212121; }
 table.width75		{ width: 75%;  border: solid 1px #212121; }
