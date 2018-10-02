@@ -17,7 +17,7 @@ class ERP_Mail_Parser
 
 	private $_from;
 	private $_subject;
-	private $_def_charset = 'UTF-8, ISO-8859-1'; //'auto';
+	private $_def_charset = 'UTF-8, ISO-8859-1, auto';
 	private $_fallback_charset = 'ASCII';
 	private $_priority;
 	private $_body;
