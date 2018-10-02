@@ -85,7 +85,7 @@
 <form method="post" action="bugnote_update.php">
 <?php echo form_security_field( 'bugnote_update' ) ?>
 <table class="width75" cellspacing="0">
-<tr>
+<tr class="header">
 	<td class="form-title">
 		<input type="hidden" name="bugnote_id" value="<?php echo $f_bugnote_id ?>" />
 		<?php echo lang_get( 'edit_bugnote_title' ) ?>
@@ -123,7 +123,7 @@
 
 <?php event_signal( 'EVENT_BUGNOTE_EDIT_FORM', array( $t_bug_id, $f_bugnote_id ) ); ?>
 
-<tr>
+<tr class="footer">
 	<td class="center" colspan="2">
 		<input type="submit" class="button" value="<?php echo lang_get( 'update_information_button' ) ?>" />
 	</td>
