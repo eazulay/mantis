@@ -98,7 +98,7 @@
 <form name="login_form" method="post" action="login.php">
 <?php # CSRF protection not required here - form does not result in modifications ?>
 <table class="width50" cellspacing="1">
-<tr>
+<tr class="header">
 	<td class="form-title">
 		<?php
 			if ( !is_blank( $f_return ) ) {
@@ -108,7 +108,7 @@
 			}
 			echo lang_get( 'login_title' ) ?>
 	</td>
-	<td class="right">
+	<td class="form-title right">
 	<?php
 		if ( ON == config_get( 'allow_anonymous_login' ) ) {
 			print_bracket_link( 'login_anon.php?return=' . string_url( $f_return ), lang_get( 'login_anonymously' ) );
@@ -151,7 +151,7 @@
 	</td>
 </tr>
 <?php } ?>
-<tr>
+<tr class="footer">
 	<td class="center" colspan="2">
 		<input type="submit" class="button" value="<?php echo lang_get( 'login_button' ) ?>" />
 	</td>
