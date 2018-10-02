@@ -350,7 +350,7 @@ if ( ( $f_new_status >= $t_resolved ) && ( $t_closed > $f_new_status ) ) { ?>
 <?php event_signal( 'EVENT_BUGNOTE_ADD_FORM', array( $f_bug_id ) ); ?>
 
 <!-- Submit Button -->
-<tr>
+<tr class="footer">
 	<td class="center" colspan="2">
 		<input type="submit" class="button" value="<?php echo lang_get( $t_status_label . '_bug_button' ) ?>" />
 	</td>
