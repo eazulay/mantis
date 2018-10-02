@@ -108,7 +108,7 @@
 <br />
 <form name="bug_action" method="get" action="bug_actiongroup_page.php">
 <?php # CSRF protection not required here - form does not result in modifications ?>
-<table id="buglist" class="width100" cellspacing="1">
+<table id="buglist" class="width100" cellspacing="0">
 <tr class="header">
 	<td class="form-title" colspan="<?php echo $col_count; ?>">
 		<span class="floatleft">
@@ -169,13 +169,8 @@
 ?>
 </tr>
 
-<?php # -- Spacer row -- ?>
-<tr class="spacer">
-	<td colspan="<?php echo $col_count; ?>"></td>
-</tr>
 <?php
-	function write_bug_rows ( $p_rows )
-	{
+	function write_bug_rows ( $p_rows ) {
 		global $t_columns, $t_filter;
 
 		$t_in_stickies = ( $t_filter && ( 'on' == $t_filter['sticky_issues'] ) );
@@ -184,7 +179,6 @@
 		columns_plugin_cache_issue_data( $p_rows );
 
 		# -- Loop over bug rows --
-
 		$t_rows = count( $p_rows );
 		for( $i=0; $i < $t_rows; $i++ ) {
 			$t_row = $p_rows[$i];
@@ -194,9 +188,9 @@
 			}
 			if ( ( 0 == $t_row->sticky ) && $t_in_stickies ) {	# demarcate stickies, if any have been shown
 ?>
-               <tr>
-                       <td class="left" colspan="<?php echo count( $t_columns ); ?>" bgcolor="#999999">&#160;</td>
-               </tr>
+				<tr>
+					<td class="left" colspan="<?php echo count( $t_columns ); ?>" bgcolor="#999999">&#160;</td>
+				</tr>
 <?php
 				$t_in_stickies = false;
 			}

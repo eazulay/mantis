@@ -408,11 +408,11 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 
 event_signal( 'EVENT_UPDATE_BUG_FORM', array( $tpl_bug_id, true ) );
 
-echo '<tr class="footer"><td colspan="10" style="padding:2px;" /></tr>';
+echo '<tr class="padded-spacer"><td colspan="10" style="padding:2px;" /></tr>';
 
 # Summary
 if ( $tpl_show_summary ) {
-	echo '<tr class="row-2 new-section">';
+	echo '<tr class="row-2">';
 	echo '<td class="category" colspan="2">', lang_get( 'summary' ), '</td>';
 	echo '<td colspan="8">', '<input ', helper_get_tab_index(), ' type="text" name="summary" size="105" maxlength="128" value="', $tpl_summary_attribute, '" />';
 	echo '</td></tr>';
