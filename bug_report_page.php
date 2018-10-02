@@ -511,7 +511,7 @@
 			<label><input <?php echo helper_get_tab_index() ?> type="checkbox" id="report_stay" name="report_stay" <?php check_checked( $f_report_stay ) ?> /> <?php echo lang_get( 'check_report_more_bugs' ) ?></label>
 		</td>
 	</tr>
-	<tr>
+	<tr class="footer">
 		<td class="left">
 			<span class="required"> * <?php echo lang_get( 'required' ) ?></span>
 		</td>
