@@ -215,7 +215,7 @@
 
 	# -- ====================== MASS BUG MANIPULATION =================== --
 ?>
-	<tr>
+	<tr class="footer">
 		<td class="left" colspan="<?php echo $col_count; ?>">
 			<span class="floatleft">
 <?php

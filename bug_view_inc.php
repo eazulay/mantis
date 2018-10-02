@@ -355,7 +355,7 @@
 	if ( $tpl_show_summary ) {
 		echo '<tr class="row-1 bottom-border">';
 		echo '<td class="category" colspan="2">', lang_get( 'summary' ), '</td>';
-		echo '<td colspan="8">', $tpl_summary, '</td>';
+		echo '<td colspan="8"><b>', $tpl_summary, '</b></td>';
 		echo '</tr>';
 	}
 
