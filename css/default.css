@@ -131,17 +131,19 @@ td.print				{ font-size: 8pt; text-align: left; padding: 2px; }
 td.print-category	{ font-size: 8pt; color: #212121; font-weight: bold; text-align: right; padding: 2px; }
 td.print-overdue		{ font-size: 8pt; color: #212121; font-weight: bold; padding: 2px; }
 td.print-bottom		{ border-bottom: 1px solid #212121; }
-td.print-spacer		{ background-color: #F6EBDF; color: #212121; font-size: 1pt; line-height: 0.1; padding: 0px;}
+td.print-spacer		{ background-color: #F6EBDF; color: #212121; font-size: 1pt; line-height: 0.1; padding: 0px; }
 
-tr					{}
 tr.spacer			{ background-color: #C6AF83; color: #212121; height: 1px; }
-tr.spacer td		{ padding: 0px; }
+tr.spacer td		{ padding: 0; }
+tr.padded-spacer	{ background-color: #F6EBDF; color: #212121; height: 1px; }
+tr.padded-spacer td	{ padding: 2px; border-top: 1px solid #C6AF83; border-bottom: 1px solid #C6AF83; }
 tr.row-1				{ background-color: #FCF5ED; color: #212121; }
 tr.row-2				{ background-color: #FEFAF5; color: #212121; }
 tr.row-1 > td:not(:first-child), tr.row-2 > td:not(:first-child)	{ border-left: 1px solid #C6AF83; }
 tr.header, tr.footer	{ background-color: #F6EBDF; }
 tr.header > td			{ border-bottom: 1px solid #C6AF83; }
 tr.footer > td			{ border-top: 1px solid #C6AF83; }
+tr.bottom-border > td	{ border-bottom: 1px solid #C6AF83; }
 td#relationship_type_filter_target, td#tag_string_filter_target, td#show_sort_filter_target, td#sticky_issues_filter_target, td#per_page_filter_target { background-color: #F9F9F9; }
 tr.row-category		{ background-color: #EEF3FB; color: #212121;
 	background: -webkit-linear-gradient(#EEF3FB, #DBDBF0);
@@ -184,8 +186,8 @@ td.menu					{
 }
 td.menu a				{ white-space: nowrap; }
 
-td.news-heading-public	{ background-color: #EEF3FB; color: #212121; text-align: left; border-bottom: 1px solid #212121; }
-td.news-heading-private	{ background-color: #F9F9F9;       color: #212121; text-align: left; border-bottom: 1px solid #212121; }
+/*td.news-heading-public	{ background-color: #EEF3FB; color: #212121; text-align: left; border-bottom: 1px solid #212121; }
+td.news-heading-private	{ background-color: #F9F9F9;       color: #212121; text-align: left; border-bottom: 1px solid #212121; }*/
 td.news-body				{ background-color: #ffffff;         color: #212121; padding: 16px; }
 
 img						{}
@@ -240,10 +242,6 @@ div.quick-summary-right	{ width: 49%; padding: 2px; text-align: right; float: ri
 
 .negative {
 	color: red;
-}
-
-.issue-status {
-	/* border-bottom: 1px dotted black; */
 }
 
 .avatar {

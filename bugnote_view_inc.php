@@ -206,11 +206,13 @@ $num_notes = count( $t_bugnotes );
 		?>
 	</td>
 </tr>
-<?php event_signal( 'EVENT_VIEW_BUGNOTE', array( $f_bug_id, $t_bugnote->id, VS_PRIVATE == $t_bugnote->view_state ) ); ?>
+<?php event_signal( 'EVENT_VIEW_BUGNOTE', array( $f_bug_id, $t_bugnote->id, VS_PRIVATE == $t_bugnote->view_state ) );
+		if ( $i < $num_notes - 1 ){ ?>
 <tr class="spacer">
 	<td colspan="2"></td>
 </tr>
 <?php
+		}
 	} # end for loop
 
 	if ( $t_total_time > 0 && access_has_bug_level( config_get( 'time_tracking_view_threshold' ), $f_bug_id ) ) {

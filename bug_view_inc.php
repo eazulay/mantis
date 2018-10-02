@@ -351,6 +351,14 @@
 		echo '</tr>';
 	}
 
+	# Summary
+	if ( $tpl_show_summary ) {
+		echo '<tr class="row-1 bottom-border">';
+		echo '<td class="category" colspan="2">', lang_get( 'summary' ), '</td>';
+		echo '<td colspan="8">', $tpl_summary, '</td>';
+		echo '</tr>';
+	}
+
 	# Labels
 	echo '<tr>';
 	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
@@ -503,15 +511,7 @@
 	# Bug Details (screen wide fields)
 	#
 	
-	echo '<tr class="footer"><td colspan="10" style="padding:2px;" /></tr>';
-
-	# Summary
-	if ( $tpl_show_summary ) {
-		echo '<tr class="row-2 new-section">';
-		echo '<th class="category" colspan="2">', lang_get( 'summary' ), '</td>';
-		echo '<td colspan="8">', $tpl_summary, '</td>';
-		echo '</tr>';
-	}
+	echo '<tr class="padded-spacer"><td colspan="10" /></tr>';
 
 	# Description
 	if ( $tpl_show_description ) {
