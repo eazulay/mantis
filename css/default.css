@@ -106,8 +106,8 @@ table#buglist tr > td:not(:first-child) { border-left: 1px solid #C6AF83; }
 table#buglist tr > td, table#buglist tr > th { border-bottom: 1px solid #C6AF83; }
 td 					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; padding: 10px 12px 14px; text-align: left; }
 td td				{ padding: 8px; }
-td tr:first-child td{ padding: 0px 8px; }
-.row-2 td.small-caption	{ text-align: center; }
+td tr:first-child.vcenter td{ padding: 0px 8px; }
+.row-2 td.small-caption		{ text-align: center; }
 #history_open .row-2 td.small-caption, #bugnotestats_open .row-2 td.small-caption	{ text-align: left; }
 .row-2 td.small-caption #due_date { width:102px; }
 td.center			{ text-align: center; }
@@ -160,7 +160,7 @@ tr.row-category td	{  text-align:center; }
 tr.row-category-history { background-color: #FAE6C8; color: #212121; font-weight: bold;}
 tr.row-category-history td {  text-align: left; border-bottom:1px solid #C6AF83; }
 tr.vcenter			{ vertical-align: middle; }
-tr.print				{ vertical-align: top; }
+tr.print			{ vertical-align: top; }
 tr.print-category	{ color: #212121; font-weight: bold; }
 
 #buglist tr			{ text-align: center; }
