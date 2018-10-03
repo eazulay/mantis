@@ -104,7 +104,7 @@ tr:not(.row-category) th{  font-variant: small-caps; }
 th:not(:first-child)	{ border-left: 1px solid #C6AF83; }
 table#buglist tr > td:not(:first-child) { border-left: 1px solid #C6AF83; }
 table#buglist tr > td, table#buglist tr > th { border-bottom: 1px solid #C6AF83; }
-td 					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; padding: 12px 12px 16px; text-align: left; }
+td 					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; padding: 10px 12px 14px; text-align: left; }
 td td				{ padding: 8px; }
 td tr:first-child td{ padding: 0px 8px; }
 .row-2 td.small-caption	{ text-align: center; }
