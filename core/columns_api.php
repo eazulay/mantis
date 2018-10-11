@@ -785,7 +785,7 @@ function print_column_title_bugnotes_count( $p_sort, $p_dir, $p_columns_target =
  * @access public
  */
 function print_column_title_description( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<th>';
+	echo '<th width="40%">';
 	echo lang_get( 'description' );
 	echo '</th>';
 }
