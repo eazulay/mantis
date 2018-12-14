@@ -198,7 +198,7 @@
 			# choose color based on status
 			$status_color = get_status_color( $t_row->status );
 
-			echo '<tr bgcolor="', $status_color, '" border="1" valign="top">';
+			echo '<tr bgcolor="', $status_color, '" border="1" valign="top" class="expandable">';
 
 			foreach( $t_columns as $t_column ) {
 				$t_column_value_function = 'print_column_value';
@@ -245,6 +245,28 @@
 <?php # -- ====================== end of MASS BUG MANIPULATION ========================= -- ?>
 </table>
 </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+    $(".toggle-height").click(function(){
+		var tr = $(this).parent().parent();
+		var isExpanded = $(tr).data("expanded");
+		if (isExpanded == undefined)
+			isExpanded = false;
+		if (isExpanded){
+			$(tr).addClass("expandable").removeClass("expanded");
+			$(tr).data("expanded", false);
+		}else{
+			$(tr).addClass("expanded").removeClass("expandable");
+			$(tr).data("expanded", true);
+		}
+		return false;
+	});
+});
+// -->
+</script>
 
 <?php
 

@@ -1241,7 +1241,7 @@ function print_column_summary( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_P
 		$t_summary = string_display_line_links( $p_bug->summary );
 	}
 
-	echo '<td class="left"><b>' . $t_summary . '</b></td>';
+	echo '<td class="left"><div><b>' . $t_summary . '</b></div><a href="#" class="toggle-height">...</a></td>';
 }
 
 /**
@@ -1254,7 +1254,14 @@ function print_column_summary( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_P
 function print_column_description( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	$t_description = string_display_links( $p_bug->description );
 
-	echo '<td class="left">', $t_description, '</td>';
+	echo '<td class="left"><div>', $t_description, '</div><a href="#" class="toggle-height">...</a></td>';
+}
+
+// Eyal
+function print_column_last_note( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
+	$t_last_note = string_display_links( $p_bug->last_note );
+
+	echo '<td class="left"><div>', $t_last_note, '</div><a href="#" class="toggle-height">...</a></td>';
 }
 
 /**
@@ -1372,10 +1379,4 @@ function print_column_overdue( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_P
 	}
 
 	echo '</td>';
-}
-
-function print_column_last_note( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	$t_last_note = string_display_links( $p_bug->last_note );
-
-	echo '<td class="left">', $t_last_note, '</td>';
 }
