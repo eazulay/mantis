@@ -79,6 +79,9 @@ function columns_get_standard() {
 	$t_reflection = new ReflectionClass('BugData');
 	$t_columns = $t_reflection->getDefaultProperties();
 
+	// Eyal
+	$t_columns['last_note'] = null;
+	
 	$t_columns['selection'] = null;
 	$t_columns['edit'] = null;
 
@@ -785,8 +788,14 @@ function print_column_title_bugnotes_count( $p_sort, $p_dir, $p_columns_target =
  * @access public
  */
 function print_column_title_description( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<th width="40%">';
+	echo '<th width="30%">';
 	echo lang_get( 'description' );
+	echo '</th>';
+}
+
+function print_column_title_last_note( $p_sort, $p_dir, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
+	echo '<th width="30%">';
+	echo lang_get( 'last_note' );
 	echo '</th>';
 }
 
@@ -1363,4 +1372,10 @@ function print_column_overdue( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_P
 	}
 
 	echo '</td>';
+}
+
+function print_column_last_note( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
+	$t_last_note = string_display_links( $p_bug->last_note );
+
+	echo '<td class="left">', $t_last_note, '</td>';
 }

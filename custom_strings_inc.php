@@ -26,4 +26,5 @@ $s_email_notification_title_for_status_bug_test = "This Issue is IN TEST.";
 $s_fail_bug_title = "Fail acceptance testing for this issue";
 $s_fail_bug_button = "Fail UAT";
 $s_email_notification_title_for_status_bug_fail = "This Issue has FAILED test or UAT.";
+$s_last_note = 'Last Note';
 ?>

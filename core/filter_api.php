@@ -886,6 +886,10 @@ function filter_get_field( $p_filter_id, $p_field_name ) {
 function filter_get_query_sort_data( &$p_filter, $p_show_sticky, $p_query_clauses ) {
 	$t_bug_table = db_get_table( 'mantis_bug_table' );
 	$t_custom_field_string_table = db_get_table( 'mantis_custom_field_string_table' );
+	
+	// Eyal 
+	if ($p_filter[FILTER_PROPERTY_SORT_FIELD_NAME] == 'description' || $p_filter[FILTER_PROPERTY_SORT_FIELD_NAME] == 'last_note')
+		$p_filter[FILTER_PROPERTY_SORT_FIELD_NAME] == '';
 
 	# if sort is blank then default the sort and direction.  This is to fix the
 	# symptoms of #3953.  Note that even if the main problem is fixed, we may
@@ -1084,6 +1088,8 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	$t_select_clauses = array(
 		"$t_bug_table.*",
 	);
+	// Eyal
+	$t_select_clauses[] = "bnt.note AS last_note";
 
 	$t_join_clauses = array();
 	$t_from_clauses = array();
@@ -1981,6 +1987,11 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 
 	# End text search
 
+	// Eyal: Join Bugnotes
+	$t_join_clauses[] = " LEFT JOIN $t_bugnote_table AS bn ON bn.bug_id = $t_bug_table.id";
+	$t_join_clauses[] = " LEFT JOIN $t_bugnote_text_table AS bnt ON bnt.id = bn.bugnote_text_id";
+	$t_where_clauses[] = "bn.date_submitted = (SELECT MAX(date_submitted) FROM $t_bugnote_table WHERE bug_id = bn.bug_id)";
+	
 	$t_from_clauses[] = $t_project_table;
 	$t_from_clauses[] = $t_bug_table;
 
@@ -2007,6 +2018,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	$t_order_string = " ORDER BY " . implode( ', ', $t_query_clauses['order'] );
 	$t_join_string = count( $t_query_clauses['join'] ) > 0 ? implode( ' ', $t_query_clauses['join'] ) : '';
 	$t_where_string = count( $t_query_clauses['where'] ) > 0 ? 'WHERE ' . implode( ' AND ', $t_query_clauses['where'] ) : '';
+	//echo "$t_select_string $t_from_string $t_join_string $t_where_string $t_order_string";
 	$t_result = db_query_bound( "$t_select_string $t_from_string $t_join_string $t_where_string $t_order_string", $t_query_clauses['where_values'], $p_per_page, $t_offset );
 	$t_row_count = db_num_rows( $t_result );
 
@@ -4141,7 +4153,7 @@ function print_filter_show_sort() {
 	$t_n_fields = count( $t_fields );
 	$t_shown_fields[''] = '';
 	for( $i = 0;$i < $t_n_fields;$i++ ) {
-		if( !in_array( $t_fields[$i], array( 'selection', 'edit', 'bugnotes_count', 'attachment' ) ) ) {
+		if( !in_array( $t_fields[$i], array( 'selection', 'edit', 'bugnotes_count', 'attachment', 'description', 'last_note' ) ) ) {
 			if( strpos( $t_fields[$i], 'custom_' ) === 0 ) {
 				$t_field_name = string_display( lang_get_defaulted( utf8_substr( $t_fields[$i], utf8_strlen( 'custom_' ) ) ) );
 			} else {
