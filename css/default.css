@@ -83,6 +83,7 @@ tr:not(.row-category) th{  font-variant: small-caps; }
 th:not(:first-child)	{ border-left: 1px solid #E3C389; }
 table#buglist tr > td:not(:first-child) { border-left: 1px solid #E3C389; }
 table#buglist tr > td, table#buglist tr > th { border-bottom: 1px solid #E3C389; }
+table#buglist td	{ word-wrap: break-word; max-width: 300px; }
 td 					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; padding: 9px 12px 12px; text-align: left; }
 td td				{ padding: 8px; }
 td tr:first-child.vcenter td{ padding: 0px 8px; }
