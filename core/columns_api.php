@@ -1241,7 +1241,7 @@ function print_column_summary( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_P
 		$t_summary = string_display_line_links( $p_bug->summary );
 	}
 
-	echo '<td class="left"><div><b>' . $t_summary . '</b></div><a href="#" class="toggle-height">...</a></td>';
+	echo '<td class="left"><b>' . $t_summary . '</b></td>';
 }
 
 /**
