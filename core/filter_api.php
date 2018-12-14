@@ -1988,7 +1988,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	# End text search
 
 	// Eyal: Join Bugnotes
-	$t_join_clauses[] = " LEFT JOIN $t_bugnote_table AS bn ON bn.bug_id = $t_bug_table.id AND (bn.date_submitted = (SELECT MAX(date_submitted) FROM $t_bugnote_table WHERE bug_id = bn.bug_id))";
+	$t_join_clauses[] = " LEFT JOIN $t_bugnote_table AS bn ON bn.bug_id = $t_bug_table.id AND (bn.date_submitted = (SELECT MAX(date_submitted) FROM $t_bugnote_table WHERE bug_id = bn.bug_id AND bn.view_state = 10))";
 	$t_join_clauses[] = " LEFT JOIN $t_bugnote_text_table AS bnt ON bnt.id = bn.bugnote_text_id";
 	
 	$t_from_clauses[] = $t_project_table;
