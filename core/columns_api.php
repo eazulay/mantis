@@ -1254,7 +1254,7 @@ function print_column_summary( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_P
 function print_column_description( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	$t_description = string_display_links( $p_bug->description );
 
-	echo '<td class="left"><div>', $t_description, '</div><a href="#" class="toggle-height">...</a></td>';
+	echo '<td class="left"><div>', $t_description, '</div><a href="#" class="toggle-height">&#x21D5;</a></td>';
 }
 
 // Eyal
