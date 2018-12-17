@@ -1261,7 +1261,7 @@ function print_column_description( $p_bug, $p_columns_target = COLUMNS_TARGET_VI
 function print_column_last_note( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	$t_last_note = string_display_links( $p_bug->last_note );
 
-	echo '<td class="left"><div>', $t_last_note, '</div><a href="#" class="toggle-height">...</a></td>';
+	echo '<td class="left"><div>', $t_last_note, '</div><a href="#" class="toggle-height">&#x21D5;</a></td>';
 }
 
 /**
