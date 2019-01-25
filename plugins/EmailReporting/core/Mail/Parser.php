@@ -350,9 +350,10 @@ class ERP_Mail_Parser
 		{
 			$body = str_replace("\r\n\r\n \r\n\r\n", "<<<p/>>>", $body);
 			$body = str_replace("\r\n\r\n", "<<<br/>>>", $body);
-			$body = preg_replace("/(?<!\>{3})\r\n(?!([0-9a-zA-Z]{1,2}[\.\)]?\t)|(To:)|(Subject:)|(CC:)|(Cc:)|(\>\s))/", " ", $body);
+			$body = preg_replace("/(?<!\>{3})\r\n(?!([0-9a-zA-Z]{1,2}[\.\)]?\t)|(To:)|(Subject:)|(CC:)|(Cc:)|(\>\s))/", ' ', $body);
 			$body = str_replace("<<<br/>>>", "\r\n", $body);
-			$this->_body = str_replace("<<<p/>>>", "\r\n\r\n", $body);
+			$body = str_replace("<<<p/>>>", "\r\n\r\n", $body);
+			$this->_body = preg_replace("/<(https?://[\d\w\.-]+\.[\w\.]{2,6}[^\s\]\[\<\>]*/?)>/i", ' $1 ', $body);
 		}
 		elseif ( $this->_parse_html && 'text' === $this->_ctype['primary'] && 'html' === $this->_ctype['secondary'] )
 		{
