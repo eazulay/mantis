@@ -356,19 +356,8 @@ class ERP_Mail_Parser
 			$body = preg_replace("/\<(https?:\/\/[\d\w\.-]+\.[\w\.]{2,6}[^\s\]\[\<\>]*\/?)\>/i", ' $1 ', $body);
 			
 			// Strip signatures
-			$body = str_replace("______________________________________________________
-
-+44 20 3290 9094           Skype: azulayeyal
-+44 7534 614 488        http://get-it-write.com/  http://get-it-write.com
-", "", $body);
-			$body = str_replace("-=-=-
-Tia Azulay  MACWNM MISTC
-Web Project Manager and Writer
-______________________________________________________
- 
-+44 20 3290 9094             Skype:  tiaazulay
-               http://get-it-write.com
-", "", $body);
+			$body = str_replace("______________________________________________________\r\n\r\n+44 20 3290 9094           Skype: azulayeyal\r\n+44 7534 614 488        http://get-it-write.com/  http://get-it-write.com\r\n", "", $body);
+			$body = str_replace("-=-=-\r\nTia Azulay  MACWNM MISTC\r\nWeb Project Manager and Writer\r\n______________________________________________________\r\n\r\n+44 20 3290 9094             Skype:  tiaazulay\r\n               http://get-it-write.com\r\n", "", $body);
 			
 			$this->_body = $body;
 		}
