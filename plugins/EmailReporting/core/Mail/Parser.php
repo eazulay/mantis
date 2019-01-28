@@ -353,7 +353,22 @@ class ERP_Mail_Parser
 			$body = preg_replace("/(?<!\>{3})\r\n(?!([0-9a-zA-Z]{1,2}[\.\)]?\t)|(To:)|(Subject:)|(CC:)|(Cc:)|(\>\s))/", ' ', $body);
 			$body = str_replace("<<<br/>>>", "\r\n", $body);
 			$body = str_replace("<<<p/>>>", "\r\n\r\n", $body);
-			$this->_body = preg_replace("/\<(https?:\/\/[\d\w\.-]+\.[\w\.]{2,6}[^\s\]\[\<\>]*\/?)\>/i", ' $1 ', $body);
+			$body = preg_replace("/\<(https?:\/\/[\d\w\.-]+\.[\w\.]{2,6}[^\s\]\[\<\>]*\/?)\>/i", ' $1 ', $body);
+			
+			// Strip signatures
+			$body = str_replace("______________________________________________________
+
++44 20 3290 9094 Skype: azulayeyal
++44 7534 614 488 http://get-it-write.com/ http://get-it-write.com", "", $body);
+			$body = str_replace("-=-=-
+Tia Azulay  MACWNM MISTC
+Web Project Manager and Writer
+______________________________________________________
+ 
++44 20 3290 9094 Skype:  tiaazulay
+ http://get-it-write.com", "", $body);
+			
+			$this->_body = $body;
 		}
 		elseif ( $this->_parse_html && 'text' === $this->_ctype['primary'] && 'html' === $this->_ctype['secondary'] )
 		{
