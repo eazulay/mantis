@@ -358,15 +358,15 @@ class ERP_Mail_Parser
 			// Strip signatures
 			$body = str_replace("______________________________________________________
 
-+44 20 3290 9094 Skype: azulayeyal
-+44 7534 614 488 http://get-it-write.com/ http://get-it-write.com", "", $body);
++44 20 3290 9094           Skype: azulayeyal
++44 7534 614 488        http://get-it-write.com/  http://get-it-write.com", "", $body);
 			$body = str_replace("-=-=-
 Tia Azulay  MACWNM MISTC
 Web Project Manager and Writer
 ______________________________________________________
  
-+44 20 3290 9094 Skype:  tiaazulay
- http://get-it-write.com", "", $body);
++44 20 3290 9094             Skype:  tiaazulay
+               http://get-it-write.com", "", $body);
 			
 			$this->_body = $body;
 		}
