@@ -357,7 +357,7 @@ class ERP_Mail_Parser
 			
 			// Strip signatures
 			$body = str_replace("-- \r\n\r\nEyal Azulay MBCS CITP Software Developer & System Administrator T. +44 20 3290 9094 M. +33 6 76 83 98 56", "", $body);
-			$body = str_replace("-- \r\n\r\nTia Azulay MAcwnm MISTC Digital Project Manager T. +44 20 3290 9094 M. +33 6 37 86 96 87", "", $body);
+			$body = str_replace("--\r\n\r\nTia Azulay MAcwnm MISTC Digital Project Manager T. +44 20 3290 9094 M. +33 6 37 86 96 87", "", $body);
 			$body = str_replace("--\r\nEyal Azulay   MBCS CITP\r\nSoftware Engineer and Web Developer\r\n______________________________________________________\r\n\r\n+44 20 3290 9094           Skype: azulayeyal\r\n+44 7534 614 488        http://get-it-write.com/  http://get-it-write.com", "", $body);
 			$body = str_replace("-=-=-\r\nTia Azulay  MACWNM MISTC\r\nWeb Project Manager and Writer\r\n______________________________________________________\r\n\r\n+44 20 3290 9094             Skype:  tiaazulay\r\n                 http://get-it-write.com/  http://get-it-write.com\r\n\r\n______________________________________________________", "", $body);
 			$body = str_replace("\r\n  https://realcorp.lu/  \r\nFind us:   https://goo.gl/maps/1zhT8zPKDGv  31 Blvd Prince Henri L-1724 Luxembourg Find a property:   https://realcorp.lu/property/property-search/  Perform your own search Let us help you:    https://realcorp.lu/property/my-property-requirements/  Ask us to search for you\r\n  https://twitter.com/RealCorp_LU   http://www.linkedin.com/company/realcorp-luxembourg?trk=top_nav_home   https://pinterest.com/realcorplu/boards/       https://realcorp.lu/blog/", "", $body);
