@@ -134,11 +134,28 @@ To email someone who does not receive Mantis Notes, click [Open Email Client] to
 	}
 
 	$recipients = implode(';',$t_recipients);
+	$mantisEmail = "mantis@get-it-write.com";
+	$mantisName = "GIW%20Issue%20Tracker";
+	$EmailReportingMailboxes = config_get('plugin_EmailReporting_mailboxes');
+	$parentProject = project_hierarchy_get_parent($g_project_override);
+	$currentProjectFound = false;
+	foreach($EmailReportingMailboxes AS $t_key => $t_array){
+		if (isset($t_array['project_id']) && $t_array['project_id'] == $g_project_override){
+			if (isset($t_array['erp_username'])){
+				$mantisEmail = $t_array['erp_username'];
+				$currentProjectFound = true;
+			}
+		}elseif (!$currentProjectFound && isset($t_array['project_id']) && $t_array['project_id'] == $parentProject){
+			if (isset($t_array['erp_username'])){
+				$mantisEmail = $t_array['erp_username'];
+			}
+		}
+	}
  ?>
 <tr class="footer">
 	<td class="center" colspan="2">
 		<input type="submit" class="button" value="<?php echo lang_get( 'add_bugnote_button' ) ?>"  onclick="this.disabled=1;document.bugnoteadd.submit();" />
-		<input type="button" class="button" value="Open Email Client" onclick="window.location='mailto:<?php echo $recipients."?cc=GIW%20Issue%20Tracker<mantis@get-it-write.com>&subject=".rawurlencode($tpl_project_name).'%200'.$f_bug_id.':%20'.rawurlencode($tpl_bug->summary); ?>';" />
+		<input type="button" class="button" value="Open Email Client" onclick="window.location='mailto:<?php echo $recipients."?cc=$mantisName<$mantisEmail>&subject=".rawurlencode($tpl_project_name).'%20'.$f_bug_id.':%20'.rawurlencode($tpl_bug->summary); ?>';" />
 	</td>
 </tr>
 </table>
