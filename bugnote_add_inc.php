@@ -143,11 +143,17 @@ To email someone who does not receive Mantis Notes, click [Open Email Client] to
 		if (isset($t_array['project_id']) && $t_array['project_id'] == $g_project_override){
 			if (isset($t_array['erp_username'])){
 				$mantisEmail = $t_array['erp_username'];
+				$mantisName = project_get_name($g_project_override);
+				if (substr($mantisName, -6) != 'Mantis')
+					$mantisName .= ' Mantis';
 				$currentProjectFound = true;
 			}
 		}elseif (!$currentProjectFound && isset($t_array['project_id']) && $t_array['project_id'] == $parentProject){
 			if (isset($t_array['erp_username'])){
 				$mantisEmail = $t_array['erp_username'];
+				$mantisName = project_get_name($parentProject);
+				if (substr($mantisName, -6) != 'Mantis')
+					$mantisName .= ' Mantis';
 			}
 		}
 	}
@@ -155,7 +161,7 @@ To email someone who does not receive Mantis Notes, click [Open Email Client] to
 <tr class="footer">
 	<td class="center" colspan="2">
 		<input type="submit" class="button" value="<?php echo lang_get( 'add_bugnote_button' ) ?>"  onclick="this.disabled=1;document.bugnoteadd.submit();" />
-		<input type="button" class="button" value="Open Email Client" onclick="window.location='mailto:<?php echo $recipients."?cc=$mantisName<$mantisEmail>&subject=".rawurlencode($tpl_project_name).'%20'.$f_bug_id.':%20'.rawurlencode($tpl_bug->summary); ?>';" />
+		<input type="button" class="button" value="Open Email Client" onclick="window.location='mailto:<?php echo $recipients."?cc=$mantisName <$mantisEmail>&subject=".rawurlencode($tpl_project_name).'%20'.$f_bug_id.':%20'.rawurlencode($tpl_bug->summary); ?>';" />
 	</td>
 </tr>
 </table>
