@@ -101,7 +101,7 @@ function lang_get_default() {
 
 	# Confirm that the user's language can be determined
 	if( function_exists( 'auth_is_user_authenticated' ) && auth_is_user_authenticated() ) {
-		$t_lang = user_pref_get_language( auth_get_current_user_id() );
+		$t_lang = user_pref_get_language( auth_get_current_user_id(), ALL_PROJECTS );
 	}
 
 	# Otherwise fall back to default
