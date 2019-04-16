@@ -76,12 +76,12 @@ require_once( 'collapse_api.php' );
  * @subpackage classes
  */
 class BugRelationshipData {
-	var $id;
-	var $src_bug_id;
-	var $src_project_id;
-	var $dest_bug_id;
-	var $dest_project_id;
-	var $type;
+	public $id;
+	public $src_bug_id;
+	public $src_project_id;
+	public $dest_bug_id;
+	public $dest_project_id;
+	public $type;
 }
 
 $g_relationships = array();
