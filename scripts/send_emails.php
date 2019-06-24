@@ -25,10 +25,10 @@ require_once( dirname( dirname( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'core.php' 
 require_once( 'email_api.php' );
 
 # Make sure this script doesn't run via the webserver
-if( php_sapi_name() != 'cli' ) {
+/*if( php_sapi_name() != 'cli' ) {
 	echo "send_emails.php is not allowed to run through the webserver.\n";
 	exit( 1 );
-}
+}*/
 
 echo "Sending emails...\n";
 email_send_all();
