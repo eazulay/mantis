@@ -102,7 +102,7 @@ $g_severity_enum_string = '10:unspecified,20:nice_to_have,50:important,60:critic
 
 
 # --- Others ---
-$g_default_home_page = 'my_view_page.php';	# Set to name of page to go to after login
+$g_default_home_page = 'view_all_bugs_page.php';	# Set to name of page to go to after login
 
 $g_reauthentication_expiry = 20*60;
 
