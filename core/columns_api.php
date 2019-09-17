@@ -947,17 +947,17 @@ function print_column_id( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE )
 	# grab the project name
 	$t_project_name = project_get_field( $p_bug->project_id, 'name' );
 
-	echo '<td>';
-
+	echo '<td><div style="font-size:14px; font-weight:bold; margin-bottom:5px;">';
+	print_bug_link( $p_bug->id, false );
+	echo '</div>';
 	# type project name if viewing 'all projects' or if issue is in a subproject
  	if( ON == config_get( 'show_bug_project_links' ) && helper_get_current_project() != $p_bug->project_id ) {
 		echo '<small>';
 		echo $t_project_name;
 		// print_view_bug_sort_link( string_display_line( $t_project_name ), 'project_id', $t_sort, $t_dir, $p_columns_target );
-		echo '</small><br />';
+		echo '</small>';
 	}
 
-	print_bug_link( $p_bug->id, false );
 	echo '</td>';
 }
 
