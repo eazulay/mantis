@@ -180,8 +180,8 @@
 
 		if ($f_export_bug_stats_button){
 			ob_start();
-			echo "Period: {$t_bugnote_stats_from_d}/{$t_bugnote_stats_from_m}/{$t_bugnote_stats_from_y} - {$t_bugnote_stats_to_d}/{$t_bugnote_stats_to_m}/{$t_bugnote_stats_to_y}$t_nl";
-			echo "Project{$t_sep}ID{$t_sep}Summary{$t_sep}Time Tracking{$t_nl}";
+			echo "Period: {$t_bugnote_stats_from_d}/{$t_bugnote_stats_from_m}/{$t_bugnote_stats_from_y} - {$t_bugnote_stats_to_d}/{$t_bugnote_stats_to_m}/{$t_bugnote_stats_to_y}".$t_nl;
+			echo "Project{$t_sep}ID{$t_sep}Summary{$t_sep}Time Tracking".$t_nl;
 		}else{
 ?>
 <br />
