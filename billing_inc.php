@@ -214,7 +214,6 @@
 			$t_sum_in_minutes += $t_item['sum_time_tracking'];
 			$t_user_summary[$t_item[$t_name_field]] += $t_item['sum_time_tracking'];
 
-			$t_item['sum_time_tracking'] = db_minutes_to_hhmm( $t_item['sum_time_tracking'] );
 			if ( $t_item['bug_id'] != $t_prev_id) {
 				if ($f_export_bug_stats_button){
 					echo csv_escape_string( $t_item['project_name'] ) . $t_sep;
@@ -222,6 +221,7 @@
 					echo csv_escape_string( $t_item['summary'] ) . $t_sep;
 					echo csv_escape_string( $t_item['sum_time_tracking'] ) . $t_nl;
 				}else{
+					$t_item['sum_time_tracking'] = db_minutes_to_hhmm( $t_item['sum_time_tracking'] );
 					$t_link = string_get_bug_view_link( $t_item['bug_id'] );
 					echo '<tr class="row-category-history"><td colspan="3">' .
 						$t_item['project_name'] . " " . $t_link . ": " . string_display( $t_item['summary'] ) . "</td></tr>";
