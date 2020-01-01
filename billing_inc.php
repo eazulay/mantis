@@ -80,9 +80,9 @@
 		header( 'Content-Transfer-Encoding: BASE64;' );
 		header( 'Content-Disposition: attachment; filename="' . urlencode( file_clean_name( $t_filename ) ) . '"' );
 	else:
-?>
-		collapse_open( 'bugnotestats' );
 
+		collapse_open( 'bugnotestats' );
+?>
 <a name="bugnotestats" id="bugnotestats" /><br />
 
 <form method="post" action="<?php echo form_action_self() ?>">
