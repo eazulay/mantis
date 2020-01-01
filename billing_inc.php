@@ -27,16 +27,10 @@
 /**
  * Requires bugnote API
  */
-require_once( 'bugnote_api.php' );
+	require_once( 'bugnote_api.php' );
 
-if ( !config_get('time_tracking_enabled') )
-	return;
-?>
-
-<a name="bugnotestats" id="bugnotestats" /><br />
-
-<?php
-	collapse_open( 'bugnotestats' );
+	if ( !config_get('time_tracking_enabled') )
+		return;
 
 	$t_today = date( "d:m:Y" );
 	$t_date_submitted = isset( $t_bug ) ? date( "d:m:Y", $t_bug->date_submitted ) : $t_today;
@@ -87,6 +81,10 @@ if ( !config_get('time_tracking_enabled') )
 		header( 'Content-Disposition: attachment; filename="' . urlencode( file_clean_name( $t_filename ) ) . '"' );
 	else:
 ?>
+		collapse_open( 'bugnotestats' );
+
+<a name="bugnotestats" id="bugnotestats" /><br />
+
 <form method="post" action="<?php echo form_action_self() ?>">
 	<input type="hidden" name="id" value="<?php echo isset( $f_bug_id ) ? $f_bug_id : 0 ?>" />
 	<table border="0" class="width100" cellspacing="0">
@@ -125,7 +123,7 @@ if ( !config_get('time_tracking_enabled') )
 			</td>
 		</tr>
 <?php
-	if ( $t_cost_col ) {
+		if ( $t_cost_col ) {
 ?>
 		<tr class="row-1">
 			<td>
@@ -134,7 +132,7 @@ if ( !config_get('time_tracking_enabled') )
 			</td>
 		</tr>
 <?php
-	}
+		}
 ?>
 		<tr>
 			<td class="center" colspan="2">
@@ -182,8 +180,8 @@ if ( !config_get('time_tracking_enabled') )
 
 		if ($f_export_bug_stats_button){
 			ob_start();
-			echo "Period: {$t_bugnote_stats_from_d}/{$t_bugnote_stats_from_m}/{$t_bugnote_stats_from_y} - {$t_bugnote_stats_to_d}/{$t_bugnote_stats_to_m}/{$t_bugnote_stats_to_y}".$t_nl;
-			echo "Project{$t_sep}Username";
+			echo "Period: {$t_bugnote_stats_from_d}/{$t_bugnote_stats_from_m}/{$t_bugnote_stats_from_y} - {$t_bugnote_stats_to_d}/{$t_bugnote_stats_to_m}/{$t_bugnote_stats_to_y}$t_nl";
+			echo "Project{$t_sep}ID{$t_sep}Summary{$t_sep}Time Tracking{$t_nl}";
 		}else{
 ?>
 <br />
