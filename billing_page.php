@@ -27,9 +27,9 @@
 
 	access_ensure_global_level( config_get( 'time_tracking_reporting_threshold' ) );
 
-	$t_submit_export_stats = gpc_isset( 'submit_export_totals' );
+	$f_export_bug_stats_button = gpc_isset( 'export_bug_stats_button' );
 
-	if (!$t_submit_export_stats):
+	if (!$f_export_bug_stats_button):
 
 		html_page_top( lang_get( 'time_tracking_billing_link' )  );
 ?>
@@ -43,5 +43,5 @@
 
 	include( $t_mantis_dir . 'billing_inc.php' );
 
-	if (!$t_submit_export_stats)
+	if (!$f_export_bug_stats_button)
 		html_page_bottom();
