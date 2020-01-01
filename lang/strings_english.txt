@@ -1533,6 +1533,7 @@ $s_total_time_for_issue = 'Total time for issue = %1$s';
 $s_time_tracking_stopwatch_start = 'Start';
 $s_time_tracking_stopwatch_stop = 'Stop';
 $s_time_tracking_stopwatch_reset = 'Reset';
+$s_time_tracking_export_csv_button = 'Export Totals as CSV';
 
 $s_access_denied = 'Access Denied.';
 

@@ -678,7 +678,7 @@ function bugnote_stats_get_events_array( $p_bug_id, $p_from, $p_to ) {
  * @return array array of bugnote stats
  * @access public
  */
-function bugnote_stats_get_project_array( $p_project_id, $p_from, $p_to, $p_cost, $p_category = '0') {
+function bugnote_stats_get_project_array( $p_project_id, $p_from, $p_to, $p_cost, $p_category = '0', $p_by_user = true) {
 																	// $p_category added by Eyal Azulay
 	$c_project_id = db_prepare_int( $p_project_id );
 
@@ -725,12 +725,20 @@ function bugnote_stats_get_project_array( $p_project_id, $p_from, $p_to, $p_cost
 
 	$t_results = array();
 
-	$query = "SELECT u.username, u.realname, b.summary, bn.bug_id, p.name as project_name, SUM(bn.time_tracking) AS sum_time_tracking
-		FROM $t_user_table u, $t_bugnote_table bn, $t_bug_table b, $t_category_table c, $t_project_table p, $t_project_hierarchy_table h
-		WHERE u.id = bn.reporter_id AND bn.time_tracking != 0 AND bn.bug_id = b.id AND c.id = b.category_id AND p.id = b.project_id AND h.child_id = b.project_id
-		$t_project_where $t_from_where $t_to_where $t_category_where
-		GROUP BY p.id, bn.bug_id, u.id, u.username, b.summary
-		ORDER BY p.name, bn.bug_id";
+	if ($p_by_user)
+		$query = "SELECT u.username, u.realname, b.summary, bn.bug_id, p.name as project_name, SUM(bn.time_tracking) AS sum_time_tracking
+			FROM $t_user_table u, $t_bugnote_table bn, $t_bug_table b, $t_category_table c, $t_project_table p, $t_project_hierarchy_table h
+			WHERE u.id = bn.reporter_id AND bn.time_tracking != 0 AND bn.bug_id = b.id AND c.id = b.category_id AND p.id = b.project_id AND h.child_id = b.project_id
+			$t_project_where $t_from_where $t_to_where $t_category_where
+			GROUP BY p.id, bn.bug_id, u.id, u.username, b.summary
+			ORDER BY p.name, bn.bug_id";
+	else
+		$query = "SELECT b.summary, bn.bug_id, p.name as project_name, SUM(bn.time_tracking) AS sum_time_tracking
+			FROM $t_bugnote_table bn, $t_bug_table b, $t_category_table c, $t_project_table p, $t_project_hierarchy_table h
+			WHERE bn.time_tracking != 0 AND bn.bug_id = b.id AND c.id = b.category_id AND p.id = b.project_id AND h.child_id = b.project_id
+			$t_project_where $t_from_where $t_to_where $t_category_where
+			GROUP BY p.id, bn.bug_id, b.summary
+			ORDER BY p.name, bn.bug_id";
 
 	$result = db_query( $query );
 

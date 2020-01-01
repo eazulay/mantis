@@ -53,7 +53,6 @@
 
 	# Make sure that IE can download the attachments under https.
 	header( 'Pragma: public' );
-
 	header( 'Content-Type: text/plain; name=' . urlencode( file_clean_name( $t_filename ) ) );
 	header( 'Content-Transfer-Encoding: BASE64;' );
 

@@ -27,18 +27,21 @@
 
 	access_ensure_global_level( config_get( 'time_tracking_reporting_threshold' ) );
 
-	html_page_top( lang_get( 'time_tracking_billing_link' )  );
+	$t_submit_export_stats = gpc_isset( 'submit_export_totals' );
+
+	if (!$t_submit_export_stats):
+
+		html_page_top( lang_get( 'time_tracking_billing_link' )  );
 ?>
 
 <br />
 
 <?php
+	endif;
+
 	$t_mantis_dir = dirname( __FILE__ ) . DIRECTORY_SEPARATOR;
-?>
-	<!-- Jump to Bugnote add form -->
-<?php
-	# Work break-down
+
 	include( $t_mantis_dir . 'billing_inc.php' );
 
-	html_page_bottom();
-
+	if (!$t_submit_export_stats)
+		html_page_bottom();
