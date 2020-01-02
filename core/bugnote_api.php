@@ -679,7 +679,7 @@ function bugnote_stats_get_events_array( $p_bug_id, $p_from, $p_to ) {
  * @access public
  */
 function bugnote_stats_get_project_array( $p_project_id, $p_from, $p_to, $p_cost, $p_category = '0', $p_by_user = true) {
-																	// $p_category added by Eyal Azulay
+																	// $p_category and $p_by_user added by Eyal Azulay
 	$c_project_id = db_prepare_int( $p_project_id );
 
 	$c_to = strtotime( $p_to ) + SECONDS_PER_DAY - 1;
@@ -699,29 +699,25 @@ function bugnote_stats_get_project_array( $p_project_id, $p_from, $p_to, $p_cost
 	$t_project_hierarchy_table = db_get_table( 'mantis_project_hierarchy_table' );
 	$t_project_table = db_get_table( 'mantis_project_table' );
 
-	if( !is_blank( $c_from ) ) {
+	if( !is_blank( $c_from ) )
 		$t_from_where = "AND bn.date_submitted >= $c_from";
-	} else {
+	else
 		$t_from_where = '';
-	}
 
-	if( !is_blank( $c_to ) ) {
+	if( !is_blank( $c_to ) )
 		$t_to_where = "AND bn.date_submitted <= $c_to";
-	} else {
+	else
 		$t_to_where = '';
-	}
 
-	if( ALL_PROJECTS != $c_project_id ) {
+	if( ALL_PROJECTS != $c_project_id )
 		$t_project_where = "AND (b.project_id = '$c_project_id' OR h.parent_id = '$c_project_id')";
-	} else {
+	else
 		$t_project_where = '';
-	}
 
-	if( $p_category != '0' ) {
+	if( $p_category != '0' )
 		$t_category_where = "AND c.name = '$p_category'";
-	} else {
+	else
 		$t_category_where = '';
-	}
 
 	$t_results = array();
 
@@ -733,7 +729,7 @@ function bugnote_stats_get_project_array( $p_project_id, $p_from, $p_to, $p_cost
 			GROUP BY p.id, bn.bug_id, u.id, u.username, b.summary
 			ORDER BY p.name, bn.bug_id";
 	else
-		$query = "SELECT b.summary, bn.bug_id, p.name as project_name, SUM(bn.time_tracking) AS sum_time_tracking
+		$query = "SELECT b.summary, bn.bug_id, p.name as project_name, SUM(bn.time_tracking) AS sum_time_tracking, b.status
 			FROM $t_bugnote_table bn, $t_bug_table b, $t_category_table c, $t_project_table p, $t_project_hierarchy_table h
 			WHERE bn.time_tracking != 0 AND bn.bug_id = b.id AND c.id = b.category_id AND p.id = b.project_id AND h.child_id = b.project_id
 			$t_project_where $t_from_where $t_to_where $t_category_where

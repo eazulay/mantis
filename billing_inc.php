@@ -181,7 +181,7 @@
 		if ($f_export_bug_stats_button){
 			ob_start();
 			echo "Period: {$t_bugnote_stats_from_d}/{$t_bugnote_stats_from_m}/{$t_bugnote_stats_from_y} - {$t_bugnote_stats_to_d}/{$t_bugnote_stats_to_m}/{$t_bugnote_stats_to_y}".$t_nl;
-			echo "Project{$t_sep}ID{$t_sep}Summary{$t_sep}Time Tracking".$t_nl;
+			echo "Project{$t_sep}ID{$t_sep}Summary{$t_sep}Current Status{$t_sep}Time Spent (minutes)".$t_nl;
 		}else{
 ?>
 <br />
@@ -219,6 +219,7 @@
 					echo csv_escape_string( $t_item['project_name'] ) . $t_sep;
 					echo csv_escape_string( $t_item['bug_id'] ) . $t_sep;
 					echo csv_escape_string( $t_item['summary'] ) . $t_sep;
+					echo csv_escape_string( get_enum_element( 'status', $t_item['status'] ) ) . $t_sep;
 					echo csv_escape_string( $t_item['sum_time_tracking'] ) . $t_nl;
 				}else{
 					$t_item['sum_time_tracking'] = db_minutes_to_hhmm( $t_item['sum_time_tracking'] );
