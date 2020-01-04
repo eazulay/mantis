@@ -206,16 +206,16 @@
 		$t_user_summary = array();
 
 		# Initialize the user summary array
-		foreach ( $t_bugnote_stats as $t_item ) {
+		foreach( $t_bugnote_stats as $t_item ){
 			$t_user_summary[$t_item[$t_name_field]] = 0;
 		}
 
 		# Calculate the totals
-		foreach ( $t_bugnote_stats as $t_item ) {
+		foreach( $t_bugnote_stats as $t_item ){
 			$t_sum_in_minutes += $t_item['sum_time_tracking'];
 			$t_user_summary[$t_item[$t_name_field]] += $t_item['sum_time_tracking'];
 
-			if ( $t_item['bug_id'] != $t_prev_id) {
+			if ($t_item['bug_id'] != $t_prev_id){
 				if ($f_export_bug_stats_button){
 					echo csv_escape_string( $t_item['project_name'] ) . $t_sep;
 					echo csv_escape_string( $t_item['bug_id'] ) . $t_sep;
@@ -223,7 +223,7 @@
 					echo csv_escape_string( get_enum_element( 'status', $t_item['status'] ) ) . $t_sep;
 					echo csv_escape_string( $t_item['sum_time_tracking'] ) . $t_nl;
 				}else{
-					$t_item['sum_time_tracking'] = db_minutes_to_hhmm( $t_item['sum_time_tracking'] );
+					//$t_item['sum_time_tracking'] = db_minutes_to_hhmm( $t_item['sum_time_tracking'] );
 					$t_link = string_get_bug_view_link( $t_item['bug_id'] );
 					echo '<tr class="row-category-history"><td colspan="3">' .
 						$t_item['project_name'] . " " . $t_link . ": " . string_display( $t_item['summary'] ) . "</td></tr>";
@@ -237,7 +237,7 @@
 			<?php echo $t_item[$t_name_field] ?>
 		</td>
 		<td class="small-caption">
-			<?php echo $t_item['sum_time_tracking'] ?>
+			<?php echo db_minutes_to_hhmm( $t_item['sum_time_tracking'] ); ?>
 		</td>
 <?php			if ($t_cost_col) { ?>
 		<td>
@@ -251,9 +251,8 @@
 		if ($f_export_bug_stats_button):
 			$t_header = ob_get_clean();
 /*			$t_first_three_chars = utf8_substr( $t_header, 0, 3 );
-			if ( strcmp( $t_first_three_chars, 'ID' . $t_sep ) == 0 ) {
-				$t_header = str_replace( 'ID' . $t_sep, 'Id' . $t_sep, $t_header );
-			}*/
+			if ( strcmp( $t_first_three_chars, 'ID' . $t_sep ) == 0 )
+				$t_header = str_replace( 'ID' . $t_sep, 'Id' . $t_sep, $t_header ); */
 			echo $t_header;
 		else:
 ?>
