@@ -14,8 +14,10 @@ function setWarningOnNavigate() {
             });
         }
         form.onsubmit = function () {
-            if (updatedForms[i]) {
-                return confirm('You have not yet saved your previous changes. You will lose them if you proceed with the current action. Do you wish to proceed?');
+            for (var j = 0, formsLen = updatedForms.length; j < formsLen; j++) {
+                var formUpdated = updatedForms[j];
+                if (formUpdated && j != i)
+                    return confirm('You have not yet saved your previous changes. You will lose them if you proceed with the current action. Do you wish to proceed?');
             }
             return true;
         };
