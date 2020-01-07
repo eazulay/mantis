@@ -14,11 +14,11 @@ function setWarningOnNavigate() {
                 updatedForms[formName] = true;
             });
         }
-        form.addEventListener('submit', function () {
+        form.onsubmit = function () {
             if (updatedForms[formName]) {
                 return confirm('You are going to lose your changes. Do you wish to proceed?');
             }
             return true;
-        });
+        };
     }
 }
