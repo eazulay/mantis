@@ -10,18 +10,21 @@ function setFormUpdated(formIdx, fieldName) {
 
 function confirmNotSavingChanges(formIdx) {
     return function (e) {
+        var updatedFields = [];
         for (var i = 0, formsLen = updatedForms.length; i < formsLen; i++) {
             var formUpdated = (updatedForms[i].length > 0);
-            if (formUpdated && i != formIdx) {
-                if (!confirm('You have not yet saved your changes to ' +
-                    updatedForms[i].join(', ') +
-                    '. You will lose them if you proceed with the current action. Do you wish to proceed?')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return false;
-                } else
-                    return true;
-            }
+            if (formUpdated && i != formIdx)
+                updatedFields = updatedFields.concat(updatedForms[i]);
+        }
+        if (updatedFields.length > 0) {
+            if (!confirm('You have not yet saved your changes to ' +
+                updatedForms[i].join(', ') +
+                '. You will lose them if you proceed with the current action. Do you wish to proceed?')) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            } else
+                return true;
         }
         return true;
     }
