@@ -18,7 +18,7 @@ function confirmNotSavingChanges(formIdx) {
         }
         if (updatedFields.length > 0) {
             if (!confirm('You have not yet saved your changes to ' +
-                updatedForms[i].join(', ') +
+                updatedFields.join(', ') +
                 '. You will lose them if you proceed with the current action. Do you wish to proceed?')) {
                 e.preventDefault();
                 e.stopPropagation();
