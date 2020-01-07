@@ -7,8 +7,7 @@ function setWarningOnNavigate(){
         var form = forms[formKey];
         var formName = form.name;
         updatedForms[formName] = false;
-        console.log(form);
-        var fields = form.querySelectorAll("input,textarea");
+        var fields = form.querySelectorAll("input[type=text],textarea");
         for(var fieldKey in fields){
             var field = fields[fieldKey];
             field.addEventListener('input', function(){
