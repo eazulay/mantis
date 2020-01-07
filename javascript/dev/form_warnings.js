@@ -3,18 +3,16 @@ var updatedForms = [];
 
 function setWarningOnNavigate() {
     forms = document.getElementsByTagName("form");
-    for (var formKey in forms) {
-        var form = forms[formKey];
+    for (var i = 0, formsLen = forms.length; i < formsLen; i++) {
+        var form = forms[i];
         var formName = form.name;
         updatedForms[formName] = false;
         var fields = form.querySelectorAll('input[type="text"],textarea');
-        if (fields.length > 0) {
-            for (var fieldKey in fields) {
-                var field = fields[fieldKey];
-                field.addEventListener('input', function () {
-                    updatedForms[formName] = true;
-                });
-            }
+        for (var j = 0, fieldsLen = fields.length; j < fieldsLen; j++) {
+            var field = fields[j];
+            field.addEventListener('input', function () {
+                updatedForms[formName] = true;
+            });
         }
         form.addEventListener('submit', function () {
             if (updatedForms[formName]) {
