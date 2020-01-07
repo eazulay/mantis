@@ -3,7 +3,8 @@ var updatedForms = [];
 
 function setWarningOnNavigate(){
     forms = document.getElementsByTagName("form");
-    for(var form in forms){
+    for(var formKey in forms){
+        var form = forms[formKey];
         var formName = form.name;
         updatedForms[formName] = false;
         console.log(form);
