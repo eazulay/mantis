@@ -160,7 +160,7 @@ To email someone who does not receive Mantis Notes, click [Open Email Client] to
  ?>
 <tr class="footer">
 	<td class="center" colspan="2">
-		<input type="submit" class="button" value="<?php echo lang_get( 'add_bugnote_button' ) ?>"  onclick="this.disabled=1;document.bugnoteadd.submit();" />
+		<input type="submit" class="button" value="<?php echo lang_get( 'add_bugnote_button' ) ?>" />
 		<input type="button" class="button" value="Open Email Client" onclick="window.location='mailto:<?php echo $recipients."?cc=$mantisName <$mantisEmail>&subject=".rawurlencode($tpl_project_name).'%20'.$f_bug_id.':%20'.rawurlencode($tpl_bug->summary); ?>';" />
 	</td>
 </tr>
