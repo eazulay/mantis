@@ -1,18 +1,21 @@
 var forms = [];
 var updatedForms = [];
 
-function setFormUpdated(formIdx) {
+function setFormUpdated(formIdx, fieldName) {
     return function () {
-        updatedForms[formIdx] = true;
+        if (!updatedForms[formIdx].includes(fieldName))
+            updatedForms[formIdx].push(fieldName);
     }
 }
 
 function confirmNotSavingChanges(formIdx) {
     return function (e) {
         for (var i = 0, formsLen = updatedForms.length; i < formsLen; i++) {
-            var formUpdated = updatedForms[i];
+            var formUpdated = (updatedForms[i].length > 0);
             if (formUpdated && i != formIdx) {
-                if (!confirm('You have not yet saved your previous changes. You will lose them if you proceed with the current action. Do you wish to proceed?')) {
+                if (!confirm('You have not yet saved your changes to ' +
+                    updatedForms[i].join(', ') +
+                    '. You will lose them if you proceed with the current action. Do you wish to proceed?')) {
                     e.preventDefault();
                     e.stopPropagation();
                     return false;
@@ -28,11 +31,11 @@ function setWarningOnNavigate() {
     forms = document.getElementsByTagName("form");
     for (var i = 0, formsLen = forms.length; i < formsLen; i++) {
         var form = forms[i];
-        updatedForms[i] = false;
+        updatedForms[i] = [];
         var fields = form.querySelectorAll('input[type="text"],textarea');
         for (var j = 0, fieldsLen = fields.length; j < fieldsLen; j++) {
             var field = fields[j];
-            field.addEventListener('input', setFormUpdated(i));
+            field.addEventListener('input', setFormUpdated(i, field.name));
         }
         form.addEventListener('submit', confirmNotSavingChanges(i));
     }
