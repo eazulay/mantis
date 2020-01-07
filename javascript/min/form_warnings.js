@@ -28,7 +28,7 @@ function setWarningOnNavigate() {
             var field = fields[j];
             field.addEventListener('input', setFormUpdated(i));
         }
-        form.onsubmit = function(){ return formBeingSubmitted(i); };
+        form.addEventListener('submit', formBeingSubmitted(i));
     }
     links = document.getElementsByTagName("a");
     for (var i = 0, formsLen = forms.length; i < formsLen; i++) {
