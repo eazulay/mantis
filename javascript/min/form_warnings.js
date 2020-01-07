@@ -7,6 +7,17 @@ function setFormUpdated(formIdx) {
     }
 }
 
+function formBeingSubmitted(formIdx) {
+    return function () {
+        for (var i = 0, formsLen = updatedForms.length; i < formsLen; i++) {
+            var formUpdated = updatedForms[i];
+            if (formUpdated && i != formIdx)
+                return confirm('You have not yet saved your previous changes. You will lose them if you proceed with the current action. Do you wish to proceed?');
+        }
+        return true;
+    }
+}
+
 function setWarningOnNavigate() {
     forms = document.getElementsByTagName("form");
     for (var i = 0, formsLen = forms.length; i < formsLen; i++) {
@@ -17,14 +28,7 @@ function setWarningOnNavigate() {
             var field = fields[j];
             field.addEventListener('input', setFormUpdated(i));
         }
-        form.onsubmit = function () {
-            for (var j = 0, formsLen = updatedForms.length; j < formsLen; j++) {
-                var formUpdated = updatedForms[j];
-                if (formUpdated && j != i)
-                    return confirm('You have not yet saved your previous changes. You will lose them if you proceed with the current action. Do you wish to proceed?');
-            }
-            return true;
-        };
+        form.onsubmit = formBeingSubmitted(i);
     }
     links = document.getElementsByTagName("a");
     for (var i = 0, formsLen = forms.length; i < formsLen; i++) {
