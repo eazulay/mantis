@@ -108,11 +108,10 @@
 	$tpl_form_title = lang_get( 'bug_view_title' );
 	$tpl_wiki_link = config_get_global( 'wiki_enable' ) == ON ? 'wiki.php?id=' . $f_bug_id : '';
 
-	if ( access_has_bug_level( config_get( 'view_history_threshold' ), $f_bug_id ) ) {
+	if ( access_has_bug_level( config_get( 'view_history_threshold' ), $f_bug_id ) )
 		$tpl_history_link = "view.php?id=$f_bug_id&history=1#history";
-	} else {
+	else
 		$tpl_history_link = '';
-	}
 
 	$tpl_show_reminder_link = !current_user_is_anonymous() && !bug_is_readonly( $f_bug_id ) &&
 		  access_has_bug_level( config_get( 'bug_reminder_threshold' ), $f_bug_id );
@@ -233,7 +232,8 @@
 	echo '</tr>';
 	echo '</table>';
 	echo '</div>';
-	
+	html_javascript_link( 'addLoadEvent.js' );
+	html_javascript_link( 'form_warnings.js' );
 	echo "<script type='text/javascript'>
 	var fixedTable = document.getElementById('fixed_scroll');
 	window.onscroll = scroll;
@@ -257,6 +257,7 @@
 	function adjustFixedWidth(){
 		fixedTable.style.width = (window.innerWidth - 85) + 'px';
 	}
+	addLoadEvent(setWarningOnNavigate);
 	</script>";
 	
 	# Normal page

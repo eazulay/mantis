@@ -145,7 +145,7 @@ function html_rss_link() {
  * @param string $p_filename
  * @return null
  */
-function html_javascript_link( $p_filename) {
+function html_javascript_link( $p_filename ) {
 	if( config_get_global( 'minimal_jscss' ) ) {
 		echo '<script type="text/javascript" src="', helper_mantis_url( 'javascript/min/' . $p_filename ), '"></script>' . "\n";
 	} else {
