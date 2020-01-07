@@ -1,8 +1,10 @@
 var forms = [];
 var updatedForms = [];
 
-function setFormUpdated(formIdx){
-    updatedForms[formIdx] = true;
+function setFormUpdated(formIdx) {
+    return function () {
+        updatedForms[formIdx] = true;
+    }
 }
 
 function setWarningOnNavigate() {
@@ -13,7 +15,7 @@ function setWarningOnNavigate() {
         var fields = form.querySelectorAll('input[type="text"],textarea');
         for (var j = 0, fieldsLen = fields.length; j < fieldsLen; j++) {
             var field = fields[j];
-            field.addEventListener('input', setFormUpdated(i));
+            field.addEventListener('input', setFormUpdated, (i));
         }
         form.onsubmit = function () {
             for (var j = 0, formsLen = updatedForms.length; j < formsLen; j++) {
