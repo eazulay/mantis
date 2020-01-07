@@ -1,5 +1,5 @@
-var forms = array();
-var updatedForms = array();
+var forms = [];
+var updatedForms = [];
 
 function setWarningOnNavigate(){
     forms = document.getElementsByTagName("form");
