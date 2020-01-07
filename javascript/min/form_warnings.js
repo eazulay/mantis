@@ -8,7 +8,7 @@ function setFormUpdated(formIdx) {
 }
 
 function formBeingSubmitted(formIdx) {
-    return function () {
+    return function (e) {
         for (var i = 0, formsLen = updatedForms.length; i < formsLen; i++) {
             var formUpdated = updatedForms[i];
             if (formUpdated && i != formIdx) {
