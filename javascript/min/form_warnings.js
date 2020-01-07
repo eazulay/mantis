@@ -11,8 +11,14 @@ function formBeingSubmitted(formIdx) {
     return function () {
         for (var i = 0, formsLen = updatedForms.length; i < formsLen; i++) {
             var formUpdated = updatedForms[i];
-            if (formUpdated && i != formIdx)
-                return confirm('You have not yet saved your previous changes. You will lose them if you proceed with the current action. Do you wish to proceed?');
+            if (formUpdated && i != formIdx) {
+                if (!confirm('You have not yet saved your previous changes. You will lose them if you proceed with the current action. Do you wish to proceed?')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                } else
+                    return true;
+            }
         }
         return true;
     }
