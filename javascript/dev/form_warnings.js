@@ -9,9 +9,9 @@ function setWarningOnNavigate() {
         var fields = form.querySelectorAll('input[type="text"],textarea');
         for (var j = 0, fieldsLen = fields.length; j < fieldsLen; j++) {
             var field = fields[j];
-            field.addEventListener('input', function () {
+            field.addEventListener('input', function (i) {
                 updatedForms[i] = true;
-            });
+            }).bind(i);
         }
         form.onsubmit = function () {
             for (var j = 0, formsLen = updatedForms.length; j < formsLen; j++) {
