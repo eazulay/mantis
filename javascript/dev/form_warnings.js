@@ -30,6 +30,20 @@ function confirmNotSavingChanges(formIdx) {
     }
 }
 
+function confirmPageReload(event) {
+    var fieldsUpdated = false;
+    for (var i = 0, formsLen = updatedForms.length; i < formsLen; i++) {
+        if (updatedForms[i].length > 0) {
+            fieldsUpdated = true;
+            break;
+        }
+    }
+    if (fieldsUpdated) {
+        event.preventDefault();
+        event.returnValue = '';
+    }
+}
+
 function setWarningOnNavigate() {
     forms = document.getElementsByTagName("form");
     for (var i = 0, formsLen = forms.length; i < formsLen; i++) {
@@ -47,4 +61,5 @@ function setWarningOnNavigate() {
         var link = links[i];
         link.addEventListener('click', confirmNotSavingChanges(-1));
     }
+    window.addEventListener('beforeunload', confirmPageReload);
 }
