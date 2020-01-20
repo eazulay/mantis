@@ -1,5 +1,6 @@
 var forms = [];
 var updatedForms = [];
+var navigationAwayConfirmed = false;
 
 function setFormUpdated(formIdx, fieldName) {
     return function () {
@@ -23,14 +24,18 @@ function confirmNotSavingChanges(formIdx) {
                 e.preventDefault();
                 e.stopPropagation();
                 return false;
-            } else
+            } else {
+                navigationAwayConfirmed = true;
                 return true;
+            }
         }
         return true;
     }
 }
 
 function confirmPageReload(event) {
+    if (navigationAwayConfirmed)
+        return;
     var fieldsUpdated = false;
     for (var i = 0, formsLen = updatedForms.length; i < formsLen; i++) {
         if (updatedForms[i].length > 0) {
