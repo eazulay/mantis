@@ -29,6 +29,7 @@ function confirmNotSavingChanges(formIdx) {
                 return true;
             }
         }
+        navigationAwayConfirmed = true;
         return true;
     }
 }
