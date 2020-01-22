@@ -608,7 +608,7 @@
 	if ( $tpl_show_attachments ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">';
-		echo '<a href="" onclick="if (ToggleDiv( \'attachments\' ) this.firstChild.src=\'images/minus.png\';
+		echo '<a href="" onclick="if (ToggleDiv( \'attachments\' )) this.firstChild.src=\'images/minus.png\';
 								  else this.firstChild.src=\'images/plus.png\';
 								  return false;"><img src="images/minus.png" alt="-" border="0" /></a> ';
 		echo lang_get( 'attached_files' ), '</td>';
