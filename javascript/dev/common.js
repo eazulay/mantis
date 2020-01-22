@@ -112,7 +112,7 @@ function ToggleDiv( p_div ) {
 
 	SetCookie( "collapse_settings", t_cookie );
 
-	return (t_closed_div.className == "hidden");
+	return (t_open_div.className === "");
 }
 
 /* Check checkboxes */
