@@ -627,7 +627,7 @@
 			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
 			echo '</form><br>';
 		}
-		print_bug_attachments_list( $tpl_bug_id );
+		$t_attachments_count = print_bug_attachments_list( $tpl_bug_id );
 		echo '</div>';
 		echo '<div id="attachments_closed" class="' . ($attachmentsExpanded ? 'hidden' : '') . '">';
 		# File upload
@@ -642,6 +642,12 @@
 			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
 			echo '</form>';
 		}
+		if ($t_attachments_count == 0)
+			echo 'There are no attachments.';
+		else if ($t_attachments_count == 1)
+			echo 'There is one attachment.';
+		else
+			echo 'There are ' . $t_attachments_count . 'attachments.';
 		echo '</div>';
 		echo '</td></tr>';
 	}

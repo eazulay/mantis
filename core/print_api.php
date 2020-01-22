@@ -1773,6 +1773,8 @@ document.getElementById( span ).style.display = displayType;
 			$i++;
 		}
 	}
+	
+	return $t_attachments_count;
 }
 
 # --------------------
