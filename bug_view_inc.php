@@ -622,6 +622,7 @@
 			echo form_security_field( 'bug_file_add' );
 			echo '<input type="hidden" name="bug_id" value="', $f_bug_id, '" />';
 			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
+			echo 'Add attachment: ';
 			echo '<input name="file" type="file" size="40" />';
 			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
 			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
@@ -644,6 +645,7 @@
 			echo form_security_field( 'bug_file_add' );
 			echo '<input type="hidden" name="bug_id" value="', $f_bug_id, '" />';
 			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
+			echo 'Add attachment: ';
 			echo '<input name="file" type="file" size="40" />';
 			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
 			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
