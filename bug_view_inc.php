@@ -644,11 +644,11 @@
 		}
 		echo "<br>";
 		if ($t_attachments_count == 0)
-			echo 'There are no attachments.';
+			echo 'There are no attachments to this issue.';
 		else if ($t_attachments_count == 1)
-			echo 'There is one attachment.';
+			echo 'There is one attachment. Expand this section to display it.';
 		else
-			echo 'There are ' . $t_attachments_count . ' attachments.';
+			echo 'There are ' . $t_attachments_count . ' attachments. Expand this section to display them.';
 		echo '</div>';
 		echo '</td></tr>';
 	}
