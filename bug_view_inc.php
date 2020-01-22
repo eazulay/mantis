@@ -608,13 +608,13 @@
 	if ( $tpl_show_attachments ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">';
-		$attachmentsCollapsed = collapse_display('attachments');
+		$attachmentsExpanded = collapse_display('attachments');
 		echo '<a href="" onclick="if (ToggleDiv(\'attachments\')) this.firstChild.src=\'images/minus.png\';
 								else this.firstChild.src=\'images/plus.png\';
-								return false;"><img src="images/' . ($attachmentsCollapsed ? 'plus.png' : 'minus.png') . '" alt="-" border="0" /></a> ';
+								return false;"><img src="images/' . ($attachmentsExpanded ? 'minus.png' : 'plus.png') . '" alt="-" border="0" /></a> ';
 		echo lang_get( 'attached_files' ), '</td>';
 		echo '<td colspan="8">';
-		echo '<div id="attachments_open" class="' . ($attachmentsCollapsed ? 'hidden' : '') . '">';
+		echo '<div id="attachments_open" class="' . ($attachmentsExpanded ? '' : 'hidden') . '">';
 		# File upload
 		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
 			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
@@ -629,7 +629,7 @@
 		}
 		print_bug_attachments_list( $tpl_bug_id );
 		echo '</div>';
-		echo '<div id="attachments_closed" class="' . ($attachmentsCollapsed ? '' : 'hidden') . '">';
+		echo '<div id="attachments_closed" class="' . ($attachmentsExpanded ? 'hidden' : '') . '">';
 		# File upload
 		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
 			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
