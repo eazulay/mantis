@@ -642,6 +642,7 @@
 			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
 			echo '</form>';
 		}
+		echo "<br>";
 		if ($t_attachments_count == 0)
 			echo 'There are no attachments.';
 		else if ($t_attachments_count == 1)
