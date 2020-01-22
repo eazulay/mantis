@@ -947,7 +947,7 @@ function print_column_id( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE )
 	# grab the project name
 	$t_project_name = project_get_field( $p_bug->project_id, 'name' );
 
-	echo '<td><div style="font-size:14px; font-weight:bold; margin-bottom:5px;">';
+	echo '<td><div style="font-size:13px; font-weight:bold; margin-bottom:5px;">';
 	print_bug_link( $p_bug->id, false );
 	echo '</div>';
 	# type project name if viewing 'all projects' or if issue is in a subproject
