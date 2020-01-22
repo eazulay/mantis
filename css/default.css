@@ -46,7 +46,7 @@ input[type="button"]:hover, input[type="submit"]:hover, input.button:hover, inpu
 	background: linear-gradient(#EEEFEF, #F4F8E0);
 }
 
-span				{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; }
+span				{ font-family: Verdana, Arial, Helvetica, sans-serif; }
 span.print			{ font-size: 8pt; }
 span.required 		{ font-size: 8pt; color: #bb0000; }
 span.small 			{ font-size: 8pt; font-weight: normal; }
@@ -84,7 +84,7 @@ th:not(:first-child)	{ border-left: 1px solid #E3C389; }
 table#buglist tr > td:not(:first-child) { border-left: 1px solid #E3C389; }
 table#buglist tr > td, table#buglist tr > th { border-bottom: 1px solid #E3C389; }
 table#buglist td	{ word-wrap: break-word; max-width: 300px; position: relative; }
-table#buglist tr.expandable td div { overflow: hidden; max-height: 72px; transition: max-height 1s; }
+table#buglist tr.expandable td div { overflow: hidden; max-height: 74px; transition: max-height 1s; }
 table#buglist tr.expanded td div { overflow: hidden; max-height: 400px; transition: max-height 1s; }
 table#buglist td .toggle-height { position: absolute; right: 2px; bottom: 2px; font-size: 24px; line-height: 1em; }
 td 					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; padding: 8px 12px 12px; text-align: left; }
