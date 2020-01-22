@@ -737,7 +737,7 @@
 	 * Logo
 	 * @global string $g_logo_image
 	 */
-	$g_logo_image			= 'images/mantis_logo_small.gif';
+	$g_logo_image			= 'images/mantis_logo.gif';
 
 	/**
 	 * Logo URL link
