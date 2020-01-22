@@ -630,7 +630,14 @@
 		$t_attachments_count = print_bug_attachments_list( $tpl_bug_id );
 		echo '</div>';
 		echo '<div id="attachments_closed" class="' . ($attachmentsExpanded ? 'hidden' : '') . '">';
-		# File upload
+		if ($t_attachments_count == 0)
+			echo 'There are no attachments to this issue.';
+		else if ($t_attachments_count == 1)
+			echo 'There is one attachment. Expand this section to display it.';
+		else
+			echo 'There are ' . $t_attachments_count . ' attachments. Expand this section to display them.';
+		echo " &nbsp; ";
+			# File upload
 		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
 			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
 			echo '<form method="post" enctype="multipart/form-data" action="bug_file_add.php">';
@@ -642,13 +649,6 @@
 			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
 			echo '</form>';
 		}
-		echo "<br>";
-		if ($t_attachments_count == 0)
-			echo 'There are no attachments to this issue.';
-		else if ($t_attachments_count == 1)
-			echo 'There is one attachment. Expand this section to display it.';
-		else
-			echo 'There are ' . $t_attachments_count . ' attachments. Expand this section to display them.';
 		echo '</div>';
 		echo '</td></tr>';
 	}
