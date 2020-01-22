@@ -59,7 +59,7 @@ span.dependency_unmet		{ color: red; }
 span.dependency_upgrade		{ color: orange; }
 
 table				{ }
-table.hide			{ width: 100%; border: solid 0px #ffffff; border-spacing: 0; margin: 5px 0; }
+table.hide			{ width: 100%; border: solid 0px #ffffff; border-spacing: 0; }
 table.width100		{ width: 100%; border: solid 1px #AC7F2A; }
 table.width90		{ width: 90%;  border: solid 1px #AC7F2A; }
 table.width75		{ width: 75%;  border: solid 1px #AC7F2A; }
