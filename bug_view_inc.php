@@ -636,7 +636,7 @@
 			echo 'There is one attachment. Expand this section to display it.';
 		else
 			echo 'There are ' . $t_attachments_count . ' attachments. Expand this section to display them.';
-		echo "<br>";
+		echo "<br><br>";
 			# File upload
 		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
 			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
