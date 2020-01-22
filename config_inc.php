@@ -58,7 +58,7 @@ $g_preview_max_height	= 350;
 
 # --- Branding ---
 $g_window_title			= 'Get-It-Write Tracking System';
-$g_logo_image			= 'images/mantis_logo.gif';
+$g_logo_image			= 'images/mantis_logo_small.gif';
 $g_favicon_image		= 'images/favicon.ico';
 
 # --- Real names ---
