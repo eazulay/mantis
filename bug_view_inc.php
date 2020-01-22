@@ -538,7 +538,7 @@
 		echo '</tr>';
 	}
 
-	# Tagging
+	# Tags
 	if ( $tpl_show_tags ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tags' ), '</td>';
@@ -547,7 +547,7 @@
 		echo '</td></tr>';
 	}
 
-	# Attachments Form
+	# Add tags Form
 	if ( $tpl_can_attach_tag ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tag_attach_long' ), '</td>';
@@ -607,10 +607,11 @@
 	# Attachments
 	if ( $tpl_show_attachments ) {
 		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">', lang_get( 'attached_files' ), '</td>';
+		echo '<td class="category" colspan="2">';
+		echo '<a href="" onclick="ToggleDiv( \'attachments\' ); return false;"><img src="images/minus.png" alt="-" border="0" /></a> ';
+		echo lang_get( 'attached_files' ), '</td>';
 		echo '<td colspan="8">';
 		echo '<div id="attachments_open">';
-		echo '<a href="" onclick="ToggleDiv( \'attachments\' ); return false;"><img src="images/minus.png" alt="-" border="0" /></a> ';
 		# File upload
 		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
 			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
@@ -626,7 +627,7 @@
 		print_bug_attachments_list( $tpl_bug_id );
 		echo '</div>';
 		echo '<div id="attachments_closed" class="hidden">';
-		echo '<a href="" onclick="ToggleDiv( \'attachments\' ); return false;"><img src="images/plus.png" alt="+" border="0" /></a> ';
+		//echo '<a href="" onclick="ToggleDiv( \'attachments\' ); return false;"><img src="images/plus.png" alt="+" border="0" /></a> ';
 		# File upload
 		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
 			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
