@@ -238,7 +238,7 @@
 	var fixedTable = document.getElementById('fixed_scroll');
 	window.onscroll = scroll;
 	function scroll(){
-		if (window.pageYOffset > 300){
+		if (window.pageYOffset > 200){
 			if (fixedTable.classList.contains('hidden-first'))
 				fixedTable.classList.remove('hidden-first');
 			if (fixedTable.classList.contains('transparent'))
