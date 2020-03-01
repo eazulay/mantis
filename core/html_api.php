@@ -837,22 +837,30 @@ function print_menu() {
 		echo implode( $t_menu_options, ' | ' );
 		echo '</td>';
 		echo '<td class="menu right nowrap">';
-		echo '<form method="post" action="' . helper_mantis_url( 'jump_to_bug.php">' );
-		# CSRF protection not required here - form does not result in modifications
-
-		if( ON == config_get( 'use_javascript' ) ) {
-			$t_bug_label = lang_get( 'issue_id' );
-			echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"small\" value=\"$t_bug_label\" onfocus=\"if (this.value == '$t_bug_label') this.value = ''\" onblur=\"if (this.value == '') this.value = '$t_bug_label'\" />&#160;";
-		} else {
-			echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"small\" />&#160;";
-		}
-
-		echo '<input type="submit" class="button-small" value="' . lang_get( 'jump' ) . '" />&#160;';
-		echo '</form>';
+		jump_issue_form();
 		echo '</td>';
 		echo '</tr>';
 		echo '</table>';
 	}
+}
+
+/**
+ * Print the Jump to Issue form
+ * @return null
+ */
+function jump_issue_form() {
+	echo '<form method="post" action="' . helper_mantis_url( 'jump_to_bug.php">' );
+	# CSRF protection not required here - form does not result in modifications
+
+	if( ON == config_get( 'use_javascript' ) ) {
+		$t_bug_label = lang_get( 'issue_id' );
+		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"small\" value=\"$t_bug_label\" onfocus=\"if (this.value == '$t_bug_label') this.value = ''\" onblur=\"if (this.value == '') this.value = '$t_bug_label'\" />&#160;";
+	} else {
+		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"small\" />&#160;";
+	}
+
+	echo '<input type="submit" class="button-small" value="' . lang_get( 'jump' ) . '" />&#160;';
+	echo '</form>';
 }
 
 /**

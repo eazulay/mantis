@@ -34,7 +34,7 @@
 
 	$t_today = date( "d:m:Y" );
 	$t_date_submitted = isset( $t_bug ) ? date( "d:m:Y", $t_bug->date_submitted ) : $t_today;
-	
+
 	$t_bugnote_stats_from_def = isset( $_SESSION['bugnote_stats_from_def'] ) ? $_SESSION['bugnote_stats_from_def'] : $t_date_submitted;
 	$t_bugnote_stats_from_def_ar = explode ( ":", $t_bugnote_stats_from_def );
 	$t_bugnote_stats_from_def_d = $t_bugnote_stats_from_def_ar[0];
@@ -54,12 +54,12 @@
 	$t_bugnote_stats_to_d = gpc_get_int('end_day', $t_bugnote_stats_to_def_d);
 	$t_bugnote_stats_to_m = gpc_get_int('end_month', $t_bugnote_stats_to_def_m);
 	$t_bugnote_stats_to_y = gpc_get_int('end_year', $t_bugnote_stats_to_def_y);
-	
+
 	$f_bugnote_cost = gpc_get_int( 'bugnote_cost', isset( $_SESSION['bugnote_cost'] ) ? $_SESSION['bugnote_cost'] : '' );
 	$f_project_id = helper_get_current_project();
 
 	$t_cost_col = ( ON == config_get( 'time_tracking_with_billing' ) );
-	
+
 	$f_get_bug_stats_button = gpc_isset('get_bug_stats_button');
 
 	 // Added by Eyal Azulay
@@ -81,7 +81,7 @@
 		header( 'Content-Disposition: attachment; filename="' . urlencode( file_clean_name( $t_filename ) ) . '"' );
 	else:
 
-		collapse_open( 'bugnotestats' );
+//		collapse_open( 'bugnotestats' );
 ?>
 <a name="bugnotestats" id="bugnotestats" /><br />
 
@@ -91,7 +91,7 @@
 		<tr>
 			<td class="form-title" colspan="4">
 				<?php
-					collapse_icon( 'bugnotestats' );
+//					collapse_icon( 'bugnotestats' );
 					echo lang_get( 'time_tracking' )
 				?>
 			</td>
@@ -151,7 +151,7 @@
 		$_SESSION['bugnote_stats_from_def'] = $t_bugnote_stats_from_d.':'.$t_bugnote_stats_from_m.':'.$t_bugnote_stats_from_y;
 		$_SESSION['bugnote_stats_to_def'] = $t_bugnote_stats_to_d.':'.$t_bugnote_stats_to_m.':'.$t_bugnote_stats_to_y;
 		$_SESSION['bugnote_cost'] = $f_bugnote_cost;
-	
+
 		# Retrieve time tracking information
 		$t_from = "$t_bugnote_stats_from_y-$t_bugnote_stats_from_m-$t_bugnote_stats_from_d";
 		$t_to = "$t_bugnote_stats_to_y-$t_bugnote_stats_to_m-$t_bugnote_stats_to_d";
@@ -162,7 +162,7 @@
 			$t_name_field = 'realname';
 		else
 			$t_name_field = 'username';
-		
+
 		/* SQL already has correct Order By
 		$t_sort_bug = $t_sort_name = array();
 		foreach ( $t_bugnote_stats as $t_key => $t_item ) {
@@ -325,14 +325,14 @@
 		endif;
 	} # end if
 	if ($f_get_bug_stats_button):
-		collapse_closed( 'bugnotestats' );
+//		collapse_closed( 'bugnotestats' );
 ?>
 
 <table class="width100" cellspacing="0">
 	<tr>
 		<td class="form-title" colspan="4">
 			<?php
-				collapse_icon( 'bugnotestats' );
+//				collapse_icon( 'bugnotestats' );
 				echo lang_get( 'time_tracking' );
 			?>
 		</td>
@@ -340,5 +340,5 @@
 </table>
 
 <?php
-		collapse_end( 'bugnotestats' );
+//		collapse_end( 'bugnotestats' );
 	endif;
