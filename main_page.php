@@ -70,16 +70,16 @@
 		echo '<form id="filters_form)closed" method="post" name="filters_closed" action="view_all_set.php?f=3&type=1"> or by Keyword: <input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" /></form></li>
 		<li>View Issues:
 			<ul><li>';
-		print_link('view_all_set.php?type=1&show_status='.FEEDBACK, 'Info Required');
+		print_link('view_all_set.php?type=1&show_status='.FEEDBACK.'&sort_0=priority&dir_0=DESC', 'Info Required');
 		echo '</li>
 		<li>';
-		print_link('view_all_set.php?type=1&show_status='.RESOLVED, 'Resolved');
+		print_link('view_all_set.php?type=1&show_status='.RESOLVED.'sort_0=priority&dir_0=DESC', 'Resolved');
 		echo '</li>
 		<li>';
-		print_link('view_all_set.php?type=1&hide_status='.$t_hide_status, 'All Open');
+		print_link('view_all_set.php?type=1&hide_status='.$t_hide_status.'&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'All Open');
 		echo '</li>
 		<li>';
-		print_link('view_all_set.php?type=1', 'All');
+		print_link('view_all_set.php?type=1&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'All');
 		echo '</li>
 	</div>';
 
