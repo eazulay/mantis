@@ -548,7 +548,6 @@ function html_login_info() {
 		echo lang_get( 'logged_in_as' ), ": <span class=\"italic\">", string_html_specialchars( $t_username );
 		// echo "</span> <span class=\"small\">", is_blank( $t_realname ) ? "($t_access_level)" : "(" . string_html_specialchars( $t_realname ) . " - $t_access_level)", "</span>";
 	}
-	echo "<br><span class=\"italic\">$t_now</span>";
 	if( OFF != config_get( 'rss_enabled' ) ) {
 
 		# Link to RSS issues feed for the selected project, including authentication details.
@@ -556,6 +555,7 @@ function html_login_info() {
 		echo '<img src="' . helper_mantis_url( 'images/rss.png' ) . '" alt="' . lang_get( 'rss' ) . '" style="border-style: none; margin: 5px; vertical-align: middle;" />';
 		echo '</a>';
 	}
+	echo "<br><span class=\"italic\">$t_now</span>";
 	echo '</td>';
 	echo '</tr>';
 	echo '</table>';
