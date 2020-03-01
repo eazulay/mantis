@@ -552,7 +552,7 @@ function html_login_info() {
 
 		# Link to RSS issues feed for the selected project, including authentication details.
 		echo '<a href="' . htmlspecialchars( rss_get_issues_feed_url() ) . '">';
-		echo '<img src="' . helper_mantis_url( 'images/rss.png' ) . '" alt="' . lang_get( 'rss' ) . '" style="border-style: none; margin: 5px; vertical-align: middle;" />';
+		echo '<img src="' . helper_mantis_url( 'images/rss.png' ) . '" alt="' . lang_get( 'rss' ) . '" style="border-style: none; margin: 0 0 5px 5px; vertical-align: middle;" />';
 		echo '</a>';
 	}
 	echo "<br><span class=\"italic\">$t_now</span>";
