@@ -307,7 +307,7 @@ $s_go_back = 'Go Back';
 $s_proceed = 'Proceed';
 
 $s_switch = 'Switch';
-$s_logged_in_as = 'Logged in as';
+$s_logged_in_as = 'User';
 
 $s_prefix_for_deleted_users = 'user';
 

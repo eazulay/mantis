@@ -87,6 +87,10 @@
 		</ul>
 	</ul>
 </div>';
+		echo '<div class="quick-summary-right">';
+		echo lang_get( 'last_visit' ) . ': ';
+		echo date( config_get( 'normal_date_format' ), current_user_get_field( 'last_visit' ) );
+		echo '</div>';
 
 /*		if (access_has_project_level( DEVELOPER )){
 			echo '<div class="quick-summary-left">';
@@ -99,10 +103,6 @@
 		print_link( "view_all_set.php?type=1&reporter_id=$t_current_user_id&hide_status=$t_hide_status", current_user_get_reported_open_bug_count(), false, 'subtle' );
 		echo '</div>';
 */
-		echo '<div class="quick-summary-left">';
-		echo lang_get( 'last_visit' ) . ': ';
-		echo date( config_get( 'normal_date_format' ), current_user_get_field( 'last_visit' ) );
-		echo '</div>';
 	}
 
 	echo '<br /><br />';
