@@ -245,6 +245,9 @@ div.quick-summary-right	{ width: 49%; padding: 2px; text-align: right; float: ri
 div.main-page-content {
 	width: 710px;
 	margin: 0 auto;
-	font-size: 15px;
+	font-size: 17px;
 	line-height: 2em;
+}
+div.main-page-content > ul {
+	list-style: none;
 }

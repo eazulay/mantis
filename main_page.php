@@ -57,7 +57,7 @@
 		$t_hide_status = config_get( 'bug_resolved_status_threshold' );
 
 		echo '<div class="main-page-content">
-	<h2>I want to:</h2>
+	<h4>I want to:</h4>
 	<ul>
 		<li>';
 		if ($t_enable_raise)
