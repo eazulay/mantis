@@ -41,7 +41,8 @@
 	$t_project_id = helper_get_current_project();
 
 	$t_project_path = helper_get_current_project_trace();
-	$t_enable_raise = (count($t_project_path) >= 3);
+	echo "[Debug message] There are ".count($t_project_path)." items in Project path.<br>";
+	$t_enable_raise = (count($t_project_path) >= 2);
 
 /*	$t_rss_enabled = config_get( 'rss_enabled' );
 
@@ -67,7 +68,9 @@
 		echo '</li>
 		<li>Add a Note to an Issue: ';
 		jump_issue_form();
-		echo '<form id="filters_form)closed" method="post" name="filters_closed" action="view_all_set.php?f=3&type=1"> or by Keyword: <input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" /></form></li>
+		echo '<form id="filters_form)closed" method="post" name="filters_closed" action="view_all_set.php?f=3&type=1">
+		or by Keyword: <input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" />
+		<input type="submit" name="switch_to_query_button" class="button-small" value="Search"></form></li>
 		<li>View Issues:
 			<ul><li>';
 		print_link('view_all_set.php?type=1&show_status='.FEEDBACK.'&sort_0=priority&dir_0=DESC', 'Info Required');
