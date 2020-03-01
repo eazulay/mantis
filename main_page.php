@@ -73,7 +73,7 @@
 		<li>Add a Note to: ';
 		jump_issue_form();
 		echo '<form id="filters_form)closed" method="post" name="filters_closed" action="view_all_set.php?f=3&type=1">
-		or find by Keyword: <input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" />
+		<span class="small">or find by Keyword:</span> <input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" />
 		<input type="submit" name="switch_to_query_button" class="button-small" value="Search"></form></li>
 		<li>View Issues:
 			<ul><li>';
