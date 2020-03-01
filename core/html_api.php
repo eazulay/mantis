@@ -521,9 +521,9 @@ function html_login_info() {
 			print_extended_project_browser( helper_get_current_project_trace() );
 		} else {
 			if( ON == config_get( 'use_javascript' ) ) {
-				echo '<select name="project_id" class="small" onchange="document.forms.form_set_project.submit();">';
+				echo '<select name="project_id" onchange="document.forms.form_set_project.submit();">';
 			} else {
-				echo '<select name="project_id" class="small">';
+				echo '<select name="project_id">';
 			}
 			print_project_option_list( join( ';', helper_get_current_project_trace() ), true, null, true );
 			echo '</select> ';
@@ -837,7 +837,7 @@ function print_menu() {
 		echo implode( $t_menu_options, ' | ' );
 		echo '</td>';
 		echo '<td class="menu right nowrap">';
-		jump_issue_form();
+		jump_issue_form('small');
 		echo '</td>';
 		echo '</tr>';
 		echo '</table>';
@@ -848,18 +848,18 @@ function print_menu() {
  * Print the Jump to Issue form
  * @return null
  */
-function jump_issue_form() {
+function jump_issue_form($fieldsClass = '') {
 	echo '<form method="post" action="' . helper_mantis_url( 'jump_to_bug.php">' );
 	# CSRF protection not required here - form does not result in modifications
 
 	if( ON == config_get( 'use_javascript' ) ) {
 		$t_bug_label = lang_get( 'issue_id' );
-		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"small\" value=\"$t_bug_label\" onfocus=\"if (this.value == '$t_bug_label') this.value = ''\" onblur=\"if (this.value == '') this.value = '$t_bug_label'\" />&#160;";
+		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"$fieldsClass\" value=\"$t_bug_label\" onfocus=\"if (this.value == '$t_bug_label') this.value = ''\" onblur=\"if (this.value == '') this.value = '$t_bug_label'\" />&#160;";
 	} else {
-		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"small\" />&#160;";
+		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"$fieldsClass\" />&#160;";
 	}
 
-	echo '<input type="submit" class="button-small" value="' . lang_get( 'jump' ) . '" />&#160;';
+	echo '<input type="submit" class="button-'.$fieldsClass.'" value="' . lang_get( 'jump' ) . '" />&#160;';
 	echo '</form>';
 }
 
