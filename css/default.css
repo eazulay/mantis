@@ -248,6 +248,11 @@ div.main-page-content {
 	font-size: 17px;
 	line-height: 2em;
 }
+div.main-page-content h4 {
+	margin-top: 30px;
+	margin-bottom: 10px;
+}}
 div.main-page-content > ul {
 	list-style: none;
+	margin-top: 10px;
 }
