@@ -164,7 +164,7 @@ function html_page_top( $p_page_title = null, $p_redirect_url = null ) {
 	if ( $p_redirect_url !== null ) {
 		html_meta_redirect( $p_redirect_url );
 	}
-	html_page_top2();
+	html_page_top2($p_page_title);
 }
 
 /**
@@ -203,7 +203,7 @@ function html_page_top1( $p_page_title = null ) {
  * Print the part of the page that comes after meta tags, but before the actual page content
  * @return null
  */
-function html_page_top2() {
+function html_page_top2($p_page_title = null) {
 	html_page_top2a();
 
 	if( !db_is_connected() ) {
@@ -218,7 +218,9 @@ function html_page_top2() {
 			echo '<br />';
 		}
 	}
-	print_menu();
+
+	if ($p_page_title != 'Main')
+		print_menu();
 
 	event_signal( 'EVENT_LAYOUT_CONTENT_BEGIN' );
 }
@@ -497,27 +499,8 @@ function html_login_info() {
 	echo '<table class="hide">';
 	echo '<tr>';
 	echo '<td class="login-info-left">';
-	if( current_user_is_anonymous() ) {
-		$t_return_page = $_SERVER['SCRIPT_NAME'];
-		if( isset( $_SERVER['QUERY_STRING'] ) ) {
-			$t_return_page .= '?' . $_SERVER['QUERY_STRING'];
-		}
-
-		$t_return_page = string_url( $t_return_page );
-		echo lang_get( 'anonymous' ) . ' | <a href="' . helper_mantis_url( 'login_page.php?return=' . $t_return_page ) . '">' . lang_get( 'login_link' ) . '</a>';
-		if( config_get_global( 'allow_signup' ) == ON ) {
-			echo ' | <a href="' . helper_mantis_url( 'signup_page.php' ) . '">' . lang_get( 'signup_link' ) . '</a>';
-		}
-	} else {
-		echo lang_get( 'logged_in_as' ), ": <span class=\"italic\">", string_html_specialchars( $t_username ), "</span> <span class=\"small\">";
-		echo is_blank( $t_realname ) ? "($t_access_level)" : "(" . string_html_specialchars( $t_realname ) . " - $t_access_level)";
-		echo "</span>";
-	}
 	echo '</td>';
 	echo '<td class="login-info-middle">';
-	echo "<span class=\"italic\">$t_now</span>";
-	echo '</td>';
-	echo '<td class="login-info-right">';
 	$t_show_project_selector = true;
 	if( count( current_user_get_accessible_projects() ) == 1 ) {
 
@@ -548,6 +531,9 @@ function html_login_info() {
 		echo '<input type="submit" class="button-small" value="' . lang_get( 'switch' ) . '" />';
 		echo '</form>';
 	}
+	echo '</td>';
+	echo '<td class="login-info-right">';
+	echo "<span class=\"italic\">$t_now</span>";
 	if( OFF != config_get( 'rss_enabled' ) ) {
 
 		# Link to RSS issues feed for the selected project, including authentication details.
@@ -556,6 +542,22 @@ function html_login_info() {
 		echo '</a>';
 	}
 
+	if( current_user_is_anonymous() ) {
+		$t_return_page = $_SERVER['SCRIPT_NAME'];
+		if( isset( $_SERVER['QUERY_STRING'] ) ) {
+			$t_return_page .= '?' . $_SERVER['QUERY_STRING'];
+		}
+
+		$t_return_page = string_url( $t_return_page );
+		echo lang_get( 'anonymous' ) . ' | <a href="' . helper_mantis_url( 'login_page.php?return=' . $t_return_page ) . '">' . lang_get( 'login_link' ) . '</a>';
+		if( config_get_global( 'allow_signup' ) == ON ) {
+			echo ' | <a href="' . helper_mantis_url( 'signup_page.php' ) . '">' . lang_get( 'signup_link' ) . '</a>';
+		}
+	} else {
+		echo lang_get( 'logged_in_as' ), ": <span class=\"italic\">", string_html_specialchars( $t_username ), "</span> <span class=\"small\">";
+		echo is_blank( $t_realname ) ? "($t_access_level)" : "(" . string_html_specialchars( $t_realname ) . " - $t_access_level)";
+		echo "</span>";
+	}
 	echo '</td>';
 	echo '</tr>';
 	echo '</table>';
