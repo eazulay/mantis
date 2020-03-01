@@ -63,7 +63,7 @@
 		if ($t_enable_raise)
 			print_link('bug_report_page.php', 'Raise a New Issue');
 		else
-			echo 'Raise a New Issue (Please select a Subproject before raising an Issue)';
+			echo 'Raise a New Issue';
 		echo '</li>
 		<li>Add a Note to: ';
 		jump_issue_form();
