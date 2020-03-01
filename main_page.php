@@ -65,10 +65,10 @@
 		else
 			echo 'Raise a New Issue (Please select a Subproject before raising an Issue)';
 		echo '</li>
-		<li>Add a Note to an Issue: ';
+		<li>Add a Note to: ';
 		jump_issue_form();
 		echo '<form id="filters_form)closed" method="post" name="filters_closed" action="view_all_set.php?f=3&type=1">
-		or by Keyword: <input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" />
+		or find by Keyword: <input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" />
 		<input type="submit" name="switch_to_query_button" class="button-small" value="Search"></form></li>
 		<li>View Issues:
 			<ul><li>';
@@ -83,7 +83,10 @@
 		<li>';
 		print_link('view_all_set.php?type=1&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'All');
 		echo '</li>
-	</div>';
+			</li>
+		</ul>
+	</ul>
+</div>';
 
 /*		if (access_has_project_level( DEVELOPER )){
 			echo '<div class="quick-summary-left">';
