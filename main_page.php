@@ -67,7 +67,7 @@
 		echo '</li>
 		<li>Add a Note to an Issue: ';
 		jump_issue_form();
-		echo '<form id="filters_form)closed" method="post" name="filters_closed" action="view_all_set.php?f=3"> or by Keyword: <input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" /></form></li>
+		echo '<form id="filters_form)closed" method="post" name="filters_closed" action="view_all_set.php?f=3&type=1"> or by Keyword: <input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" /></form></li>
 		<li>View Issues:
 			<ul><li>';
 		print_link('view_all_set.php?type=1&show_status='.FEEDBACK, 'Info Required');
