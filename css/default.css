@@ -243,7 +243,8 @@ div.quick-summary-right	{ width: 49%; padding: 2px; text-align: right; float: ri
 
 
 div.main-page-content {
-	width: 560px;
+	width: 570px;
 	margin: 0 auto;
 	font-size: 15px;
+	line-height: 2em;
 }
