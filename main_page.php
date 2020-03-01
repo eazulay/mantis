@@ -56,8 +56,8 @@
 		$t_current_user_id = auth_get_current_user_id();
 		$t_hide_status = config_get( 'bug_resolved_status_threshold' );
 
-		echo '<div class="center">
-	<h3>I want to:</h3>
+		echo '<div class="main-page-content">
+	<h2>I want to:</h2>
 	<ul>
 		<li>';
 		if ($t_enable_raise)
