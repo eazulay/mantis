@@ -77,7 +77,7 @@
 		<input type="submit" name="switch_to_query_button" class="button-small" value="Search"></form></li>
 		<li>View Issues:
 			<ul><li>';
-		print_link('view_all_set.php?type=1&show_status='.FEEDBACK.','.APPROVAL.','.RESOLVED.'&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'Feedback Required');
+		print_link('view_all_set.php?type=1&show_status[]='.FEEDBACK.'&show_status[]='.APPROVAL.'&show_status[]='.RESOLVED.'&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'Feedback Required');
 		echo '</li>
 		<li>';
 		print_link('view_all_set.php?type=1&hide_status='.$t_hide_status.'&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'All Open');
