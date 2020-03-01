@@ -41,7 +41,6 @@
 	$t_project_id = helper_get_current_project();
 
 	$t_project_path = helper_get_current_project_trace();
-	echo "[Debug message] There are ".count($t_project_path)." items in Project path.<br>";
 	$t_enable_raise = (count($t_project_path) >= 2);
 
 /*	$t_rss_enabled = config_get( 'rss_enabled' );
