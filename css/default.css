@@ -159,9 +159,9 @@ td.bugnote-note-private	{ background-color: #FCF5ED; color: #212121; width: 75%;
 tr.bugnote-hashelp td:first-child { border-right: 6px solid #FFB544; }
 tr.bugnote-hashelp td:last-child strong { color: #007a7c; }
 
-td.login-info-left		{ width: 33%; padding: 0px; text-align: left; }
-td.login-info-middle		{ width: 33%; padding: 0px; text-align: center; font-size: 14px; font-weight: bold; }
-td.login-info-right		{ width: 33%; padding: 0px; text-align: right; white-space: nowrap; }
+td.login-info-left		{ width: 33%; padding: 0; text-align: left; }
+td.login-info-middle	{ width: 33%; padding: 0 0 2px; text-align: center; font-size: 14px; font-weight: bold; }
+td.login-info-right		{ width: 33%; padding: 0 0 3px; text-align: right; white-space: nowrap; }
 
 td.menu					{
 	background-color: #F7EBD9;
