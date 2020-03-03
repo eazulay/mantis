@@ -504,7 +504,7 @@
 	echo '<tr class="header">';
 
 	# Form Title
-	echo '<td class="form-title" colspan="', $t_bugslist ? '2' : '3', '" width="', $t_bugslist ? '58%' : '81%', '">';
+	echo '<td class="form-title" colspan="', $t_bugslist ? '2' : '3', '">';
 
 	collapse_icon( 'issue_details' );
 
@@ -544,7 +544,7 @@
 
 	# prev/next links
 	if ( $t_bugslist ) {
-		echo '<td class="center" colspan="1" width="23%"><span class="small">';
+		echo '<td class="center" width="65%"><span class="small">';
 
 		if ( false !== $t_index ) {
 			if ( isset( $t_bugslist[$t_index-1] ) ) {
@@ -559,10 +559,10 @@
 	}
 
 	# Links
-	echo '<td class="right" colspan="2" width="18%">';
+	echo '<td class="right" width="18%">';
 
+	# History
 	if ( !is_blank( $tpl_history_link ) ) {
-		# History
 		echo '<span class="small">';
 		print_bracket_link( $tpl_history_link, lang_get( 'bug_history' ) );
 		echo '</span>';
@@ -580,21 +580,16 @@
 	# Summary
 		if ( $tpl_show_summary ){
 			echo '<td class="category" width="17%"><b>', lang_get( 'summary' ), '</b></td>';
-			echo '<td colspan="2" width="65%"><b>', $tpl_summary, '</b></td>';
-		}
-	# Status
-		if ( $tpl_show_status ) {
-			echo '<td class="category" width="8%">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
-			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%">', $tpl_status, '</td>';
+			echo '<td colspan="3"><b>', $tpl_summary, '</b></td>';
 		}
 		echo '</tr>';
 	}
 
-		echo '<tr class="footer" align="center">';
-		echo '<td align="center" colspan="5">';
-		html_buttons_view_bug_page( $tpl_bug_id );
-		echo '</td>';
-		echo '</tr>';
+	echo '<tr class="footer">';
+	echo '<td align="center" colspan="4">';
+	html_buttons_view_bug_page( $tpl_bug_id );
+	echo '</td>';
+	echo '</tr>';
 
 	echo '</table>';
 
@@ -779,7 +774,15 @@
 
 	collapse_icon( 'issue_metadata' );
 
-	echo ' Metadata</td></tr>';
+	echo ' Metadata</td>';
+
+	# Status
+	if ( $tpl_show_status ) {
+		echo '<td class="category" width="8%">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
+		echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%">', $tpl_status, '</td>';
+	}
+
+	echo '</tr>';
 	echo '</table>';
 
 	collapse_end( 'issue_metadata' );
