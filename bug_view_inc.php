@@ -125,7 +125,7 @@
 	$tpl_show_project = in_array( 'project', $t_fields );
 	$tpl_project_name = $tpl_show_project ? string_display_line( project_get_name( $tpl_bug->project_id ) ): '';
 	$tpl_is_root_project = project_hierarchy_is_toplevel($tpl_bug->project_id);
-	
+
 	$tpl_show_id = in_array( 'id', $t_fields );
 	$tpl_formatted_bug_id = $tpl_show_id ? string_display_line( bug_format_id( $f_bug_id ) ) : '';
 
@@ -192,12 +192,12 @@
 	$tpl_description = $tpl_show_description ? string_display_links( $tpl_bug->description ) : '';
 	$tpl_steps_to_reproduce = $tpl_show_steps_to_reproduce ? string_display_links( $tpl_bug->steps_to_reproduce ) : '';
 	$tpl_additional_information = $tpl_show_additional_information ? string_display_links( $tpl_bug->additional_information ) : '';
-	
+
 	$t_all_bugnotes = bugnote_get_all_bugnotes($f_bug_id);
 	$t_bugnote_count = count( $t_all_bugnotes );
 
 	$submitter = history_get_first_reporter( $f_bug_id );
-	
+
 	$tpl_links = event_signal( 'EVENT_MENU_ISSUE', $f_bug_id );
 
 	#
@@ -259,13 +259,13 @@
 	}
 	addLoadEvent(setWarningOnNavigate);
 	</script>";
-	
+
 	# Normal page
-	
+
 	echo '<br />';
-	
+
 	collapse_open( 'issue_details' );
-	
+
 	echo '<table class="width100" cellspacing="0">';
 	echo '<tr class="header">';
 
@@ -360,11 +360,263 @@
 		echo '</tr>';
 	}
 
+	#
+	# Bug Details Event Signal
+	#
+	event_signal( 'EVENT_VIEW_BUG_DETAILS', array( $tpl_bug_id ) );
+
+	#
+	# Bug Details (screen wide fields)
+	#
+
+	echo '<tr class="padded-spacer"><td colspan="10" /></tr>';
+
+	# Description
+	if ( $tpl_show_description ) {
+		echo '<tr ', helper_alternate_class(), '>';
+		echo '<td class="category" colspan="2">', lang_get( 'description' ), '</td>';
+		echo '<td colspan="8">', $tpl_description, '</td>';
+		echo '</tr>';
+	}
+
+	# Steps to Reproduce
+	if ( $tpl_show_steps_to_reproduce ) {
+		echo '<tr ', helper_alternate_class(), '>';
+		echo '<td class="category" colspan="2">', lang_get( 'steps_to_reproduce' ), '</td>';
+		echo '<td colspan="8">', $tpl_steps_to_reproduce, '</td>';
+		echo '</tr>';
+	}
+
+	# Additional Information
+	if ( $tpl_show_additional_information ) {
+		echo '<tr ', helper_alternate_class(), '>';
+		echo '<td class="category" colspan="2">', lang_get( 'additional_information' ), '</td>';
+		echo '<td colspan="8">', $tpl_additional_information, '</td>';
+		echo '</tr>';
+	}
+
+	# Custom Fields
+	$t_custom_fields_found = false;
+	$t_related_custom_field_ids = custom_field_get_linked_ids( $tpl_bug->project_id );
+
+	$t_feedback = config_get( 'bug_feedback_status' );
+
+	foreach( $t_related_custom_field_ids as $t_id ) {
+		if( $t_id == 1 ||	// Type
+			$t_id == 2 && $tpl_bug->status != $t_feedback || // Info Required
+			$t_id >=3 && $t_id <=8 ) // Authorization related
+			continue;
+		if( !custom_field_has_read_access( $t_id, $f_bug_id ) )
+			continue;
+		# has read access
+
+		$t_custom_fields_found = true;
+		$t_def = custom_field_get_definition( $t_id );
+
+		echo '<tr ', helper_alternate_class(), '>';
+		echo '<td class="category" colspan="2">', string_display( lang_get_defaulted( $t_def['name'] ) ), '</td>';
+		echo '<td colspan="8">';
+		print_custom_field_value( $t_def, $t_id, $f_bug_id );
+		echo '</td></tr>';
+	}
+
+	# Approval
+	echo '<tr ', helper_alternate_class(), '>';
+	echo '<td class="category" colspan="2">', string_display( 'Approval' ), '</td>';
+	echo '<td colspan="8">';
+	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
+	if ( $auth_status != null && $auth_status != '' ){
+		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		echo ' By ';
+		$t_def = custom_field_get_definition( 6 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		echo ' On ';
+		$t_def = custom_field_get_definition( 7 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		echo '; Recorded By ';
+		$t_def = custom_field_get_definition( 4 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		echo ' On ';
+		$t_def = custom_field_get_definition( 5 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		$t_def = custom_field_get_definition( 8 ); $note_id = custom_field_get_value( $t_def['id'], $f_bug_id );
+		if ($note_id > 0){
+			echo '; Note ';
+			echo '<a href="'.string_get_bugnote_view_url($f_bug_id, $note_id).'">'.$note_id.'</a>';
+		}
+	}
+	echo '</td></tr>';
+
+	# Attachments
+	if ( $tpl_show_attachments ) {
+		echo '<tr ', helper_alternate_class(), '>';
+		echo '<td class="category" colspan="2">';
+		$attachmentsExpanded = collapse_display('attachments');
+		echo '<a href="" onclick="if (ToggleDiv(\'attachments\')) this.firstChild.src=\'images/minus.png\';
+								else this.firstChild.src=\'images/plus.png\';
+								return false;"><img src="images/' . ($attachmentsExpanded ? 'minus.png' : 'plus.png') . '" alt="-" border="0" /></a> ';
+		echo lang_get( 'attached_files' ), '</td>';
+		echo '<td colspan="8">';
+		echo '<div id="attachments_open" class="' . ($attachmentsExpanded ? '' : 'hidden') . '">';
+		# File upload
+		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
+			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
+			echo '<form method="post" enctype="multipart/form-data" action="bug_file_add.php">';
+			echo form_security_field( 'bug_file_add' );
+			echo '<input type="hidden" name="bug_id" value="', $f_bug_id, '" />';
+			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
+			echo 'Add attachment: ';
+			echo '<input name="file" type="file" size="40" />';
+			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
+			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
+			echo '</form><br>';
+		}
+		$t_attachments_count = print_bug_attachments_list( $tpl_bug_id );
+		echo '</div>';
+		echo '<div id="attachments_closed" class="' . ($attachmentsExpanded ? 'hidden' : '') . '">';
+		if ($t_attachments_count == 0)
+			echo 'There are no attachments to this issue.';
+		else if ($t_attachments_count == 1)
+			echo 'There is one attachment. Expand this section to display it.';
+		else
+			echo 'There are ' . $t_attachments_count . ' attachments. Expand this section to display them.';
+		echo "<br><br>";
+			# File upload
+		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
+			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
+			echo '<form method="post" enctype="multipart/form-data" action="bug_file_add.php">';
+			echo form_security_field( 'bug_file_add' );
+			echo '<input type="hidden" name="bug_id" value="', $f_bug_id, '" />';
+			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
+			echo 'Add attachment: ';
+			echo '<input name="file" type="file" size="40" />';
+			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
+			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
+			echo '</form>';
+		}
+		echo '</div>';
+		echo '</td></tr>';
+	}
+
+	if ( $tpl_bottom_buttons_enabled ) {
+		echo '<tr class="footer" align="center"><td align="center" colspan="14">';
+		html_buttons_view_bug_page( $tpl_bug_id );
+		echo '</td></tr>';
+	}
+
+	echo '</table>';
+
+	collapse_closed( 'issue_details' );
+
+	echo '<table class="width100" cellspacing="0">';
+	echo '<tr class="header">';
+
+	# Form Title
+	echo '<td class="form-title" colspan="', $t_bugslist ? '2' : '3', '" width="', $t_bugslist ? '58%' : '81%', '">';
+
+	collapse_icon( 'issue_details' );
+
+	echo $tpl_form_title;
+
+	echo '&#160;<span class="small">';
+
+	# Jump to Bugnotes
+	print_bracket_link( "#bugnotes", lang_get( 'jump_to_bugnotes' ) );
+
+	# Send Bug Reminder
+	if ( $tpl_show_reminder_link ) {
+		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
+	}
+
+	if ( !is_blank( $tpl_wiki_link ) ) {
+		print_bracket_link( $tpl_wiki_link, lang_get( 'wiki' ) );
+	}
+
+	foreach ( $tpl_links as $t_plugin => $t_hooks ) {
+		foreach( $t_hooks as $t_hook ) {
+			if ( is_array( $t_hook ) ) {
+				foreach( $t_hook as $t_label => $t_href ) {
+					if ( is_numeric( $t_label ) ) {
+						print_bracket_link_prepared( $t_href );
+					} else {
+						print_bracket_link( $t_href, $t_label );
+					}
+				}
+			} else {
+				print_bracket_link_prepared( $t_hook );
+			}
+		}
+	}
+
+	echo '</span></td>';
+
+	# prev/next links
+	if ( $t_bugslist ) {
+		echo '<td class="center" colspan="1" width="23%"><span class="small">';
+
+		if ( false !== $t_index ) {
+			if ( isset( $t_bugslist[$t_index-1] ) ) {
+				print_bracket_link( 'view.php?id='.$t_bugslist[$t_index-1], '&lt;&lt;' );
+			}
+
+			if ( isset( $t_bugslist[$t_index+1] ) ) {
+				print_bracket_link( 'view.php?id='.$t_bugslist[$t_index+1], '&gt;&gt;' );
+			}
+		}
+		echo '</span></td>';
+	}
+
+	# Links
+	echo '<td class="right" colspan="2" width="18%">';
+
+	if ( !is_blank( $tpl_history_link ) ) {
+		# History
+		echo '<span class="small">';
+		print_bracket_link( $tpl_history_link, lang_get( 'bug_history' ) );
+		echo '</span>';
+	}
+
+	# Print Bug
+	echo '<span class="small">';
+	print_bracket_link( $tpl_print_link, lang_get( 'print' ) );
+	echo '</span>';
+	echo '</td>';
+	echo '</tr>';
+
+	if ( $tpl_show_summary || $tpl_show_status ) {
+		echo '<tr ', helper_alternate_class(), '>';
+	# Summary
+		if ( $tpl_show_summary ){
+			echo '<td class="category" width="17%"><b>', lang_get( 'summary' ), '</b></td>';
+			echo '<td colspan="2" width="65%"><b>', $tpl_summary, '</b></td>';
+		}
+	# Status
+		if ( $tpl_show_status ) {
+			echo '<td class="category" width="8%">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
+			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%">', $tpl_status, '</td>';
+		}
+		echo '</tr>';
+	}
+
+		echo '<tr class="footer" align="center">';
+		echo '<td align="center" colspan="5">';
+		html_buttons_view_bug_page( $tpl_bug_id );
+		echo '</td>';
+		echo '</tr>';
+
+	echo '</table>';
+
+	collapse_end( 'issue_details' );
+
+	# File upload box
+/*	if ( $tpl_show_upload_form ) {
+		include( $tpl_mantis_dir . 'bug_file_upload_inc.php' );
+	}*/
+
+	collapse_open( 'issue_metadata' );
+
+	echo '<table class="width100" cellspacing="0">';
 	# Labels
 	echo '<tr>';
-	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
+	echo '<th colspan="2">', collapse_icon( 'issue_metadata' ), ' ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
 	echo '</tr>';
-	
+
 	if ( $tpl_show_id || $tpl_show_date_submitted || $tpl_show_reporter || $tpl_show_category || $tpl_show_status ) {
 		echo '<tr class="bug-primary row-2">';
 		# Bug ID
@@ -393,7 +645,7 @@
 		}
 		echo '</tr>';
 	}
-	
+
 	if ( $tpl_show_project || $tpl_show_last_updated || $tpl_show_handler || $tpl_show_platform ) {
 		echo '<tr class="bug-primary row-1">';
 		# Project
@@ -503,41 +755,6 @@
 		echo '</tr>';
 	}
 
-	#
-	# Bug Details Event Signal
-	#
-	event_signal( 'EVENT_VIEW_BUG_DETAILS', array( $tpl_bug_id ) );
-
-	#
-	# Bug Details (screen wide fields)
-	#
-	
-	echo '<tr class="padded-spacer"><td colspan="10" /></tr>';
-
-	# Description
-	if ( $tpl_show_description ) {
-		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">', lang_get( 'description' ), '</td>';
-		echo '<td colspan="8">', $tpl_description, '</td>';
-		echo '</tr>';
-	}
-
-	# Steps to Reproduce
-	if ( $tpl_show_steps_to_reproduce ) {
-		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">', lang_get( 'steps_to_reproduce' ), '</td>';
-		echo '<td colspan="8">', $tpl_steps_to_reproduce, '</td>';
-		echo '</tr>';
-	}
-
-	# Additional Information
-	if ( $tpl_show_additional_information ) {
-		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">', lang_get( 'additional_information' ), '</td>';
-		echo '<td colspan="8">', $tpl_additional_information, '</td>';
-		echo '</tr>';
-	}
-
 	# Tags
 	if ( $tpl_show_tags ) {
 		echo '<tr ', helper_alternate_class(), '>';
@@ -556,219 +773,21 @@
 		echo '</td></tr>';
 	}
 
-	# Custom Fields
-	$t_custom_fields_found = false;
-	$t_related_custom_field_ids = custom_field_get_linked_ids( $tpl_bug->project_id );
-
-	$t_feedback = config_get( 'bug_feedback_status' );
-	
-	foreach( $t_related_custom_field_ids as $t_id ) {
-		if( $t_id == 1 ||	// Type
-			$t_id == 2 && $tpl_bug->status != $t_feedback || // Info Required
-			$t_id >=3 && $t_id <=8 ) // Authorization related
-			continue;
-		if( !custom_field_has_read_access( $t_id, $f_bug_id ) )
-			continue;
-		# has read access
-
-		$t_custom_fields_found = true;
-		$t_def = custom_field_get_definition( $t_id );
-
-		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">', string_display( lang_get_defaulted( $t_def['name'] ) ), '</td>';
-		echo '<td colspan="8">';
-		print_custom_field_value( $t_def, $t_id, $f_bug_id );
-		echo '</td></tr>';
-	}
-
-	# Approval
-	echo '<tr ', helper_alternate_class(), '>';
-	echo '<td class="category" colspan="2">', string_display( 'Approval' ), '</td>';
-	echo '<td colspan="8">';
-	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
-	if ( $auth_status != null && $auth_status != '' ){
-		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		echo ' By ';
-		$t_def = custom_field_get_definition( 6 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		echo ' On ';
-		$t_def = custom_field_get_definition( 7 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		echo '; Recorded By ';
-		$t_def = custom_field_get_definition( 4 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		echo ' On ';
-		$t_def = custom_field_get_definition( 5 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		$t_def = custom_field_get_definition( 8 ); $note_id = custom_field_get_value( $t_def['id'], $f_bug_id );
-		if ($note_id > 0){
-			echo '; Note ';
-			echo '<a href="'.string_get_bugnote_view_url($f_bug_id, $note_id).'">'.$note_id.'</a>';
-		}
-	}
-	echo '</td></tr>';
-	
-	# Attachments
-	if ( $tpl_show_attachments ) {
-		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">';
-		$attachmentsExpanded = collapse_display('attachments');
-		echo '<a href="" onclick="if (ToggleDiv(\'attachments\')) this.firstChild.src=\'images/minus.png\';
-								else this.firstChild.src=\'images/plus.png\';
-								return false;"><img src="images/' . ($attachmentsExpanded ? 'minus.png' : 'plus.png') . '" alt="-" border="0" /></a> ';
-		echo lang_get( 'attached_files' ), '</td>';
-		echo '<td colspan="8">';
-		echo '<div id="attachments_open" class="' . ($attachmentsExpanded ? '' : 'hidden') . '">';
-		# File upload
-		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
-			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
-			echo '<form method="post" enctype="multipart/form-data" action="bug_file_add.php">';
-			echo form_security_field( 'bug_file_add' );
-			echo '<input type="hidden" name="bug_id" value="', $f_bug_id, '" />';
-			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
-			echo 'Add attachment: ';
-			echo '<input name="file" type="file" size="40" />';
-			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
-			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
-			echo '</form><br>';
-		}
-		$t_attachments_count = print_bug_attachments_list( $tpl_bug_id );
-		echo '</div>';
-		echo '<div id="attachments_closed" class="' . ($attachmentsExpanded ? 'hidden' : '') . '">';
-		if ($t_attachments_count == 0)
-			echo 'There are no attachments to this issue.';
-		else if ($t_attachments_count == 1)
-			echo 'There is one attachment. Expand this section to display it.';
-		else
-			echo 'There are ' . $t_attachments_count . ' attachments. Expand this section to display them.';
-		echo "<br><br>";
-			# File upload
-		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
-			$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
-			echo '<form method="post" enctype="multipart/form-data" action="bug_file_add.php">';
-			echo form_security_field( 'bug_file_add' );
-			echo '<input type="hidden" name="bug_id" value="', $f_bug_id, '" />';
-			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
-			echo 'Add attachment: ';
-			echo '<input name="file" type="file" size="40" />';
-			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
-			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
-			echo '</form>';
-		}
-		echo '</div>';
-		echo '</td></tr>';
-	}
-
-	if ( $tpl_bottom_buttons_enabled ) {
-		echo '<tr class="footer" align="center"><td align="center" colspan="14">';
-		html_buttons_view_bug_page( $tpl_bug_id );
-		echo '</td></tr>';
-	}
-
 	echo '</table>';
-	
-	collapse_closed( 'issue_details' );
-	
+
+	collapse_closed( 'issue_metadata' );
+
 	echo '<table class="width100" cellspacing="0">';
 	echo '<tr class="header">';
+	echo '<td class="form-title">';
 
-	# Form Title
-	echo '<td class="form-title" colspan="', $t_bugslist ? '2' : '3', '" width="', $t_bugslist ? '58%' : '81%', '">';
+	collapse_icon( 'issue_metadata' );
 
-	collapse_icon( 'issue_details' );
-
-	echo $tpl_form_title;
-
-	echo '&#160;<span class="small">';
-
-	# Jump to Bugnotes
-	print_bracket_link( "#bugnotes", lang_get( 'jump_to_bugnotes' ) );
-
-	# Send Bug Reminder
-	if ( $tpl_show_reminder_link ) {
-		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
-	}
-
-	if ( !is_blank( $tpl_wiki_link ) ) {
-		print_bracket_link( $tpl_wiki_link, lang_get( 'wiki' ) );
-	}
-
-	foreach ( $tpl_links as $t_plugin => $t_hooks ) {
-		foreach( $t_hooks as $t_hook ) {
-			if ( is_array( $t_hook ) ) {
-				foreach( $t_hook as $t_label => $t_href ) {
-					if ( is_numeric( $t_label ) ) {
-						print_bracket_link_prepared( $t_href );
-					} else {
-						print_bracket_link( $t_href, $t_label );
-					}
-				}
-			} else {
-				print_bracket_link_prepared( $t_hook );
-			}
-		}
-	}
-
-	echo '</span></td>';
-
-	# prev/next links
-	if ( $t_bugslist ) {
-		echo '<td class="center" colspan="1" width="23%"><span class="small">';
-
-		if ( false !== $t_index ) {
-			if ( isset( $t_bugslist[$t_index-1] ) ) {
-				print_bracket_link( 'view.php?id='.$t_bugslist[$t_index-1], '&lt;&lt;' );
-			}
-
-			if ( isset( $t_bugslist[$t_index+1] ) ) {
-				print_bracket_link( 'view.php?id='.$t_bugslist[$t_index+1], '&gt;&gt;' );
-			}
-		}
-		echo '</span></td>';
-	}
-	
-	# Links
-	echo '<td class="right" colspan="2" width="18%">';
-
-	if ( !is_blank( $tpl_history_link ) ) {
-		# History
-		echo '<span class="small">';
-		print_bracket_link( $tpl_history_link, lang_get( 'bug_history' ) );
-		echo '</span>';
-	}
-
-	# Print Bug
-	echo '<span class="small">';
-	print_bracket_link( $tpl_print_link, lang_get( 'print' ) );
-	echo '</span>';
-	echo '</td>';
-	echo '</tr>';
-	
-	if ( $tpl_show_summary || $tpl_show_status ) {
-		echo '<tr ', helper_alternate_class(), '>';
-	# Summary
-		if ( $tpl_show_summary ){
-			echo '<td class="category" width="17%"><b>', lang_get( 'summary' ), '</b></td>';
-			echo '<td colspan="2" width="65%"><b>', $tpl_summary, '</b></td>';
-		}
-	# Status
-		if ( $tpl_show_status ) {
-			echo '<td class="category" width="8%">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
-			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%">', $tpl_status, '</td>';
-		}
-		echo '</tr>';
-	}
-
-		echo '<tr class="footer" align="center">';
-		echo '<td align="center" colspan="5">';
-		html_buttons_view_bug_page( $tpl_bug_id );
-		echo '</td>';
-		echo '</tr>';
-	
+	echo ' Metadata</td></tr>';
 	echo '</table>';
-	
-	collapse_end( 'issue_details' );
 
-	# File upload box
-/*	if ( $tpl_show_upload_form ) {
-		include( $tpl_mantis_dir . 'bug_file_upload_inc.php' );
-	}*/
+	collapse_end( 'issue_metadata' );
+
 
 	# User list sponsoring the bug
 	include( $tpl_mantis_dir . 'bug_sponsorship_list_view_inc.php' );
