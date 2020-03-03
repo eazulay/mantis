@@ -141,7 +141,7 @@ function collapse_icon( $p_name, $p_section = '' ) {
 		$t_alt = '+';
 	}
 
-	echo "<a href=\"\" onclick=\"ToggleDiv( '$t_block' ); return false;\"
+	echo "<a href=\"\" height=\"14\" width=\"14\" onclick=\"ToggleDiv( '$t_block' ); return false;\"
 			><img border=\"0\" src=\"images/$t_icon\" alt=\"$t_alt\" /></a>&#160;";
 }
 
