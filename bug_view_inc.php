@@ -760,7 +760,7 @@
 
 	# Tags
 	if ( $tpl_show_tags ) {
-		echo '<tr ', helper_alternate_class(null, null, null, 'top-border'), '>';
+		echo '<tr ', helper_alternate_class(null, 'row-1', 'row-2', 'top-border'), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tags' ), '</td>';
 		echo '<td colspan="8">';
 		tag_display_attached( $tpl_bug_id );
