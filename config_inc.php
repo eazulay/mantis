@@ -210,6 +210,12 @@ $g_default_timezone = 'Europe/Paris';
  */
 $g_html_valid_tags		= 'p, li, ul, ol, br, pre, i, b, u, em, strong';
 
+/**
+ *
+ * @global string $g_reproducibility_enum_string
+ */
+$g_reproducibility_enum_string		= '10:always,30:sometimes,50:random,70:have not tried,90:unable to duplicate,100:N/A (Not a bug)';
+
 /* Default settings */
 $g_default_bug_severity = UNSPECIFIED;
 $g_default_bugnote_order = 'DESC';
