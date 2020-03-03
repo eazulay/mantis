@@ -345,7 +345,7 @@
 	echo '</tr>';
 
 	if ( $tpl_top_buttons_enabled ) {
-		echo '<tr><td align="center" colspan="3">';
+		echo '<tr><td colspan="3" class="center">';
 		html_buttons_view_bug_page( $tpl_bug_id );
 		echo '</td></tr>';
 	}
