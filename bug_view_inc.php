@@ -586,7 +586,7 @@
 	}
 
 	echo '<tr class="footer">';
-	echo '<td align="center" colspan="4">';
+	echo '<td class="center" colspan="4">';
 	html_buttons_view_bug_page( $tpl_bug_id );
 	echo '</td>';
 	echo '</tr>';
