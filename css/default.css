@@ -133,6 +133,7 @@ tr.header > td			{ border-bottom: 1px solid #E3C389; }
 tr.footer > td			{ border-top: 1px solid #E3C389; }
 tr.footer:first-child > td { padding: 0; }
 tr.bottom-border > td	{ border-bottom: 1px solid #E3C389; }
+tr.top-border > td		{ border-top: 1px solid #E3C389; }
 td#relationship_type_filter_target, td#tag_string_filter_target, td#show_sort_filter_target, td#sticky_issues_filter_target, td#per_page_filter_target { background-color: #F9F9F9; }
 tr.row-category		{ background-color: #F6E6CB; color: #212121;
 	background: -webkit-linear-gradient(#FCF5ED, #F6E6CB);

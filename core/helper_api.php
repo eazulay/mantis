@@ -53,7 +53,7 @@ function helper_alternate_colors( $p_index, $p_odd_color, $p_even_color ) {
  * @param string $p_even_class default: row-2
  * @return string
  */
-function helper_alternate_class( $p_index = null, $p_odd_class = 'row-1', $p_even_class = 'row-2' ) {
+function helper_alternate_class( $p_index = null, $p_odd_class = 'row-1', $p_even_class = 'row-2', $p_additional_classes='' ) {
 	static $t_index = 1;
 
 	if( null !== $p_index ) {
@@ -61,9 +61,9 @@ function helper_alternate_class( $p_index = null, $p_odd_class = 'row-1', $p_eve
 	}
 
 	if( 1 == $t_index++ % 2 ) {
-		return "class=\"$p_odd_class\"";
+		return "class=\"$p_odd_class $p_additional_classes\"";
 	} else {
-		return "class=\"$p_even_class\"";
+		return "class=\"$p_even_class $p_additional_classes\"";
 	}
 }
 
@@ -149,7 +149,7 @@ function check_selected( $p_var, $p_val = true ) {
  * @param mixed $p_var
  * @param mixed $p_val
  * @return null
- */ 
+ */
 function check_checked( $p_var, $p_val = true ) {
 	if( $p_var == $p_val ) {
 		echo ' checked="checked" ';
@@ -360,7 +360,7 @@ function helper_project_specific_where( $p_project_id, $p_user_id = null ) {
 }
 
 /**
- * 
+ *
  * @param int $p_columns_target
  * @param bool $p_viewable_only
  * @param int $p_user_id

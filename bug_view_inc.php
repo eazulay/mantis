@@ -352,7 +352,7 @@
 
 	# Summary
 	if ( $tpl_show_summary ) {
-		echo '<tr class="row-1 bottom-border">';
+		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" width="17%">', lang_get( 'summary' ), '</td>';
 		echo '<td colspan="3"><b>', $tpl_summary, '</b></td>';
 		echo '</tr>';
@@ -760,7 +760,7 @@
 
 	# Tags
 	if ( $tpl_show_tags ) {
-		echo '<tr ', helper_alternate_class(), '>';
+		echo '<tr ', helper_alternate_class(null, null, null, 'top-border'), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tags' ), '</td>';
 		echo '<td colspan="8">';
 		tag_display_attached( $tpl_bug_id );
