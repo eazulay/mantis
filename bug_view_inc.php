@@ -605,9 +605,19 @@
 	collapse_open( 'issue_metadata' );
 
 	echo '<table class="width100" cellspacing="0">';
+
+	echo '<tr class="header">';
+	echo '<td class="form-title" colspan="10">';
+
+	collapse_icon( 'issue_metadata' );
+
+	echo ' Metadata</td>';
+
+	echo '</tr>';
+
 	# Labels
 	echo '<tr>';
-	echo '<th colspan="2"><div style="float:left; margin-top:-2px;">', collapse_icon( 'issue_metadata' ), '</div>ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
+	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
 	echo '</tr>';
 
 	if ( $tpl_show_id || $tpl_show_date_submitted || $tpl_show_reporter || $tpl_show_category || $tpl_show_status ) {
@@ -766,6 +776,12 @@
 		echo '</td></tr>';
 	}
 
+	echo '<tr class="footer">';
+	echo '<td class="center" colspan="10">';
+	html_buttons_view_bug_page( $tpl_bug_id, true );
+	echo '</td>';
+	echo '</tr>';
+
 	echo '</table>';
 
 	collapse_closed( 'issue_metadata' );
@@ -783,8 +799,8 @@
 		echo '<td class="category" width="8%">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
 		echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%">', $tpl_status, '</td>';
 	}
-
 	echo '</tr>';
+
 	echo '</table>';
 
 	collapse_end( 'issue_metadata' );
