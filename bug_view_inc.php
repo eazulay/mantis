@@ -270,7 +270,7 @@
 	echo '<tr class="header">';
 
 	# Form Title
-	echo '<td class="form-title" colspan="', $t_bugslist ? '6' : '8', '">';
+	echo '<td class="form-title" colspan="', $t_bugslist ? '1' : '2', '">';
 
 	collapse_icon( 'issue_details' );
 
@@ -310,7 +310,7 @@
 
 	# prev/next links
 	if ( $t_bugslist ) {
-		echo '<td class="center" colspan="2"><span class="small">';
+		echo '<td class="center"><span class="small">';
 
 		$t_bugslist = explode( ',', $t_bugslist );
 		$t_index = array_search( $f_bug_id, $t_bugslist );
@@ -328,7 +328,7 @@
 
 
 	# Links
-	echo '<td class="right" colspan="2">';
+	echo '<td class="right">';
 
 	if ( !is_blank( $tpl_history_link ) ) {
 		# History
@@ -345,18 +345,16 @@
 	echo '</tr>';
 
 	if ( $tpl_top_buttons_enabled ) {
-		echo '<tr align="center">';
-		echo '<td align="center" colspan="11">';
+		echo '<tr><td align="center" colspan="3">';
 		html_buttons_view_bug_page( $tpl_bug_id );
-		echo '</td>';
-		echo '</tr>';
+		echo '</td></tr>';
 	}
 
 	# Summary
 	if ( $tpl_show_summary ) {
 		echo '<tr class="row-1 bottom-border">';
-		echo '<td class="category" colspan="2">', lang_get( 'summary' ), '</td>';
-		echo '<td colspan="8"><b>', $tpl_summary, '</b></td>';
+		echo '<td class="category" width="26%">', lang_get( 'summary' ), '</td>';
+		echo '<td colspan="2"><b>', $tpl_summary, '</b></td>';
 		echo '</tr>';
 	}
 
@@ -369,29 +367,27 @@
 	# Bug Details (screen wide fields)
 	#
 
-	echo '<tr class="padded-spacer"><td colspan="10" /></tr>';
-
 	# Description
 	if ( $tpl_show_description ) {
 		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">', lang_get( 'description' ), '</td>';
-		echo '<td colspan="8">', $tpl_description, '</td>';
+		echo '<td class="category">', lang_get( 'description' ), '</td>';
+		echo '<td colspan="2">', $tpl_description, '</td>';
 		echo '</tr>';
 	}
 
 	# Steps to Reproduce
 	if ( $tpl_show_steps_to_reproduce ) {
 		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">', lang_get( 'steps_to_reproduce' ), '</td>';
-		echo '<td colspan="8">', $tpl_steps_to_reproduce, '</td>';
+		echo '<td class="category">', lang_get( 'steps_to_reproduce' ), '</td>';
+		echo '<td colspan="2">', $tpl_steps_to_reproduce, '</td>';
 		echo '</tr>';
 	}
 
 	# Additional Information
 	if ( $tpl_show_additional_information ) {
 		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">', lang_get( 'additional_information' ), '</td>';
-		echo '<td colspan="8">', $tpl_additional_information, '</td>';
+		echo '<td class="category">', lang_get( 'additional_information' ), '</td>';
+		echo '<td colspan="2">', $tpl_additional_information, '</td>';
 		echo '</tr>';
 	}
 
@@ -414,16 +410,16 @@
 		$t_def = custom_field_get_definition( $t_id );
 
 		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">', string_display( lang_get_defaulted( $t_def['name'] ) ), '</td>';
-		echo '<td colspan="8">';
+		echo '<td class="category">', string_display( lang_get_defaulted( $t_def['name'] ) ), '</td>';
+		echo '<td colspan="2">';
 		print_custom_field_value( $t_def, $t_id, $f_bug_id );
 		echo '</td></tr>';
 	}
 
 	# Approval
 	echo '<tr ', helper_alternate_class(), '>';
-	echo '<td class="category" colspan="2">', string_display( 'Approval' ), '</td>';
-	echo '<td colspan="8">';
+	echo '<td class="category">', string_display( 'Approval' ), '</td>';
+	echo '<td colspan="2">';
 	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
 	if ( $auth_status != null && $auth_status != '' ){
 		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
@@ -446,13 +442,13 @@
 	# Attachments
 	if ( $tpl_show_attachments ) {
 		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category" colspan="2">';
+		echo '<td class="category">';
 		$attachmentsExpanded = collapse_display('attachments');
 		echo '<a href="" onclick="if (ToggleDiv(\'attachments\')) this.firstChild.src=\'images/minus.png\';
 								else this.firstChild.src=\'images/plus.png\';
 								return false;"><img src="images/' . ($attachmentsExpanded ? 'minus.png' : 'plus.png') . '" alt="-" border="0" /></a> ';
 		echo lang_get( 'attached_files' ), '</td>';
-		echo '<td colspan="8">';
+		echo '<td colspan="2">';
 		echo '<div id="attachments_open" class="' . ($attachmentsExpanded ? '' : 'hidden') . '">';
 		# File upload
 		if ( $tpl_show_upload_form && file_allow_bug_upload( $f_bug_id ) ) {
@@ -495,7 +491,7 @@
 	}
 
 	if ( $tpl_bottom_buttons_enabled ) {
-		echo '<tr class="footer" align="center"><td align="center" colspan="14">';
+		echo '<tr class="footer" align="center"><td align="center" colspan="3">';
 		html_buttons_view_bug_page( $tpl_bug_id );
 		echo '</td></tr>';
 	}
@@ -614,7 +610,7 @@
 	echo '<table class="width100" cellspacing="0">';
 	# Labels
 	echo '<tr>';
-	echo '<th colspan="2">', collapse_icon( 'issue_metadata' ), ' ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
+	echo '<th colspan="2"><div style="float:left; margin-top:-2px;">', collapse_icon( 'issue_metadata' ), '</div>ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
 	echo '</tr>';
 
 	if ( $tpl_show_id || $tpl_show_date_submitted || $tpl_show_reporter || $tpl_show_category || $tpl_show_status ) {
