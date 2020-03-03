@@ -53,8 +53,8 @@
 	html_page_top( lang_get( 'main_link' ) );
 
 	if ( !current_user_is_anonymous() ) {
-		$t_current_user_id = auth_get_current_user_id();
-		$t_hide_status = config_get( 'bug_resolved_status_threshold' );
+		// $t_current_user_id = auth_get_current_user_id();
+		// $t_hide_status = config_get( 'bug_resolved_status_threshold' );
 
 		echo '<div class="quick-summary-right">';
 		echo lang_get( 'last_visit' ) . ': ';
@@ -80,7 +80,7 @@
 		print_link('view_all_set.php?type=1&view_type=advanced&show_status[]='.FEEDBACK.'&show_status[]='.APPROVAL.'&show_status[]='.RESOLVED.'&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'Feedback Required');
 		echo '</li>
 		<li>';
-		print_link('view_all_set.php?type=1&hide_status='.$t_hide_status.'&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'All Open');
+		print_link('view_all_set.php?type=1&hide_status='.CLOSED.'&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'All Open');
 		echo '</li>
 		<li>';
 		print_link('view_all_set.php?type=1&sort_0=status&dir_0=ASC&sort_1=priority&dir_1=DESC', 'All');
