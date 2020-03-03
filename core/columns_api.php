@@ -1134,7 +1134,7 @@ function print_column_status( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PA
 
 	# print username after status
 	if(( ON == config_get( 'show_assigned_names' ) ) && ( $p_bug->handler_id > 0 ) && ( access_has_project_level( config_get( 'view_handler_threshold' ), $p_bug->project_id ) ) ) {
-		if( $p_bug->status == FEEDBACK || $p_bug->status == ACKNOWLEDGED ){ // Info Required or Approval Required
+		if( $p_bug->status == FEEDBACK || $p_bug->status == APPROVAL ){ // Info Required or Approval Required
 			echo ' (';
 			print_custom_field_value( custom_field_get_definition(2), 2, $p_bug->id );
 			echo ')';
