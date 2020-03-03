@@ -129,13 +129,15 @@
 	$t_fields = config_get( 'bug_report_page_fields' );
 	$t_fields = columns_filter_disabled( $t_fields );
 
+	$t_has_develper_access_level = access_has_project_level( DEVELOPER );
+
 	$tpl_show_category = in_array( 'category_id', $t_fields );
 	$tpl_show_reproducibility = in_array( 'reproducibility', $t_fields );
 	$tpl_show_severity = in_array( 'severity', $t_fields );
-	$tpl_show_priority = in_array( 'priority', $t_fields );
+	$tpl_show_priority = in_array( 'priority', $t_fields ) && $t_has_develper_access_level;
 	$tpl_show_steps_to_reproduce = in_array( 'steps_to_reproduce', $t_fields );
-	$tpl_show_handler = in_array( 'handler', $t_fields ) && access_has_project_level( config_get( 'update_bug_assign_threshold' ) );
-	$tpl_show_profiles = config_get( 'enable_profiles' );
+	$tpl_show_handler = in_array( 'handler', $t_fields ) && $t_has_develper_access_level;
+	$tpl_show_profiles = config_get( 'enable_profiles' ) && $t_has_develper_access_level;
 	$tpl_show_platform = $tpl_show_profiles && in_array( 'platform', $t_fields );
 	$tpl_show_os = $tpl_show_profiles && in_array( 'os', $t_fields );
 	$tpl_show_os_version = $tpl_show_profiles && in_array( 'os_version', $t_fields );
@@ -145,9 +147,9 @@
 	$tpl_show_product_build = $tpl_show_versions && in_array( 'product_build', $t_fields ) && config_get( 'enable_product_build' ) == ON;
 	$tpl_show_target_version = $tpl_show_versions && in_array( 'target_version', $t_fields ) && access_has_project_level( config_get( 'roadmap_update_threshold' ) );
 	$tpl_show_additional_info = in_array( 'additional_info', $t_fields );
-	$tpl_show_due_date = in_array( 'due_date', $t_fields ) && access_has_project_level( config_get( 'due_date_update_threshold' ), helper_get_current_project(), auth_get_current_user_id() );
+	$tpl_show_due_date = in_array( 'due_date', $t_fields ) && $t_has_develper_access_level && access_has_project_level( config_get( 'due_date_update_threshold' ), helper_get_current_project(), auth_get_current_user_id() );
 	$tpl_show_attachments = in_array( 'attachments', $t_fields ) && file_allow_bug_upload();
-	$tpl_show_view_state = in_array( 'view_state', $t_fields ) && access_has_project_level( config_get( 'set_view_status_threshold' ) );
+	$tpl_show_view_state = in_array( 'view_state', $t_fields ) && $t_has_develper_access_level && access_has_project_level( config_get( 'set_view_status_threshold' ) );
 
 	# don't index bug report page
 	html_robots_noindex();
