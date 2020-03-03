@@ -653,10 +653,7 @@ function print_profile_option_list_from_profiles( $p_profiles, $p_select_id ) {
 # Since categories can be orphaned we need to grab all unique instances of category
 # We check in the project category table and in the bug table
 # We put them all in one array and make sure the entries are unique
-function print_category_option_list( $p_category_id = 0, $p_project_id = null ) {
-	$t_category_table = db_get_table( 'mantis_category_table' );
-	$t_project_table = db_get_table( 'mantis_project_table' );
-
+function print_category_option_list( $p_category_id = 0, $p_project_id = null, $p_exclude_arr = null ) {
 	if( null === $p_project_id ) {
 		$t_project_id = helper_get_current_project();
 	} else {
@@ -677,6 +674,8 @@ function print_category_option_list( $p_category_id = 0, $p_project_id = null ) 
 
 	foreach( $cat_arr as $t_category_row ) {
 		$t_category_id = $t_category_row['id'];
+		if ($p_exclude_arr != null && in_array($t_category_id, $p_exclude_arr))
+			continue;
 		echo "<option value=\"$t_category_id\"";
 		check_selected( $p_category_id, $t_category_id );
 		echo '>' . string_attribute( category_full_name( $t_category_id, $t_category_row['project_id'] != $t_project_id ) ) . '</option>';
@@ -1773,7 +1772,7 @@ document.getElementById( span ).style.display = displayType;
 			$i++;
 		}
 	}
-	
+
 	return $t_attachments_count;
 }
 

@@ -185,7 +185,10 @@
 			} ?>
 			<select <?php echo helper_get_tab_index() ?> name="category_id">
 				<?php
-					print_category_option_list( $f_category_id );
+					$excluded_categories = null;
+					if (!$t_has_develper_access_level)
+						$excluded_categories = array(18, 20); // exclude Improvement and Quoted Project
+					print_category_option_list( $f_category_id, null, $excluded_categories);
 				?>
 			</select>
 		</td>
