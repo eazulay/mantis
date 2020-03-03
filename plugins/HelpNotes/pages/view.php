@@ -15,11 +15,12 @@
 # along with MantisBT.  If not, see <http://www.gnu.org/licenses/>.
 
 	auth_ensure_user_authenticated( );
+	$t_css_url = config_get( 'css_include_file' );
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="/mantis/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo string_sanitize_url( helper_mantis_url( $t_css_url ), true ); ?>" />
 	<script type="text/javascript"><!--
 		if(document.layers) {document.write("<style>td{padding:0px;}<\/style>")}
 	// --></script>
@@ -61,7 +62,7 @@ function selectElement(element) {
 	$t_columns = array_keys( getClassProperties('BugData', 'protected') );
 	$t_user_id = auth_get_current_user_id();
 	$t_bugnote_order = current_user_get_pref( 'bugnote_order' );
-	
+
 	html_page_top2();
 	print_recently_visited();
 

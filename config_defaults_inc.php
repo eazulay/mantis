@@ -115,7 +115,7 @@
 		$t_path = str_replace( basename( $_SERVER['PHP_SELF'] ), '', $_SERVER['PHP_SELF'] );
 		$t_path = basename( $t_path ) == "admin" ? dirname( $t_path ) . '/' : $t_path;
 		$t_path = basename( $t_path ) == "soap" ? dirname( dirname( $t_path ) ) . '/' : $t_path;
-		
+
 
 		$t_url	= $t_protocol . '://' . $t_host . $t_path;
 
@@ -3061,7 +3061,7 @@
 	 * CSS file
 	 * @global string $g_css_include_file
 	 */
-	$g_css_include_file				= 'css/default.css?v=20181011';
+	$g_css_include_file				= 'css/default.css?v=20200303';
 
 	/**
 	 * RTL CSS file
@@ -3702,7 +3702,7 @@
 	 * Sub-projects should inherit versions from parent projects.
 	 */
 	$g_subprojects_inherit_versions = ON;
-	
+
 	/**********************************
 	 * Debugging / Developer Settings *
 	 **********************************/
@@ -3820,7 +3820,7 @@
 	 * @global string $g_log_destination
 	 */
 	$g_log_destination = '';
-	
+
 	/**
 	 * if OFF, will include original javascript files
 	 * if ON, will include javascript files that have been compressed by yuicompressor if available
