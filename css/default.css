@@ -126,7 +126,8 @@ tr.padded-spacer	{ background-color: #F6EBDF; color: #212121; height: 1px; }
 tr.padded-spacer td	{ padding: 2px; border-top: 1px solid #E3C389; border-bottom: 1px solid #E3C389; }
 tr.row-1				{ background-color: #F9EFE1; color: #212121; }
 tr.row-2				{ background-color: #FCF5ED; color: #212121; }
-tr.row-1 > td:not(:first-child), tr.row-2 > td:not(:first-child)	{ border-left: 1px solid #E3C389; }
+tr.row-1 > td:not(:first-child), tr.row-2 > td:not(:first-child),
+#issue_metadata_closed tr:first-child td.category	{ border-left: 1px solid #E3C389; }
 tr.header, tr.footer	{ background-color: #F7EBD9; }
 tr.header > td			{ border-bottom: 1px solid #E3C389; }
 tr.footer > td			{ border-top: 1px solid #E3C389; }
