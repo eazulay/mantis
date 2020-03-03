@@ -92,6 +92,7 @@ td tr:first-child.vcenter td{ padding: 0px 8px; }
 #history_open .row-2 td.small-caption, #bugnotestats_open .row-2 td.small-caption	{ text-align: left; }
 .row-2 td.small-caption #due_date { width:102px; }
 td.center			{ text-align: center; }
+td.center > table	{ margin-left: auto; margin-right: auto; }
 td.left				{ text-align: left; }
 td.right				{ text-align: right; }
 td.category			{ background-color: #F6E6CB; color: #212121; vertical-align: top;
