@@ -596,9 +596,11 @@
 	collapse_end( 'issue_details' );
 
 	# File upload box
-/*	if ( $tpl_show_upload_form ) {
+/*	if ( $tpl_show_upload_form ) { // Recoded this form above as part of the main section
 		include( $tpl_mantis_dir . 'bug_file_upload_inc.php' );
 	}*/
+
+	echo '<br>';
 
 	collapse_open( 'issue_metadata' );
 

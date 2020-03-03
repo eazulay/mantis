@@ -3061,7 +3061,7 @@
 	 * CSS file
 	 * @global string $g_css_include_file
 	 */
-	$g_css_include_file				= 'css/default.css?v=20200303';
+	$g_css_include_file				= 'css/default.css?v=20200304';
 
 	/**
 	 * RTL CSS file
