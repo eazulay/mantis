@@ -310,7 +310,7 @@
 
 	# prev/next links
 	if ( $t_bugslist ) {
-		echo '<td class="center"><span class="small">';
+		echo '<td class="center" width="50%"><span class="small">';
 
 		$t_bugslist = explode( ',', $t_bugslist );
 		$t_index = array_search( $f_bug_id, $t_bugslist );
@@ -353,8 +353,8 @@
 	# Summary
 	if ( $tpl_show_summary ) {
 		echo '<tr class="row-1 bottom-border">';
-		echo '<td class="category" width="26%">', lang_get( 'summary' ), '</td>';
-		echo '<td colspan="2"><b>', $tpl_summary, '</b></td>';
+		echo '<td class="category" width="17%">', lang_get( 'summary' ), '</td>';
+		echo '<td colspan="3"><b>', $tpl_summary, '</b></td>';
 		echo '</tr>';
 	}
 
@@ -371,7 +371,7 @@
 	if ( $tpl_show_description ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category">', lang_get( 'description' ), '</td>';
-		echo '<td colspan="2">', $tpl_description, '</td>';
+		echo '<td colspan="3">', $tpl_description, '</td>';
 		echo '</tr>';
 	}
 
@@ -379,7 +379,7 @@
 	if ( $tpl_show_steps_to_reproduce ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category">', lang_get( 'steps_to_reproduce' ), '</td>';
-		echo '<td colspan="2">', $tpl_steps_to_reproduce, '</td>';
+		echo '<td colspan="3">', $tpl_steps_to_reproduce, '</td>';
 		echo '</tr>';
 	}
 
@@ -387,7 +387,7 @@
 	if ( $tpl_show_additional_information ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category">', lang_get( 'additional_information' ), '</td>';
-		echo '<td colspan="2">', $tpl_additional_information, '</td>';
+		echo '<td colspan="3">', $tpl_additional_information, '</td>';
 		echo '</tr>';
 	}
 
@@ -544,7 +544,7 @@
 
 	# prev/next links
 	if ( $t_bugslist ) {
-		echo '<td class="center" width="65%"><span class="small">';
+		echo '<td class="center" width="50%"><span class="small">';
 
 		if ( false !== $t_index ) {
 			if ( isset( $t_bugslist[$t_index-1] ) ) {
