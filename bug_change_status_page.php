@@ -89,7 +89,6 @@
 	$t_status_label = str_replace( " ", "_", MantisEnum::getLabel( config_get( 'status_enum_string' ), $f_new_status ) );
 	$t_resolved = config_get( 'bug_resolved_status_threshold' );
 	$t_closed = config_get( 'bug_closed_status_threshold' );
-	$t_feedback = config_get( 'bug_feedback_status' );
 	$t_bug = bug_get( $f_bug_id );
 
 	html_page_top( bug_format_summary( $f_bug_id, SUMMARY_CAPTION ) );
@@ -196,10 +195,10 @@ foreach( $t_related_custom_field_ids as $t_id ) {
 	$t_display = $t_def['display_' . $t_custom_status_label];
 	$t_require = $t_def['require_' . $t_custom_status_label];
 
-	if ( !$t_require ){
-		if ( $f_new_status != $t_feedback && $f_new_status != CONFIRMED && $f_new_status != HOLD && $f_new_status != $t_resolved && $f_new_status != $t_closed )
+	if ( !$t_require ) {
+		if ( $f_new_status != FEEDBACK && $f_new_status != APPROVAL && $f_new_status != CONFIRMED && $f_new_status != HOLD && $f_new_status != $t_resolved && $f_new_status != $t_closed )
 			continue;
-		if ( $f_new_status == $t_feedback && $t_id > 2 ) // Info Required => show only first two custom fields (Type and Info Required From)
+		if ( ( $f_new_status == FEEDBACK || $f_new_status == APPROVAL ) && $t_id > 2 ) // Info Required => show only first two custom fields (Type and Info Required From)
 			continue;
 		if ( ($f_new_status == CONFIRMED || $f_new_status == HOLD) && ($t_id < 3 || $t_id >= 8 ) ) // Approve/Hold => show only fields related to Approval
 			continue;
@@ -215,7 +214,7 @@ foreach( $t_related_custom_field_ids as $t_id ) {
 	<td>
 		<?php
 			$default_value = null;
-			
+
 			switch ($t_id) {
 				case 3: if ( $f_new_status == CONFIRMED )
 							$default_value = "Approved";
