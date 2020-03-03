@@ -270,7 +270,7 @@
 	echo '<tr class="header">';
 
 	# Form Title
-	echo '<td class="form-title" colspan="', $t_bugslist ? '1' : '2', '">';
+	echo '<td class="form-title" colspan="', $t_bugslist ? '2' : '3', '">';
 
 	collapse_icon( 'issue_details' );
 
@@ -328,7 +328,7 @@
 
 
 	# Links
-	echo '<td class="right">';
+	echo '<td class="right" width="18%">';
 
 	if ( !is_blank( $tpl_history_link ) ) {
 		# History
