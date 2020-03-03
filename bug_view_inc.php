@@ -350,6 +350,7 @@
 		echo '</td></tr>';
 	}
 
+	helper_alternate_class(); // Make sure Summary starts on the brigher background colour
 	# Summary
 	if ( $tpl_show_summary ) {
 		echo '<tr ', helper_alternate_class(), '>';
