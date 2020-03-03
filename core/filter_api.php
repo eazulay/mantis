@@ -886,8 +886,8 @@ function filter_get_field( $p_filter_id, $p_field_name ) {
 function filter_get_query_sort_data( &$p_filter, $p_show_sticky, $p_query_clauses ) {
 	$t_bug_table = db_get_table( 'mantis_bug_table' );
 	$t_custom_field_string_table = db_get_table( 'mantis_custom_field_string_table' );
-	
-	// Eyal 
+
+	// Eyal
 	if ($p_filter[FILTER_PROPERTY_SORT_FIELD_NAME] == 'description' || $p_filter[FILTER_PROPERTY_SORT_FIELD_NAME] == 'last_note')
 		$p_filter[FILTER_PROPERTY_SORT_FIELD_NAME] == '';
 
@@ -1990,7 +1990,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	// Eyal: Join Bugnotes
 	$t_join_clauses[] = " LEFT JOIN $t_bugnote_table AS bn ON bn.bug_id = $t_bug_table.id AND bn.date_submitted = (SELECT MAX(date_submitted) FROM $t_bugnote_table WHERE bug_id = bn.bug_id AND view_state = 10)";
 	$t_join_clauses[] = " LEFT JOIN $t_bugnote_text_table AS bnt ON bnt.id = bn.bugnote_text_id";
-	
+
 	$t_from_clauses[] = $t_project_table;
 	$t_from_clauses[] = $t_bug_table;
 
@@ -2178,24 +2178,24 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		</tr>
 		<tr>
 			<td class="disabled"><?php echo lang_get( 'issue_id' ); ?></td>
-			
+
 			<td class="category"><a href="<?php echo $t_filters_url . FILTER_PROPERTY_FILTER_BY_DATE;?>" id="do_filter_by_date_filter"><?php echo lang_get( 'date_submitted' )?></a></td>
-			
+
 			<td class="category"><a href="<?php echo $t_filters_url . FILTER_PROPERTY_REPORTER_ID . '[]';?>" id="reporter_id_filter"><?php echo lang_get( 'reporter' )?></a></td>
-			
+
 			<td class="category" valign="top">
 				<?php if( ON == config_get( 'enable_profiles' ) ) { ?>
 					<a href="<?php echo $t_filters_url . 'show_profile[]';?>" id="show_profile_filter"><?php echo lang_get( 'profile' )?></a>
 				<?php } ?>
 			</td>
-			
+
 			<td class="category"><a href="<?php echo $t_filters_url . FILTER_PROPERTY_CATEGORY . '[]';?>" id="show_category_filter"><?php echo lang_get( 'category' ); ?></a></td>
-			
+
 			<td class="category"><a href="<?php echo $t_filters_url . FILTER_PROPERTY_STATUS_ID . '[]';?>" id="show_status_filter"><?php echo lang_get( 'status' )?></a></td>
 		</tr>
 		<tr class="row-2">
 			<td />
-			
+
 			<td class="center" valign="top"  id="do_filter_by_date_filter_target">
 							<?php
 							if(( ON == config_get( 'dhtml_filters' ) ) && ( ON == config_get( 'use_javascript' ) ) ) {
@@ -2267,7 +2267,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
 			</td>
-			
+
 			<td class="center" valign="top" id="reporter_id_filter_target">
 							<?php
 								$t_output = '';
@@ -2308,7 +2308,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
 			</td>
-			
+
 			<?php if( ON == config_get( 'enable_profiles' ) ) { ?>
 			<td class="center" valign="top" id="show_profile_filter_target">
 							<?php
@@ -2351,7 +2351,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 				  if( $t_filter_cols > 8 ) {
 			echo '<td class="center" valign="top" colspan="' . ( $t_filter_cols - 8 ) . '">&#160;</td>';
 		}?>
-			
+
 			<td class="center" valign="top" id="show_category_filter_target">
 				<?php $t_output = '';
 		$t_any_found = false;
@@ -2382,7 +2382,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
 			</td>
-			
+
 			<td class="center" valign="top" id="show_status_filter_target">
 	<?php
 		$t_output = '';
@@ -2415,29 +2415,29 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		?>
 			</td>
 		</tr>
-		
+
 		<tr>
 		<?php if( 'advanced' == $t_view_type ) { ?>
 			<td class="category">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_PROJECT_ID;?>" id="project_id_filter"><?php echo lang_get( 'email_project' )?></a>
 			</td>
-		<?php } else { ?>	
+		<?php } else { ?>
 			<td class="disabled"><?php echo lang_get( 'email_project' ); ?></td>
 		<?php } ?>
-			
+
 			<td class="category">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_HIGHLIGHT_CHANGED;?>" id="highlight_changed_filter"><?php echo lang_get( 'last_update' ), ' (bold)'; ?></a>
 			</td>
-			
+
 			<td class="category"><a href="<?php echo $t_filters_url . FILTER_PROPERTY_HANDLER_ID . '[]';?>" id="handler_id_filter"><?php echo lang_get( 'assigned_to' )?></a></td>
-			
+
 			<td class="category">
 				<?php if( ON == config_get( 'enable_profiles' ) ) { ?>
 					<a href="<?php echo $t_filters_url . FILTER_PROPERTY_PLATFORM;?>" id="platform_filter"><?php echo lang_get( 'platform' )?></a>
 				<?php } ?>
 			</td>
-			
-			
+
+
 		<?php
 			if( isset( $t_accessible_custom_fields_names[0] ) ) {
 				$t_fields = '<td class="category"> ';
@@ -2479,10 +2479,10 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 				}
 			}
 			$t_values .= ' </td>';
-			
+
 			echo $t_fields;
 		?>
-			
+
 			<td class="category"><?php if( 'simple' == $t_view_type ) { ?>
 					<a href="<?php echo $t_filters_url . FILTER_PROPERTY_HIDE_STATUS_ID . '[]';?>" id="hide_status_filter"><?php echo lang_get( 'hide_status' )?></a>
 				<?php } ?>
@@ -2528,7 +2528,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			<td />
 			<?php
 		} ?>
-			
+
 			<td class="center" id="highlight_changed_filter_target">
 		<?php
 		echo $t_filter[FILTER_PROPERTY_HIGHLIGHT_CHANGED];
@@ -2536,7 +2536,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		echo ' hours';
 		?>
 			</td>
-			
+
 			<td class="center" valign="top" id="handler_id_filter_target">
 		<?php
 		$t_output = '';
@@ -2576,7 +2576,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
 			</td>
-			
+
 			<?php if( ON == config_get( 'enable_profiles' ) ) { ?>
 			<td class="center" id="platform_filter_target">
 				<?php print_multivalue_field( FILTER_PROPERTY_PLATFORM, $t_filter[FILTER_PROPERTY_PLATFORM] ); ?>
@@ -2584,11 +2584,11 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 				<td colspan="3">&#160;</td>
 			<?php } ?>
 			</td>
-			
+
 
 			<?php echo $t_values; ?>
-			
-			
+
+
 			<td class="center" valign="top" id="hide_status_filter_target">
 							<?php
 								if( 'simple' == $t_view_type ) {
@@ -2627,28 +2627,28 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		?>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td class="category">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_VIEW_STATE_ID;?>" id="view_state_filter"><?php echo lang_get( 'view_status' )?></a>
 			</td>
-			
+
 			<td class="disabled"> <?php echo lang_get( 'due_date' ); ?></td>
-			
+
 			<td class="category">
                 <a href="<?php echo $t_filters_url . FILTER_PROPERTY_NOTE_USER_ID;?>" id="note_user_id_filter"><?php echo lang_get( 'note_user_id' )?></a>
             </td>
-			
+
 			<td class="category">
 				<?php if( ON == config_get( 'enable_profiles' ) ) { ?>
 					<a href="<?php echo $t_filters_url . FILTER_PROPERTY_OS;?>" id="os_filter"><?php echo lang_get( 'os' )?></a>
 				<?php } ?>
 			</td>
-			
+
 			<td class="category">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_SEVERITY_ID . '[]';?>" id="show_severity_filter"><?php echo lang_get( 'severity' )?></a>
 			</td>
-			
+
 			<td class="category">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_PRIORITY_ID . '[]';?>" id="show_priority_filter"><?php echo lang_get( 'priority' )?></a>
 			</td>
@@ -2667,9 +2667,9 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		echo '<input type="hidden" name="', FILTER_PROPERTY_VIEW_STATE_ID, '" value="', $t_filter[FILTER_PROPERTY_VIEW_STATE_ID], '" />';
 		?>
 			</td>
-			
+
 			<td />
-			
+
             <td class="center" valign="top" id="note_user_id_filter_target">
                 <?php
                     $t_output = '';
@@ -2709,14 +2709,14 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
             </td>
-			
+
 		<?php if( ON == config_get( 'enable_profiles' ) ) { ?>
 			<td class="center" valign="top" id="os_filter_target">
 				<?php
 					print_multivalue_field( FILTER_PROPERTY_OS, $t_filter[FILTER_PROPERTY_OS] );
 		?>
 			</td>
-			
+
 			<td class="center" valign="top" id="show_severity_filter_target">
 							<?php
 								$t_output = '';
@@ -2748,7 +2748,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
 			</td>
-			
+
 			<td class="center" id="show_priority_filter_target">
               <?php
 							  $t_output = '';
@@ -2781,33 +2781,33 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		?>
 	    	</td>
 		</tr>
-		
+
 		<tr>
 			<td class="disabled"><?php echo lang_get( 'notes' ); ?></td>
-			
+
 			<td class="disabled"><?php echo lang_get( 'eta' ); ?></td>
-			
+
 			<td class="category">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_MONITOR_USER_ID . '[]';?>" id="user_monitor_filter"><?php echo lang_get( 'monitored_by' )?></a>
 			</td>
-			
+
 			<td class="category">
 				<?php if( ON == config_get( 'enable_profiles' ) ) { ?>
 					<a href="<?php echo $t_filters_url . FILTER_PROPERTY_OS_BUILD;?>" id="os_build_filter"><?php echo lang_get( 'os_version' )?></a>
 				<?php } ?>
 			</td>
-			
+
 			<td class="disabled"><?php echo lang_get( 'reproducibility' ); ?></td>
-			
+
 			<td class="category">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_RESOLUTION_ID . '[]';?>" id="show_resolution_filter"><?php echo lang_get( 'resolution' )?></a>
 			</td>
 		</tr>
 		<tr class="row-2">
 			<td />
-			
+
 			<td />
-			
+
 			<td class="center" valign="top" id="user_monitor_filter_target">
 		<?php
 		$t_output = '';
@@ -2846,16 +2846,16 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
 			</td>
-			
+
 			<td class="center" valign="top" id="os_build_filter_target">
 		<?php print_multivalue_field( FILTER_PROPERTY_OS_BUILD, $t_filter[FILTER_PROPERTY_OS_BUILD] ); ?>
 			</td>
 		<?php } else {?>
 			<td colspan="3">&#160;</td>
 		<?php } ?>
-			
+
 			<td />
-			
+
 			<td class="center" id="show_resolution_filter_target">
 							<?php
 								$t_output = '';
@@ -2898,16 +2898,16 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_PRODUCT_BUILD . '[]';?>" id="show_build_filter"><?php echo lang_get( 'product_build' )?></a>
 			<?php } ?>
 			</td>
-			
+
 			<?php if( $t_show_product_version ) {?>
 			<td class="category" valign="top">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_PRODUCT_VERSION . '[]';?>" id="show_version_filter"><?php echo lang_get( 'product_version' )?></a>
 			</td>
-			
+
 			<td class="category" valign="top">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_FIXED_IN_VERSION . '[]';?>" id="show_fixed_in_version_filter"><?php echo lang_get( 'fixed_in_version' )?></a>
 			</td>
-			
+
 			<td class="category" valign="top">
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_TARGET_VERSION . '[]';?>" id="show_target_version_filter"><?php echo lang_get( 'target_version' )?></a>
 			</td>
@@ -2954,7 +2954,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
 			</td>
-			
+
 			<?php } else { ?>
 			<td class="center" valign="top"></td>
 			<?php }
@@ -2995,7 +2995,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			}
 			?>
 			</td>
-			
+
 			<td colspan="1" class="center" valign="top" id="show_fixed_in_version_filter_target">
 							<?php
 								$t_output = '';
@@ -3030,7 +3030,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			}
 			?>
 			</td>
-			
+
 			<td colspan="1" class="center" valign="top" id="show_target_version_filter_target">
 			<?php
 			$t_output = '';
@@ -3092,7 +3092,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 	?>
 			</td>
-			
+
 			<td class="category">
 				<?php if ( access_has_global_level( config_get( 'tag_view_threshold' ) ) ) { ?>
 				<a href="<?php echo $t_filters_url . FILTER_PROPERTY_TAG_STRING;?>" id="tag_string_filter"><?php echo lang_get( 'tags' )?></a>
@@ -3414,7 +3414,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
 			</td>
-			
+
 		<td class="category">
 			<a href="<?php echo $t_filters_url . FILTER_PROPERTY_SHOW_STICKY_ISSUES;?>" id="sticky_issues_filter"><?php echo lang_get( 'sticky' )?></a>
 		</td>
@@ -3477,7 +3477,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 					</form>
 	<?php
 	}
-	
+
 	if( access_has_project_level( config_get( 'create_permalink_threshold' ) ) ) {
 		print_bracket_link( 'permalink_page.php?url=' . urlencode( filter_get_url( $t_filter ) ), lang_get( 'create_filter_link' ),
 		/* new window = */
@@ -3510,7 +3510,9 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}
 		?>
 					</select>
+		<?php if( ON !== config_get( 'use_javascript' ) ): ?>
 					<input type="submit" name="switch_to_query_button" class="button-small" value="<?php echo lang_get( 'use_query' )?>" />
+		<?php endif; ?>
 					</form>
 					<form method="post" name="open_queries" action="query_view_page.php">
 					<?php # CSRF protection not required here - form does not result in modifications ?>
