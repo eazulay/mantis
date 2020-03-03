@@ -520,15 +520,15 @@ function html_login_info() {
 		if( ON == config_get( 'show_extended_project_browser' ) ) {
 			print_extended_project_browser( helper_get_current_project_trace() );
 		} else {
-			if( ON == config_get( 'use_javascript' ) ) {
+			if( ON == config_get( 'use_javascript' ) )
 				echo '<select name="project_id" onchange="document.forms.form_set_project.submit();">';
-			} else {
+			else
 				echo '<select name="project_id">';
-			}
 			print_project_option_list( join( ';', helper_get_current_project_trace() ), true, null, true );
 			echo '</select> ';
 		}
-		echo '<input type="submit" class="button-small" value="' . lang_get( 'switch' ) . '" />';
+		if( ON !== config_get( 'use_javascript' ) )
+			echo '<input type="submit" class="button-small" value="' . lang_get( 'switch' ) . '" />';
 		echo '</form>';
 	}
 	echo '</td>';
