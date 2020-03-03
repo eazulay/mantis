@@ -32,7 +32,7 @@
 function columns_filter_disabled( $p_columns ) {
 	$t_columns = array();
 	$t_enable_profiles = ( config_get( 'enable_profiles' ) == ON );
-	
+
 	foreach ( $p_columns as $t_column ) {
 		switch( $t_column ) {
 			case 'os':
@@ -81,7 +81,7 @@ function columns_get_standard() {
 
 	// Eyal
 	$t_columns['last_note'] = null;
-	
+
 	$t_columns['selection'] = null;
 	$t_columns['edit'] = null;
 
@@ -97,11 +97,11 @@ function columns_get_standard() {
 	if( config_get( 'enable_eta' ) == OFF ) {
 		unset( $t_columns['eta'] );
 	}
-	
-	if( config_get( 'enable_projection' ) == OFF ) { 
+
+	if( config_get( 'enable_projection' ) == OFF ) {
 		unset( $t_columns['projection'] );
 	}
-	
+
 	if( config_get( 'enable_product_build' ) == OFF ) {
 		unset( $t_columns['build'] );
 	}
@@ -1130,11 +1130,11 @@ function print_column_resolution( $p_bug, $p_columns_target = COLUMNS_TARGET_VIE
  */
 function print_column_status( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	echo '<td>';
-	printf( '<span class="issue-status" title="%s">%s</span>', get_enum_element( 'resolution', $p_bug->resolution ), get_enum_element( 'status', $p_bug->status ) );
+	printf( '<b class="issue-status" title="%s">%s</b>', get_enum_element( 'resolution', $p_bug->resolution ), get_enum_element( 'status', $p_bug->status ) );
 
 	# print username after status
 	if(( ON == config_get( 'show_assigned_names' ) ) && ( $p_bug->handler_id > 0 ) && ( access_has_project_level( config_get( 'view_handler_threshold' ), $p_bug->project_id ) ) ) {
-		if( $p_bug->status == 20 ){ // Info Required
+		if( $p_bug->status == FEEDBACK || $p_bug->status == ACKNOWLEDGED ){ // Info Required or Approval Required
 			echo ' (';
 			print_custom_field_value( custom_field_get_definition(2), 2, $p_bug->id );
 			echo ')';
