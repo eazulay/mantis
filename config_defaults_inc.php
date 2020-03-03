@@ -2963,7 +2963,7 @@
 	 *
 	 * @global string $g_reproducibility_enum_string
 	 */
-	$g_reproducibility_enum_string		= '10:always,30:sometimes,50:random,70:have not tried,90:unable to duplicate,100:N/A';
+	$g_reproducibility_enum_string		= '10:always,30:sometimes,50:random,70:have not tried,90:unable to duplicate,100:N/A (not a bug)';
 
 	/**
 	 *
