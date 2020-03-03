@@ -491,7 +491,7 @@
 	}
 
 	if ( $tpl_bottom_buttons_enabled ) {
-		echo '<tr class="footer" align="center"><td align="center" colspan="3">';
+		echo '<tr class="footer"><td align="center" colspan="4">';
 		html_buttons_view_bug_page( $tpl_bug_id );
 		echo '</td></tr>';
 	}
