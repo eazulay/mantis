@@ -666,7 +666,10 @@
 	}
 
 	if ( $tpl_show_eta || $tpl_show_os_version || $tpl_show_reproducibility || $tpl_show_resolution ) {
-		echo '<tr class="bug-primary row-1">';
+		echo '<tr class="bug-primary row-1';
+		if ( !($tpl_show_product_version || $tpl_show_product_build || $tpl_show_target_version || $tpl_show_fixed_in_version || $tpl_show_projection) )
+			echo ' bottom-border';
+		echo '">';
 		# No. of Notes
 		echo '<td class="category">', lang_get( 'notes' ), '</td>';
 		echo '<td class="center">', $t_bugnote_count == 0 ? lang_get( 'none' ) : $t_bugnote_count, '</td>';
@@ -692,7 +695,7 @@
 	}
 
 	if ( $tpl_show_product_version || $tpl_show_product_build || $tpl_show_target_version || $tpl_show_fixed_in_version || $tpl_show_projection ) {
-		echo '<tr class="bug-primary row-2">';
+		echo '<tr class="bug-primary row-2 bottom-border">';
 		# Product Version
 		echo '<td class="category">', $tpl_show_product_version ? lang_get( 'product_version' ) : '', '</td>';
 		echo '<td class="center">', $tpl_product_version_string, '</td>';
@@ -761,7 +764,7 @@
 
 	# Tags
 	if ( $tpl_show_tags ) {
-		echo '<tr ', helper_alternate_class(null, 'row-1', 'row-2', 'top-border'), '>';
+		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tags' ), '</td>';
 		echo '<td colspan="8">';
 		tag_display_attached( $tpl_bug_id );
