@@ -76,7 +76,7 @@ table.width50		{ width: 50%;  border: solid 1px #AC7F2A; }
 @keyframes hide         { from { opacity: 1; filter:alpha(opacity=100); } to { opacity: 0; filter:alpha(opacity=0); } }
 
 tr.row-category th	{ text-align: center; }
-th					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11pt; padding: 8px; text-align: center;
+th					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; padding: 8px; text-align: center;
 					  background-color: #F6E6CB; color: #212121; font-weight: bold; vertical-align: top; }
 tr:not(.row-category) th{  font-variant: small-caps; }
 th:not(:first-child)	{ border-left: 1px solid #E3C389; }
