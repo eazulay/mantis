@@ -569,7 +569,7 @@
 	echo '</tr>';
 
 	# Labels
-	echo '<tr>';
+	echo '<tr class="bottom-border">';
 	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
 	echo '</tr>';
 
