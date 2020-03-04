@@ -281,11 +281,6 @@
 	# Jump to Bugnotes
 	print_bracket_link( "#bugnotes", lang_get( 'jump_to_bugnotes' ) );
 
-	# Send Bug Reminder
-	if ( $tpl_show_reminder_link ) {
-		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
-	}
-
 	if ( !is_blank( $tpl_wiki_link ) ) {
 		print_bracket_link( $tpl_wiki_link, lang_get( 'wiki' ) );
 	}
@@ -467,11 +462,6 @@
 
 	# Jump to Bugnotes
 	print_bracket_link( "#bugnotes", lang_get( 'jump_to_bugnotes' ) );
-
-	# Send Bug Reminder
-	if ( $tpl_show_reminder_link ) {
-		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
-	}
 
 	if ( !is_blank( $tpl_wiki_link ) ) {
 		print_bracket_link( $tpl_wiki_link, lang_get( 'wiki' ) );
@@ -783,6 +773,10 @@
 	echo '<tr class="footer">';
 	echo '<td class="center" colspan="10">';
 	html_buttons_view_bug_page( $tpl_bug_id, true );
+	# Send Bug Reminder
+	if ( $tpl_show_reminder_link ) {
+		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
+	}
 	echo '</td>';
 	echo '</tr>';
 
