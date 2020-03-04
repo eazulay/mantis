@@ -1659,6 +1659,10 @@ function html_buttons_view_bug_page( $p_bug_id, $p_metadata_section = false ) {
 			}
 			echo '</td>';
 		}
+
+		# Send Bug Reminder
+		$tpl_bug_reminder_link = 'bug_reminder_page.php?bug_id=' . $f_bug_id;
+		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
 	}else{
 		# STICK/UNSTICK button
 		if ( access_has_bug_level( $t_sticky, $p_bug_id ) ) {

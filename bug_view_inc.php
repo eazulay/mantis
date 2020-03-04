@@ -773,10 +773,10 @@
 	echo '<tr class="footer">';
 	echo '<td class="center" colspan="10">';
 	html_buttons_view_bug_page( $tpl_bug_id, true );
-	# Send Bug Reminder
+/*
 	if ( $tpl_show_reminder_link ) {
 		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
-	}
+	}*/
 	echo '</td>';
 	echo '</tr>';
 
