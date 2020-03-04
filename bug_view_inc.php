@@ -730,16 +730,16 @@
 		$t_def = custom_field_get_definition( $t_id );
 
 		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category">', string_display( lang_get_defaulted( $t_def['name'] ) ), '</td>';
-		echo '<td colspan="3">';
+		echo '<td class="category" colspan="2">', string_display( lang_get_defaulted( $t_def['name'] ) ), '</td>';
+		echo '<td colspan="8">';
 		print_custom_field_value( $t_def, $t_id, $f_bug_id );
 		echo '</td></tr>';
 	}
 
 	# Approval
 	echo '<tr ', helper_alternate_class(), '>';
-	echo '<td class="category">', string_display( 'Approval' ), '</td>';
-	echo '<td colspan="3">';
+	echo '<td class="category" colspan="2">', string_display( 'Approval' ), '</td>';
+	echo '<td colspan="8">';
 	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
 	if ( $auth_status != null && $auth_status != '' ){
 		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
