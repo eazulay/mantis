@@ -438,11 +438,11 @@
 		echo '</td></tr>';
 	}
 
-/*	if ( $tpl_bottom_buttons_enabled ) {
+	if ( $tpl_bottom_buttons_enabled ) {
 		echo '<tr class="footer"><td colspan="4" class="center">';
 		html_buttons_view_bug_page( $tpl_bug_id );
 		echo '</td></tr>';
-	}*/
+	}
 
 	echo '</table>';
 
@@ -528,11 +528,11 @@
 		echo '</tr>';
 	}
 
-	echo '<tr class="footer">';
+/*	echo '<tr class="footer">';
 	echo '<td class="center" colspan="4">';
 	html_buttons_view_bug_page( $tpl_bug_id );
 	echo '</td>';
-	echo '</tr>';
+	echo '</tr>';*/
 
 	echo '</table>';
 
