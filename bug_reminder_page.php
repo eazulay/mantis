@@ -48,7 +48,7 @@
 
 <?php # Send reminder Form BEGIN ?>
 <br />
-<div>
+<div class="center">
 <form method="post" action="bug_reminder.php">
 <?php echo form_security_field( 'bug_reminder' ) ?>
 <input type="hidden" name="bug_id" value="<?php echo $f_bug_id ?>" />
