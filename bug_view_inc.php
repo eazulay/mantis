@@ -301,7 +301,12 @@
 		}
 	}
 
-	echo '</span></td>';
+	echo '</span>';
+
+	# UPDATE button
+	html_button_bug_update( $f_bug_id );
+
+	echo '</td>';
 
 	# prev/next links
 	if ( $t_bugslist ) {
@@ -482,8 +487,12 @@
 			}
 		}
 	}
+	echo '</span>';
 
-	echo '</span></td>';
+	# UPDATE button
+	html_button_bug_update( $f_bug_id );
+
+	echo '</td>';
 
 	# prev/next links
 	if ( $t_bugslist ) {

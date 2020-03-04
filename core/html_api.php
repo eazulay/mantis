@@ -1628,12 +1628,7 @@ function html_buttons_view_bug_page( $p_bug_id, $p_metadata_section = false ) {
 
 	echo '<table><tr class="vcenter">';
 	if( !$t_readonly ) {
-		if (!$p_metadata_section){
-			# UPDATE button
-			echo '<td class="center">';
-			html_button_bug_update( $p_bug_id );
-			echo '</td>';
-		}else{
+		if ($p_metadata_section){
 			# ASSIGN button
 			echo '<td class="center">';
 			html_button_bug_assign_to( $p_bug_id );
