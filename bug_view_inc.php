@@ -564,7 +564,7 @@
 
 	collapse_icon( 'issue_metadata' );
 
-	echo ' Metadata</td>';
+	echo ' Issue Metadata</td>';
 
 	echo '</tr>';
 
@@ -796,7 +796,7 @@
 
 	collapse_icon( 'issue_metadata' );
 
-	echo ' Metadata</td>';
+	echo ' Issue Metadata</td>';
 
 	# Status
 	if ( $tpl_show_status ) {
