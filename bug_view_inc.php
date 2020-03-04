@@ -276,7 +276,7 @@
 
 	echo $tpl_form_title;
 
-	echo '&nbsp; <span class="small">';
+	echo ' &nbsp; <span class="small">';
 
 	# Jump to Bugnotes
 	print_bracket_link( "#bugnotes", lang_get( 'jump_to_bugnotes' ) );
@@ -301,7 +301,7 @@
 		}
 	}
 
-	echo '</span> &nbsp;';
+	echo '</span> &nbsp; ';
 
 	# UPDATE button
 	html_button_bug_update( $f_bug_id );
@@ -463,7 +463,7 @@
 
 	echo $tpl_form_title;
 
-	echo '&nbsp; <span class="small">';
+	echo ' &nbsp; <span class="small">';
 
 	# Jump to Bugnotes
 	print_bracket_link( "#bugnotes", lang_get( 'jump_to_bugnotes' ) );
@@ -487,7 +487,7 @@
 			}
 		}
 	}
-	echo '</span> &nbsp;';
+	echo '</span> &nbsp; ';
 
 	# UPDATE button
 	html_button_bug_update( $f_bug_id );
