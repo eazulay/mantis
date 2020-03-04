@@ -392,54 +392,6 @@
 		echo '</tr>';
 	}
 
-	# Custom Fields
-	$t_custom_fields_found = false;
-	$t_related_custom_field_ids = custom_field_get_linked_ids( $tpl_bug->project_id );
-
-	$t_feedback = config_get( 'bug_feedback_status' );
-
-	foreach( $t_related_custom_field_ids as $t_id ) {
-		if( $t_id == 1 ||	// Type
-			$t_id == 2 && $tpl_bug->status != $t_feedback || // Info Required
-			$t_id >=3 && $t_id <=8 ) // Authorization related
-			continue;
-		if( !custom_field_has_read_access( $t_id, $f_bug_id ) )
-			continue;
-		# has read access
-
-		$t_custom_fields_found = true;
-		$t_def = custom_field_get_definition( $t_id );
-
-		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category">', string_display( lang_get_defaulted( $t_def['name'] ) ), '</td>';
-		echo '<td colspan="3">';
-		print_custom_field_value( $t_def, $t_id, $f_bug_id );
-		echo '</td></tr>';
-	}
-
-	# Approval
-	echo '<tr ', helper_alternate_class(), '>';
-	echo '<td class="category">', string_display( 'Approval' ), '</td>';
-	echo '<td colspan="3">';
-	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
-	if ( $auth_status != null && $auth_status != '' ){
-		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		echo ' By ';
-		$t_def = custom_field_get_definition( 6 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		echo ' On ';
-		$t_def = custom_field_get_definition( 7 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		echo '; Recorded By ';
-		$t_def = custom_field_get_definition( 4 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		echo ' On ';
-		$t_def = custom_field_get_definition( 5 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
-		$t_def = custom_field_get_definition( 8 ); $note_id = custom_field_get_value( $t_def['id'], $f_bug_id );
-		if ($note_id > 0){
-			echo '; Note ';
-			echo '<a href="'.string_get_bugnote_view_url($f_bug_id, $note_id).'">'.$note_id.'</a>';
-		}
-	}
-	echo '</td></tr>';
-
 	# Attachments
 	if ( $tpl_show_attachments ) {
 		echo '<tr ', helper_alternate_class(), '>';
@@ -447,7 +399,7 @@
 		$attachmentsExpanded = collapse_display('attachments');
 		echo '<a href="" onclick="if (ToggleDiv(\'attachments\')) this.firstChild.src=\'images/minus.png\';
 								else this.firstChild.src=\'images/plus.png\';
-								return false;"><img src="images/' . ($attachmentsExpanded ? 'minus.png' : 'plus.png') . '" alt="-" border="0" /></a> ';
+								return false;"><img src="images/' . ($attachmentsExpanded ? 'minus.png' : 'plus.png') . '" alt="-" border="0" width="14" height="14" /></a> ';
 		echo lang_get( 'attached_files' ), '</td>';
 		echo '<td colspan="3">';
 		echo '<div id="attachments_open" class="' . ($attachmentsExpanded ? '' : 'hidden') . '">';
@@ -758,6 +710,54 @@
 		echo '<td class="center">', $tpl_projection, '</td>';
 		echo '</tr>';
 	}
+
+	# Custom Fields
+	$t_custom_fields_found = false;
+	$t_related_custom_field_ids = custom_field_get_linked_ids( $tpl_bug->project_id );
+
+	$t_feedback = config_get( 'bug_feedback_status' );
+
+	foreach( $t_related_custom_field_ids as $t_id ) {
+		if( $t_id == 1 ||	// Type
+			$t_id == 2 && $tpl_bug->status != $t_feedback || // Info Required
+			$t_id >=3 && $t_id <=8 ) // Authorization related
+			continue;
+		if( !custom_field_has_read_access( $t_id, $f_bug_id ) )
+			continue;
+		# has read access
+
+		$t_custom_fields_found = true;
+		$t_def = custom_field_get_definition( $t_id );
+
+		echo '<tr ', helper_alternate_class(), '>';
+		echo '<td class="category">', string_display( lang_get_defaulted( $t_def['name'] ) ), '</td>';
+		echo '<td colspan="3">';
+		print_custom_field_value( $t_def, $t_id, $f_bug_id );
+		echo '</td></tr>';
+	}
+
+	# Approval
+	echo '<tr ', helper_alternate_class(), '>';
+	echo '<td class="category">', string_display( 'Approval' ), '</td>';
+	echo '<td colspan="3">';
+	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
+	if ( $auth_status != null && $auth_status != '' ){
+		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		echo ' By ';
+		$t_def = custom_field_get_definition( 6 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		echo ' On ';
+		$t_def = custom_field_get_definition( 7 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		echo '; Recorded By ';
+		$t_def = custom_field_get_definition( 4 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		echo ' On ';
+		$t_def = custom_field_get_definition( 5 ); print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
+		$t_def = custom_field_get_definition( 8 ); $note_id = custom_field_get_value( $t_def['id'], $f_bug_id );
+		if ($note_id > 0){
+			echo '; Note ';
+			echo '<a href="'.string_get_bugnote_view_url($f_bug_id, $note_id).'">'.$note_id.'</a>';
+		}
+	}
+	echo '</td></tr>';
 
 	# Tags
 	if ( $tpl_show_tags ) {
