@@ -1663,7 +1663,7 @@ function html_buttons_view_bug_page( $p_bug_id, $p_metadata_section = false ) {
 		# Send Bug Reminder
 		$tpl_bug_reminder_link = 'bug_reminder_page.php?bug_id=' . $p_bug_id;
 		echo '<td class=center">';
-		print_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ), false, 'button' );
+		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
 		echo '</td>';
 	}else{
 		# STICK/UNSTICK button
