@@ -48,7 +48,7 @@
 
 <?php # Send reminder Form BEGIN ?>
 <br />
-<div align="center">
+<div>
 <form method="post" action="bug_reminder.php">
 <?php echo form_security_field( 'bug_reminder' ) ?>
 <input type="hidden" name="bug_id" value="<?php echo $f_bug_id ?>" />
@@ -81,7 +81,7 @@
 		<textarea name="body" cols="65" rows="10"></textarea>
 	</td>
 </tr>
-<tr>
+<tr class="footer">
 	<td class="center" colspan="2">
 		<input type="submit" class="button" value="<?php echo lang_get( 'bug_send_button' ) ?>" />
 	</td>
