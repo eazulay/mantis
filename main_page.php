@@ -40,9 +40,6 @@
 
 	$t_project_id = helper_get_current_project();
 
-	$t_project_path = helper_get_current_project_trace();
-	$t_enable_raise = (count($t_project_path) >= 2);
-
 /*	$t_rss_enabled = config_get( 'rss_enabled' );
 
 	if ( OFF != $t_rss_enabled && news_is_enabled() ) {
@@ -65,10 +62,7 @@
 	<h4>I want to:</h4>
 	<ul>
 		<li>';
-		if ($t_enable_raise)
-			print_link('bug_report_page.php', 'Raise a New Issue');
-		else
-			echo 'Raise a New Issue';
+		print_link('bug_report_page.php', 'Raise a New Issue');
 		echo '</li>
 		<li>Add a Note to: ';
 		jump_issue_form();

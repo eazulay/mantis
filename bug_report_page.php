@@ -39,7 +39,7 @@
 	$f_master_bug_id = gpc_get_int( 'm_id', 0 );
 
 	# this page is invalid for the 'All Project' selection except if this is a clone
-	if ( ( ALL_PROJECTS == helper_get_current_project() ) && ( 0 == $f_master_bug_id ) ) {
+	if ( (ALL_PROJECTS == helper_get_current_project() || count(helper_get_current_project_trace()) < 2) && ( 0 == $f_master_bug_id ) ) {
 		print_header_redirect( 'login_select_proj_page.php?ref=bug_report_page.php' );
 	}
 
@@ -159,7 +159,7 @@
 	print_recently_visited();
 ?>
 <br />
-<div align="center">
+<div>
 <form name="report_bug_form" method="post" <?php if ( $tpl_show_attachments ) { echo 'enctype="multipart/form-data"'; } ?> action="bug_report.php">
 <?php echo form_security_field( 'bug_report' ) ?>
 <table class="width90" cellspacing="0">
