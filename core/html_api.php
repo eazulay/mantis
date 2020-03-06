@@ -1637,6 +1637,11 @@ function html_buttons_view_bug_page( $p_bug_id, $p_metadata_section = false ) {
 	}
 
 	if ($p_metadata_section){
+		# MOVE button
+		echo '<td class="center">';
+		html_button_bug_move( $p_bug_id );
+		echo '</td>';
+
 		# Change status button/dropdown
 		if ( !$t_readonly || config_get( 'allow_reporter_close' ) ) {
 			echo '<td class="center">';
@@ -1687,11 +1692,6 @@ function html_buttons_view_bug_page( $p_bug_id, $p_metadata_section = false ) {
 			html_button_bug_reopen( $p_bug_id );
 			echo '</td>';
 		}
-
-		# MOVE button
-		echo '<td class="center">';
-		html_button_bug_move( $p_bug_id );
-		echo '</td>';
 
 		# DELETE button
 		echo '<td class="center">';
