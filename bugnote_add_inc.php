@@ -48,7 +48,7 @@
 <span style="font-weight:normal;">
 OR,<br>
 <br>
-To email someone who does not receive Mantis Notes, click [Open Email Client] to create an email in your default Email program, with Subject and cc to Mantis pre-populated. Write your content there. A Note will be added automatically when Mantis receives the email.</span>
+To email someone who does not receive Mantis Notifications, click [Open Email Client] to use your default email program. Mantis will add the email as a Note. Subject with Issue # and cc to Mantis are included so the recipient can click [Reply All] to reply to this Issue.</span>
 	</td>
 	<td width="75%">
 		<textarea name="bugnote_text" cols="80" rows="10"></textarea>
@@ -182,5 +182,5 @@ To email someone who does not receive Mantis Notes, click [Open Email Client] to
 ?>
 
 <?php # Bugnote Add Form END ?>
-<?php 
+<?php
 }
