@@ -479,7 +479,7 @@ function html_top_banner() {
 		if( $t_show_url ) {
 			echo '</a>';
 		}
-		echo '<img src="images/Gangsta Tia 120.jpg" />';
+		echo '<img src="images/Gangsta Tia 120.jpg" style="margin-left:20px;" />';
 
 		echo '</div>';
 	}
