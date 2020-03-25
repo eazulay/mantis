@@ -59,6 +59,7 @@
 		echo '</div>';
 
 		echo '<div class="main-page-content">
+	<img src="images/Gangsta Tia.jpg" style="float:right;" />
 	<h4>I want to:</h4>
 	<ul>
 		<li>';
