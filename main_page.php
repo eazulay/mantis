@@ -82,7 +82,6 @@
 			</li>
 		</ul>
 	</ul>
-	<img src="images/Gangsta Tia.jpg"/>
 </div>';
 
 /*		if (access_has_project_level( DEVELOPER )){

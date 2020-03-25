@@ -479,6 +479,8 @@ function html_top_banner() {
 		if( $t_show_url ) {
 			echo '</a>';
 		}
+		echo '<img src="images/Gangsta Tia 120.jpg" />';
+
 		echo '</div>';
 	}
 
