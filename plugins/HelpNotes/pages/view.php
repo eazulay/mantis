@@ -105,6 +105,7 @@ function selectElement(element) {
 		$date_format = substr($date_format, 0, $date_format_break_pos) . '\<\b\r\>' . substr($date_format, $date_format_break_pos);
 	}
 	?>
+<br>
 <table id="buglist" class="width100" cellspacing="1">
 	<tr>
 		<td class="form-title" colspan="6"><span class="floatleft">View Help Notes</span></td>
