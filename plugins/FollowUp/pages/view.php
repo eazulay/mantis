@@ -84,7 +84,7 @@ function selectElement(element) {
     # Follow Up Start
     ?>
 <br>
-<div class="width100">
+<div class="width100" ondblclick='selectElement(this)'>
 <?php
 	foreach( $t_issues as $t_issue ){
         $issue_id = $t_issue->id;
