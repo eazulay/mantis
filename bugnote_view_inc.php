@@ -139,7 +139,7 @@ $num_notes = count( $t_bugnotes );
 		if ( $t_bugnote_modified ) {
 			echo '<span class="small">' . lang_get( 'edited_on') . lang_get( 'word_separator' ) . date( $t_normal_date_format, $t_bugnote->last_modified ) . '</span><br />';
 		}
-		
+
 		# Has Help
 		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)){
 			echo '<input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"> <label for="has_help_'.$t_bugnote->id.'">Help</label> <span id="span_has_help_'.$t_bugnote->id.'" style="font-weight:normal;"></span>';
@@ -179,6 +179,9 @@ $num_notes = count( $t_bugnotes );
 					print_button( 'bugnote_set_view_state.php?private=1&bugnote_id=' . $t_bugnote->id, lang_get( 'make_private' ) );
 				}
 			}
+
+			echo '<input type="button" onclick="replyToNote('.$t_bugnote->id.');" value="Reply" />';
+
 			echo '</div>';
 		}
 		?>
@@ -237,14 +240,14 @@ $num_notes = count( $t_bugnotes );
 </table>
 <?php
 	collapse_end( 'bugnotes' );
-	
+
 	if ( ON == config_get('use_javascript') && (class_exists('HelpNotesPlugin')) ): ?>
 <script type="text/javascript">
 	function hasHelpChanged(cb) {
 		var queryString = 'entrypoint=bugnote_update_hashelp&note_id=' + cb.id.substr(9) + '&has_help=' + (cb.checked ? '1' : '0');
 		AjaxSave(queryString, update_row_class, [cb.id.substr(9), cb.checked ? '1' : '0']);
 	}
-	
+
 	function update_row_class(args) {
 		var bugnoteId = args[0];
 		var hasHelp = args[1];

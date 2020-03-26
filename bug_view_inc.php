@@ -258,6 +258,9 @@
 		fixedTable.style.width = (window.innerWidth - 85) + 'px';
 	}
 	addLoadEvent(setWarningOnNavigate);
+	function replyToNote(noteID){
+		document.getElementById('bugnote_add_open').scrollIntoView();
+	}
 	</script>";
 
 	# Normal page
