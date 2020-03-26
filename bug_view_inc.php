@@ -260,6 +260,10 @@
 	}
 	addLoadEvent(setWarningOnNavigate);
 	function replyToNote(noteID){
+		var noteAddDiv = document.getElementById('bugnote_add_open');
+		var textArea = noteAddDiv.querySelector('textarea');
+		if (textArea.value == '')
+			textArea.value = 'Re ~'+noteID+': ';
 		";
 	if ($tpl_bug->status == $t_feedback){
 		echo "var newStatus =  document.getElementsByName('new_status');
@@ -267,15 +271,12 @@
 			newStatus = newStatus[0];
 			newStatus.value = '".ACKNOWLEDGED."';
 			var statusChangeForm = newStatus.parentElement;
+			statusChangeForm.getElementsByName('text')[0].value = textArea.value;
 			statusChangeForm.submit();
 		}
 	";
 	}else{
-		echo "var noteAddDiv = document.getElementById('bugnote_add_open');
-		noteAddDiv.scrollIntoView();
-		var textArea = noteAddDiv.querySelector('textarea');
-		if (textArea.value == '')
-			textArea.value = 'Re ~'+noteID+': ';
+		echo "noteAddDiv.scrollIntoView();
 		setTimeout(function(){
 			textArea.focus();
 		}, 500);

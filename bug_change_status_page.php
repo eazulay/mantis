@@ -307,7 +307,7 @@ if ( ( $f_new_status >= $t_resolved ) && ( $t_closed > $f_new_status ) ) { ?>
 		<?php echo lang_get( 'add_bugnote_title' ) ?>
 	</td>
 	<td class="center">
-		<textarea name="bugnote_text" cols="80" rows="10"></textarea>
+		<textarea name="bugnote_text" cols="80" rows="10"><?php echo gpc_get_string('text'); ?></textarea>
 	</td>
 </tr>
 <?php if ( access_has_bug_level( config_get( 'private_bugnote_threshold' ), $f_bug_id ) ) { ?>
