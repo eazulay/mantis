@@ -22,7 +22,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="<?php echo string_sanitize_url( helper_mantis_url( $t_css_url ), true ); ?>" />
 	<script type="text/javascript"><!--
-		if(document.layers) {document.write("<style>td{padding:0px;}<\/style>")}
+		if (document.layers){ document.write("<style>td{padding:0px;}<\/style>"); }
 	// --></script>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Pragma" content="no-cache" />
@@ -31,7 +31,8 @@
 	<meta http-equiv="Cache-Directive" content="no-cache" />
 	<meta name="robots" content="noindex,follow" />
 	<link rel="shortcut icon" href="/mantis/images/favicon.ico" type="image/x-icon" />
-	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="/mantis/browser_search_plugin.php?type=text" />	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="https://get-it-write.com/mantis/browser_search_plugin.php?type=id" />	<title>View Help Notes - Get-It-Write Tracking System</title>
+	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="/mantis/browser_search_plugin.php?type=text" />	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="https://get-it-write.com/mantis/browser_search_plugin.php?type=id" />
+	<title>View Help Notes - Get-It-Write Tracking System</title>
 <script type="text/javascript" src="/mantis/javascript/min/common.js"></script>
 <script type="text/javascript">var loading_lang = "Loading...";</script><script type="text/javascript" src="/mantis/javascript/min/ajax.js"></script>
 <script type="text/javascript">

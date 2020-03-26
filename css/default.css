@@ -255,3 +255,5 @@ div.main-page-content h4 {
 div.main-page-content > ul {
 	margin-top: 10px;
 }
+
+div.width100		{ width: 100%; border: solid 1px #AC7F2A; }
