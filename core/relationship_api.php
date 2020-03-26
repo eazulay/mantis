@@ -85,6 +85,13 @@ class BugRelationshipData {
 }
 
 $g_relationships = array();
+$g_relationships[BUG_RELATED] = array(
+	'#forward' => TRUE,
+	'#complementary' => BUG_RELATED,
+	'#description' => 'related_to',
+	'#notify_added' => 'email_notification_title_for_action_related_to_relationship_added',
+	'#notify_deleted' => 'email_notification_title_for_action_related_to_relationship_deleted',
+);
 $g_relationships[BUG_DEPENDANT] = array(
 	'#forward' => TRUE,
 	'#complementary' => BUG_BLOCKS,
@@ -124,13 +131,6 @@ $g_relationships[BUG_HAS_DUPLICATE] = array(
 	'#description' => 'has_duplicate',
 	'#notify_added' => 'email_notification_title_for_action_has_duplicate_relationship_added',
 	'#notify_deleted' => 'email_notification_title_for_action_has_duplicate_relationship_deleted',
-);
-$g_relationships[BUG_RELATED] = array(
-	'#forward' => TRUE,
-	'#complementary' => BUG_RELATED,
-	'#description' => 'related_to',
-	'#notify_added' => 'email_notification_title_for_action_related_to_relationship_added',
-	'#notify_deleted' => 'email_notification_title_for_action_related_to_relationship_deleted',
 );
 
 if( file_exists( dirname( dirname( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'custom_relationships_inc.php' ) ) {
