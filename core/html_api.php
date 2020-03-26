@@ -1394,7 +1394,7 @@ function html_button_bug_change_status( $p_bug_id ) {
 		# CSRF protection not required here - form does not result in modifications
 
 		$t_button_text = lang_get( 'bug_status_to_button' );
-		echo "<input type=\"submit\" class=\"button\" value=\"$t_button_text\" />";
+		echo "<input type=\"submit\" class=\"button\" value=\"$t_button_text\" onclick=\"return submitChangeStatus();\" />";
 
 		echo " <select name=\"new_status\">";
 

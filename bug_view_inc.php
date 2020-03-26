@@ -259,6 +259,16 @@
 		fixedTable.style.width = (window.innerWidth - 85) + 'px';
 	}
 	addLoadEvent(setWarningOnNavigate);
+
+	function submitChangeStatus(){
+		var noteAddDiv = document.getElementById('bugnote_add_open');
+		var textArea = noteAddDiv.querySelector('textarea');
+		var statusChangeForm = newStatus.parentElement;
+		document.getElementsByName('change_status_text')[0].value = textArea.value;
+		statusChangeForm.submit();
+		return false;
+	}
+
 	function replyToNote(noteID){
 		var noteAddDiv = document.getElementById('bugnote_add_open');
 		var textArea = noteAddDiv.querySelector('textarea');
@@ -270,9 +280,7 @@
 		if (newStatus){
 			newStatus = newStatus[0];
 			newStatus.value = '".ACKNOWLEDGED."';
-			var statusChangeForm = newStatus.parentElement;
-			document.getElementsByName('change_status_text')[0].value = textArea.value;
-			statusChangeForm.submit();
+			submitChangeStatus();
 		}
 	";
 	}else{
