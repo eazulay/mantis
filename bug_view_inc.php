@@ -271,7 +271,7 @@
 			newStatus = newStatus[0];
 			newStatus.value = '".ACKNOWLEDGED."';
 			var statusChangeForm = newStatus.parentElement;
-			statusChangeForm.getElementsByName('text')[0].value = textArea.value;
+			document.getElementsByName('change_status_text')[0].value = textArea.value;
 			statusChangeForm.submit();
 		}
 	";
