@@ -192,6 +192,7 @@
 	$tpl_description = $tpl_show_description ? string_display_links( $tpl_bug->description ) : '';
 	$tpl_steps_to_reproduce = $tpl_show_steps_to_reproduce ? string_display_links( $tpl_bug->steps_to_reproduce ) : '';
 	$tpl_additional_information = $tpl_show_additional_information ? string_display_links( $tpl_bug->additional_information ) : '';
+	$t_feedback = config_get( 'bug_feedback_status' );
 
 	$t_all_bugnotes = bugnote_get_all_bugnotes($f_bug_id);
 	$t_bugnote_count = count( $t_all_bugnotes );
@@ -259,7 +260,18 @@
 	}
 	addLoadEvent(setWarningOnNavigate);
 	function replyToNote(noteID){
-		var noteAddDiv = document.getElementById('bugnote_add_open');
+		";
+	if ($tpl_bug->status == $t_feedback){
+		echo "var newStatus =  document.getElementsByName('new_status');
+		if (newStatus){
+			newStatus = newStatus[0];
+			newStatus.value = '".ACKNOWLEDGED."';
+			var statusChangeForm = newStatus.parentElement;
+			statusChangeForm.submit();
+		}
+	";
+	}else{
+		echo "var noteAddDiv = document.getElementById('bugnote_add_open');
 		noteAddDiv.scrollIntoView();
 		var textArea = noteAddDiv.querySelector('textarea');
 		if (textArea.value == '')
@@ -267,7 +279,9 @@
 		setTimeout(function(){
 			textArea.focus();
 		}, 500);
+	";
 	}
+	echo "}
 	</script>";
 
 	# Normal page
@@ -726,8 +740,6 @@
 	# Custom Fields
 	$t_custom_fields_found = false;
 	$t_related_custom_field_ids = custom_field_get_linked_ids( $tpl_bug->project_id );
-
-	$t_feedback = config_get( 'bug_feedback_status' );
 
 	foreach( $t_related_custom_field_ids as $t_id ) {
 		if( $t_id == 1 ||	// Type
