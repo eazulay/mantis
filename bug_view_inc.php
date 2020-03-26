@@ -264,7 +264,9 @@
 		var textArea = noteAddDiv.querySelector('textarea');
 		if (textArea.value == '')
 			textArea.value = 'Re ~'+noteID+': ';
-		textArea.focus();
+		setTimeout(function(){
+			textArea.focus();
+		}, 500);
 	}
 	</script>";
 
