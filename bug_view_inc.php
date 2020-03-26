@@ -259,7 +259,11 @@
 	}
 	addLoadEvent(setWarningOnNavigate);
 	function replyToNote(noteID){
-		document.getElementById('bugnote_add_open').scrollIntoView();
+		var noteAddDiv = document.getElementById('bugnote_add_open');
+		noteAddDiv.scrollIntoView();
+		var textArea = noteAddDiv.querySelector('textarea');
+		if (textArea.value == '')
+			textArea.value = 'Re ~'+noteID+': ';
 	}
 	</script>";
 
