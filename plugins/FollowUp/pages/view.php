@@ -81,15 +81,15 @@ function selectElement(element) {
 	if ( ( $t_filter_position & FILTER_POSITION_TOP ) == FILTER_POSITION_TOP ) {
 		filter_draw_selection_area( $f_page_number );
     }
-    ?>
     # Follow Up Start
-
+    ?>
+<br>
 <div class="width100">
 <?php
 	foreach( $t_issues as $t_issue ){
         $issue_id = $t_issue->id;
         $t_info_required_from_def = custom_field_get_definition( 2 );
-        string_get_bug_view_link( $issue_id );
+        echo string_get_bug_view_link( $issue_id ).' ';
         print_custom_field_value( $t_info_required_from_def, 2, $issue_id );
         echo "<br>\n";
     }
