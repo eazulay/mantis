@@ -263,8 +263,9 @@
 	function submitChangeStatus(){
 		var noteAddDiv = document.getElementById('bugnote_add_open');
 		var textArea = noteAddDiv.querySelector('textarea');
-		var statusChangeForm = newStatus.parentElement;
-		document.getElementsByName('change_status_text')[0].value = textArea.value;
+		var statusText =  document.getElementsByName('change_status_text')[0];
+		var statusChangeForm = statusText.parentElement;
+		statusText.value = textArea.value;
 		statusChangeForm.submit();
 		return false;
 	}
