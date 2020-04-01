@@ -95,9 +95,7 @@
 	if ( ( ON == config_get( 'dhtml_filters' ) ) && ( ON == config_get( 'use_javascript' ) ) ){
 		?>
 		<script type="text/javascript" language="JavaScript">
-		<!--
 			var string_loading = '<?php echo lang_get( 'loading' );?>';
-		// -->
 		</script>
 		<?php
 			html_javascript_link( 'xmlhttprequest.js');
@@ -248,7 +246,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-<!--
 $(document).ready(function() {
     $(".toggle-height").click(function(){
 		var tr = $(this).parent().parent();
@@ -265,7 +262,6 @@ $(document).ready(function() {
 		return false;
 	});
 });
-// -->
 </script>
 
 <?php

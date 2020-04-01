@@ -53,12 +53,12 @@ if ( !config_get('time_tracking_enabled') )
 	$t_bugnote_stats_from_m = gpc_get_int('start_month', $t_bugnote_stats_from_def_m);
 	$t_bugnote_stats_from_y = gpc_get_int('start_year', $t_bugnote_stats_from_def_y);
 
-	$t_bugnote_stats_to_def = $t_today; 
-	$t_bugnote_stats_to_def_ar = explode ( ":", $t_bugnote_stats_to_def ); 
+	$t_bugnote_stats_to_def = $t_today;
+	$t_bugnote_stats_to_def_ar = explode ( ":", $t_bugnote_stats_to_def );
 	$t_bugnote_stats_to_def_d = $t_bugnote_stats_to_def_ar[0];
 	$t_bugnote_stats_to_def_m = $t_bugnote_stats_to_def_ar[1];
 	$t_bugnote_stats_to_def_y = $t_bugnote_stats_to_def_ar[2];
-	
+
 	$t_bugnote_stats_to_d = gpc_get_int('end_day', $t_bugnote_stats_to_def_d);
 	$t_bugnote_stats_to_m = gpc_get_int('end_month', $t_bugnote_stats_to_def_m);
 	$t_bugnote_stats_to_y = gpc_get_int('end_year', $t_bugnote_stats_to_def_y);
@@ -89,14 +89,12 @@ if ( !config_get('time_tracking_enabled') )
 <?php # CSRF protection not required here - form does not result in modifications ?>
 <input type="hidden" name="id" value="<?php echo isset( $f_bug_id ) ? $f_bug_id : 0 ?>" />
 <table border="0" class="width100" cellspacing="0">
-<tr>
-	<td class="form-title" colspan="4">
-<?php
-		collapse_icon( 'bugnotestats' );
-?>
-		<?php echo lang_get( 'time_tracking' ) ?>
-	</td>
-</tr>
+	<tr>
+		<td class="form-title" colspan="4">
+			<?php collapse_icon( 'bugnotestats' ); ?>
+			<?php echo lang_get( 'time_tracking' ) ?>
+		</td>
+	</tr>
 <tr class="row-2">
         <td class="category" width="25%">
                 <?php
@@ -105,42 +103,40 @@ if ( !config_get('time_tracking_enabled') )
 		$t_filter['start_day'] = $t_bugnote_stats_from_d;
 		$t_filter['start_month'] = $t_bugnote_stats_from_m;
 		$t_filter['start_year'] = $t_bugnote_stats_from_y;
-				
+
 		$t_filter['end_day'] = $t_bugnote_stats_to_d;
 		$t_filter['end_month'] = $t_bugnote_stats_to_m;
 		$t_filter['end_year'] = $t_bugnote_stats_to_y;
-				
+
 		print_filter_do_filter_by_date(true);
 		?>
         </td>
-</tr>
+	</tr>
 <?php if ( $t_cost_col ) { ?>
-<tr class="row-1">
-	<td>
-		<?php echo plugin_lang_get( 'cost_lbl' ) ?>:
-		<input type="text" name="bugnote_cost" value="<?php echo $f_bugnote_cost ?>" /><small><?php echo plugin_lang_get('roundoff_hint');?></small>
-	</td>
-</tr>
+	<tr class="row-1">
+		<td>
+			<?php echo plugin_lang_get( 'cost_lbl' ) ?>:
+			<input type="text" name="bugnote_cost" value="<?php echo $f_bugnote_cost ?>" /><small><?php echo plugin_lang_get('roundoff_hint');?></small>
+		</td>
+	</tr>
 <?php } ?>
 <?php if ( $t_price_chk ) { ?>
-<tr class="row-1">
-	<td>
-		<?php echo plugin_lang_get( 'price_lbl' ) ?>:
-		<input type="checkbox" name="bugnote_price_check" <?php echo ($f_bugnote_price)? 'checked = "checked"': '';?> />
-	</td>
-</tr>
+	<tr class="row-1">
+		<td>
+			<?php echo plugin_lang_get( 'price_lbl' ) ?>:
+			<input type="checkbox" name="bugnote_price_check" <?php echo ($f_bugnote_price)? 'checked = "checked"': '';?> />
+		</td>
+	</tr>
 <?php } ?>
-<tr>
+	<tr>
         <td class="center" colspan="2">
                 <input type="submit" class="button" name="get_bugnote_stats_button" value="<?php echo lang_get( 'time_tracking_get_info_button' ) ?>" />
         </td>
-</tr>
-
+	</tr>
 </table>
 </form>
 <?php
 if ( !is_blank( $f_get_bugnote_stats_button ) ) {
-	
 	if($t_price_col && ALL_PROJECTS == $f_project_id && !$f_bugnote_cost){?>
 			<table border="0" class="width100" cellspacing="0">
 			<tr class="row-1">
@@ -148,7 +144,7 @@ if ( !is_blank( $f_get_bugnote_stats_button ) ) {
 			</tr>
 			</table>
 <?php }else{
-	
+
 	$t_from = "$t_bugnote_stats_from_y-$t_bugnote_stats_from_m-$t_bugnote_stats_from_d";
 	$t_to = "$t_bugnote_stats_to_y-$t_bugnote_stats_to_m-$t_bugnote_stats_to_d";
 	$t_bugnote_stats = bugnote_stats_get_project_array( $f_project_id, $t_from, $t_to, $f_bugnote_cost, $f_bugnote_price );
@@ -162,24 +158,24 @@ if ( !is_blank( $f_get_bugnote_stats_button ) ) {
 <br />
 <table border="0" class="width100" cellspacing="0">
 <tr class="row-category-history">
-	<td class="small-caption">
+	<td>
 		<?php echo lang_get( 'username' ) ?>
 	</td>
-	<td class="small-caption">
+	<td>
 		<?php echo lang_get( 'time_tracking' ) ?>
 	</td>
 <?php if ( $t_price_col) { ?>
-	<td class="small-caption">
+	<td>
 		<?php echo plugin_lang_get( 'project_hour_rate_lbl' ) ?>
 	</td>
 <?php } ?>
-<?php if ($t_cost_col || $t_price_col){ 
+<?php if ($t_cost_col || $t_price_col){
 if ( $t_cost_col) { ?>
-	<td class="small-caption">
+	<td>
 		<?php echo plugin_lang_get( 'ttl_amt_lbl' ) ?>
 	</td>
 <?php }else{ ?>
-    <td class="small-caption">
+    <td>
 		<?php echo plugin_lang_get( 'ttl_amt_lbl' ) ?>
 	</td>
 <?php }}else{?>
@@ -208,23 +204,23 @@ if ( $t_cost_col) { ?>
 		$t_sum_amt += ($t_item['sum_time_tracking']* $t_item['user_price'])/60;
 ?>
 <tr <?php echo helper_alternate_class() ?>>
-	<td class="small-caption">
+	<td>
 		<?php echo $t_item['username'] ?>
 	</td>
-	<td class="small-caption">
+	<td>
 		<?php echo db_minutes_to_hhmm($t_item['sum_time_tracking']); ?>
 	</td>
 <?php if ($t_price_col) {
 	if($t_cost_col){?>
 	<td>
 		<?php echo string_attribute( number_format( $f_bugnote_cost, 2 ) ); ?>
-	</td> 
+	</td>
 <?php }else{?>
 	<td>
 		<?php echo string_attribute( number_format( $t_item['user_price'], 2 ) ); ?>
 	</td>
 <?php }} ?>
-<?php if ($t_cost_col || $t_price_col){  
+<?php if ($t_cost_col || $t_price_col){
     if ($t_cost_col) { ?>
 	<td>
 		<?php echo string_attribute( number_format( $t_item['cost'], 2 ) ); ?>
@@ -240,10 +236,10 @@ if ( $t_cost_col) { ?>
 <?php $t_i++;} # end for loop
 ?>
 <tr <?php echo helper_alternate_class() ?>>
-	<td class="small-caption">
+	<td>
 		<?php echo plugin_lang_get( 'ttls_lbl' ); ?>
 	</td>
-	<td class="small-caption">
+	<td>
 		<?php echo db_minutes_to_hhmm( $t_sum_in_minutes ); ?>
 	</td>
 	<?php if ($t_price_col) {?>
@@ -268,90 +264,89 @@ if ( $t_cost_col) { ?>
 <br />
 
 <table border="0" class="width100" cellspacing="0">
-<tr class="row-category-history">
-        <td class="small-caption">
-                <?php echo lang_get( 'username' ) ?>
+	<tr class="row-category-history">
+        <td>
+            <?php echo lang_get( 'username' ) ?>
         </td>
-        <td class="small-caption">
-                <?php echo lang_get( 'time_tracking' ) ?>
+        <td>
+            <?php echo lang_get( 'time_tracking' ) ?>
         </td>
 <?php if ( $t_price_col) { ?>
-        <td class="small-caption">
-                <?php echo plugin_lang_get( 'project_hour_rate_lbl' ) ?>
+        <td>
+            <?php echo plugin_lang_get( 'project_hour_rate_lbl' ) ?>
         </td>
 <?php } ?>
-<?php if ($t_cost_col || $t_price_col) { 
+<?php if ($t_cost_col || $t_price_col) {
     if ( $t_cost_col) { ?>
-        <td class="small-caption">
-                <?php echo plugin_lang_get( 'ttl_amt_lbl' ) ?>
+        <td>
+            <?php echo plugin_lang_get( 'ttl_amt_lbl' ) ?>
         </td>
 <?php }else{ ?>
-       <td class="small-caption">
-                <?php echo plugin_lang_get( 'ttl_amt_lbl' ) ?>
+        <td>
+            <?php echo plugin_lang_get( 'ttl_amt_lbl' ) ?>
         </td>
 <?php }}else{ ?>
-	<td></td>
+		<td></td>
 	<?php }?>
-</tr>
-<?php 
-    $t_j = 0;    
+	</tr>
+<?php
+    $t_j = 0;
     foreach ( $t_user_summary as $t_username => $t_total_time ) {
 ?>
-<tr <?php echo helper_alternate_class() ?>>
-        <td class="small-caption">
-                <?php echo $t_username; ?>
+	<tr <?php echo helper_alternate_class() ?>>
+        <td>
+            <?php echo $t_username; ?>
         </td>
-        <td class="small-caption">
-                <?php echo db_minutes_to_hhmm($t_total_time); ?>
+        <td>
+            <?php echo db_minutes_to_hhmm($t_total_time); ?>
         </td>
 <?php if ($t_price_col) {
 	  if ($t_cost_col){?>
 	    <td>
-                <?php echo string_attribute( number_format( $f_bugnote_cost, 2 ) ); ?>
+            <?php echo string_attribute( number_format( $f_bugnote_cost, 2 ) ); ?>
         </td>
 <?php }else{?>
         <td>
-                <?php echo string_attribute( number_format( $t_price_summary[$t_username], 2 ) ); ?>
+            <?php echo string_attribute( number_format( $t_price_summary[$t_username], 2 ) ); ?>
         </td>
 <?php }} ?>
-<?php if ($t_cost_col || $t_price_col) { 
+<?php if ($t_cost_col || $t_price_col) {
     if ($t_cost_col) { ?>
         <td>
-                <?php echo string_attribute( number_format( $t_total_time * $f_bugnote_cost / 60, 2 ) ); ?>
+            <?php echo string_attribute( number_format( $t_total_time * $f_bugnote_cost / 60, 2 ) ); ?>
         </td>
 <?php }else{ ?>
         <td>
-                <?php echo string_attribute( number_format( ($t_price_summary[$t_username] * $t_total_time)/60, 2 ) ); ?>
+            <?php echo string_attribute( number_format( ($t_price_summary[$t_username] * $t_total_time)/60, 2 ) ); ?>
         </td>
 <?php }}else {?>
-<td></td>
+		<td></td>
 <?php }?>
 </tr>
 <?php $t_j++;} ?>
-<tr <?php echo helper_alternate_class() ?>>
-        <td class="small-caption">
-                <?php echo plugin_lang_get( 'ttls_lbl' ); ?>
+	<tr <?php echo helper_alternate_class() ?>>
+        <td>
+            <?php echo plugin_lang_get( 'ttls_lbl' ); ?>
         </td>
-        <td class="small-caption">
-                <?php echo db_minutes_to_hhmm( $t_sum_in_minutes ); ?>
+        <td>
+            <?php echo db_minutes_to_hhmm( $t_sum_in_minutes ); ?>
         </td>
 <?php if ($t_price_col) {?>
-	
         <td></td>
 <?php } ?>
-<?php if ($t_cost_col || $t_price_col) { 
+<?php if ($t_cost_col || $t_price_col) {
     if ($t_cost_col) { ?>
         <td>
-                <?php echo string_attribute( number_format( $t_sum_in_minutes * $f_bugnote_cost / 60, 2 ) ); ?>
+            <?php echo string_attribute( number_format( $t_sum_in_minutes * $f_bugnote_cost / 60, 2 ) ); ?>
         </td>
 <?php }else{ ?>
         <td>
-                <?php echo string_attribute( number_format( $t_sum_amt, 2 ) ); ?>
+            <?php echo string_attribute( number_format( $t_sum_amt, 2 ) ); ?>
         </td>
 <?php }}else{ ?>
-<td></td>
+		<td></td>
 <?php }?>
-</tr>
+	</tr>
 </table>
 <form method="post" action="<?php echo plugin_page( 'billing_csv_export.php' ); ?>">
 <input type="hidden" name="d_from" value="<?php print $t_from;?>">
@@ -361,21 +356,21 @@ if ( $t_cost_col) { ?>
 <input type="hidden" name="bugnote_price" value="<?php print $t_price_col;?>">
 
 <table>
-<tr>
-    <td><input type="submit" class="button" name="billing_csv_export" value="<?php echo lang_get( 'csv_export' ) ?>" /></td>
-</tr>
+	<tr>
+		<td><input type="submit" class="button" name="billing_csv_export" value="<?php echo lang_get( 'csv_export' ) ?>" /></td>
+	</tr>
 </table>
 </form>
 <?php }} # end if
 	collapse_closed( 'bugnotestats' );
 ?>
 <table class="width100" cellspacing="0">
-<tr>
-	<td class="form-title" colspan="4">
-		<?php collapse_icon( 'bugnotestats' );
-		echo lang_get( 'time_tracking' ) ?>
-	</td>
-</tr>
+	<tr>
+		<td class="form-title" colspan="4">
+			<?php collapse_icon( 'bugnotestats' );
+			echo lang_get( 'time_tracking' ) ?>
+		</td>
+	</tr>
 </table>
 <?php
 	collapse_end( 'bugnotestats' );
