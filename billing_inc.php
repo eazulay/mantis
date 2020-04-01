@@ -188,14 +188,14 @@
 <br />
 <table border="0" class="width100" cellspacing="0">
 	<tr class="row-category-history">
-		<td class="small-caption">
+		<td>
 			<?php echo lang_get( $t_name_field ) ?>
 		</td>
-		<td class="small-caption">
+		<td>
 			<?php echo lang_get( 'time_tracking' ) ?>
 		</td>
 <?php		if ( $t_cost_col) { ?>
-		<td class="small-caption">
+		<td>
 			<?php echo lang_get( 'time_tracking_cost' ) ?>
 		</td>
 <?php	 	} ?>
@@ -233,10 +233,10 @@
 			if ($f_get_bug_stats_button){
 ?>
 	<tr <?php echo helper_alternate_class() ?>>
-		<td class="small-caption">
+		<td>
 			<?php echo $t_item[$t_name_field] ?>
 		</td>
-		<td class="small-caption">
+		<td>
 			<?php echo db_minutes_to_hhmm( $t_item['sum_time_tracking'] ); ?>
 		</td>
 <?php			if ($t_cost_col) { ?>
@@ -257,10 +257,10 @@
 		else:
 ?>
 	<tr <?php echo helper_alternate_class() ?>>
-		<td class="small-caption">
+		<td>
 			<?php echo lang_get( 'total_time' ); ?>
 		</td>
-		<td class="small-caption">
+		<td>
 			<?php echo db_minutes_to_hhmm( $t_sum_in_minutes ); ?>
 		</td>
 <?php		if ( $t_cost_col ) { ?>
@@ -276,14 +276,14 @@
 
 <table border="0" class="width100" cellspacing="0">
 	<tr class="row-category-history">
-		<td class="small-caption">
+		<td>
 			<?php echo lang_get( $t_name_field ) ?>
 		</td>
-		<td class="small-caption">
+		<td>
 			<?php echo lang_get( 'time_tracking' ) ?>
 		</td>
 <?php		if ( $t_cost_col ) { ?>
-		<td class="small-caption">
+		<td>
 			<?php echo lang_get( 'time_tracking_cost' ) ?>
 		</td>
 <?php		} ?>
@@ -292,10 +292,10 @@
 <?php		foreach ( $t_user_summary as $t_username => $t_total_time ) {
 ?>
 	<tr <?php echo helper_alternate_class() ?>>
-		<td class="small-caption">
+		<td>
 			<?php echo $t_username; ?>
 		</td>
-		<td class="small-caption">
+		<td>
 			<?php echo db_minutes_to_hhmm($t_total_time); ?>
 		</td>
 <?php 			if ( $t_cost_col ) { ?>
@@ -307,10 +307,10 @@
 <?php 		} ?>
 
 	<tr <?php echo helper_alternate_class() ?>>
-		<td class="small-caption">
+		<td>
 			<?php echo lang_get( 'total_time' ); ?>
 		</td>
-		<td class="small-caption">
+		<td>
 			<?php echo db_minutes_to_hhmm( $t_sum_in_minutes ); ?>
 		</td>
 <?php		if ( $t_cost_col ) { ?>
