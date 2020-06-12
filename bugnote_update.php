@@ -36,9 +36,9 @@
 	$f_bugnote_id	  = gpc_get_int( 'bugnote_id' );
 	$f_bugnote_text	  = gpc_get_string( 'bugnote_text', '' );
 	$f_time_tracking  = gpc_get_string( 'time_tracking', '0:00' );
-	$f_move_to_bug_id = 0;									/* Added by Eyal Azulay */
-	if (isset($_POST['move_to_bug_id']))					/* Added by Eyal Azulay */
-		$f_move_to_bug_id = gpc_get_int( 'move_to_bug_id' );	/* Added by Eyal Azulay */
+	$f_move_to_bug_id = 0;
+	if (isset($_POST['move_to_bug_id']))
+		$f_move_to_bug_id = gpc_get_int( 'move_to_bug_id' );
 	if (isset($_POST['record_transfer']))
 		$record_move = gpc_get_bool( 'record_transfer' );
 
@@ -61,12 +61,13 @@
 
 	bugnote_set_text( $f_bugnote_id, $f_bugnote_text );
 	bugnote_set_time_tracking( $f_bugnote_id, $f_time_tracking );
-	if ($f_move_to_bug_id > 0)									/* Added by Eyal Azulay */
-		bugnote_set_bug_id( $f_bugnote_id, $f_move_to_bug_id, $record_move );	/* Added by Eyal Azulay */
+	if ($f_move_to_bug_id > 0)
+		bugnote_set_bug_id( $f_bugnote_id, $f_move_to_bug_id, $record_move );
 
 	# Plugin integration
 	event_signal( 'EVENT_BUGNOTE_EDIT', array( $t_bug_id, $f_bugnote_id ) );
 
 	form_security_purge( 'bugnote_update' );
 
-	print_successful_redirect( string_get_bug_view_url( $t_bug_id ) . '#c' . $f_bugnote_id );
+    print_successful_redirect(string_get_bug_view_url($t_bug_id)
+        . ($f_move_to_bug_id > 0 && $f_move_to_bug_id != $t_bug_id ? '#bugnotes' : '#c' . $f_bugnote_id));
