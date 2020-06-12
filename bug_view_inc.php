@@ -263,8 +263,11 @@
 
     addLoadEvent(adjustScrollTop);
     function adjustScrollTop(){
-        if (window.location.href.includes('#'))
-            window.scrollTo(0, window.pageYOffset - 44);
+        if (window.location.href.includes('#')){
+            setTimeout(function(){
+                window.scrollTo(0, window.pageYOffset - 44);
+            }, 1);
+        }
     }
 
 	function submitChangeStatus(){
