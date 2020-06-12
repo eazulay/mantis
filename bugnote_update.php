@@ -69,4 +69,4 @@
 
 	form_security_purge( 'bugnote_update' );
 
-	print_successful_redirect( string_get_bug_view_url( $t_bug_id ) . '#bugnotes' );
+	print_successful_redirect( string_get_bug_view_url( $t_bug_id ) . '#c' . $f_bugnote_id );
