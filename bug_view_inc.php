@@ -239,7 +239,7 @@
     addLoadEvent(adjustScrollTop);
     function adjustScrollTop(){
         if (window.location.href.includes('#'))
-            window.scrollTop = window.pageYOffset - 44;
+            window.scrollTo(0, window.pageYOffset - 44);
     }
 
 	var fixedTable = document.getElementById('fixed_scroll');
