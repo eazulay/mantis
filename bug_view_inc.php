@@ -236,12 +236,6 @@
 	html_javascript_link( 'addLoadEvent.js' );
 	html_javascript_link( 'form_warnings.js' );
     echo "<script type='text/javascript'>
-    addLoadEvent(adjustScrollTop);
-    function adjustScrollTop(){
-        if (window.location.href.includes('#'))
-            window.scrollTo(0, window.pageYOffset - 44);
-    }
-
 	var fixedTable = document.getElementById('fixed_scroll');
 	window.onscroll = scroll;
 	function scroll(){
@@ -266,6 +260,12 @@
 		fixedTable.style.width = (window.innerWidth - 85) + 'px';
 	}
 	addLoadEvent(setWarningOnNavigate);
+
+    addLoadEvent(adjustScrollTop);
+    function adjustScrollTop(){
+        if (window.location.href.includes('#'))
+            window.scrollTo(0, window.pageYOffset - 44);
+    }
 
 	function submitChangeStatus(){
 		var noteAddDiv = document.getElementById('bugnote_add_open');
