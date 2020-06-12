@@ -235,7 +235,13 @@
 	echo '</div>';
 	html_javascript_link( 'addLoadEvent.js' );
 	html_javascript_link( 'form_warnings.js' );
-	echo "<script type='text/javascript'>
+    echo "<script type='text/javascript'>
+    addLoadEvent(adjustScrollTop);
+    function adjustScrollTop(){
+        if (window.location.href.includes('#'))
+            window.scrollTop = window.pageYOffset - 44;
+    }
+
 	var fixedTable = document.getElementById('fixed_scroll');
 	window.onscroll = scroll;
 	function scroll(){
@@ -252,8 +258,9 @@
 			if (!fixedTable.classList.contains('transparent') && !fixedTable.classList.contains('hidden-first'))
 				fixedTable.classList.add('transparent');
 		}
-	}
-	window.onload = adjustFixedWidth;
+    }
+
+	addLoadEvent(adjustFixedWidth);
 	window.onresize = adjustFixedWidth;
 	function adjustFixedWidth(){
 		fixedTable.style.width = (window.innerWidth - 85) + 'px';
