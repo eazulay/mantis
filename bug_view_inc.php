@@ -265,8 +265,8 @@
     function adjustScrollTop(){
         if (window.location.href.includes('#')){
             setTimeout(function(){
-                window.scrollTo(0, window.pageYOffset - 44);
-            }, 1);
+                window.scrollTo(0, window.pageYOffset - 100);
+            }, 10);
         }
     }
 
