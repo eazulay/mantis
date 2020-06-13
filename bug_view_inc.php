@@ -267,7 +267,9 @@
         if (window.location.href.includes('#')){
             setTimeout(function(){
                 window.scrollTo(0, window.pageYOffset - 44);
-                html.style.scrollBehavior = 'smooth';
+                setTimeout(function(){
+                    html.style.scrollBehavior = 'smooth';
+                }, 10);
             }, 100);
         }
     }
