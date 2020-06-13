@@ -270,7 +270,7 @@
                 setTimeout(function(){
                     html.style.scrollBehavior = 'smooth';
                 }, 10);
-            }, 100);
+            }, 50);
         }
     }
 
