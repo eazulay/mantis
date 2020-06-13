@@ -263,9 +263,11 @@
 
     addLoadEvent(adjustScrollTop);
     function adjustScrollTop(){
+        var html = document.querySelector('html');
         if (window.location.href.includes('#')){
             setTimeout(function(){
                 window.scrollTo(0, window.pageYOffset - 44);
+                html.style.scrollBehavior = 'smooth';
             }, 100);
         }
     }
