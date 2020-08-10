@@ -54,7 +54,8 @@ $g_preview_attachments_inline_max_size = 256 * 1024;
 $g_allowed_files		= '';		# extensions comma separated, e.g. 'php,html,java,exe,pl'
 $g_disallowed_files		= 'php,php3,phtml,html,class,java,exe,pl,erp';		# extensions comma separated
 $g_allow_delete_own_attachments = ON;
-$g_preview_max_height	= 350;
+$g_preview_max_height	= 500;
+$g_preview_max_width    = '100%';
 
 # --- Branding ---
 $g_window_title			= 'Get-It-Write Tracking System';

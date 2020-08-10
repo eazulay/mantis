@@ -1747,16 +1747,20 @@ document.getElementById( span ).style.display = displayType;
 
 			if ( $t_attachment['can_download'] && $t_attachment['preview'] && $t_attachment['type'] == 'image' ) {
 				$t_preview_style = 'border: 0;';
-				$t_max_width = config_get( 'preview_max_width' );
-				if( $t_max_width > 0 ) {
-					$t_preview_style .= ' max-width:' . $t_max_width . 'px;';
-				}
-
+                $t_max_width = config_get( 'preview_max_width' );
+                if (isset($t_max_width)){
+                    $t_preview_style .= ' max-width:' . $t_max_width;
+                    if (is_numeric($t_max_width))
+                        $t_preview_style .= 'px';
+                    $t_preview_style .= ';';
+                }
 				$t_max_height = config_get( 'preview_max_height' );
-				if( $t_max_height > 0 ) {
-					$t_preview_style .= ' max-height:' . $t_max_height . 'px;';
+				if (isset($t_max_height)){
+                    $t_preview_style .= ' max-height:' . $t_max_height;
+                    if (is_numeric($t_max_height))
+                        $t_preview_style .= 'px';
+                    $t_preview_style .= ';';
 				}
-
 				$t_preview_style = 'style="' . $t_preview_style . '"';
 				$t_title = file_get_field( $t_attachment['id'], 'title' );
 
