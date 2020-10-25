@@ -1960,7 +1960,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
             if (strpos($term, "@") !== false){
                 if ($first_char == '')
                     $first_char = '+';
-                $term = str_replace('@', ' +', $term);
+                $term = str_replace('@', ' ' . $first_char, $term);
             }
             $last_char = '';
             if (strpos(substr($term, -1), "*") !== false){
