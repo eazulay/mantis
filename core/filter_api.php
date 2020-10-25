@@ -3454,7 +3454,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 					collapse_icon( 'filter' );
 
 	echo '&nbsp;&nbsp;&nbsp;&nbsp;Keyword&nbsp;';
-	echo '<input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" value="', string_html_specialchars( $t_filter[FILTER_PROPERTY_FREE_TEXT] ), '" />';
+	echo '<input type="text" size="30" name="', FILTER_PROPERTY_FREE_TEXT, '" value="', string_html_specialchars( $t_filter[FILTER_PROPERTY_FREE_TEXT] ), '" />';
 	?>
 			</td>
 			<td class="center">
