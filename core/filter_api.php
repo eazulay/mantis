@@ -1944,7 +1944,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
         $t_first = true;
         $prev_term = '';
 		foreach($t_matches as $t_match) {
-            //$t_search_terms[ trim( $t_match[1], "\'\"" ) ] = ( $t_match[0][0] == '-' );
+            /* $t_search_terms[ trim( $t_match[1], "\'\"" ) ] = ( $t_match[0][0] == '-' ); */
             $term = $t_match[1];
             $first_char = '';
             if (strpos("+-~<>", $term[0]) !== false){
@@ -1952,16 +1952,18 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
                 $term = substr($term, 1);
             }elseif (strpos("@", $term[0]) !== false){
                 if (!is_numeric(substr($term, 1)) || $prev_term == '' || $prev_term[0] != '"'){
+                    $first_char = $term[0];
                     $term = substr($term, 1);
                 }
+                $term = str_replace('@', ' ', $term);
             }
-            $term = trim($term, "+-~<>@");
+            $term = str_replace("+-~<>", "", $term);
             $last_char = '';
             if (strpos("*", substr($term, -1)) !== false){
                 $last_char = substr($term, -1);
                 $term = substr($term, 0, -1);
             }
-            $term = trim($term, "*");
+            $term = str_replace("*", "", $term);
             if (!$t_first)
                 $keyword_search_string .= ' ';
             $keyword_search_string .= $first_char . $term . $last_char;
@@ -2062,7 +2064,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	$t_order_string = " ORDER BY " . implode( ', ', $t_query_clauses['order'] );
 	$t_join_string = count( $t_query_clauses['join'] ) > 0 ? implode( ' ', $t_query_clauses['join'] ) : '';
 	$t_where_string = count( $t_query_clauses['where'] ) > 0 ? 'WHERE ' . implode( ' AND ', $t_query_clauses['where'] ) : '';
-	echo "$t_select_string $t_from_string $t_join_string $t_where_string $t_order_string";
+echo "$t_select_string $t_from_string $t_join_string $t_where_string $t_order_string";
 	$t_result = db_query_bound( "$t_select_string $t_from_string $t_join_string $t_where_string $t_order_string", $t_query_clauses['where_values'], $p_per_page, $t_offset );
 	$t_row_count = db_num_rows( $t_result );
 
