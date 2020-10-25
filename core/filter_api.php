@@ -1929,7 +1929,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	if( !is_blank( $t_filter[FILTER_PROPERTY_FREE_TEXT] ) ) {
 
         # Remove single quotes
-        $keyword_search_string = str_replace("'", "", $t_filter[FILTER_PROPERTY_FREE_TEXT]);
+        $keyword_search_string = str_replace("'", "\\'", $t_filter[FILTER_PROPERTY_FREE_TEXT]);
 /*
 		# break up search terms by spacing or quoting
         preg_match_all( "/-?([^'\"\s]+|\"[^\"]+\"|'[^']+')/", $t_filter[FILTER_PROPERTY_FREE_TEXT], $t_matches, PREG_SET_ORDER );
@@ -1947,7 +1947,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
             /* $t_search_terms[ trim( $t_match[1], "\'\"" ) ] = ( $t_match[0][0] == '-' ); */
             $term = $t_match[1];
             $first_char = '';
-            if (strpos("+-~<>", $term[0]) !== false){
+            if (strpos('+-~<>"', $term[0]) !== false){
                 $first_char = $term[0];
                 $term = substr($term, 1);
             }elseif ("@" == $term[0]){
@@ -1957,17 +1957,17 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
                 }
             }
             $term = trim($term, '+-~<>');
-            if (strpos($term, "@") !== false){
-                if ($first_char == '')
-                    $first_char = '+';
-                $term = str_replace('@', ' ' . $first_char, $term);
-            }
             $last_char = '';
-            if (strpos(substr($term, -1), "*") !== false){
+            if (strpos('*"', substr($term, -1)) !== false){
                 $last_char = substr($term, -1);
                 $term = substr($term, 0, -1);
             }
             $term = str_replace("*", "", $term);
+            if (strpos($term, "@") !== false && $first_char != '"' && $last_char != '"'){
+                if ($first_char == '')
+                    $first_char = '+';
+                $term = str_replace('@', ' ' . $first_char, $term);
+            }
             if (!$t_first)
                 $keyword_search_string .= ' ';
             $keyword_search_string .= $first_char . $term . $last_char;
