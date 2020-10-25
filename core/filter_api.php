@@ -1928,6 +1928,18 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	# Text search
 	if( !is_blank( $t_filter[FILTER_PROPERTY_FREE_TEXT] ) ) {
 
+        # Replace non-word characters with spaces
+        $keyword_search_string = preg_replace('/[^\p{L}\p{N}_]+/u', ' ', $t_filter[FILTER_PROPERTY_FREE_TEXT]);
+
+        $t_textsearch_where_clause = "( MATCH(" . $t_bug_text_table . "description," .
+                                                  $t_bug_text_table . "steps_to_reproduce," .
+                                                  $t_bug_text_table . "additional_information) " .
+            "AGAINST (\"" . $keyword_search_string . "\" IN NATURAL LANGUAGE MODE)" .
+            "OR MATCH(" . $t_bugnote_text_table . "note) ".
+            "AGAINST (\"" . $keyword_search_string . "\" IN NATURAL LANGUAGE MODE) )";
+
+        $t_first = false;
+/*
 		# break up search terms by spacing or quoting
 		preg_match_all( "/-?([^'\"\s]+|\"[^\"]+\"|'[^']+')/", $t_filter[FILTER_PROPERTY_FREE_TEXT], $t_matches, PREG_SET_ORDER );
 
@@ -1974,7 +1986,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 			$t_first = false;
 		}
 		$t_textsearch_where_clause .= ' )';
-
+*/
 		# add text query elements to arrays
 		if ( !$t_first ) {
 			$t_from_clauses[] = "$t_bug_text_table";
