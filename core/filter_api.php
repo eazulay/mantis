@@ -1950,20 +1950,20 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
             if (strpos("+-~<>", $term[0]) !== false){
                 $first_char = $term[0];
                 $term = substr($term, 1);
-            }elseif (strpos("@", $term[0]) !== false){
+            }elseif ("@" == $term){
                 if (!is_numeric(substr($term, 1)) || $prev_term == '' || $prev_term[0] != '"'){
                     $first_char = $term[0];
                     $term = substr($term, 1);
                 }
             }
             $term = str_replace(array('+','-','~','<','>'), "", $term);
-            if (strpos("@", $term) !== false){
+            if (strpos($term, "@") !== false){
                 if ($first_char == '')
                     $first_char = '+';
                 $term = str_replace('@', ' +', $term);
             }
             $last_char = '';
-            if (strpos("*", substr($term, -1)) !== false){
+            if (strpos(substr($term, -1), "*") !== false){
                 $last_char = substr($term, -1);
                 $term = substr($term, 0, -1);
             }
