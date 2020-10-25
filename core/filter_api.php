@@ -2062,7 +2062,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	$t_order_string = " ORDER BY " . implode( ', ', $t_query_clauses['order'] );
 	$t_join_string = count( $t_query_clauses['join'] ) > 0 ? implode( ' ', $t_query_clauses['join'] ) : '';
 	$t_where_string = count( $t_query_clauses['where'] ) > 0 ? 'WHERE ' . implode( ' AND ', $t_query_clauses['where'] ) : '';
-//	echo "$t_select_string $t_from_string $t_join_string $t_where_string $t_order_string";
+	echo "$t_select_string $t_from_string $t_join_string $t_where_string $t_order_string";
 	$t_result = db_query_bound( "$t_select_string $t_from_string $t_join_string $t_where_string $t_order_string", $t_query_clauses['where_values'], $p_per_page, $t_offset );
 	$t_row_count = db_num_rows( $t_result );
 
