@@ -502,7 +502,7 @@ if ( $t_column > 0 ) {
 <tr class="row-1">
 	<!-- Search field -->
 	<td colspan="<?php echo ( 1 * $t_custom_cols ); ?>">
-		<input type="text" size="16" name="search" value="<?php echo string_html_specialchars( $t_filter['search'] ); ?>" />
+		<input type="text" size="30" name="search" value="<?php echo string_html_specialchars( $t_filter['search'] ); ?>" />
 	</td>
 
 	<td class="small-caption" colspan="<?php echo ( ( $t_filter_cols - 2 ) * $t_custom_cols ); ?>"><?php if ( $t_show_tags ) { print_filter_tag_string(); } ?></td>
