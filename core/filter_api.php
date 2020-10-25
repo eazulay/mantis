@@ -2051,7 +2051,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	$t_query_clauses['where'] = $t_where_clauses;
 	$t_query_clauses['where_values'] = $t_where_params;
 	$t_query_clauses = filter_get_query_sort_data( $t_filter, $p_show_sticky, $t_query_clauses );
-echo "$t_where_string $t_order_string";
+echo implode( ' AND ', $t_query_clauses['where'] );
 
 	# assigning to $p_* for this function writes the values back in case the caller wants to know
 	# Get the total number of bugs that meet the criteria.
