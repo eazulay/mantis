@@ -1928,26 +1928,57 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	# Text search
 	if( !is_blank( $t_filter[FILTER_PROPERTY_FREE_TEXT] ) ) {
 
+        # Remove single quotes
         $keyword_search_string = str_replace("'", "", $t_filter[FILTER_PROPERTY_FREE_TEXT]);
-
-        $t_textsearch_where_clause = "( MATCH(" . $t_bug_text_table . ".description) AGAINST ('" . $keyword_search_string . "' IN BOOLEAN MODE) " .
-            "OR MATCH(" . $t_bug_text_table . ".steps_to_reproduce) AGAINST ('" . $keyword_search_string . "' IN BOOLEAN MODE) " .
-            "OR MATCH(" . $t_bug_text_table . ".additional_information) AGAINST ('" . $keyword_search_string . "' IN BOOLEAN MODE) " .
-            "OR MATCH(" . $t_bugnote_text_table . ".note) AGAINST ('" . $keyword_search_string . "' IN BOOLEAN MODE) )";
-
-        $t_first = false;
 /*
 		# break up search terms by spacing or quoting
-		preg_match_all( "/-?([^'\"\s]+|\"[^\"]+\"|'[^']+')/", $t_filter[FILTER_PROPERTY_FREE_TEXT], $t_matches, PREG_SET_ORDER );
+        preg_match_all( "/-?([^'\"\s]+|\"[^\"]+\"|'[^']+')/", $t_filter[FILTER_PROPERTY_FREE_TEXT], $t_matches, PREG_SET_ORDER );
+*/
+        preg_match_all( "/([^\"\s]+|\"[^\"]+\")/", $keyword_search_string, $t_matches, PREG_SET_ORDER );
 
+        $keyword_search_string = '';
+/*
 		# organize terms without quoting, paying attention to negation
-		$t_search_terms = array();
-		foreach( $t_matches as $t_match ) {
-			$t_search_terms[ trim( $t_match[1], "\'\"" ) ] = ( $t_match[0][0] == '-' );
-		}
-
+        $t_search_terms = array();
+*/
+        $t_first = true;
+        $prev_term = '';
+		foreach($t_matches as $t_match) {
+            //$t_search_terms[ trim( $t_match[1], "\'\"" ) ] = ( $t_match[0][0] == '-' );
+            $term = $t_match[1];
+            $first_char = '';
+            if (strpos("+-~<>", $term[0]) !== false){
+                $first_char = $term[0];
+                $term = substr($term, 1);
+            }elseif (strpos("@", $term[0]) !== false){
+                if (!is_numeric(substr($term, 1)) || $prev_term == '' || $prev_term[0] != '"'){
+                    $term = substr($term, 1);
+                }
+            }
+            $term = trim($term, "+-~<>@");
+            $last_char = '';
+            if (strpos("*", substr($term, -1)) !== false){
+                $last_char = substr($term, -1);
+                $term = substr($term, 0, -1);
+            }
+            $term = trim($term, "*");
+            if (!$t_first)
+                $keyword_search_string .= ' ';
+            $keyword_search_string .= $first_char . $term . $last_char;
+            $prev_term = $term;
+            $t_first = false;
+        }
+        if (substr_count($keyword_search_string, '"') % 2 == 1)
+            $keyword_search_string .= '"';
+        $prentheses_diff = substr_count($keyword_search_string, '(') - substr_count($keyword_search_string, ')');
+        if ($prentheses_diff != 0){
+            if ($prentheses_diff > 0)
+                $keyword_search_string .= str_repeat(')', $prentheses_diff);
+            else
+                $keyword_search_string = str_repeat('(', -$prentheses_diff) . $keyword_search_string;
+        }
+/*
 		# build a big where-clause and param list for all search terms, including negations
-		$t_first = true;
 		$t_textsearch_where_clause = "( ";
 		foreach( $t_search_terms as $t_search_term => $t_negate ) {
 			if ( !$t_first ) {
@@ -1984,7 +2015,12 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 		}
 		$t_textsearch_where_clause .= ' )';
 */
-		# add text query elements to arrays
+        $t_textsearch_where_clause = "( MATCH(" . $t_bug_text_table . ".description) AGAINST ('" . $keyword_search_string . "' IN BOOLEAN MODE) " .
+        "OR MATCH(" . $t_bug_text_table . ".steps_to_reproduce) AGAINST ('" . $keyword_search_string . "' IN BOOLEAN MODE) " .
+        "OR MATCH(" . $t_bug_text_table . ".additional_information) AGAINST ('" . $keyword_search_string . "' IN BOOLEAN MODE) " .
+        "OR MATCH(" . $t_bugnote_text_table . ".note) AGAINST ('" . $keyword_search_string . "' IN BOOLEAN MODE) )";
+
+        # add text query elements to arrays
 		if ( !$t_first ) {
 			$t_from_clauses[] = "$t_bug_text_table";
 			$t_where_clauses[] = "$t_bug_table.bug_text_id = $t_bug_text_table.id";
