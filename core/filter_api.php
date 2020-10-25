@@ -1955,9 +1955,9 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
                     $first_char = $term[0];
                     $term = substr($term, 1);
                 }
-                $term = str_replace('@', ' ', $term);
             }
-            $term = str_replace("+-~<>", "", $term);
+            $term = str_replace(array('+','-','~','<','>'), "", $term);
+            $term = str_replace('@', ' ', $term);
             $last_char = '';
             if (strpos("*", substr($term, -1)) !== false){
                 $last_char = substr($term, -1);
