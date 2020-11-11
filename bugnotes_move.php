@@ -17,7 +17,7 @@
 
     if (isset($f_move_to_bug_id) && isset($record_move) && isset($selected_notes)){
 
-        foreach($selected_notes as $f_bugnote_id){
+        foreach($selected_notes as $f_bugnote_id => $checked){
             echo $f_bugnote_id.'<br>';
         }
         die();
