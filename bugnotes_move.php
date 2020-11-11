@@ -4,7 +4,7 @@
     require_once( 'bugnote_api.php' );
     require_once( 'current_user_api.php' );
 
-    $t_bug_id = bugnote_get_field( $f_bugnote_id, 'bug_id' );
+    $t_bug_id = gpc_get_int( 'bug_id' );
     $t_user_id = auth_get_current_user_id();
 
     form_security_validate( 'bugnotes_move' );
