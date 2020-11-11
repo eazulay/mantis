@@ -71,9 +71,9 @@ $num_notes = count( $t_bugnotes );
     &nbsp; &nbsp;
     <form id="bugnotes_move" method="post" action="bugnotes_move.php?bug_id=<?php echo $f_bug_id; ?>" style="display:none; position:absolute; top:3px;">
     <?php echo form_security_field( 'bugnotes_move' ); ?>
-        <label for="move_to_bug_id">Move Notes to Issue #</label> <input type="text" id="move_to_bug_id" name="move_to_bug_id" size="9">
+        <label for="move_to_bug_id">Move Selected Notes to Issue #</label> <input type="text" id="move_to_bug_id" name="move_to_bug_id" size="9">
         <input type="checkbox" id="record_transfer" name="record_transfer" value="1" checked> <label for="record_transfer">Record transfer on original Issue</label>
-        <input type="submit" class="button" value="Move Selected Notes" />
+        <input type="submit" class="button" value="Move Notes" />
     </form>
 <?php } ?>
 	</td>
