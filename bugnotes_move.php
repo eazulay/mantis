@@ -16,30 +16,23 @@
         $selected_notes = $_POST['note_selected'];
 
     if (isset($f_move_to_bug_id) && isset($record_move) && isset($selected_notes)){
-
-        foreach($selected_notes as $f_bugnote_id => $checked){
-            echo $f_bugnote_id.'<br>';
-        }
-        die();
-
-        # Check if the current user is allowed to edit the bugnote
-
-        $t_reporter_id = bugnote_get_field( $f_bugnote_id, 'reporter_id' );
-
-        if ( ( $t_user_id != $t_reporter_id ) || ( OFF == config_get( 'bugnote_allow_user_edit_delete' ) )) {
-            access_ensure_bugnote_level( config_get( 'update_bugnote_threshold' ), $f_bugnote_id );
-        }
         # Check if the bug is readonly
-        $t_bug_id = bugnote_get_field( $f_bugnote_id, 'bug_id' );
-        if ( bug_is_readonly( $t_bug_id ) ) {
-            error_parameters( $t_bug_id );
+        if ( bug_is_readonly( $f_move_to_bug_id ) ) {
+            error_parameters( $f_move_to_bug_id );
             trigger_error( ERROR_BUG_READ_ONLY_ACTION_DENIED, ERROR );
         }
+        foreach($selected_notes as $f_bugnote_id => $checked){
+            # Check if the current user is allowed to edit the bugnote
+            $t_reporter_id = bugnote_get_field( $f_bugnote_id, 'reporter_id' );
 
-        if ($f_move_to_bug_id > 0)
-            bugnote_set_bug_id( $f_bugnote_id, $f_move_to_bug_id, $record_move );
+            if ( ( $t_user_id != $t_reporter_id ) || ( OFF == config_get( 'bugnote_allow_user_edit_delete' ) )) {
+                access_ensure_bugnote_level( config_get( 'update_bugnote_threshold' ), $f_bugnote_id );
+            }
 
-        form_security_purge( 'bugnotes_move' );
-
-        print_successful_redirect(string_get_bug_view_url($t_bug_id) . '#bugnotes');
+            if ($f_move_to_bug_id > 0)
+                bugnote_set_bug_id( $f_bugnote_id, $f_move_to_bug_id, $record_move );
+        }
     }
+
+    form_security_purge( 'bugnotes_move' );
+    print_successful_redirect(string_get_bug_view_url($t_bug_id) . '#bugnotes');
