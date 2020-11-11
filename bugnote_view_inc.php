@@ -53,30 +53,40 @@ user_cache_array_rows( $t_bugnote_users );
 $num_notes = count( $t_bugnotes );
 ?>
 
-<?php # Bugnotes BEGIN ?>
+<?php # Bugnotes BEGIN
+?>
 <a name="bugnotes" id="bugnotes"></a><br />
 
 <?php
-	collapse_open( 'bugnotes' );
+    collapse_open( 'bugnotes' );
+
+    if (access_has_global_level(DEVELOPER)){
+        echo '<form method="post" action="bugnotes_move.php">';
+        echo form_security_field( 'bugnotes_move' );
+    }
 ?>
+
 <table class="width100" cellspacing="0">
 <tr class="header">
 	<td class="form-title" colspan="2">
 <?php
-		collapse_icon( 'bugnotes' ); ?>
-		<?php echo lang_get( 'bug_notes_title' ) ?>
+    collapse_icon( 'bugnotes' );
+    echo lang_get( 'bug_notes_title' );
+    if (access_has_global_level(DEVELOPER)){ ?>
+        <label for="move_to_bug_id">Move Notes to Issue #</label> <input type="text" id="move_to_bug_id" name="move_to_bug_id" size="9">
+        <input type="checkbox" id="record_transfer" name="record_transfer" value="1" checked> <label for="record_transfer">Record transfer on original Issue</label>
+<?php } ?>
 	</td>
 </tr>
-<?php
-	# no bugnotes
-	if ( 0 == $num_notes ) {
-?>
+<?php # no bugnotes
+	if ( 0 == $num_notes ) { ?>
 <tr>
 	<td class="center" colspan="2">
 		<?php echo lang_get( 'no_bugnotes_msg' ) ?>
 	</td>
 </tr>
-<?php }
+<?php
+    }
 
 	event_signal( 'EVENT_VIEW_BUGNOTES_START', array( $f_bug_id, $t_bugnotes ) );
 
@@ -98,7 +108,7 @@ $num_notes = count( $t_bugnotes );
 
 		if ( 0 != $t_bugnote->time_tracking ) {
 			$t_time_tracking_hhmm = db_minutes_to_hhmm( $t_bugnote->time_tracking );
-			$t_bugnote->note_type = TIME_TRACKING;   // for older entries that didn't set the type @@@PLR FIXME
+			$t_bugnote->note_type = TIME_TRACKING;
 			$t_total_time += $t_bugnote->time_tracking;
 		} else {
 			$t_time_tracking_hhmm = '';
@@ -118,9 +128,13 @@ $num_notes = count( $t_bugnotes );
 		}
 ?>
 <tr class="bugnote<?php echo $t_bugnote_row_css ?>" id="c<?php echo $t_bugnote->id ?>">
-        <td class="<?php echo $t_bugnote_css ?>">
+    <td class="<?php echo $t_bugnote_css ?>">
 		<?php if ( ON  == config_get("show_avatar") ) print_avatar( $t_bugnote->reporter_id ); ?>
-		<span class="small">(<a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id) ?>" title="<?php echo lang_get( 'bugnote_link_title' ) ?>"><?php echo $t_bugnote_id_formatted ?>)</a></span><br />
+		<span class="small">(<a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?>)</a></span>
+        <?php if (access_has_global_level(DEVELOPER))
+            echo '<input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1"> <label for="has_note_selected_'.$t_bugnote->id.'">select</label>';
+        ?>
+        <br />
 		<?php
 			echo print_user( $t_bugnote->reporter_id );
 		?>
@@ -130,10 +144,10 @@ $num_notes = count( $t_bugnotes );
 				echo '(', get_enum_element( 'access_levels', $t_access_level ), ')';
 			}
 		?></span>
-		<?php if ( VS_PRIVATE == $t_bugnote->view_state ) { ?>
-		<span class="small">[ <?php echo lang_get( 'private' ) ?> ]</span>
-		<?php } ?>
-		<br />
+        <?php if ( VS_PRIVATE == $t_bugnote->view_state ) { ?>
+        <span class="small">[ <?php echo lang_get( 'private' ) ?> ]</span>
+        <?php } ?>
+        <br />
 		<span class="small"><?php echo date( $t_normal_date_format, $t_bugnote->date_submitted ); ?></span><br />
 		<?php
 		if ( $t_bugnote_modified ) {
@@ -227,6 +241,9 @@ $num_notes = count( $t_bugnotes );
 </table>
 
 <?php
+    if (access_has_global_level(DEVELOPER))
+        echo '</form>';
+
 	collapse_closed( 'bugnotes' );
 ?>
 

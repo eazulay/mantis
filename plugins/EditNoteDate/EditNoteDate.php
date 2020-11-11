@@ -9,7 +9,7 @@ class EditNoteDatePlugin extends MantisPlugin {
 			'MantisCore' => '1.2.0',							# Should always depend on an appropriate version of MantisBT
 			);
 		$this->author = 'Eyal Azulay';							# Author/team name
-		$this->contact = 'eyal.mantis@tiyal.com';				# Author/team e-mail address
+		$this->contact = 'eyal@get-it-write.com';				# Author/team e-mail address
 		$this->url = 'http://www.get-it-write.com/';			# Support webpage
 	}
 
@@ -20,11 +20,11 @@ class EditNoteDatePlugin extends MantisPlugin {
 			'EVENT_BUGNOTE_ADD_FORM' => 'create_bug_form',
 			'EVENT_BUGNOTE_ADD' => 'update_bug');
 	}
-	
+
 	function create_bug_form($p_event, $p_bug_id) {
 		$this->update_bug_form($p_event, $p_bug_id, 0);
 	}
-	
+
 	function update_bug_form($p_event, $p_bug_id, $p_bugnote_id) {
 		if (access_has_global_level(DEVELOPER)){
 			if ($p_bugnote_id > 0) {
@@ -35,21 +35,21 @@ class EditNoteDatePlugin extends MantisPlugin {
 				else {
 					$t_row = db_fetch_array($t_result);
 					echo '<tr ', helper_alternate_class(), '><td colspan="2">Submit Date: <input type=text id="date_submitted" name="date_submitted" value="', Date ( 'Y-m-d H:i:s', $t_row['date_submitted'] ),'">';
-					
+
 					date_print_calendar('trigger_note');
 					date_finish_calendar( 'date_submitted', 'trigger_note');
 					echo '</td></tr>';
 				}
 			} else {
 				echo '<tr ', helper_alternate_class(), '><td class="category" colspan="', is_page_name('bug_update_page.php') ? '2' : '1', '">Submit Date</td><td colspan="8"><input type=text id="date_submitted" name="date_submitted" value="">';
-				
+
 				date_print_calendar('trigger_note');
 				date_finish_calendar( 'date_submitted', 'trigger_note');
 				echo '</td></tr>';
 			}
 		}
 	}
-	
+
 	function update_bug($p_event, $p_bug_id, $p_bugnote_id) {
 		if (access_has_global_level(DEVELOPER) && gpc_get_string('date_submitted',null)!=null){
 			$date_submitted = gpc_get_string('date_submitted');
@@ -59,7 +59,7 @@ class EditNoteDatePlugin extends MantisPlugin {
 				$p_tz = new DateTimeZone($t_prefs->timezone);
 				$tz_time = new DateTime("now", $p_tz);
 				$tz_offset = $tz_time->getOffset();
-//				$tz_offset -= 3600; // Correct server offset (server is in NL)
+//				$tz_offset -= 3600; // Adjust server timezone offset (when server was in NL)
 				$date = getdate();
 				$month = $date[mon];
 				$day = $date[mday];

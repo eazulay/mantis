@@ -11,7 +11,7 @@ class FollowUpPlugin extends MantisPlugin
             'MantisCore' => '1.2.0',                              # Should always depend on an appropriate version of MantisBT
         );
         $this->author = 'Eyal Azulay';                            # Author/team name
-        $this->contact = 'eyal.mantis@tiyal.com';                 # Author/team e-mail address
+        $this->contact = 'eyal@get-it-write.com';                 # Author/team e-mail address
         $this->url = 'https://www.get-it-write.com/';             # Support webpage
     }
 
