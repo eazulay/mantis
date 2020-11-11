@@ -69,7 +69,7 @@ $num_notes = count( $t_bugnotes );
     echo lang_get( 'bug_notes_title' );
     if (access_has_global_level(DEVELOPER)){ ?>
     &nbsp; &nbsp;
-    <form id="bugnotes_move" method="post" action="bugnotes_move.php?bug_id=<?php echo $f_bug_id; ?>" style="display:none;">
+    <form id="bugnotes_move" method="post" action="bugnotes_move.php?bug_id=<?php echo $f_bug_id; ?>" style="display:none; height:13px;">
     <?php echo form_security_field( 'bugnotes_move' ); ?>
         <label for="move_to_bug_id">Move Notes to Issue #</label> <input type="text" id="move_to_bug_id" name="move_to_bug_id" size="9">
         <input type="checkbox" id="record_transfer" name="record_transfer" value="1" checked> <label for="record_transfer">Record transfer on original Issue</label>
@@ -278,7 +278,7 @@ $num_notes = count( $t_bugnotes );
             selectedNotesCount++;
             if (selectedNotesCount == 1){
                 var form = document.getElementById('bugnotes_move');
-                form.style.display = "inline";
+                form.style.display = "inline-block";
             }
         }else{
             selectedNotesCount--;
