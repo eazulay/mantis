@@ -277,17 +277,17 @@ $num_notes = count( $t_bugnotes );
         if (checked){
             selectedNotesCount++;
             if (selectedNotesCount == 1){
-                var form = document.getElementById('#bugnotes_move');
+                var form = document.getElementById('bugnotes_move');
                 form.style.display = "inline";
             }
         }else{
             selectedNotesCount--;
             if (selectedNotesCount == 0){
-                var form = document.getElementById('#bugnotes_move');
+                var form = document.getElementById('bugnotes_move');
                 form.style.display = "none";
             }
         }
-        alert(selectedNotesCount);
+        //alert(selectedNotesCount);
     }
 </script>
 <?php endif;
