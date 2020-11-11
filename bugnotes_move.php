@@ -11,12 +11,11 @@
 
     if (isset($_POST['move_to_bug_id']))
         $f_move_to_bug_id = gpc_get_int( 'move_to_bug_id' );
-    if (isset($_POST['record_transfer']))
-        $record_move = gpc_get_bool( 'record_transfer' );
     if (isset($_POST['note_selected']))
         $selected_notes = $_POST['note_selected'];
+    $record_move = gpc_get_bool( 'record_transfer' );
 
-    if (isset($f_move_to_bug_id) && isset($record_move) && isset($selected_notes)){
+    if (isset($f_move_to_bug_id) && isset($selected_notes)){
         # Check if the bug is readonly
         if ( bug_is_readonly( $f_move_to_bug_id ) ) {
             error_parameters( $f_move_to_bug_id );
