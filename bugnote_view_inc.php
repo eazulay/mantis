@@ -59,11 +59,6 @@ $num_notes = count( $t_bugnotes );
 
 <?php
     collapse_open( 'bugnotes' );
-
-    if (access_has_global_level(DEVELOPER)){
-        echo '<form method="post" action="bugnotes_move.php">';
-        echo form_security_field( 'bugnotes_move' );
-    }
 ?>
 
 <table class="width100" cellspacing="0">
@@ -73,8 +68,11 @@ $num_notes = count( $t_bugnotes );
     collapse_icon( 'bugnotes' );
     echo lang_get( 'bug_notes_title' );
     if (access_has_global_level(DEVELOPER)){ ?>
+    <form id="bugnotes_move" method="post" action="bugnotes_move.php">
+    <?php echo form_security_field( 'bugnotes_move' ); ?>
         <label for="move_to_bug_id">Move Notes to Issue #</label> <input type="text" id="move_to_bug_id" name="move_to_bug_id" size="9">
         <input type="checkbox" id="record_transfer" name="record_transfer" value="1" checked> <label for="record_transfer">Record transfer on original Issue</label>
+    </form>
 <?php } ?>
 	</td>
 </tr>
@@ -132,7 +130,7 @@ $num_notes = count( $t_bugnotes );
 		<?php if ( ON  == config_get("show_avatar") ) print_avatar( $t_bugnote->reporter_id ); ?>
 		<span class="small">(<a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?>)</a></span>
         <?php if (access_has_global_level(DEVELOPER))
-            echo '<input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1"> <label for="has_note_selected_'.$t_bugnote->id.'">select</label>';
+            echo '<input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move"> <label for="has_note_selected_'.$t_bugnote->id.'">select</label>';
         ?>
         <br />
 		<?php
@@ -241,9 +239,6 @@ $num_notes = count( $t_bugnotes );
 </table>
 
 <?php
-    if (access_has_global_level(DEVELOPER))
-        echo '</form>';
-
 	collapse_closed( 'bugnotes' );
 ?>
 
