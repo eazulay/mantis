@@ -17,7 +17,9 @@
 
     if (isset($f_move_to_bug_id) && isset($record_move) && isset($selected_notes)){
 
-        print_r($selected_notes);
+        foreach($selected_notes as $f_bugnote_id){
+            echo $f_bugnote_id.'<br>';
+        }
         die();
 
         # Check if the current user is allowed to edit the bugnote
