@@ -211,13 +211,20 @@ ul.project-menu ul.sub-menu {
     position: absolute;
     left: 0;
     z-index: 1000;
-    background-color: #E3C389;
+    background: #F7EBD9;
     box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
     -moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
     -webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
 }
 ul.project-menu li.menu-item:hover ul.sub-menu {
     display: block;
+}
+ul.project-menu ul.sub-menu > li.menu-item {
+    display: block;
+    padding: 2px;
+}
+ul.project-menu ul.sub-menu > li.menu-item:hover {
+    background: #E3C389;
 }
 
 div.center {
