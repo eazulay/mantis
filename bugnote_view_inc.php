@@ -161,7 +161,7 @@ $num_notes = count( $t_bugnotes );
 
 		# bug must be open to be editable
 		if ( !bug_is_readonly( $f_bug_id ) ) {
-			echo '<div style="margin-top:5px;">';
+			echo '<div style="margin-top:5px; padding-left:0;">';
 			$t_can_edit_note = false;
 			$t_can_delete_note = false;
 
