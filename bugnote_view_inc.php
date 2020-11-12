@@ -195,7 +195,7 @@ $num_notes = count( $t_bugnotes );
 				}
 			}
 
-			echo ' <input type="button-small" onclick="replyToNote('.$t_bugnote->id.');" value="Reply" />';
+			echo ' <input type="button" class="button-small" onclick="replyToNote('.$t_bugnote->id.');" value="Reply" />';
 
 			echo '</div>';
 		}

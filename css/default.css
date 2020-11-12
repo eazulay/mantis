@@ -39,7 +39,9 @@ input[type="button"], input[type="submit"], input.button, input.button-small {
 	font-weight: bold;
 	border-color: RGBA(232,245,232,0.8) RGBA(63,118,53,0.8) RGBA(63,118,53,0.8) RGBA(232,245,232,0.8);
 }
-input.button-small { 	font-size: 8pt; }
+input.button-small button.button-small {
+    font-size: 8pt;
+}
 input[type="button"]:hover, input[type="submit"]:hover, input.button:hover, input.button-small:hover, a.button {
 	background-color: #F4F8E0;
 	background: -webkit-linear-gradient(#EEEFEF, #F4F8E0);
