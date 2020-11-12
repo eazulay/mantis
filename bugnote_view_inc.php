@@ -132,7 +132,7 @@ $num_notes = count( $t_bugnotes );
 		<?php if ( ON  == config_get("show_avatar") ) print_avatar( $t_bugnote->reporter_id ); ?>
 		<span class="small">(<a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?>)</a></span>
         <?php if (access_has_global_level(DEVELOPER))
-            echo '<div style="float:right;"><input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked)"> <label for="has_note_selected_'.$t_bugnote->id.'">select</label></div>';
+            echo '<div style="float:right;"><label for="has_note_selected_'.$t_bugnote->id.'">Select</label> <input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked)"></div>';
         ?>
         <br />
 		<?php
@@ -156,7 +156,7 @@ $num_notes = count( $t_bugnotes );
 
 		# Has Help
 		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)){
-			echo '<input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"> <label for="has_help_'.$t_bugnote->id.'">Help</label> <span id="span_has_help_'.$t_bugnote->id.'" style="font-weight:normal;"></span>';
+			echo '<div style="float:right;"><label for="has_help_'.$t_bugnote->id.'">Help</label> <input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"></div>';
 		}
 		# bug must be open to be editable
 		if ( !bug_is_readonly( $f_bug_id ) ) {
