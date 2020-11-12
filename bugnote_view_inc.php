@@ -132,14 +132,14 @@ $num_notes = count( $t_bugnotes );
 		<?php if ( ON  == config_get("show_avatar") ) print_avatar( $t_bugnote->reporter_id ); ?>
         <?php # Note Selection checkbox
         if (access_has_global_level(DEVELOPER)){
-            echo '<div style="float:right;"><label for="note_selected_'.$t_bugnote->id.'">Select</label> <input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked)"></div>';
+            echo '<div style="float:right;"><label for="note_selected_'.$t_bugnote->id.'" style="font-weight:normal;">Select</label> <input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked)"></div>';
         }
         ?>
 		<span class="small">(<a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?>)</a></span>
         <br />
 		<?php # Has Help
 		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)){
-			echo '<div style="float:right; clear:right;"><label for="has_help_'.$t_bugnote->id.'">Help</label> <input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"></div>';
+			echo '<div style="float:right; clear:right;"><label for="has_help_'.$t_bugnote->id.'" style="font-weight:normal;">Help</label> <input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"></div>';
 		}
 		echo print_user( $t_bugnote->reporter_id );
 		?>
@@ -161,7 +161,7 @@ $num_notes = count( $t_bugnotes );
 
 		# bug must be open to be editable
 		if ( !bug_is_readonly( $f_bug_id ) ) {
-			echo '<div class="small">';
+			echo '<div style="margin-top:5px;">';
 			$t_can_edit_note = false;
 			$t_can_delete_note = false;
 
@@ -195,7 +195,7 @@ $num_notes = count( $t_bugnotes );
 				}
 			}
 
-			echo '<input type="button" onclick="replyToNote('.$t_bugnote->id.');" value="Reply" />';
+			echo ' <input type="button-small" onclick="replyToNote('.$t_bugnote->id.');" value="Reply" />';
 
 			echo '</div>';
 		}
