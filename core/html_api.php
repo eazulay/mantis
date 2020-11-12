@@ -872,12 +872,16 @@ function print_project_menu_bar() {
 
 	echo '<table class="width100" cellspacing="0">';
 	echo '<tr>';
-	echo '<td class="menu">';
+    echo '<td class="menu project-menu">';
+    echo '<ul class="project-menu">';
+    echo '<li class="menu-item">';
 	echo '<a href="' . helper_mantis_url( 'set_project.php?project_id=' . ALL_PROJECTS ) . '">' . lang_get( 'all_projects' ) . '</a>';
-
+    echo '</li>';
 	foreach( $t_project_ids as $t_id ) {
-		echo ' | <a href="' . helper_mantis_url( 'set_project.php?project_id=' . $t_id ) . '">' . string_html_specialchars( project_get_field( $t_id, 'name' ) ) . '</a>';
-		print_subproject_menu_bar( $t_id, $t_id . ';' );
+        echo ' | <li class="menu-item">';
+		echo '<a href="' . helper_mantis_url( 'set_project.php?project_id=' . $t_id ) . '">' . string_html_specialchars( project_get_field( $t_id, 'name' ) ) . '</a>';
+        print_subproject_menu_bar( $t_id, $t_id . ';' );
+        echo '</li>';
 	}
 
 	echo '</td>';
@@ -890,13 +894,19 @@ function print_project_menu_bar() {
  * @return null
  */
 function print_subproject_menu_bar( $p_project_id, $p_parents = '' ) {
-	$t_subprojects = current_user_get_accessible_subprojects( $p_project_id );
+    $t_subprojects = current_user_get_accessible_subprojects( $p_project_id );
 	$t_char = ':';
 	foreach( $t_subprojects as $t_subproject ) {
-		echo $t_char . ' <a href="' . helper_mantis_url( 'set_project.php?project_id=' . $p_parents . $t_subproject ) . '">' . string_html_specialchars( project_get_field( $t_subproject, 'name' ) ) . '</a>';
+        if ($t_char == ':')
+            echo '<ul class="sub-menu">';
+        echo '<li class="menu-item">';
+		echo '<a href="' . helper_mantis_url( 'set_project.php?project_id=' . $p_parents . $t_subproject ) . '">' . string_html_specialchars( project_get_field( $t_subproject, 'name' ) ) . '</a>';
 		print_subproject_menu_bar( $t_subproject, $p_parents . $t_subproject . ';' );
+        echo '</li>';
 		$t_char = ',';
-	}
+    }
+    if ($t_char == ',')
+        echo '</ul>';
 }
 
 /**
