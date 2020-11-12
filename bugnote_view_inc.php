@@ -132,7 +132,7 @@ $num_notes = count( $t_bugnotes );
 		<?php if ( ON  == config_get("show_avatar") ) print_avatar( $t_bugnote->reporter_id ); ?>
         <?php # Note Selection checkbox
         if (access_has_global_level(DEVELOPER)){
-            echo '<div style="float:right;"><label for="has_note_selected_'.$t_bugnote->id.'">Select</label> <input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked)"></div>';
+            echo '<div style="float:right;"><label for="note_selected_'.$t_bugnote->id.'">Select</label> <input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked)"></div>';
         }
         ?>
 		<span class="small">(<a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?>)</a></span>
