@@ -139,7 +139,7 @@ $num_notes = count( $t_bugnotes );
         <br />
 		<?php # Has Help
 		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)){
-			echo '<div style="float:right;"><label for="has_help_'.$t_bugnote->id.'">Help</label> <input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"></div>';
+			echo '<div style="float:right; clear:right;"><label for="has_help_'.$t_bugnote->id.'">Help</label> <input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"></div>';
 		}
 		echo print_user( $t_bugnote->reporter_id );
 		?>
