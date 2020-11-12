@@ -47,6 +47,10 @@ input[type="button"]:hover, input[type="submit"]:hover, input.button:hover, inpu
 	background: -moz-linear-gradient(#EEEFEF, #F4F8E0);
 	background: linear-gradient(#EEEFEF, #F4F8E0);
 }
+input[type="checkbox"] {
+    position: relative;
+    top: 2px;
+}
 select				{ border-color: #AC7F2A; border-width: 1px; }
 
 span				{ font-family: Verdana, Arial, Helvetica, sans-serif; }
