@@ -216,6 +216,10 @@ ul.project-menu ul.sub-menu {
     -moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
     -webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
 }
+ul.project-menu li.menu-item:last-child ul.sub-menu {
+    right: 0;
+    left: auto;
+}
 ul.project-menu li.menu-item:hover ul.sub-menu {
     display: block;
 }
