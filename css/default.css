@@ -200,6 +200,9 @@ ul.project-menu, ul.project-menu ul.sub-menu {
     list-style: none;
     margin: 0;
 }
+ul.project-menu > li.menu-item {
+    display: inline;
+}
 ul.project-menu ul.sub-menu {
     display: none;
     padding: 5px;
