@@ -135,7 +135,7 @@ $num_notes = count( $t_bugnotes );
             echo '<div style="float:right;"><label for="note_selected_'.$t_bugnote->id.'" style="font-weight:normal;">Select</label> <input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked)"></div>';
         }
         ?>
-		<span class="small">(<a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?>)</a></span>
+		<span style="font-weight:bold;"><a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?></a></span>
         <br />
 		<?php # Has Help
 		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)){
