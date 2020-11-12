@@ -223,5 +223,7 @@ $g_reminder_receive_threshold = VIEWER;
 
 $g_show_project_menu_bar = ON;
 
+$g_css_include_file = 'css/default.css?v=20201112';
+
 /* Enable/disable features */
 $g_form_security_validation = OFF;
