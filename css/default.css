@@ -203,6 +203,7 @@ ul.project-menu, ul.project-menu ul.sub-menu {
 ul.project-menu > li.menu-item {
     display: inline;
     position: relative;
+    padding: 0 0 3px;
 }
 ul.project-menu ul.sub-menu {
     display: none;
@@ -210,6 +211,7 @@ ul.project-menu ul.sub-menu {
     border: 1px solid #AC7F2A;
     position: absolute;
     left: 0;
+    top: 16px;
     z-index: 1000;
     background: #F7EBD9;
     box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
