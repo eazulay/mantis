@@ -74,7 +74,7 @@ table.width75		{ width: 75%;  border: solid 1px #AC7F2A; margin-left: auto; marg
 table.width60		{ width: 60%;  border: solid 1px #AC7F2A; margin-left: auto; margin-right: auto; }
 table.width50		{ width: 50%;  border: solid 1px #AC7F2A; margin-left: auto; margin-right: auto; }
 
-#fixed_scroll { position: fixed; top: 0; width:94%; border: solid 2px #000; background: white; }
+#fixed_scroll { position: fixed; top: 0; width:94%; border: solid 2px #000; background: white; z-index: 1000; }
 #fixed_scroll table { width: 100%; }
 .hidden-first  { opacity: 0; filter:alpha(opacity=0); }
 .transparent { opacity: 0; filter:alpha(opacity=0); -webkit-animation: hide 1s; animation: hide 1s; }
@@ -116,15 +116,15 @@ tr.bug-primary td	{ font-size: 8pt; vertical-align: top; }
 td.overdue			{ background-color: #ff6060; color: #212121; font-weight: bold; }
 td.disabled			{ background-color: #E2E2DA; color: #4A727F; padding-left: 20px; font-style: italic; font-weight: normal; }
 td.gap				{ background-color: white; padding: 4px; }
-td.error				{ background-color: #ff6060; color: #212121; font-weight: bold; }
+td.error			{ background-color: #ff6060; color: #212121; font-weight: bold; }
 
-td.col-1				{ background-color: #F9F9F9; color: #212121; }
-td.col-2				{ background-color: #8FD594; color: #212121; }
+td.col-1			{ background-color: #F9F9F9; color: #212121; }
+td.col-2			{ background-color: #8FD594; color: #212121; }
 td.form-title		{ color: #212121; font-weight: bold; text-align: left; background: #F6EBDF; border-bottom: 1px solid #E3C389; }
 td.form-title-caps	{ color: #212121; font-weight: bold; text-align: left; text-transform: uppercase; }
-td.nopad				{ padding: 0px; }
-td.small-caption		{ font-size: 8pt; }
-td.print				{ font-size: 8pt; text-align: left; padding: 2px; }
+td.nopad			{ padding: 0px; }
+td.small-caption	{ font-size: 8pt; }
+td.print			{ font-size: 8pt; text-align: left; padding: 2px; }
 td.print-category	{ font-size: 8pt; color: #212121; font-weight: bold; text-align: right; padding: 2px; }
 td.print-overdue		{ font-size: 8pt; color: #212121; font-weight: bold; padding: 2px; }
 td.print-bottom		{ border-bottom: 1px solid #212121; }
@@ -239,8 +239,7 @@ div.center {
 	margin-left: auto;
 }
 
-div.border
-{
+div.border {
 	background-color: #ffeae8;
 	border: solid 1px #212121;
 	text-align: center;
@@ -302,4 +301,4 @@ div.main-page-content > ul {
 	margin-top: 10px;
 }
 
-div.width100		{ width: 100%; border: solid 1px #AC7F2A; padding:15px; }
+div.width100	{ width: 100%; border: solid 1px #AC7F2A; padding:15px; }
