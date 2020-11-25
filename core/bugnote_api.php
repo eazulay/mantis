@@ -193,7 +193,7 @@ function bugnote_add( $p_bug_id, $p_bugnote_text, $p_time_tracking = '0:00', $p_
 		bug_get_field( $p_bug_id, 'status' ) == config_get( 'bug_feedback_status' ) &&
 		bug_get_field( $p_bug_id, 'reporter_id' ) == $c_user_id &&
 		!access_has_global_level(DEVELOPER, $c_user_id) ) { //	Eyal Azulay added line to not send back to Info Returned if Developer has adde a note
-		
+
 		bug_set_field( $p_bug_id, 'status', config_get( 'bug_acknowledged_status' ) );
 	/*	Eyal Azulay added line and commented out below
 		if ( bug_get_field( $p_bug_id, 'handler_id') == 0 ) {
@@ -577,36 +577,38 @@ function bugnote_set_view_state( $p_bugnote_id, $p_private ) {
  */
 function bugnote_set_bug_id( $p_bugnote_id, $p_bug_id, $record_move = false ) {
 	$t_bug_id = bugnote_get_field( $p_bugnote_id, 'bug_id' );
+	$c_bugnote_id = db_prepare_int( $p_bugnote_id );
 	if ($p_bug_id > 0 && $p_bug_id != $t_bug_id && bug_get_row( $p_bug_id ) ) {
 		if ($record_move){
 			$t_view_state = bugnote_get_field( $p_bugnote_id, 'view_state');
 			$t_note_reporter_id = bugnote_get_field( $p_bugnote_id, 'reporter_id' );
-			$t_current_user_name = current_user_get_field( 'realname' );
-			bugnote_add($t_bug_id,
-						"[Note ~".$p_bugnote_id." moved to #".$p_bug_id." on ".date("d M Y H:i"). " by ".$t_current_user_name."]",
-						null,
-						$t_view_state == VS_PRIVATE,	// Private if original Note is private
-						0,
-						'',
-						$t_note_reporter_id,			// Original Note reporter
-						false);							// do not send email notification
-		}
-		$c_bugnote_id = db_prepare_int( $p_bugnote_id );
-		$c_bug_id = db_prepare_int( $p_bug_id );
+            $t_date_submitted = bugnote_get_field( $p_bugnote_id, 'date_submitted' );
+            $t_current_user_name = current_user_get_field( 'realname' );
+            $t_new_bugnote_id = bugnote_add(
+                $t_bug_id,
+                "[Note ~".$p_bugnote_id." moved to #".$p_bug_id." on ".date("d M Y H:i"). " by ".$t_current_user_name."]",
+                null,
+                $t_view_state == VS_PRIVATE,	// Private if original Note is private
+                0,
+                '',
+                $t_note_reporter_id,			// Original Note reporter
+                false);							// do not send email notification
+            $c_new_bugnote_id = db_prepare_int($t_new_bugnote_id);
+            $query = "UPDATE $t_bugnote_table SET date_submitted=" . db_param() . " WHERE id=" . db_param();
+            db_query_bound( $query, Array( $t_date_submitted, $c_new_bugnote_id ) );
+        }
+        $c_bug_id = db_prepare_int( $p_bug_id );
 		$t_bugnote_table = db_get_table( 'mantis_bugnote_table' );
 
-		$query = "UPDATE $t_bugnote_table
-SET bug_id=" . db_param() . "
-WHERE id=" . db_param();
+		$query = "UPDATE $t_bugnote_table SET bug_id=" . db_param() . " WHERE id=" . db_param();
 		db_query_bound( $query, Array( $c_bug_id, $c_bugnote_id ) );
 
 		$old_text = bugnote_get_text( $p_bugnote_id );
 		$new_text = "[Note moved from #" . $t_bug_id . "]\n\n" . $old_text;
 		bugnote_set_text( $p_bugnote_id, $new_text );
-		
+
 		return true;
-	}
-	else
+	}else
 		return false;
 }
 
