@@ -578,6 +578,7 @@ function bugnote_set_view_state( $p_bugnote_id, $p_private ) {
 function bugnote_set_bug_id( $p_bugnote_id, $p_bug_id, $record_move = false ) {
 	$t_bug_id = bugnote_get_field( $p_bugnote_id, 'bug_id' );
 	$c_bugnote_id = db_prepare_int( $p_bugnote_id );
+    $t_bugnote_table = db_get_table( 'mantis_bugnote_table' );
 	if ($p_bug_id > 0 && $p_bug_id != $t_bug_id && bug_get_row( $p_bug_id ) ) {
 		if ($record_move){
 			$t_view_state = bugnote_get_field( $p_bugnote_id, 'view_state');
@@ -599,7 +600,6 @@ function bugnote_set_bug_id( $p_bugnote_id, $p_bug_id, $record_move = false ) {
             db_query_bound( $query, Array( $c_date_submitted, $c_new_bugnote_id ) );
         }
         $c_bug_id = db_prepare_int( $p_bug_id );
-		$t_bugnote_table = db_get_table( 'mantis_bugnote_table' );
 
 		$query = "UPDATE $t_bugnote_table SET bug_id=" . db_param() . " WHERE id=" . db_param();
 		db_query_bound( $query, Array( $c_bug_id, $c_bugnote_id ) );
