@@ -594,8 +594,9 @@ function bugnote_set_bug_id( $p_bugnote_id, $p_bug_id, $record_move = false ) {
                 $t_note_reporter_id,			// Original Note reporter
                 false);							// do not send email notification
             $c_new_bugnote_id = db_prepare_int($t_new_bugnote_id);
+            $c_date_submitted = db_prepare_int($t_date_submitted);
             $query = "UPDATE $t_bugnote_table SET date_submitted=" . db_param() . " WHERE id=" . db_param();
-            db_query_bound( $query, Array( $t_date_submitted, $c_new_bugnote_id ) );
+            db_query_bound( $query, Array( $c_date_submitted, $c_new_bugnote_id ) );
         }
         $c_bug_id = db_prepare_int( $p_bug_id );
 		$t_bugnote_table = db_get_table( 'mantis_bugnote_table' );
