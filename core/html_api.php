@@ -1393,7 +1393,7 @@ function html_button_bug_change_status( $p_bug_id ) {
 
 	$t_enum_list = get_status_option_list( $t_current_access, $t_bug_current_state, false, ( bug_get_field( $p_bug_id, 'reporter_id' ) == auth_get_current_user_id() && ( ON == config_get( 'allow_reporter_close' ) ) ), $t_bug_project_id );
 
-	if( count( $t_enum_list ) > 0 ) {
+	if (count($t_enum_list) > 0){
 		# resort the list into ascending order after noting the key from the first element (the default)
 		$t_default_arr = each( $t_enum_list );
 		$t_default = $t_default_arr['key'];
@@ -1658,7 +1658,7 @@ function html_buttons_view_bug_page($p_bug_id, $p_metadata_section = false) {
 		# Send Bug Reminder
 		$tpl_bug_reminder_link = 'bug_reminder_page.php?bug_id=' . $p_bug_id;
 		echo '<td class=center">';
-		print_bracket_link($tpl_bug_reminder_link, lang_get('bug_reminder'));
+		print_link($tpl_bug_reminder_link, lang_get('bug_reminder'), false, 'button');
 		echo '</td>';
 
 		# MONITOR/UNMONITOR button
