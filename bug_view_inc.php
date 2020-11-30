@@ -848,7 +848,15 @@
 	if ( $tpl_show_status ) {
 		echo '<td class="category" width="8%">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
 		echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%">', $tpl_status, '</td>';
-	}
+    }
+
+    # Change status button/dropdown
+    if (! $t_readonly || config_get( 'allow_reporter_close' )){
+        echo '<td class="center">';
+        html_button_bug_change_status( $p_bug_id );
+        echo '</td>';
+    }
+
 	echo '</tr>';
 
 	echo '</table>';

@@ -1631,89 +1631,90 @@ function html_button_wiki( $p_bug_id ) {
  * @param int $p_bug_id
  * @return null
  */
-function html_buttons_view_bug_page( $p_bug_id, $p_metadata_section = false ) {
-	$t_resolved = config_get( 'bug_resolved_status_threshold' );
-	$t_status = bug_get_field( $p_bug_id, 'status' );
-	$t_readonly = bug_is_readonly( $p_bug_id );
-	$t_sticky = config_get( 'set_bug_sticky_threshold' );
+function html_buttons_view_bug_page($p_bug_id, $p_metadata_section = false) {
+	$t_resolved = config_get('bug_resolved_status_threshold');
+	$t_status = bug_get_field($p_bug_id, 'status');
+	$t_readonly = bug_is_readonly($p_bug_id);
+	$t_sticky = config_get('set_bug_sticky_threshold');
 
 	echo '<table><tr class="vcenter">';
 
 	if ($p_metadata_section){
-        if( !$t_readonly ) {
+		# MOVE button
+		echo '<td class="center">';
+		html_button_bug_move( $p_bug_id );
+        echo '</td>';
+
+        if (! $t_readonly){
 			echo '<td class="center">';
 			# ASSIGN button
 			html_button_bug_assign_to( $p_bug_id );
 			echo '</td>';
     	}
-		# MOVE button
-		echo '<td class="center">';
-		html_button_bug_move( $p_bug_id );
-		echo '</td>';
-
-		# Change status button/dropdown
-		if ( !$t_readonly || config_get( 'allow_reporter_close' ) ) {
-			echo '<td class="center">';
-			html_button_bug_change_status( $p_bug_id );
-			echo '</td>';
-		}
-
-		# MONITOR/UNMONITOR button
-		if( !current_user_is_anonymous() ) {
-			echo '<td class=center">';
-			if( user_is_monitoring_bug( auth_get_current_user_id(), $p_bug_id ) ) {
-				html_button_bug_unmonitor( $p_bug_id );
-			} else {
-				html_button_bug_monitor( $p_bug_id );
-			}
-			echo '</td>';
-		}
 
 		# Send Bug Reminder
 		$tpl_bug_reminder_link = 'bug_reminder_page.php?bug_id=' . $p_bug_id;
 		echo '<td class=center">';
-		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
+		print_bracket_link($tpl_bug_reminder_link, lang_get('bug_reminder'));
 		echo '</td>';
-	}else{
-        # UPDATE button
-        echo '<td class="center">';
-        html_button_bug_update( $p_bug_id );
-        echo '</td>';
 
-		# STICK/UNSTICK button
-		if ( access_has_bug_level( $t_sticky, $p_bug_id ) ) {
-			echo '<td class="center">';
-			if ( !bug_get_field( $p_bug_id, 'sticky' ) ) {
-				html_button_bug_stick( $p_bug_id );
-			} else {
-				html_button_bug_unstick( $p_bug_id );
+		# MONITOR/UNMONITOR button
+		if (! current_user_is_anonymous()){
+			echo '<td class=center">';
+			if (user_is_monitoring_bug( auth_get_current_user_id(), $p_bug_id)){
+				html_button_bug_unmonitor($p_bug_id);
+			}else{
+				html_button_bug_monitor($p_bug_id);
 			}
 			echo '</td>';
 		}
 
-		if( !$t_readonly ) {
-			# CREATE CHILD button
+		# Change status button/dropdown
+		if (! $t_readonly || config_get( 'allow_reporter_close' )){
 			echo '<td class="center">';
-			html_button_bug_create_child( $p_bug_id );
+			html_button_bug_change_status( $p_bug_id );
+			echo '</td>';
+		}
+	}else{
+        # UPDATE button
+        echo '<td class="center">';
+        html_button_bug_update($p_bug_id);
+        echo '</td>';
+
+		# STICK/UNSTICK button
+		if (access_has_bug_level($t_sticky, $p_bug_id)){
+			echo '<td class="center">';
+			if (! bug_get_field($p_bug_id, 'sticky')){
+				html_button_bug_stick($p_bug_id);
+			}else{
+				html_button_bug_unstick($p_bug_id);
+			}
 			echo '</td>';
 		}
 
-		if( $t_resolved <= $t_status ) {
+		if (! $t_readonly){
+			# CREATE CHILD button
+			echo '<td class="center">';
+			html_button_bug_create_child($p_bug_id);
+			echo '</td>';
+		}
+
+		if ($t_resolved <= $t_status){
 			# resolved is not the same as readonly
 			echo '<td class="center">';
 
 			# REOPEN button
-			html_button_bug_reopen( $p_bug_id );
+			html_button_bug_reopen($p_bug_id);
 			echo '</td>';
 		}
 
 		# DELETE button
 		echo '<td class="center">';
-		html_button_bug_delete( $p_bug_id );
+		html_button_bug_delete($p_bug_id);
 		echo '</td>';
 	}
 
-	helper_call_custom_function( 'print_bug_view_page_custom_buttons', array( $p_bug_id ) );
+	helper_call_custom_function('print_bug_view_page_custom_buttons', array($p_bug_id));
 
 	echo '</tr></table>';
 }
