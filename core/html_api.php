@@ -1384,14 +1384,16 @@ function html_button_bug_update( $p_bug_id ) {
  * @return null
  */
 function html_button_bug_change_status( $p_bug_id ) {
+    global $bug_change_status_button_count;
+    if (! isset($bug_change_status_button_count))
+        $bug_change_status_button_count = 0;
 	$t_bug_project_id = bug_get_field( $p_bug_id, 'project_id' );
 	$t_bug_current_state = bug_get_field( $p_bug_id, 'status' );
-	$t_current_access = access_get_project_level( $t_bug_project_id );
+    $t_current_access = access_get_project_level( $t_bug_project_id );
 
 	$t_enum_list = get_status_option_list( $t_current_access, $t_bug_current_state, false, ( bug_get_field( $p_bug_id, 'reporter_id' ) == auth_get_current_user_id() && ( ON == config_get( 'allow_reporter_close' ) ) ), $t_bug_project_id );
 
 	if( count( $t_enum_list ) > 0 ) {
-
 		# resort the list into ascending order after noting the key from the first element (the default)
 		$t_default_arr = each( $t_enum_list );
 		$t_default = $t_default_arr['key'];
@@ -1402,7 +1404,7 @@ function html_button_bug_change_status( $p_bug_id ) {
 		# CSRF protection not required here - form does not result in modifications
 
 		$t_button_text = lang_get( 'bug_status_to_button' );
-		echo "<input type=\"submit\" class=\"button\" value=\"$t_button_text\" onclick=\"return submitChangeStatus();\" />";
+		echo "<input type=\"submit\" class=\"button\" value=\"$t_button_text\" onclick=\"return submitChangeStatus($bug_change_status_button_count);\" />";
 
 		echo " <select name=\"new_status\">";
 
@@ -1418,7 +1420,8 @@ function html_button_bug_change_status( $p_bug_id ) {
 		echo "<input type=\"hidden\" name=\"id\" value=\"$t_bug_id\" />\n";
 		echo "<input type=\"hidden\" name=\"change_status_text\" value=\"\" />\n";
 
-		echo "</form>\n";
+        echo "</form>\n";
+        $bug_change_status_button_count++;
 	}
 }
 
