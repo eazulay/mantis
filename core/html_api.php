@@ -1642,13 +1642,13 @@ function html_buttons_view_bug_page($p_bug_id, $p_metadata_section = false) {
 	if ($p_metadata_section){
 		# MOVE button
 		echo '<td class="center">';
-		html_button_bug_move( $p_bug_id );
-        echo '</td>';
+		html_button_bug_move($p_bug_id);
+		echo '</td>';
 
         if (! $t_readonly){
 			echo '<td class="center">';
 			# ASSIGN button
-			html_button_bug_assign_to( $p_bug_id );
+			html_button_bug_assign_to($p_bug_id);
 			echo '</td>';
     	}
 
