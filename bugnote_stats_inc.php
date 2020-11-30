@@ -37,7 +37,7 @@ if ( ON != config_get('time_tracking_enabled') ) {
 <a name="bugnotestats" id="bugnotestats" /><br />
 
 <?php
-	collapse_open( 'bugnotestats' );
+	collapse_open('bugnotestats', '', 'closed');
 
 	$t_bugnote_stats_from_def = date( "d:m:Y", $tpl_bug->date_submitted );
 	$t_bugnote_stats_from_def_ar = explode ( ":", $t_bugnote_stats_from_def );
@@ -154,7 +154,7 @@ if ( ON != config_get('time_tracking_enabled') ) {
 	</tr>
 </table>
 
-<?php 
+<?php
 	} # end if
 ?>
 			</td>

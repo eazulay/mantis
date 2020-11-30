@@ -871,9 +871,8 @@
 	}
 
 	# Time tracking statistics
-	if ( config_get( 'time_tracking_enabled' ) &&
-		access_has_bug_level( config_get( 'time_tracking_view_threshold' ), $f_bug_id ) ) {
-		include( $tpl_mantis_dir . 'bugnote_stats_inc.php' );
+	if (config_get('time_tracking_enabled') && access_has_bug_level(config_get('time_tracking_view_threshold'), $f_bug_id)){
+		include($tpl_mantis_dir . 'bugnote_stats_inc.php');
 	}
 
 	# Bugnotes and "Add Note" box
@@ -895,8 +894,8 @@
 	event_signal( 'EVENT_VIEW_BUG_EXTRA', array( $f_bug_id ) );
 
 	# History
-	if ( $tpl_show_history ) {
-		include( $tpl_mantis_dir . 'history_inc.php' );
+	if ($tpl_show_history){
+		include($tpl_mantis_dir . 'history_inc.php');
 	}
 
 	html_page_bottom();

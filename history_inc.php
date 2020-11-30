@@ -26,8 +26,8 @@
 
 	require_once( 'history_api.php' );
 
-	$t_access_level_needed = config_get( 'view_history_threshold' );
-	if ( !access_has_bug_level( $t_access_level_needed, $f_bug_id ) ) {
+	$t_access_level_needed = config_get('view_history_threshold');
+	if (! access_has_bug_level($t_access_level_needed, $f_bug_id)){
 		return;
 	}
 ?>
@@ -35,7 +35,7 @@
 <a name="history" id="history" /><br />
 
 <?php
-	collapse_open( 'history' );
+	collapse_open('history', '', 'closed');
 	$t_history = history_get_events_array( $f_bug_id );
 ?>
 <table class="width100" cellspacing="0">
