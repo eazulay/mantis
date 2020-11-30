@@ -31,13 +31,15 @@ input[type="button"], input[type="submit"], input.button, input.button-small, a.
 	background: -o-linear-gradient(#E2E7E6, #E8F2C8);
 	background: -moz-linear-gradient(#E2E7E6, #E8F2C8);
 	background: linear-gradient(#E2E7E6, #E8F2C8);
-	color: #2e343b;
-	border-width: 1px;
+    color: #2e343b;
+    border-width: 1px;
+    border-style: solid;
+    border-color: RGBA(232,245,232,0.8) RGBA(63,118,53,0.8) RGBA(63,118,53,0.8) RGBA(232,245,232,0.8);
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	padding: 4px 8px;
 	font-weight: bold;
-	border-color: RGBA(232,245,232,0.8) RGBA(63,118,53,0.8) RGBA(63,118,53,0.8) RGBA(232,245,232,0.8);
+    font-size: 9pt;
 }
 input.button-small button.button-small {
     font-size: 8pt;
