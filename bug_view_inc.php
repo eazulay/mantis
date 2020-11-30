@@ -851,9 +851,9 @@
     }
 
     # Change status button/dropdown
-    if (! bug_is_readonly($p_bug_id) || config_get('allow_reporter_close')){
+    if (! bug_is_readonly($tpl_bug->id) || config_get('allow_reporter_close')){
         echo '<td class="center">';
-        html_button_bug_change_status( $p_bug_id );
+        html_button_bug_change_status($tpl_bug->id);
         echo '</td>';
     }
 
