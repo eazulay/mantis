@@ -141,8 +141,8 @@ tr.row-1 > td:not(:first-child), tr.row-2 > td:not(:first-child),
 tr.header, tr.footer	{ background-color: #F7EBD9; }
 tr.header > td			{ border-bottom: 1px solid #E3C389; }
 tr.footer > td			{ border-top: 1px solid #E3C389; }
+#filter_closed tr.footer > td { border-top: none; }
 tr.footer:first-child > td { padding: 0; }
-#filter_closed table.width100 { border-top: none; }
 tr.bottom-border > td, tr.bottom-border > th	{ border-bottom: 1px solid #E3C389; }
 tr.top-border > td		{ border-top: 1px solid #E3C389; }
 td#relationship_type_filter_target, td#tag_string_filter_target, td#show_sort_filter_target, td#sticky_issues_filter_target, td#per_page_filter_target { background-color: #F9F9F9; }
