@@ -75,11 +75,11 @@ $g_collapse_cache_token = null;
 function collapse_open($p_name, $p_section = '', $p_force_state = '') {
     global $g_current_collapse_section, $g_open_collapse_section, $g_collapse_cache_token;
 
-    if (! empty($p_force_state)){
-        $g_collapse_cache_token[$p_section] = (strtolower($p_force_state) == 'open');
-    }
+    $t_block = (is_blank($p_section) ? $p_name : $p_section . '_' . $p_name);
 
-	$t_block = (is_blank($p_section) ? $p_name : $p_section . '_' . $p_name);
+    if (! empty($p_force_state)){
+        $g_collapse_cache_token[$t_block] = (strtolower($p_force_state) == 'open');
+    }
 	$t_display = collapse_display($t_block);
 
 	# make sure no other collapse section is started
