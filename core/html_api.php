@@ -1230,7 +1230,7 @@ function print_summary_menu( $p_page = '' ) {
  */
 function html_status_legend() {
 	echo '<br />';
-	echo '<table class="width100" cellspacing="1">';
+	echo '<table class="width100" cellspacing="0">';
 	echo '<tr>';
 
 	$t_status_array = MantisEnum::getAssocArrayIndexedByValues( config_get( 'status_enum_string' ) );
