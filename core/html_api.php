@@ -1676,7 +1676,9 @@ function html_buttons_view_bug_page( $p_bug_id, $p_metadata_section = false ) {
 		echo '</td>';
 	}else{
         # UPDATE button
+        echo '<td class="center">';
         html_button_bug_update( $p_bug_id );
+        echo '</td>';
 
 		# STICK/UNSTICK button
 		if ( access_has_bug_level( $t_sticky, $p_bug_id ) ) {
