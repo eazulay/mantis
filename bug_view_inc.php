@@ -351,9 +351,6 @@
 
 	echo '</span> &nbsp; ';
 
-	# UPDATE button
-	html_button_bug_update( $f_bug_id );
-
 	echo '</td>';
 
 	# prev/next links

@@ -1638,19 +1638,14 @@ function html_buttons_view_bug_page( $p_bug_id, $p_metadata_section = false ) {
 	$t_sticky = config_get( 'set_bug_sticky_threshold' );
 
 	echo '<table><tr class="vcenter">';
-	if( !$t_readonly ) {
-		if ($p_metadata_section){
-			echo '<td class="center">';
-			# UPDATE button
-			html_button_bug_update( $p_bug_id );
 
+	if ($p_metadata_section){
+        if( !$t_readonly ) {
+			echo '<td class="center">';
 			# ASSIGN button
 			html_button_bug_assign_to( $p_bug_id );
 			echo '</td>';
-		}
-	}
-
-	if ($p_metadata_section){
+    	}
 		# MOVE button
 		echo '<td class="center">';
 		html_button_bug_move( $p_bug_id );
@@ -1680,6 +1675,9 @@ function html_buttons_view_bug_page( $p_bug_id, $p_metadata_section = false ) {
 		print_bracket_link( $tpl_bug_reminder_link, lang_get( 'bug_reminder' ) );
 		echo '</td>';
 	}else{
+        # UPDATE button
+        html_button_bug_update( $p_bug_id );
+
 		# STICK/UNSTICK button
 		if ( access_has_bug_level( $t_sticky, $p_bug_id ) ) {
 			echo '<td class="center">';
