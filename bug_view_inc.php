@@ -852,7 +852,7 @@
 
     # Change status button/dropdown
     if (! bug_is_readonly($tpl_bug->id) || config_get('allow_reporter_close')){
-        echo '<td class="center">';
+        echo '<td class="center" width="280">';
         html_button_bug_change_status($tpl_bug->id);
         echo '</td>';
     }
