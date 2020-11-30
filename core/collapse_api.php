@@ -70,23 +70,28 @@ $g_collapse_cache_token = null;
  * javascript is disabled.
  * @param string Collapse block name
  * @param string Collapse block section
+ * @param string override collapse state 'open' or 'closed'
  */
-function collapse_open( $p_name, $p_section = '' ) {
-	global $g_current_collapse_section, $g_open_collapse_section;
+function collapse_open($p_name, $p_section = '', $p_force_state = '') {
+    global $g_current_collapse_section, $g_open_collapse_section, $g_collapse_cache_token;
 
-	$t_block = ( is_blank( $p_section ) ? $p_name : $p_section . '_' . $p_name );
-	$t_display = collapse_display( $t_block );
+    if (! empty($p_force_state)){
+        $g_collapse_cache_token[$p_section] = (strtolower($p_force_state) == 'open');
+    }
+
+	$t_block = (is_blank($p_section) ? $p_name : $p_section . '_' . $p_name);
+	$t_display = collapse_display($t_block);
 
 	# make sure no other collapse section is started
-	if( $g_current_collapse_section !== null ) {
-		trigger_error( ERROR_GENERIC, ERROR );
+	if ($g_current_collapse_section !== null){
+		trigger_error(ERROR_GENERIC, ERROR);
 	}
 
 	$g_open_collapse_section = true;
 	$g_current_collapse_section = $t_block;
 
 	$t_div_id = $t_block . '_open';
-	echo '<div id="', $t_div_id, '"', ( $t_display ? '' : ' class="hidden"' ), '>';
+	echo '<div id="', $t_div_id, '"', ($t_display ? '' : ' class="hidden"'), '>';
 }
 
 /**
@@ -99,12 +104,12 @@ function collapse_open( $p_name, $p_section = '' ) {
 function collapse_closed( $p_name, $p_section = '' ) {
 	global $g_current_collapse_section, $g_open_collapse_section;
 
-	$t_block = ( is_blank( $p_section ) ? $p_name : $p_section . '_' . $p_name );
-	$t_display = !collapse_display( $t_block );
+	$t_block = (is_blank( $p_section ) ? $p_name : $p_section . '_' . $p_name);
+	$t_display = ! collapse_display($t_block);
 
 	# Make sure a section is opened, and it is the same section.
-	if( $t_block !== $g_current_collapse_section ) {
-		trigger_error( ERROR_GENERIC, ERROR );
+	if ($t_block !== $g_current_collapse_section){
+		trigger_error(ERROR_GENERIC, ERROR);
 	}
 
 	echo '</div>';
@@ -125,18 +130,18 @@ function collapse_closed( $p_name, $p_section = '' ) {
  * @param string Collapse block section
  */
 function collapse_icon( $p_name, $p_section = '' ) {
-	if( OFF == config_get( 'use_javascript' ) ) {
+	if (OFF == config_get('use_javascript')){
 		return;
 	}
 
-	$t_block = ( is_blank( $p_section ) ? $p_name : $p_section . '_' . $p_name );
+	$t_block = (is_blank( $p_section ) ? $p_name : $p_section . '_' . $p_name);
 
 	global $g_open_collapse_section;
 
-	if( $g_open_collapse_section === true ) {
+	if ($g_open_collapse_section === true) {
 		$t_icon = 'minus.png';
 		$t_alt = '-';
-	} else {
+	}else{
 		$t_icon = 'plus.png';
 		$t_alt = '+';
 	}
@@ -181,14 +186,14 @@ function collapse_end( $p_name, $p_section = '' ) {
  * @param string Collapse block
  * @return bool
  */
-function collapse_display( $p_block ) {
+function collapse_display($p_block) {
 	global $g_collapse_cache_token;
 
-	if( !isset( $g_collapse_cache_token[$p_block] ) || OFF == config_get( 'use_javascript' ) ) {
+	if (! isset($g_collapse_cache_token[$p_block]) || OFF == config_get('use_javascript')){
 		return true;
 	}
 
-	return( true == $g_collapse_cache_token[$p_block] );
+	return (true == $g_collapse_cache_token[$p_block]);
 }
 
 /**
@@ -199,36 +204,36 @@ function collapse_display( $p_block ) {
 function collapse_cache_token() {
 	global $g_collapse_cache_token;
 
-	if( !auth_is_user_authenticated() || current_user_is_anonymous() ) {
+	if (!auth_is_user_authenticated() || current_user_is_anonymous()) {
 		$g_collapse_cache_token = array();
 		return;
 	}
 
-	if( isset( $g_collapse_cache_token ) ) {
+	if (isset($g_collapse_cache_token)){
 		return;
 	}
 
 	$t_user_id = auth_get_current_user_id();
-	$t_token = token_get_value( TOKEN_COLLAPSE );
+	$t_token = token_get_value(TOKEN_COLLAPSE);
 
-	if( !is_null( $t_token ) ) {
-		$t_data = unserialize( $t_token );
-	} else {
+	if (!is_null($t_token)){
+		$t_data = unserialize($t_token);
+	}else{
 		$t_data = array();
 	}
 
 	$g_collapse_cache_token = $t_data;
 
-	$t_cookie = gpc_get_cookie( 'MANTIS_collapse_settings', '' );
+	$t_cookie = gpc_get_cookie('MANTIS_collapse_settings', '');
 
-	if( false !== $t_cookie && !is_blank( $t_cookie ) ) {
+	if (false !== $t_cookie && ! is_blank($t_cookie)){
 		$t_update = false;
-		$t_data = explode( '|', $t_cookie );
+		$t_data = explode('|', $t_cookie);
 
-		foreach( $t_data as $t_pair ) {
-			$t_pair = explode( ',', $t_pair );
+		foreach ($t_data as $t_pair){
+			$t_pair = explode(',', $t_pair);
 
-			if( false !== $t_pair && count( $t_pair ) == 2 ) {
+			if (false !== $t_pair && count($t_pair) == 2){
 				$g_collapse_cache_token[$t_pair[0]] = (
 					$t_pair[0] == 'filter'
 						? false				// Ignore previous Filter collapse state
@@ -238,13 +243,13 @@ function collapse_cache_token() {
 			}
 		}
 
-		if( $t_update ) {
-			$t_token = serialize( $g_collapse_cache_token );
-			token_set( TOKEN_COLLAPSE, $t_token, TOKEN_EXPIRY_COLLAPSE );
-		} else {
-			token_touch( TOKEN_COLLAPSE );
+		if ($t_update){
+			$t_token = serialize($g_collapse_cache_token);
+			token_set(TOKEN_COLLAPSE, $t_token, TOKEN_EXPIRY_COLLAPSE);
+		}else{
+			token_touch(TOKEN_COLLAPSE);
 		}
 
-		gpc_clear_cookie( 'MANTIS_collapse_settings' );
+		gpc_clear_cookie('MANTIS_collapse_settings');
 	}
 }

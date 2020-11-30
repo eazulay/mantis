@@ -25,7 +25,7 @@
 /*
  * String manipulation
  */
-function Trim( p_string ) {
+function Trim(p_string) {
 	if (typeof p_string != "string") {
 		return p_string;
 	}
@@ -34,19 +34,17 @@ function Trim( p_string ) {
 	var t_ch = '';
 
 	// Trim beginning spaces
-
 	t_ch = t_string.substring( 0, 1 );
-	while ( t_ch == " " ) {
-		t_string = t_string.substring( 1, t_string.length );
-		t_ch = t_string.substring( 0, 1 );
+	while (t_ch == " "){
+		t_string = t_string.substring(1, t_string.length);
+		t_ch = t_string.substring(0, 1);
 	}
 
 	// Trim trailing spaces
-
-	t_ch = t_string.substring( t_string.length-1, t_string.length );
-	while ( t_ch == " " ) {
-		t_string = t_string.substring( 0, t_string.length-1 );
-		t_ch = t_string.substring( t_string.length-1, t_string.length );
+	t_ch = t_string.substring(t_string.length-1, t_string.length);
+	while (t_ch == " "){
+		t_string = t_string.substring(0, t_string.length-1);
+		t_ch = t_string.substring(t_string.length-1, t_string.length);
 	}
 
 	return t_string;
@@ -55,20 +53,20 @@ function Trim( p_string ) {
 /*
  * Cookie functions
  */
-function GetCookie( p_cookie ) {
+function GetCookie(p_cookie) {
 	var t_cookie_name = "MANTIS_" + p_cookie;
 	var t_cookies = document.cookie;
 
-	t_cookies = t_cookies.split( ";" );
+	t_cookies = t_cookies.split(";");
 
 	var i = 0;
-	while( i < t_cookies.length ) {
-		var t_cookie = t_cookies[ i ];
+	while (i < t_cookies.length){
+		var t_cookie = t_cookies[i];
 
-		t_cookie = t_cookie.split( "=" );
+		t_cookie = t_cookie.split("=");
 
-		if ( Trim( t_cookie[ 0 ] ) == t_cookie_name ) {
-			return( t_cookie[ 1 ] );
+		if (Trim(t_cookie[0]) == t_cookie_name){
+			return(t_cookie[1]);
 		}
 		i++;
 	}
@@ -76,11 +74,11 @@ function GetCookie( p_cookie ) {
 	return -1;
 }
 
-function SetCookie( p_cookie, p_value ) {
+function SetCookie(p_cookie, p_value) {
 	var t_cookie_name = "MANTIS_" + p_cookie;
 	var t_expires = new Date();
 
-	t_expires.setTime( t_expires.getTime() + (365 * 24 * 60 * 60 * 1000));
+	t_expires.setTime(t_expires.getTime() + (365 * 24 * 60 * 60 * 1000));
 
 	document.cookie = t_cookie_name + "=" + p_value + "; expires=" + t_expires.toUTCString() + ";";
 }
@@ -91,26 +89,26 @@ function SetCookie( p_cookie, p_value ) {
 var g_collapse_clear = 1;
 
 function ToggleDiv( p_div ) {
-	t_open_div = document.getElementById( p_div + "_open" );
-	t_closed_div = document.getElementById( p_div + "_closed" );
+	t_open_div = document.getElementById(p_div + "_open");
+	t_closed_div = document.getElementById(p_div + "_closed");
 
-	t_cookie = GetCookie( "collapse_settings" );
-	if ( 1 == g_collapse_clear ) {
+	t_cookie = GetCookie("collapse_settings");
+	if (1 == g_collapse_clear){
 		t_cookie = "";
 		g_collapse_clear = 0;
 	}
 
-	if ( t_open_div.className == "hidden" ) {
+	if (t_open_div.className == "hidden"){
 		t_open_div.className = "";
 		t_closed_div.className = "hidden";
 		t_cookie = t_cookie + "|" + p_div + ",1";
-	} else {
+	}else{
 		t_closed_div.className = "";
 		t_open_div.className = "hidden";
 		t_cookie = t_cookie + "|" + p_div + ",0";
 	}
 
-	SetCookie( "collapse_settings", t_cookie );
+	SetCookie("collapse_settings", t_cookie);
 
 	return (t_open_div.className === "");
 }

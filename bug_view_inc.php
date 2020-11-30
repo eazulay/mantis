@@ -312,7 +312,7 @@
 
 	echo '<br />';
 
-	collapse_open( 'issue_details' );
+	collapse_open('issue_details');
 
 	echo '<table class="width100" cellspacing="0">';
 	echo '<tr class="header">';
@@ -599,7 +599,7 @@
 
 	echo '<br>';
 
-	collapse_open( 'issue_metadata' );
+	collapse_open('issue_metadata', '', 'closed');
 
 	echo '<table class="width100" cellspacing="0">';
 
