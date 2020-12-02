@@ -25,13 +25,13 @@
 	 /**
 	  * MantisBT Core API's
 	  */
-	require_once( 'core.php' );
+	require_once('core.php');
 
-	require_once( 'bug_api.php' );
-	require_once( 'bugnote_api.php' );
-	require_once( 'current_user_api.php' );
+	require_once('bug_api.php');
+	require_once('bugnote_api.php');
+	require_once('current_user_api.php');
 
-	form_security_validate( 'bugnote_delete' );
+	form_security_validate('bugnote_delete');
 
     $f_bugnote_ids = gpc_get_string('bugnote_id');
 
@@ -39,10 +39,10 @@
 
 	$f_bugnote_id = $selectedNoteIDs[0];
 
-	$t_bug_id = bugnote_get_field( $f_bugnote_id, 'bug_id' );
+	$t_bug_id = bugnote_get_field($f_bugnote_id, 'bug_id');
 
-	$t_bug = bug_get( $t_bug_id, true );
-	if( $t_bug->project_id != helper_get_current_project() ) {
+	$t_bug = bug_get($t_bug_id, true);
+	if ($t_bug->project_id != helper_get_current_project()){
 		# in case the current project is not the same project of the bug we are viewing...
 		# ... override the current project. This to avoid problems with categories and handlers lists etc.
 		$g_project_override = $t_bug->project_id;
@@ -59,13 +59,13 @@
 	helper_ensure_confirmed(lang_get(count($selectedNoteIDs) > 0 ? 'delete_bugnotes_sure_msg' : 'delete_bugnote_sure_msg'),
                             lang_get('delete_bugnote_button'));
 
-    foreach($selectedNoteIDs as $f_bugnote_id){
-        bugnote_delete($f_bugnote_id);
+    foreach($selectedNoteIDs as $bugnote_id){
+        bugnote_delete($bugnote_id);
     }
 
 	# Event integration
-	event_signal( 'EVENT_BUGNOTE_DELETED', array( $t_bug_id, $f_bugnote_id ) );
+	event_signal('EVENT_BUGNOTE_DELETED', array($t_bug_id, $f_bugnote_id));
 
-	form_security_purge( 'bugnote_delete' );
+	form_security_purge('bugnote_delete');
 
-	print_successful_redirect( string_get_bug_view_url( $t_bug_id ) . '#bugnotes' );
+	print_successful_redirect(string_get_bug_view_url($t_bug_id) . '#bugnotes');

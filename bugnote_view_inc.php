@@ -298,9 +298,9 @@ $num_notes = count( $t_bugnotes );
                 form.style.display = "none";
             }
         }
-        //alert(selectedNotesCount);
     }
     function navigateDelete(){
+        alert(selectedNotes.join(','));
         window.location.href = "bugnote_delete.php?bugnote_id=" + selectedNotes.join(',');
     }
 </script>
