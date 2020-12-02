@@ -76,6 +76,7 @@ $num_notes = count( $t_bugnotes );
         <label for="record_transfer">Record transfer on original Issue</label> <input type="checkbox" id="record_transfer" name="record_transfer" value="1" checked>
         &nbsp;
         <input type="submit" class="button" value="Move Notes" />
+        <button onclick="navigateDelete()">Delete Selected Notes</button>
     </form>
 <?php } ?>
 	</td>
@@ -134,7 +135,7 @@ $num_notes = count( $t_bugnotes );
 		<?php if ( ON  == config_get("show_avatar") ) print_avatar( $t_bugnote->reporter_id ); ?>
         <?php # Note Selection checkbox
         if (access_has_global_level(DEVELOPER)){
-            echo '<div style="float:right;"><label for="note_selected_'.$t_bugnote->id.'" style="font-weight:normal;">Select</label> <input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked)"></div>';
+            echo '<div style="float:right;"><label for="note_selected_'.$t_bugnote->id.'" style="font-weight:normal;">Select</label> <input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked, '.$t_bugnote->id.')"></div>';
         }
         ?>
 		<span style="font-weight:bold;"><a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?></a></span>
@@ -276,14 +277,20 @@ $num_notes = count( $t_bugnotes );
     }
 
     var selectedNotesCount = 0;
-    function note_selected(checked){
+    var selectedNotes = [];
+    function note_selected(checked, noteID){
         if (checked){
+            selectedNotes.push(noteID);
             selectedNotesCount++;
             if (selectedNotesCount == 1){
                 var form = document.getElementById('bugnotes_move');
                 form.style.display = "inline-block";
             }
         }else{
+            var index = selectedNotes.find(function(val){
+                return val === noteID;
+            });
+            selectedNotes.splice(index, 1);
             selectedNotesCount--;
             if (selectedNotesCount == 0){
                 var form = document.getElementById('bugnotes_move');
@@ -291,6 +298,9 @@ $num_notes = count( $t_bugnotes );
             }
         }
         //alert(selectedNotesCount);
+    }
+    function navigateDelete(){
+        window.location.href = "bugnote_delete.php?bugnote_id=" + selectedNotes.join(',');
     }
 </script>
 <?php endif;

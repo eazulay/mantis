@@ -33,7 +33,11 @@
 
 	form_security_validate( 'bugnote_delete' );
 
-	$f_bugnote_id = gpc_get_int( 'bugnote_id' );
+    $f_bugnote_ids = gpc_get_string('bugnote_id');
+
+    $selectedNoteIDs = explode(',', $f_bugnote_ids);
+
+	$f_bugnote_id = $selectedNoteIDs[0];
 
 	$t_bug_id = bugnote_get_field( $f_bugnote_id, 'bug_id' );
 
@@ -52,10 +56,12 @@
 		access_ensure_bugnote_level( config_get( 'delete_bugnote_threshold' ), $f_bugnote_id );
 	}
 
-	helper_ensure_confirmed( lang_get( 'delete_bugnote_sure_msg' ),
-							 lang_get( 'delete_bugnote_button' ) );
+	helper_ensure_confirmed(lang_get(count($selectedNoteIDs) > 0 ? 'delete_bugnotes_sure_msg' : 'delete_bugnote_sure_msg'),
+                            lang_get('delete_bugnote_button'));
 
-	bugnote_delete( $f_bugnote_id );
+    foreach($selectedNoteIDs as $f_bugnote_id){
+        bugnote_delete($f_bugnote_id);
+    }
 
 	# Event integration
 	event_signal( 'EVENT_BUGNOTE_DELETED', array( $t_bug_id, $f_bugnote_id ) );
