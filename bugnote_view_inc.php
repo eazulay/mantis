@@ -292,6 +292,7 @@ $num_notes = count( $t_bugnotes );
                 return val === noteID;
             });
             selectedNotes.splice(index, 1);
+            console.log(selectedNotes.join(','));
             selectedNotesCount--;
             if (selectedNotesCount == 0){
                 var form = document.getElementById('bugnotes_move');
@@ -300,7 +301,6 @@ $num_notes = count( $t_bugnotes );
         }
     }
     function navigateDelete(){
-        //alert(selectedNotes.join(','));
         window.location.href = "bugnote_delete.php?bugnote_id=" + selectedNotes.join(',');
     }
 </script>
