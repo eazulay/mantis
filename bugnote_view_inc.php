@@ -76,7 +76,7 @@ $num_notes = count( $t_bugnotes );
         <label for="record_transfer">Record transfer on original Issue</label> <input type="checkbox" id="record_transfer" name="record_transfer" value="1" checked>
         &nbsp;
         <input type="submit" class="button" value="Move Notes" />
-        <button onclick="navigateDelete()">Delete Selected Notes</button>
+        <button onclick="navigateDelete(); return false;">Delete Selected Notes</button>
     </form>
 <?php } ?>
 	</td>
@@ -300,7 +300,7 @@ $num_notes = count( $t_bugnotes );
         }
     }
     function navigateDelete(){
-        alert(selectedNotes.join(','));
+        //alert(selectedNotes.join(','));
         window.location.href = "bugnote_delete.php?bugnote_id=" + selectedNotes.join(',');
     }
 </script>
