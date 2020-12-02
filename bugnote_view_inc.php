@@ -281,6 +281,7 @@ $num_notes = count( $t_bugnotes );
     function note_selected(checked, noteID){
         if (checked){
             selectedNotes.push(noteID);
+            console.log(selectedNotes.join(','));
             selectedNotesCount++;
             if (selectedNotesCount == 1){
                 var form = document.getElementById('bugnotes_move');
