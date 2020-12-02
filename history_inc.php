@@ -32,7 +32,7 @@
 	}
 ?>
 
-<a name="history" id="history" /><br />
+<a name="history" id="history"><br /></a>
 
 <?php
 	collapse_open('history', '', 'closed');
