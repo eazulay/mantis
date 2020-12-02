@@ -288,9 +288,7 @@ $num_notes = count( $t_bugnotes );
                 form.style.display = "inline-block";
             }
         }else{
-            var index = selectedNotes.find(function(val){
-                return val === noteID;
-            });
+            var index = selectedNotes.indexOf(noteID);
             selectedNotes.splice(index, 1);
             console.log(selectedNotes.join(','));
             selectedNotesCount--;
