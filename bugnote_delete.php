@@ -52,8 +52,8 @@
 	$t_user_id = auth_get_current_user_id();
 	$t_reporter_id = bugnote_get_field( $f_bugnote_id, 'reporter_id' );
 
-	if ( ( $t_user_id != $t_reporter_id ) || ( OFF == config_get( 'bugnote_allow_user_edit_delete' ) ) ) {
-		access_ensure_bugnote_level( config_get( 'delete_bugnote_threshold' ), $f_bugnote_id );
+	if (($t_user_id != $t_reporter_id) || (OFF == config_get('bugnote_allow_user_edit_delete'))){
+		access_ensure_bugnote_level(config_get('delete_bugnote_threshold'), $f_bugnote_id);
 	}
 
 	helper_ensure_confirmed(lang_get(count($selectedNoteIDs) > 0 ? 'delete_bugnotes_sure_msg' : 'delete_bugnote_sure_msg'),
