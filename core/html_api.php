@@ -1643,6 +1643,11 @@ function html_buttons_view_bug_page($p_bug_id, $p_metadata_section = false) {
 	echo '<table><tr class="vcenter">';
 
 	if ($p_metadata_section){
+        # UPDATE button
+        echo '<td class="center">';
+        html_button_bug_update($p_bug_id);
+        echo '</td>';
+
 		# MOVE button
 		echo '<td class="center">';
 		html_button_bug_move($p_bug_id);
