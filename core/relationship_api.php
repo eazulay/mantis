@@ -821,7 +821,7 @@ function relationship_view_box( $p_bug_id ) {
 	?>
 <br />
 
-<?php collapse_open('relationships', '', 'closed');?>
+<?php collapse_open('relationships');?>
 <table class="width100" cellspacing="0">
 <tr class="row-2 header" valign="top">
 	<td width="15%" class="form-title" colspan="2">

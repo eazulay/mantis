@@ -599,7 +599,7 @@
 
 	echo '<br>';
 
-	collapse_open('issue_metadata', '', 'closed');
+	collapse_open('issue_metadata');
 
 	echo '<table class="width100" cellspacing="0">';
 
