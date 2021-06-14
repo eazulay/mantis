@@ -56,6 +56,7 @@ $g_disallowed_files		= 'php,php3,phtml,html,class,java,exe,pl,erp,dat';	# extens
 $g_allow_delete_own_attachments = ON;
 $g_preview_max_height	= 500;
 $g_preview_max_width    = '100%';
+$g_allow_file_cache     = ON;
 
 # --- Branding ---
 $g_window_title			= 'Get-It-Write Tracking System';
