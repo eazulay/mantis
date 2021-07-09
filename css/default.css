@@ -224,7 +224,7 @@ ul.project-menu ul.sub-menu {
 }
 ul.project-menu ul.sub-menu ul.sub-menu {
     left: 99%;
-    top: 0;
+    top: -8px;
 }
 ul.project-menu > li.menu-item:last-child > ul.sub-menu {
     right: 0;
