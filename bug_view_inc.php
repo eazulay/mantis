@@ -344,7 +344,9 @@
         if (colourCount > 0){
             var r = 0, g = 0, b = 0;
             var colourEntries = Math.ceil(Math.cbrt(colourCount));
-            var colourDistance = Math.floor(256 / (colourEntries + 1));
+            var colourDistance = 256;
+            if (colourEntries > 1)
+                colourDistance = Math.floor(256 / (colourEntries - 1));
             for(var ri = 0; ri < colourEntries; ri++){
                 for(var gi = 0; gi < colourEntries; gi++){
                     for(var bi = 0; bi < colourEntries; bi++){
