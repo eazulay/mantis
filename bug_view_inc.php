@@ -310,12 +310,42 @@
     function colourifyLinks(){
         var notesDiv = document.getElementById('bugnotes_open');
         var links = notesDiv.querySelectorAll('a');
+        var colourIndex = [];
+        var colourCount = 0;
         links.forEach(link => {
             if (link.href.includes('/mantis/view.php')){
-                link.style.backgroundColor = '#00c000';
+                if (typeof colourIndex[link.href] === 'undefined')
+                    colourIndex[link.href] = colourCount++;
+            }
+        });
+        var uniqueColours = generateUniqueColours(colourCount);
+        links.forEach(link => {
+            if (link.href.includes('/mantis/view.php')){
+                link.style.backgroundColor = uniqueColours[colourIndex[link.href]];
                 link.style.color = '#fff';
             }
         });
+    }
+
+    function generateUniqueColours(colourCount){
+        var colourArray = [];
+        if (colourCount > 0){
+            var r = 0, g = 0, b = 0;
+            var colourEntries = Math.ceil(Math.cbrt(colourCount));
+            var colourDistance = Math.floor(256 / (colourEntries + 1));
+            for(var ri = 0; ri < colourEntries; ri++){
+                for(var gi = 0; gi < colourEntries; gi++){
+                    for(var bi = 0; bi < colourEntries; bi++){
+                        r = ri * colourDistance;
+                        g = gi * colourDistance;
+                        b = bi * colourDistance;
+                        if (r < 200 || g < 200 || b < 200)
+                            colourArray.push('RGB(' + r + ',' + g + ',' + b + ')');
+                    }
+                }
+            }
+        }
+        return colourArray;
     }
 	</script>";
 
