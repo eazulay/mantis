@@ -307,6 +307,7 @@
 	}
 	echo "}
 
+    addLoadEvent(colourifyLinks);
     function colourifyLinks(){
         var notesDiv = document.getElementById('bugnotes_open');
         var links = notesDiv.querySelectorAll('a');
