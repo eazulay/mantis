@@ -353,7 +353,7 @@
                         r = ri * colourDistance;
                         g = gi * colourDistance;
                         b = bi * colourDistance;
-                        if (r < 128 || g < 128 || b < 128)
+                        if (r + g + b < 384)
                             colourArray.push({bg: 'RGB(' + r + ',' + g + ',' + b + ')', fg: '#fff'});
                         else
                             colourArray.push({bg: 'RGB(' + r + ',' + g + ',' + b + ')', fg: '#000'});
