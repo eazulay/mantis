@@ -353,7 +353,7 @@
                         r = ri * colourDistance;
                         g = gi * colourDistance;
                         b = bi * colourDistance;
-                        if (r + g + b <= 384)
+                        if (colourIsDark(r, g, b))
                             colourArray.push({bg: 'RGB(' + r + ',' + g + ',' + b + ')', fg: '#fff'});
                         else
                             colourArray.push({bg: 'RGB(' + r + ',' + g + ',' + b + ')', fg: '#000'});
@@ -362,6 +362,12 @@
             }
         }
         return colourArray;
+    }
+
+    function colourIsDark(r, g, b){
+        return ((r < 128) ? 0 : 1 +
+                (g < 128) ? 0 : 1 +
+                (b < 128) ? 0 : 1) < 2;
     }
 	</script>";
 
