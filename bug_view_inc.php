@@ -311,17 +311,30 @@
         var notesDiv = document.getElementById('bugnotes_open');
         var links = notesDiv.querySelectorAll('a');
         var colourIndex = [];
+        var indexOccurs = [];
         var colourCount = 0;
+        var usefulIndex = [];
+        var usefulLinks = [];
+        var usefulCount = 0;
         links.forEach(link => {
             if (link.href.includes('/mantis/view.php')){
-                if (typeof colourIndex[link.href] === 'undefined')
+                if (typeof colourIndex[link.href] === 'undefined'){
                     colourIndex[link.href] = colourCount++;
+                    indexOccurs[link.href] = 1;
+                }else
+                    indexOccurs[link.href]++;
             }
         });
-        var uniqueColours = generateUniqueColours(colourCount);
         links.forEach(link => {
-            if (link.href.includes('/mantis/view.php')){
-                link.style.backgroundColor = uniqueColours[colourIndex[link.href]];
+            if (typeof indexOccurs[link.href] !== 'undefined' && indexOccurs[link.href] >= 2){
+                usefulIndex[link.href] = usefulCount++;
+                usefulLinks[link.href] = link.href;
+            }
+        });
+        var uniqueColours = generateUniqueColours(usefulCount);
+        links.forEach(link => {
+            if (typeof indexOccurs[link.href] !== 'undefined'){
+                link.style.backgroundColor = uniqueColours[usefulIndex[link.href]];
                 link.style.color = '#fff';
             }
         });
