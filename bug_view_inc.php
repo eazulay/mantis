@@ -332,8 +332,8 @@
         var uniqueColours = generateUniqueColours(usefulCount);
         links.forEach(link => {
             if (typeof usefulIndex[link.href] !== 'undefined'){
-                link.style.backgroundColor = uniqueColours[usefulIndex[link.href]];
-                link.style.color = '#fff';
+                link.style.backgroundColor = uniqueColours[usefulIndex[link.href].bg];
+                link.style.color = uniqueColours[usefulIndex[link.href].fg];
             }
         });
     }
@@ -350,8 +350,10 @@
                         r = ri * colourDistance;
                         g = gi * colourDistance;
                         b = bi * colourDistance;
-                        if (r < 200 || g < 200 || b < 200)
-                            colourArray.push('RGB(' + r + ',' + g + ',' + b + ')');
+                        if (r < 128 || g < 128 || b < 128)
+                            colourArray.push({bg: 'RGB(' + r + ',' + g + ',' + b + ')', fg: '#fff'});
+                        else
+                            colourArray.push({bg: 'RGB(' + r + ',' + g + ',' + b + ')', fg: '#000'});
                     }
                 }
             }
