@@ -332,8 +332,8 @@
         var uniqueColours = generateUniqueColours(usefulCount);
         links.forEach(link => {
             if (typeof usefulIndex[link.href] !== 'undefined'){
-                link.style.backgroundColor = uniqueColours[usefulIndex[link.href].bg];
-                link.style.color = uniqueColours[usefulIndex[link.href].fg];
+                link.style.backgroundColor = uniqueColours[usefulIndex[link.href]].bg;
+                link.style.color = uniqueColours[usefulIndex[link.href]].fg;
             }
         });
     }
