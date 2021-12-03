@@ -311,8 +311,10 @@
         var notesDiv = document.getElementById('bugnotes_open');
         var links = notesDiv.querySelectorAll('a');
         links.forEach(link => {
-            link.style.backgroundColor = '#00c000';
-            link.style.color = '#fff';
+            if (link.href.startsWith('/mantis/view.php?id=1014#c'){
+                link.style.backgroundColor = '#00c000';
+                link.style.color = '#fff';
+            }
         });
     }
 	</script>";
