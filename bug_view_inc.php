@@ -314,7 +314,6 @@
         var indexOccurs = [];
         var colourCount = 0;
         var usefulIndex = [];
-        var usefulLinks = [];
         var usefulCount = 0;
         links.forEach(link => {
             if (link.href.includes('/mantis/view.php')){
@@ -326,14 +325,13 @@
             }
         });
         links.forEach(link => {
-            if (typeof indexOccurs[link.href] !== 'undefined' && indexOccurs[link.href] >= 2){
+            if (indexOccurs[link.href] >= 2){
                 usefulIndex[link.href] = usefulCount++;
-                usefulLinks[link.href] = link.href;
             }
         });
         var uniqueColours = generateUniqueColours(usefulCount);
         links.forEach(link => {
-            if (typeof indexOccurs[link.href] !== 'undefined'){
+            if (typeof usefulIndex[link.href] !== 'undefined'){
                 link.style.backgroundColor = uniqueColours[usefulIndex[link.href]];
                 link.style.color = '#fff';
             }
