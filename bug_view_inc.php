@@ -311,8 +311,7 @@
         var notesDiv = document.getElementById('bugnotes_open');
         var links = notesDiv.querySelectorAll('a');
         links.forEach(link => {
-            console.log(link.href);
-            if (link.href.startsWith('/mantis/view.php')){
+            if (link.href.includes('/mantis/view.php')){
                 link.style.backgroundColor = '#00c000';
                 link.style.color = '#fff';
             }
