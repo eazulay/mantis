@@ -187,7 +187,7 @@ $num_notes = count( $t_bugnotes );
 			}
 
 			# users with access to both update and change view status (or the bugnote author) can change public/private status
-			if ( access_has_bug_level( config_get( 'private_bugnote_threshold' ), $t_bugnote->id ) ) {
+			if ( access_has_bug_level( config_get( 'private_bugnote_threshold' ), $f_bug_id ) ) {
 				if ( VS_PRIVATE == $t_bugnote->view_state ) {
 					echo " ";
 					print_button( 'bugnote_set_view_state.php?private=0&bugnote_id=' . $t_bugnote->id, lang_get( 'make_public' ) );
