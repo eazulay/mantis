@@ -30,3 +30,6 @@ library/
 .project
 .settings
 .user.ini
+
+#debug
+phpinfo.php
