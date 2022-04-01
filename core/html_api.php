@@ -219,8 +219,8 @@ function html_page_top2($p_page_title = null) {
 		}
 	}
 
-	/*if ($p_page_title != 'Main')
-		print_menu();*/
+	//if ($p_page_title != 'Main')
+	print_menu();
 
 	event_signal( 'EVENT_LAYOUT_CONTENT_BEGIN' );
 }
