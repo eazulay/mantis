@@ -40,14 +40,8 @@
 
 	$t_project_id = helper_get_current_project();
 
-/*	$t_rss_enabled = config_get( 'rss_enabled' );
-
-	if ( OFF != $t_rss_enabled && news_is_enabled() ) {
-		$t_rss_link = rss_get_news_feed_url( $t_project_id );
-		html_set_rss_link( $t_rss_link );
-	}
-*/
 	html_page_top( lang_get( 'main_link' ) );
+	print_recently_visited();
 
 	if ( !current_user_is_anonymous() ) {
 		// $t_current_user_id = auth_get_current_user_id();
