@@ -712,7 +712,7 @@ function print_menu() {
 		$t_protected = current_user_get_field( 'protected' );
 		$t_current_project = helper_get_current_project();
 
-		echo '<table class="width100" cellspacing="0">';
+		echo '<table class="menu" cellspacing="0">';
 		echo '<tr>';
 		echo '<td class="menu">';
 		$t_menu_options = array();
