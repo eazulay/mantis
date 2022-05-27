@@ -195,7 +195,7 @@
 
 			//$status_color = get_status_color( $t_row->status );
 
-			echo '<tr border="1" valign="top" class="expandable">';
+			echo '<tr bgcolor="#fff" border="1" valign="top" class="expandable">';
 
 			foreach( $t_columns as $t_column ) {
 				$t_column_value_function = 'print_column_value';
