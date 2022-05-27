@@ -870,7 +870,7 @@ function jump_issue_form($fieldsClass = '') {
 function print_project_menu_bar() {
 	$t_project_ids = current_user_get_accessible_projects();
 
-	echo '<table class="width100" cellspacing="0">';
+	echo '<table class="menu" cellspacing="0">';
 	echo '<tr>';
     echo '<td class="menu project-menu">';
     echo '<ul class="project-menu">';

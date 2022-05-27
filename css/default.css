@@ -64,10 +64,10 @@ span.small 			{ font-size: 8pt; font-weight: normal; }
 span.pagetitle		{ font-size: 12pt; font-weight: bold; text-align: center }
 span.bracket-link	{ white-space: nowrap; }
 
-span.dependency_dated		{ color: maroon; }
-span.dependency_met			{ color: green; }
-span.dependency_unmet		{ color: red; }
-span.dependency_upgrade		{ color: orange; }
+span.dependency_dated	{ color: maroon; }
+span.dependency_met		{ color: green; }
+span.dependency_unmet	{ color: red; }
+span.dependency_upgrade	{ color: orange; }
 
 table.hide			{ width: 100%; border: solid 0px #ffffff; border-spacing: 0; }
 table.width100		{ width: 100%; border: solid 1px #AC7F2A; }
@@ -76,11 +76,14 @@ table.width75		{ width: 75%;  border: solid 1px #AC7F2A; margin-left: auto; marg
 table.width60		{ width: 60%;  border: solid 1px #AC7F2A; margin-left: auto; margin-right: auto; }
 table.width50		{ width: 50%;  border: solid 1px #AC7F2A; margin-left: auto; margin-right: auto; }
 
-#fixed_scroll { position: fixed; top: 0; width:94%; border: solid 2px #000; background: white; z-index: 1000; }
+div.width100		{ width: 100%; border: solid 1px #AC7F2A; padding:15px; }
+table.menu			{ width: 100%; border: none; }
+
+#fixed_scroll 		{ position: fixed; top: 0; width:94%; border: solid 2px #000; background: white; z-index: 1000; }
 #fixed_scroll table { width: 100%; }
-.hidden-first  { opacity: 0; filter:alpha(opacity=0); }
-.transparent { opacity: 0; filter:alpha(opacity=0); -webkit-animation: hide 1s; animation: hide 1s; }
-.opaque  { opacity: 1; filter:alpha(opacity=100); -webkit-animation: show 1s; animation: show 1s; }
+.hidden-first 		{ opacity: 0; filter:alpha(opacity=0); }
+.transparent		{ opacity: 0; filter:alpha(opacity=0); -webkit-animation: hide 1s; animation: hide 1s; }
+.opaque				{ opacity: 1; filter:alpha(opacity=100); -webkit-animation: show 1s; animation: show 1s; }
 @-webkit-keyframes show { from { opacity: 0; filter:alpha(opacity=0); } to { opacity: 1; filter:alpha(opacity=100); } }
 @keyframes show         { from { opacity: 0; filter:alpha(opacity=0); } to { opacity: 1; filter:alpha(opacity=100); } }
 @-webkit-keyframes hide { from { opacity: 1; filter:alpha(opacity=100); } to { opacity: 0; filter:alpha(opacity=0); } }
@@ -137,17 +140,17 @@ tr.spacer			{ background-color: #E3C389; color: #212121; height: 1px; }
 tr.spacer td		{ padding: 0; }
 tr.padded-spacer	{ background-color: #F6EBDF; color: #212121; height: 1px; }
 tr.padded-spacer td	{ padding: 2px; border-top: 1px solid #E3C389; border-bottom: 1px solid #E3C389; }
-tr.row-1				{ background-color: #F9EFE1; color: #212121; }
-tr.row-2				{ background-color: #FCF5ED; color: #212121; }
+tr.row-1			{ background-color: #F9EFE1; color: #212121; }
+tr.row-2			{ background-color: #FCF5ED; color: #212121; }
 tr.row-1 > td:not(:first-child), tr.row-2 > td:not(:first-child),
 #issue_metadata_closed tr:first-child td.category	{ border-left: 1px solid #E3C389; }
-tr.header, tr.footer	{ background-color: #F7EBD9; }
-tr.header > td			{ border-bottom: 1px solid #E3C389; }
-tr.footer > td			{ border-top: 1px solid #E3C389; }
+tr.header, tr.footer{ background-color: #F7EBD9; }
+tr.header > td		{ border-bottom: 1px solid #E3C389; }
+tr.footer > td		{ border-top: 1px solid #E3C389; }
 #filter_closed tr.footer > td { border-top: none; }
 tr.footer:first-child > td { padding: 0; }
 tr.bottom-border > td, tr.bottom-border > th	{ border-bottom: 1px solid #E3C389; }
-tr.top-border > td		{ border-top: 1px solid #E3C389; }
+tr.top-border > td	{ border-top: 1px solid #E3C389; }
 td#relationship_type_filter_target, td#tag_string_filter_target, td#show_sort_filter_target, td#sticky_issues_filter_target, td#per_page_filter_target { background-color: #F9F9F9; }
 tr.row-category		{ background-color: #F6E6CB; color: #212121;
 	background: -webkit-linear-gradient(#FCF5ED, #F6E6CB);
@@ -164,7 +167,7 @@ tr.print-category	{ color: #212121; font-weight: bold; }
 
 #buglist tr			{ text-align: center; }
 
-td.bugnote-public		{ background-color: #F6E6CB; color: #212121; font-weight: bold; width: 25%; line-height: 1.4; vertical-align: top;
+td.bugnote-public	{ background-color: #F6E6CB; color: #212121; font-weight: bold; width: 25%; line-height: 1.4; vertical-align: top;
 	background: -webkit-linear-gradient(#FCF5ED, #F6E6CB);
 	background: -o-linear-gradient(#FCF5ED, #F6E6CB);
 	background: -moz-linear-gradient(#FCF5ED, #F6E6CB);
@@ -180,25 +183,22 @@ td.login-info-left		{ width: 33%; padding: 0; text-align: left; }
 td.login-info-middle	{ width: 33%; padding: 0 0 2px; text-align: center; font-size: 14px; font-weight: bold; }
 td.login-info-right		{ width: 33%; padding: 0 0 3px; text-align: right; white-space: nowrap; }
 
-td.menu					{
-	background-color: #F7EBD9;
+td.menu				{
 	color: #212121;
 	text-align: center;
 	width: 100%;
 	padding: 5px;
 	font-size: 10pt;
 }
-td.menu a				{ white-space: nowrap; }
+td.menu a			{ white-space: nowrap; }
 
-/*td.news-heading-public	{ background-color: #EEF3FB; color: #212121; text-align: left; border-bottom: 1px solid #212121; }
-td.news-heading-private	{ background-color: #F9F9F9;       color: #212121; text-align: left; border-bottom: 1px solid #212121; }*/
-td.news-body				{ background-color: #ffffff;         color: #212121; padding: 16px; }
+td.news-body		{ background-color: #ffffff;         color: #212121; padding: 16px; }
 
-img.icon				{ width: 11px; height: 11px; }
-img.delete-icon			{ position: relative; top: 5px; border: 0; }
+img.icon			{ width: 11px; height: 11px; }
+img.delete-icon		{ position: relative; top: 5px; border: 0; }
 
-div						{ padding: 3px; }
-div.menu				{ color: #212121; text-align: center; width: 100%; padding: 1px; }
+div					{ padding: 3px; }
+div.menu			{ color: #212121; text-align: center; width: 100%; padding: 1px; }
 
 ul.project-menu, ul.project-menu ul.sub-menu {
     list-style: none;
@@ -242,13 +242,13 @@ ul.project-menu ul.sub-menu > li.menu-item:hover {
     background: #E3C389;
 }
 
-div.center {
+div.center			{
 	width: 50%;
 	margin-right: auto;
 	margin-left: auto;
 }
 
-div.border {
+div.border			{
 	background-color: #ffeae8;
 	border: solid 1px #212121;
 	text-align: center;
@@ -258,37 +258,37 @@ div.border {
 div.quick-summary-left	{ width: 49%; padding: 2px; text-align: left;  float: left; }
 div.quick-summary-right	{ width: 49%; padding: 2px; text-align: right; float: right; font-size: 11px; }
 
-.center					{ text-align: center; }
-.left					{ text-align: left; }
-.right					{ text-align: right; }
-.floatright				{ float: right; }
-.floatleft				{ float: left; }
-.small					{ font-size: 8pt; }
-.small-normal 			{ font-size: 8pt; font-weight: normal; }
-.small-subprojects		{ font-size: 8pt; width: 200px; }
-.bold					{ font-weight: bold; }
-.bold-small				{ font-weight: bold; font-size: 8pt; }
-.italic					{ font-style: italic; }
-.italic-small			{ font-style: italic; font-size: 8pt; }
-.underline				{ text-decoration: underline; }
-.underline-small		{ text-decoration: underline; font-size: 8pt; }
-.strike					{ text-decoration: line-through; }
-.strike-small			{ text-decoration: line-through; font-size: 8pt; }
+.center				{ text-align: center; }
+.left				{ text-align: left; }
+.right				{ text-align: right; }
+.floatright			{ float: right; }
+.floatleft			{ float: left; }
+.small				{ font-size: 8pt; }
+.small-normal 		{ font-size: 8pt; font-weight: normal; }
+.small-subprojects	{ font-size: 8pt; width: 200px; }
+.bold				{ font-weight: bold; }
+.bold-small			{ font-weight: bold; font-size: 8pt; }
+.italic				{ font-style: italic; }
+.italic-small		{ font-style: italic; font-size: 8pt; }
+.underline			{ text-decoration: underline; }
+.underline-small	{ text-decoration: underline; font-size: 8pt; }
+.strike				{ text-decoration: line-through; }
+.strike-small		{ text-decoration: line-through; font-size: 8pt; }
 .hidden				{ display: none; }
 
-.nowrap {
+.nowrap				{
 	white-space: nowrap;
 }
 
-.positive {
+.positive			{
 	color: green;
 }
 
-.negative {
+.negative			{
 	color: red;
 }
 
-.avatar {
+.avatar				{
 	float: right;
 	border: 0;
 }
@@ -309,5 +309,3 @@ div.main-page-content h4 {
 div.main-page-content > ul {
 	margin-top: 10px;
 }
-
-div.width100	{ width: 100%; border: solid 1px #AC7F2A; padding:15px; }
