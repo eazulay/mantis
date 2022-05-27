@@ -1129,7 +1129,8 @@ function print_column_resolution( $p_bug, $p_columns_target = COLUMNS_TARGET_VIE
  * @access public
  */
 function print_column_status( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
-	echo '<td>';
+	$status_color = get_status_color( $p_bug->status );
+	echo '<td bgcolor="', $status_color, '" >';
 	printf( '<b class="issue-status" title="%s">%s</b>', get_enum_element( 'resolution', $p_bug->resolution ), get_enum_element( 'status', $p_bug->status ) );
 
 	# print username after status
