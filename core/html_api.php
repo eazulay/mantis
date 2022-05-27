@@ -501,7 +501,7 @@ function html_login_info() {
 	echo '<td class="login-info-left">';
 	echo '</td>';
 	echo '<td class="login-info-middle">';
-	$t_show_project_selector = false; // Set to true to bring back the project selector
+	$t_show_project_selector = true;
 	if( count( current_user_get_accessible_projects() ) == 1 ) {
 
 		// >1
