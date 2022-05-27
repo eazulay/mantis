@@ -55,7 +55,7 @@ input[type="checkbox"] {
     position: relative;
     top: 2px;
 }
-select				{ border-color: #AC7F2A; border-width: 1px; }
+select				{ border-color: #AC7F2A; border-width: 1px; background: #fff; }
 
 span				{ font-family: Verdana, Arial, Helvetica, sans-serif; }
 span.print			{ font-size: 8pt; }
@@ -212,7 +212,7 @@ ul.project-menu > li.menu-item {
 ul.project-menu ul.sub-menu {
     display: none;
     padding: 5px;
-    border: 1px solid #AC7F2A;
+    /* border: 1px solid #AC7F2A; */
     position: absolute;
     left: 0;
     top: 16px;
