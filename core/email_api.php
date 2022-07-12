@@ -1272,7 +1272,7 @@ function email_format_bug_message( $p_visible_bug_data ) {
 	$p_visible_bug_data['email_priority'] = get_enum_element( 'priority', $p_visible_bug_data['email_priority'] );
 	$p_visible_bug_data['email_reproducibility'] = get_enum_element( 'reproducibility', $p_visible_bug_data['email_reproducibility'] );
 
-	$t_message .= strtoupper($p_visible_bug_data['email_status']);
+	$t_message = strtoupper($p_visible_bug_data['email_status']);
 	// Info Required
 	if( $t_status == FEEDBACK && !empty( $p_visible_bug_data['custom_fields']['Info Required From']['value'] ) )
 		$t_message .= ' from ' . str_replace ( "~", "Note ", $p_visible_bug_data['custom_fields']['Info Required From']['value'] );
