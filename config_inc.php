@@ -69,7 +69,7 @@ $g_show_user_realname_threshold = VIEWER;	# Set to access level (e.g. VIEWER, RE
 
 # --- Statuses ---
 $g_status_enum_string = '10:new,20:feedback,30:acknowledged,35:approval,40:confirmed,50:assigned,55:progress,70:test,80:resolved,75:recurring,65:fail,85:hold,90:closed';
-$g_resolution_enum_string = '10:open,20:fixed,25:query replied,28:info not supplied,30:reopened,40:unable to duplicate,50:not fixable,60:duplicate,70:not a bug,80:suspended,90:wont fix';
+$g_resolution_enum_string = '10:open,20:bug fixed,22:completed,25:query replied,28:info not supplied,30:reopened,40:unable to duplicate,50:not fixable,60:duplicate,70:not a bug,80:suspended,90:wont fix';
 $g_status_colors['new'] = '#FFE6E5';
 $g_status_colors['feedback'] = '#F4E1F9'; // Info Required
 $g_status_colors['acknowledged'] = '#FCEBF3'; // Info Returned
