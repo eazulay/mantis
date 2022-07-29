@@ -1,6 +1,6 @@
 <?php
 $s_status_enum_string = '10:New,20:Action/Info Required,30:Info Returned,35:Approval Required,40:Approved,50:Assigned,55:In Progress,70:In Test,75:Recurring,80:Resolved,65:Failed UAT,85:On Hold,90:Closed';
-$s_resolution_enum_string = '10:open,20:fixed,25:query replied,28:info not supplied,30:reopened,40:unable to duplicate,50:not fixable,60:duplicate,70:not a bug,80:suspended,90:wont fix';
+$s_resolution_enum_string = '10:open,20:fixed,22:completed,25:query replied,28:info not supplied,30:reopened,40:unable to duplicate,50:not fixable,60:duplicate,70:not a bug,80:suspended,90:wont fix';
 $s_severity_enum_string = '10:unspecified,20:nice to have,50:important,60:critical,70:crash,80:block';
 $s_feedback_bug_title = "Request information for this issue";
 $s_feedback_bug_button = "Set to ACTION/INFO REQUIRED";
