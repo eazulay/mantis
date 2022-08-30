@@ -406,3 +406,13 @@ function csv_format_due_date( $p_due_date ) {
 function csv_format_sponsorship_total( $p_sponsorship_total ) {
 	return number_format( $p_sponsorship_total );
 }
+
+/**
+ * return the last note for an issue
+ * @param string $p_last_note
+ * @return string
+ * @access public
+ */
+function csv_format_last_note( $p_last_note ) {
+	return csv_escape_string( $p_last_note );
+}
