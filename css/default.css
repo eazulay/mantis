@@ -212,6 +212,7 @@ ul.project-menu > li.menu-item {
 ul.project-menu ul.sub-menu {
     display: none;
     padding: 5px;
+	text-align: left;
     /* border: 1px solid #AC7F2A; */
     position: absolute;
     left: 0;
@@ -238,9 +239,9 @@ ul.project-menu ul.sub-menu > li.menu-item {
     padding: 2px;
     position: relative;
 }
-/*ul.project-menu ul.sub-menu > li.menu-item:hover {
-    background: #E3C389;
-}*/
+ul.project-menu ul.sub-menu > li.menu-item:hover {
+    background: #fee;
+}
 
 div.center			{
 	width: 50%;
