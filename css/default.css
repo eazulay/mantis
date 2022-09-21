@@ -211,7 +211,7 @@ ul.project-menu > li.menu-item {
 }
 ul.project-menu ul.sub-menu {
     display: none;
-    padding: 5px;
+    padding: 5px 1px;
 	text-align: left;
     /* border: 1px solid #AC7F2A; */
     position: absolute;
@@ -236,7 +236,7 @@ ul.project-menu li.menu-item:hover > ul.sub-menu {
 }
 ul.project-menu ul.sub-menu > li.menu-item {
     display: block;
-    padding: 2px;
+    padding: 2px 6px;
     position: relative;
 }
 ul.project-menu ul.sub-menu > li.menu-item:hover {
