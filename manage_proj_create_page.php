@@ -82,7 +82,7 @@
 	</td>
 	<td>
 		<select name="view_state">
-			<?php print_enum_string_option_list( 'view_state' ) ?>
+			<?php print_enum_string_option_list( 'view_state', $g_default_project_view_status ) ?>
 		</select>
 	</td>
 </tr>
