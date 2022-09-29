@@ -228,4 +228,4 @@ $g_default_project_view_status = VS_PRIVATE;
 $g_show_project_menu_bar = ON;
 $g_form_security_validation = OFF;
 
-$g_css_include_file = 'css/default.css?v=20220831';
+$g_css_include_file = 'css/default.css?v=20220929';
