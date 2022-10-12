@@ -314,7 +314,7 @@
         var indexOccurs = [];
         var usefulIndex = [];
         var usefulCount = 0;
-		var startTime = performance.now();
+		//var startTime = performance.now();
         links.forEach(link => {
             if (link.href.includes('/mantis/view.php')){
                 if (typeof indexOccurs[link.href] === 'undefined'){
@@ -326,21 +326,21 @@
 				}
             }
         });
-		endTime = performance.now();
-		console.log('Loop took '+(endTime - startTime)+' ms. usefulCount = '+usefulCount);
-		startTime = performance.now();
+		//var endTime = performance.now();
+		//console.log('Loop took '+(endTime - startTime)+' ms. usefulCount = '+usefulCount);
+		//startTime = performance.now();
         var uniqueColours = generateUniqueColours(usefulCount);
-		endTime = performance.now();
-		console.log('generateUniqueColours took '+(endTime - startTime)+' ms.');
-		startTime = performance.now();
+		//endTime = performance.now();
+		//console.log('generateUniqueColours took '+(endTime - startTime)+' ms.');
+		//startTime = performance.now();
         links.forEach(link => {
             if (typeof usefulIndex[link.href] !== 'undefined'){
                 link.style.backgroundColor = uniqueColours[usefulIndex[link.href]].bg;
                 link.style.color = uniqueColours[usefulIndex[link.href]].fg;
             }
         });
-		endTime = performance.now();
-		console.log('Assigning colours to links took '+(endTime - startTime)+' ms.');
+		//endTime = performance.now();
+		//console.log('Assigning colours to links took '+(endTime - startTime)+' ms.');
     }
 
     function generateUniqueColours(colourCount){
