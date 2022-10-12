@@ -321,7 +321,7 @@
                     indexOccurs[link.href] = 1;
                 }else{
                     indexOccurs[link.href]++;
-					if (indexOccurs[link.href] >= 2)
+					if (indexOccurs[link.href] == 2)
 						usefulIndex[link.href] = usefulCount++;
 				}
             }
