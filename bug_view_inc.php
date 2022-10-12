@@ -311,31 +311,23 @@
     function colourifyLinks(){
         var notesDiv = document.getElementById('bugnotes_open');
         var links = notesDiv.querySelectorAll('a');
-        var colourIndex = [];
         var indexOccurs = [];
-        var colourCount = 0;
         var usefulIndex = [];
         var usefulCount = 0;
 		var startTime = performance.now();
         links.forEach(link => {
             if (link.href.includes('/mantis/view.php')){
-                if (typeof colourIndex[link.href] === 'undefined'){
-                    colourIndex[link.href] = colourCount++;
+                if (typeof indexOccurs[link.href] === 'undefined'){
                     indexOccurs[link.href] = 1;
-                }else
+                }else{
                     indexOccurs[link.href]++;
-            }
-        });
-		var endTime = performance.now();
-		console.log('First loop took '+(endTime - startTime)+' ms. colourCount = '+colourCount);
-		startTime = performance.now();
-        links.forEach(link => {
-            if (indexOccurs[link.href] >= 2){
-                usefulIndex[link.href] = usefulCount++;
+					if (indexOccurs[link.href] >= 2)
+						usefulIndex[link.href] = usefulCount++;
+				}
             }
         });
 		endTime = performance.now();
-		console.log('Second loop took '+(endTime - startTime)+' ms. usefulCount = '+usefulCount);
+		console.log('Loop took '+(endTime - startTime)+' ms. usefulCount = '+usefulCount);
 		startTime = performance.now();
         var uniqueColours = generateUniqueColours(usefulCount);
 		endTime = performance.now();
