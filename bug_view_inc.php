@@ -327,7 +327,7 @@
             }
         });
 		var endTime = performance.now();
-		console.log('First loop took '+(endTime - startTime)+' milliseconds');
+		console.log('First loop took '+(endTime - startTime)+' ms. colourCount = '+colourCount);
 		startTime = performance.now();
         links.forEach(link => {
             if (indexOccurs[link.href] >= 2){
@@ -335,11 +335,11 @@
             }
         });
 		endTime = performance.now();
-		console.log('Second loop took '+(endTime - startTime)+' milliseconds');
+		console.log('Second loop took '+(endTime - startTime)+' ms. usefulCount = '+usefulCount);
 		startTime = performance.now();
         var uniqueColours = generateUniqueColours(usefulCount);
 		endTime = performance.now();
-		console.log('generateUniqueColours took '+(endTime - startTime)+' milliseconds');
+		console.log('generateUniqueColours took '+(endTime - startTime)+' ms.');
 		startTime = performance.now();
         links.forEach(link => {
             if (typeof usefulIndex[link.href] !== 'undefined'){
@@ -348,7 +348,7 @@
             }
         });
 		endTime = performance.now();
-		console.log('Assigning colours to links took '+(endTime - startTime)+' milliseconds');
+		console.log('Assigning colours to links took '+(endTime - startTime)+' ms.');
     }
 
     function generateUniqueColours(colourCount){
