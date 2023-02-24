@@ -23,6 +23,8 @@
  * @link http://www.mantisbt.org
  */
 
+require_once('user_api.php');
+
 # Cache of localization strings in the language specified by the last
 # lang_load call
 $g_lang_strings = array();

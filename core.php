@@ -30,6 +30,7 @@
  *   If you have to test MantisBT while it's offline, add the
  *   parameter 'mbadmin=1' to the URL.
  */
+
 if ( file_exists( 'mantis_offline.php' ) && !isset( $_GET['mbadmin'] ) ) {
 	include( 'mantis_offline.php' );
 	exit;
@@ -115,7 +116,7 @@ require_once( UTF8 . '/str_pad.php' );
 require_once( 'php_api.php' );
 
 # Define an autoload function to automatically load classes when referenced.
-function __autoload( $className ) {
+function _autoload( $className ) {
 	global $g_core_path;
 
 	$t_require_path = $g_core_path . 'classes' . DIRECTORY_SEPARATOR . $className . '.class.php';
@@ -133,7 +134,7 @@ function __autoload( $className ) {
 	}
 }
 
-spl_autoload_register( '__autoload' );
+spl_autoload_register( '_autoload' );
 
 if ( ($t_output = ob_get_contents()) != '') {
 	echo 'Possible Whitespace/Error in Configuration File - Aborting. Output so far follows:<br />';

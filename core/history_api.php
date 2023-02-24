@@ -583,7 +583,7 @@ function history_get_first_reporter( $p_bug_id ) {
 	$raw_history_count = db_num_rows( $result );
 	if ($raw_history_count > 0) {
 		$t_row = db_fetch_array( $result );
-		$submitter = user_get_name( $t_row[old_value] );
+		$submitter = user_get_name( $t_row['old_value'] );
 	}
 	return $submitter;
 }

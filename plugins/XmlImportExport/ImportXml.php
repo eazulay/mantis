@@ -108,9 +108,16 @@ class ImportXML {
 			$bugData = bug_get( $newId, true );
 
 			$bugLinkRegexp = '/(^|[^\w])(' . preg_quote( $this->source_->issuelink, '/' ) . ')(\d+)\b/e';
+			$bugLinkRegexp = '/(^|[^\w])(' . preg_quote( $this->source_->issuelink, '/' ) . ')(\d+)\b/';
+			
 			$replacement = '"\\1" . $this->getReplacementString( "\\2", "\\3" )';
+			$replacement = '"%s" . $this->getReplacementString( "%s", "%s" )';
 
-			$bugData->description = preg_replace( $bugLinkRegexp, $replacement, $bugData->description );
+			//$bugData->description = preg_replace( $bugLinkRegexp, $replacement, $bugData->description );
+			$bugData->description = preg_replace_callback( $bugLinkRegexp, function($matches){
+				return sprintf( $replacement, $matches[1], $matches[2], $matches[3] );
+			}, $bugData->description );
+			
 			$bugData->update( true, true );
 		}
 		echo " Done\n";

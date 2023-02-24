@@ -474,13 +474,20 @@ function string_insert_hrefs( $p_string ) {
 		$t_url_part1 = "${t_url_chars}";
 		$t_url_part2 = "(?:\(${t_url_chars_in_parens}*\)|\[${t_url_chars_in_brackets}*\]|${t_url_chars2})";
 
-		$s_url_regex = "/(([[:alpha:]][-+.[:alnum:]]*):\/\/(${t_url_part1}*?${t_url_part2}+))/sue";
+		//$s_url_regex = "/(([[:alpha:]][-+.[:alnum:]]*):\/\/(${t_url_part1}*?${t_url_part2}+))/sue";
+		$s_url_regex = "/(([[:alpha:]][-+.[:alnum:]]*):\/\/(${t_url_part1}*?${t_url_part2}+))/su";
 	}
 
 	if (gpc_isset('page') && gpc_get('page') == 'HelpNotes/view')
-		$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">\\1</a>'", $p_string );
+		//$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">\\1</a>'", $p_string );
+		$p_string = preg_replace_callback( $s_url_regex, function($matches){
+			return sprintf( "'<a href=\"'.rtrim('%s','.').'\" target=\"_blank\">%s</a>'", $matches[1], $matches[1] );
+		}, $p_string );
 	else
-		$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\">\\1</a> [<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">^</a>]'", $p_string );
+		//$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\">\\1</a> [<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">^</a>]'", $p_string );
+		$p_string = preg_replace_callback( $s_url_regex, function($matches){
+			return sprintf( "'<a href=\"'.rtrim('%s','.').'\">%s</a> [<a href=\"'.rtrim('%s','.').'\" target=\"_blank\">^</a>]'", $matches[1], $matches[1], $matches[1] );
+		}, $p_string );
 	if( $t_change_quotes ) {
 		ini_set( 'magic_quotes_sybase', true );
 	}
