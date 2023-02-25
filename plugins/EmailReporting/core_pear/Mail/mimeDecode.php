@@ -28,8 +28,8 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name of the authors, nor the names of its contributors 
- *   may be used to endorse or promote products derived from this 
+ * - Neither the name of the authors, nor the names of its contributors
+ *   may be used to endorse or promote products derived from this
  *   software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
@@ -381,7 +381,7 @@ class Mail_mimeDecode extends PEAR
             }
             for ($i = 0; $i < count($structure->parts); $i++) {
 
-            
+
                 if (!empty($structure->headers['content-type']) AND substr(strtolower($structure->headers['content-type']), 0, 8) == 'message/') {
                     $prepend      = $prepend . $mime_number . '.';
                     $_mime_number = '';
@@ -401,7 +401,7 @@ class Mail_mimeDecode extends PEAR
             $structure->mime_id = $prepend . $mime_number;
             $no_refs ? $return[$prepend . $mime_number] = '' : $return[$prepend . $mime_number] = &$structure;
         }
-        
+
         return $return;
     }
 
@@ -419,7 +419,7 @@ class Mail_mimeDecode extends PEAR
         if (preg_match("/^(.*?)\r?\n\r?\n(.*)/s", $input, $match)) {
             return array($match[1], $match[2]);
         }
-        // bug #17325 - empty bodies are allowed. - we just check that at least one line 
+        // bug #17325 - empty bodies are allowed. - we just check that at least one line
         // of headers exist..
         if (count(explode("\n",$input))) {
             return array($input, '');
@@ -443,11 +443,11 @@ class Mail_mimeDecode extends PEAR
             // Unfold the input
             $input   = preg_replace("/\r?\n/", "\r\n", $input);
             //#7065 - wrapping.. with encoded stuff.. - probably not needed,
-            // wrapping space should only get removed if the trailing item on previous line is a 
+            // wrapping space should only get removed if the trailing item on previous line is a
             // encoded character
             $input   = preg_replace("/=\r\n(\t| )+/", '=', $input);
             $input   = preg_replace("/\r\n(\t| )+/", ' ', $input);
-            
+
             $headers = explode("\r\n", trim($input));
 
             foreach ($headers as $value) {
@@ -508,7 +508,7 @@ class Mail_mimeDecode extends PEAR
         $lq = ''; // last quote..
 
         while ($i < $l) {
-            
+
             $c = $input[$i];
             //var_dump(array('i'=>$i,'c'=>$c,'q'=>$q, 'lq'=>$lq, 'key'=>$key, 'val' =>$val));
 
@@ -520,7 +520,7 @@ class Mail_mimeDecode extends PEAR
                 }
                 $escaped = true;
                 $c = $input[$i];
-            }            
+            }
 
 
             // state - in key..
@@ -543,7 +543,7 @@ class Mail_mimeDecode extends PEAR
                 $i++;
                 continue;
             }
-                     
+
             // state - in value.. (as $val is set..)
 
             if ($q === false) {
@@ -594,7 +594,7 @@ class Mail_mimeDecode extends PEAR
                 $i++;
                 continue;
             }
-            
+
             // state - in quote..
             if (!$escaped && $c == $q) {  // potential exit state..
 
@@ -604,15 +604,15 @@ class Mail_mimeDecode extends PEAR
                 $i++;
                 continue;
             }
-                
+
             // normal char inside of quoted string..
             $val.= $c;
             $i++;
         }
-        
+
         // do we have anything left..
         if (strlen(trim($key)) || $val !== false) {
-           
+
             $val = trim($val);
             $added = false;
             if ($val !== false && preg_match('/\*[0-9]+$/', $key)) {
@@ -666,7 +666,7 @@ class Mail_mimeDecode extends PEAR
                 $parts[] = $tmp[$i];
             }
         }
-        
+
         // add the last part on if it does not end with the 'closing indicator'
         if (!empty($tmp[$len]) && strlen(trim($tmp[$len])) && $tmp[$len][0] != '-') {
             $parts[] = $tmp[$len];
@@ -761,7 +761,7 @@ class Mail_mimeDecode extends PEAR
         // Replace encoded characters
 		//$input = preg_replace('/=([a-f0-9]{2})/ie', "chr(hexdec('\\1'))", $input);
 		$input = preg_replace_callback( '/=([a-f0-9]{2})/ie', function ($matches){
-			return sprintf( "chr(hexdec('%s'))", $matches[1] );
+            return chr(hexdec($matches[1]));
 		}, $input );
 
         return $input;
@@ -844,7 +844,7 @@ class Mail_mimeDecode extends PEAR
 
     /**
      * getSendArray() returns the arguments required for Mail::send()
-     * used to build the arguments for a mail::send() call 
+     * used to build the arguments for a mail::send() call
      *
      * Usage:
      * $mailtext = Full email (for example generated by a template)
@@ -886,7 +886,7 @@ class Mail_mimeDecode extends PEAR
         }
         $to = substr($to,1);
         return array($to,$header,$this->_body);
-    } 
+    }
 
     /**
      * Returns a xml copy of the output of
