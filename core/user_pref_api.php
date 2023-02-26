@@ -87,13 +87,13 @@ class UserPreferences {
 	'language' => 'default_language',
 	'timezone' => 'default_timezone',
 	);
-	
+
 	/**
 	 * Constructor
 	 * @param int $p_user_id
 	 * @param int $p_project_id
 	 */
-	function UserPreferences( $p_user_id, $p_project_id ) {
+	function __construct( $p_user_id, $p_project_id ) {
 		$this->default_profile = 0;
 		$this->default_project = ALL_PROJECTS;
 
@@ -192,7 +192,7 @@ function user_pref_cache_row( $p_user_id, $p_project_id = ALL_PROJECTS, $p_trigg
 
 /**
  * Cache user preferences for a set of users
- * @param array $p_user_id_array 
+ * @param array $p_user_id_array
  * @param int $p_project_id
  * @return null
  */
@@ -237,7 +237,7 @@ function user_pref_cache_array_rows( $p_user_id_array, $p_project_id = ALL_PROJE
 	}
 }
 
-/** 
+/**
  * Clear the user preferences cache (or just the given id if specified)
  * @param $p_user_id
  * @param $p_project_id
@@ -570,4 +570,3 @@ function user_pref_set( $p_user_id, $p_prefs, $p_project_id = ALL_PROJECTS ) {
 		return user_pref_insert( $p_user_id, $p_project_id, $p_prefs );
 	}
 }
-
