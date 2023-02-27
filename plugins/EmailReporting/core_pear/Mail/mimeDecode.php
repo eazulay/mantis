@@ -247,7 +247,8 @@ class Mail_mimeDecode extends PEAR
         $headers = $this->_parseHeaders($headers);
 
         foreach ($headers as $value) {
-            $value['value'] = $this->_decode_headers ? $this->_decodeHeader($value['value']) : $value['value'];
+            //$value['value'] = $this->_decode_headers ? $this->_decodeHeader($value['value']) : $value['value'];
+            $value['value'] =  $this->_decodeHeader($value['value']);
             if (isset($return->headers[strtolower($value['name'])]) AND !is_array($return->headers[strtolower($value['name'])])) {
                 $return->headers[strtolower($value['name'])]   = array($return->headers[strtolower($value['name'])]);
                 $return->headers[strtolower($value['name'])][] = $value['value'];
@@ -315,6 +316,7 @@ class Mail_mimeDecode extends PEAR
                 case 'multipart/digest':
                 case 'multipart/alternative':
                 case 'multipart/related':
+                case 'multipart/relative': //#20431 - android
                 case 'multipart/mixed':
                 case 'application/vnd.wap.multipart.related':
                     if(!isset($content_type['other']['boundary'])){
