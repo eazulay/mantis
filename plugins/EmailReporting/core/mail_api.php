@@ -495,6 +495,7 @@ class ERP_mailbox_api
 		$this->_mails_fetched++;
 
 		$this->save_message_to_file( 'raw_msg', $t_msg );
+        var_dump($t_msg);
 
 		$t_email = $this->parse_content( $t_msg );
 
@@ -553,7 +554,6 @@ class ERP_mailbox_api
 	# parse the email using mimeDecode for Mantis
 	private function parse_content( &$p_msg )
 	{
-        var_dump($p_msg);
 		$this->show_memory_usage( 'Start Mail Parser' );
 
 		$t_mp = new ERP_Mail_Parser( $this->_mp_options );
