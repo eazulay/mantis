@@ -308,19 +308,23 @@ class ERP_Mail_Parser
 
 	private function setTo( $p_to )
 	{
+        echo "setTo( " . $p_to . " )<br>";
 		$regex = '([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
 		if( preg_match_all ( "/" . $regex . "/is", $p_to, $matches ) )
 		{
 			$this->_to = $matches[1];
+            echo "_to set to: " . $matches[1] . "<br>";
 		}
 	}
 
 	private function setCc( $p_cc )
 	{
+        echo "setCc( " . $p_to . " )<br>";
 		$regex = '([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
 		if( preg_match_all ( "/" . $regex . "/is", $p_cc, $matches ) )
 		{
 			$this->_cc = $matches[1];
+            echo "_cc set to: " . $matches[1] . "<br>";
 		}
 	}
 
@@ -354,7 +358,7 @@ class ERP_Mail_Parser
 			$body = str_replace("<<<br/>>>", "\r\n", $body);
 			$body = str_replace("<<<p/>>>", "\r\n\r\n", $body);
 			$body = preg_replace("/\<(https?:\/\/[\d\w\.-]+\.[\w\.]{2,6}[^\s\]\[\<\>]*\/?)\>/i", ' $1 ', $body);
-			
+
 			// Strip signatures
 			$body = str_replace("-- \r\n\r\nEyal Azulay MBCS CITP Software Developer & System Administrator T. +353 1 254 2226   M. +353 85 255 9225", "", $body);
 			$body = str_replace("--\r\n\r\nTia Azulay MAcwnm MISTC Digital Project Manager T. +353 1 254 2226 M. +353 85 889 3000", "", $body);
