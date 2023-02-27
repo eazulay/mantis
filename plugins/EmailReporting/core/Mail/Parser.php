@@ -219,7 +219,7 @@ class ERP_Mail_Parser
 		$this->show_memory_usage( 'Start decode' );
 
 		$structure = $decoder->decode( $params );
-
+        var_dump($structure);
 		unset( $decoder );
 
 		$this->show_memory_usage( 'Start parse structure' );
