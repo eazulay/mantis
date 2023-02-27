@@ -307,22 +307,22 @@ print_r($this->_content);
 
 	private function setTo( $p_to )
 	{
-        $this->_to = $this->process_header_encoding( $p_to );
-		/*$regex = '([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
+        //$this->_to = $this->process_header_encoding( $p_to );
+		$regex = '([\\w-]+(?:\\.[\\w-]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
 		if( preg_match_all ( "/" . $regex . "/is", $p_to, $matches ) )
 		{
 			$this->_to = $matches[1];
-		}*/
+		}
 	}
 
 	private function setCc( $p_cc )
 	{
-        $this->_cc = $this->process_header_encoding( $p_cc );
-		/*$regex = '([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
+        //$this->_cc = $this->process_header_encoding( $p_cc );
+		$regex = '([\\w-]+(?:\\.[\\w-]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
 		if( preg_match_all ( "/" . $regex . "/is", $p_cc, $matches ) )
 		{
 			$this->_cc = $matches[1];
-		}*/
+		}
 	}
 
 	private function setPriority( $priority )

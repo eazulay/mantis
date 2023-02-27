@@ -495,7 +495,6 @@ class ERP_mailbox_api
 		$this->_mails_fetched++;
 
 		$this->save_message_to_file( 'raw_msg', $t_msg );
-        var_dump($t_msg);
 
 		$t_email = $this->parse_content( $t_msg );
 
