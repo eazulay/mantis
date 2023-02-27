@@ -602,8 +602,6 @@ class ERP_mailbox_api
 
 		$this->show_memory_usage( 'Finished Mail Parser' );
 
-        print_r( $t_email );
-
 		return( $t_email );
 	}
 

@@ -204,7 +204,6 @@ class ERP_Mail_Parser
 	public function parse()
 	{
 		$this->show_memory_usage( 'Start parse' );
-print_r($this->_content);
 		$decoder = new Mail_mimeDecode( $this->_content );
 		$this->_content = NULL;
 		$decoder->_input = NULL;
@@ -307,7 +306,6 @@ print_r($this->_content);
 
 	private function setTo( $p_to )
 	{
-        //$this->_to = $this->process_header_encoding( $p_to );
 		$regex = '([\\w-]+(?:\\.[\\w-]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
 		if( preg_match_all ( "/" . $regex . "/is", $p_to, $matches ) )
 		{
@@ -317,7 +315,6 @@ print_r($this->_content);
 
 	private function setCc( $p_cc )
 	{
-        //$this->_cc = $this->process_header_encoding( $p_cc );
 		$regex = '([\\w-]+(?:\\.[\\w-]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
 		if( preg_match_all ( "/" . $regex . "/is", $p_cc, $matches ) )
 		{
