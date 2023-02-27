@@ -361,7 +361,7 @@ class Mail_mimeDecode extends PEAR
             $return->ctype_secondary = $ctype[1];
             $this->_include_bodies ? $return->body = ($this->_decode_bodies ? $this->_decodeBody($body) : $body) : null;
         }
-
+        var_dump($return);
         return $return;
     }
 
@@ -651,7 +651,7 @@ class Mail_mimeDecode extends PEAR
         foreach($return['other'] as $key =>$val) {
             $return['other'][$key] = $this->_decode_headers ? $this->_decodeHeader($val) : $val;
         }
-        var_dump($return);
+        //var_dump($return);
         return $return;
     }
 
