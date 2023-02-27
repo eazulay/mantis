@@ -319,7 +319,7 @@ class ERP_Mail_Parser
 
 	private function setCc( $p_cc )
 	{
-        echo "setCc( " . $p_to . " )<br>";
+        echo "setCc( " . $p_cc . " )<br>";
 		$regex = '([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
 		if( preg_match_all ( "/" . $regex . "/is", $p_cc, $matches ) )
 		{
