@@ -602,6 +602,8 @@ class ERP_mailbox_api
 
 		$this->show_memory_usage( 'Finished Mail Parser' );
 
+        print_r( $t_email );
+
 		return( $t_email );
 	}
 
@@ -695,7 +697,7 @@ class ERP_mailbox_api
 	private function get_userid_from_email( $p_email_address )
 	{
 		$t_reporter_id = FALSE;
-		
+
 		if ( $this->_use_ldap_email )
 		{
 			$t_username = $this->ldap_get_username_from_email( $p_email_address );
@@ -1257,7 +1259,7 @@ class ERP_mailbox_api
 		preg_match( $t_subject_id_regex, $p_mail_subject, $v_matches );
 
 		echo $v_matches[ 'project' ]."\n<br>".$v_matches[ 'id' ];
-		
+
 		if ( isset( $v_matches[ 'id' ] ) )
 		{
 			return( (int) $v_matches[ 'id' ] );
@@ -1416,8 +1418,8 @@ class ERP_mailbox_api
 
 				$this->custom_error( 'Monitor: ' . $t_user_id . ' - ' . $t_email . ' --> Issue ID: #' . $p_bug_id, FALSE );
 
-				if( $t_user_id !== FALSE ) 
-				{ 
+				if( $t_user_id !== FALSE )
+				{
 					// Make sure that mail_reporter_id and reporter_id are not added as a monitors.
 					if( $this->_mail_reporter_id != $t_user_id && $p_email[ 'Reporter_id' ] != $t_user_id )
 					{
