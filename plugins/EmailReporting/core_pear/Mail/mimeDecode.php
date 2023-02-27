@@ -221,6 +221,7 @@ class Mail_mimeDecode extends PEAR
             $this->_rfc822_bodies  = isset($params['rfc_822bodies']) ?
 	                             $params['rfc_822bodies']  : false;
 
+            var_dump($this->_header);
             $structure = $this->_decode($this->_header, $this->_body);
             if ($structure === false) {
                 $structure = $this->raiseError($this->_error);
