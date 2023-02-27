@@ -308,24 +308,22 @@ class ERP_Mail_Parser
 
 	private function setTo( $p_to )
 	{
-        echo "setTo( " . $p_to . " )<br>";
-		$regex = '([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
+        $this->_to = $this->process_header_encoding( $p_to );
+		/*$regex = '([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
 		if( preg_match_all ( "/" . $regex . "/is", $p_to, $matches ) )
 		{
 			$this->_to = $matches[1];
-            echo "_to set to: " . $matches[1] . "<br>";
-		}
+		}*/
 	}
 
 	private function setCc( $p_cc )
 	{
-        echo "setCc( " . $p_cc . " )<br>";
-		$regex = '([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
+        $this->_cc = $this->process_header_encoding( $p_cc );
+		/*$regex = '([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})';
 		if( preg_match_all ( "/" . $regex . "/is", $p_cc, $matches ) )
 		{
 			$this->_cc = $matches[1];
-            echo "_cc set to: " . $matches[1] . "<br>";
-		}
+		}*/
 	}
 
 	private function setPriority( $priority )
