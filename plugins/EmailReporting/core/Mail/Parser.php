@@ -204,7 +204,7 @@ class ERP_Mail_Parser
 	public function parse()
 	{
 		$this->show_memory_usage( 'Start parse' );
-
+print_r($this->_content);
 		$decoder = new Mail_mimeDecode( $this->_content );
 		$this->_content = NULL;
 		$decoder->_input = NULL;
@@ -219,7 +219,6 @@ class ERP_Mail_Parser
 		$this->show_memory_usage( 'Start decode' );
 
 		$structure = $decoder->decode( $params );
-        var_dump($structure);
 		unset( $decoder );
 
 		$this->show_memory_usage( 'Start parse structure' );

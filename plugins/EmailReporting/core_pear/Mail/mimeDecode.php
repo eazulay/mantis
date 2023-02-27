@@ -361,7 +361,6 @@ class Mail_mimeDecode extends PEAR
             $return->ctype_secondary = $ctype[1];
             $this->_include_bodies ? $return->body = ($this->_decode_bodies ? $this->_decodeBody($body) : $body) : null;
         }
-        var_dump($return);
         return $return;
     }
 
