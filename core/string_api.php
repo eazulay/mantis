@@ -163,7 +163,7 @@ function string_display_line_links( $p_string ) {
 
 /**
  * Prepare a string for display in rss
- * @param string 
+ * @param string
  * @return string
  */
 function string_rss_links( $p_string ) {
@@ -188,7 +188,7 @@ function string_email( $p_string ) {
 /**
  * Prepare a string for plain text display in email and add URLs for bug
  * links and cvs links
- * @param string 
+ * @param string
  * @return string
  */
 function string_email_links( $p_string ) {
@@ -199,7 +199,7 @@ function string_email_links( $p_string ) {
 # Process a string for display in a textarea box
 /**
  * @todo function documentation
- * @param string 
+ * @param string
  * @return string
  */
 function string_textarea( $p_string ) {
@@ -208,7 +208,7 @@ function string_textarea( $p_string ) {
 
 /**
  * Process a string for display in a text box
- * @param string 
+ * @param string
  * @return string
  */
 function string_attribute( $p_string ) {
@@ -395,7 +395,7 @@ $string_process_bugnote_link_callback = array();
  */
 function string_process_bugnote_link( $p_string, $p_include_anchor = true, $p_detail_info = true, $p_fqdn = false ) {
 	global $string_process_bugnote_link_callback;
-	
+
 	$t_tag = config_get( 'bugnote_link_tag' );
 
 	# bail if the link tag is blank
@@ -481,12 +481,12 @@ function string_insert_hrefs( $p_string ) {
 	if (gpc_isset('page') && gpc_get('page') == 'HelpNotes/view')
 		//$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">\\1</a>'", $p_string );
 		$p_string = preg_replace_callback( $s_url_regex, function($matches){
-			return sprintf( "'<a href=\"'.rtrim('%s','.').'\" target=\"_blank\">%s</a>'", $matches[1], $matches[1] );
+			return sprintf( "<a href=\"%s\" target=\"_blank\">%s</a>", $matches[1], $matches[1] );
 		}, $p_string );
 	else
 		//$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\">\\1</a> [<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">^</a>]'", $p_string );
 		$p_string = preg_replace_callback( $s_url_regex, function($matches){
-			return sprintf( "'<a href=\"'.rtrim('%s','.').'\">%s</a> [<a href=\"'.rtrim('%s','.').'\" target=\"_blank\">^</a>]'", $matches[1], $matches[1], $matches[1] );
+			return sprintf( "<a href=\"%s\">%s</a> [<a href=\"%s\" target=\"_blank\">^</a>]", $matches[1], $matches[1], $matches[1] );
 		}, $p_string );
 	if( $t_change_quotes ) {
 		ini_set( 'magic_quotes_sybase', true );
