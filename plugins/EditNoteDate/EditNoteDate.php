@@ -59,13 +59,13 @@ class EditNoteDatePlugin extends MantisPlugin {
 				$p_tz = new DateTimeZone($t_prefs->timezone);
 				$tz_time = new DateTime("now", $p_tz);
 				$tz_offset = $tz_time->getOffset();
-//				$tz_offset -= 3600; // Adjust server timezone offset (when server was in NL)
+/*				$tz_offset -= 3600; // Adjust server timezone offset (when server was in NL)
 				$date = getdate();
 				$month = $date[mon];
 				$day = $date[mday];
 				$wday = $date[wday];
-//				if ($month == 3 && $day-$wday >=25 || $month > 3 && $month < 10 || $month == 10 && $day-$wday < 25)
-//					$tz_offset -= 3600;
+				if ($month == 3 && $day-$wday >=25 || $month > 3 && $month < 10 || $month == 10 && $day-$wday < 25)
+					$tz_offset -= 3600;*/
 				$t_query = 'UPDATE mantis_bugnote_table SET date_submitted = unix_timestamp(' . db_param() . ') - '.$tz_offset.' WHERE id=' . db_param();
 				db_query_bound($t_query, array($date_submitted, $p_bugnote_id));
 			}
