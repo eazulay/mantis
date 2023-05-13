@@ -57,7 +57,8 @@ class EditNoteDatePlugin extends MantisPlugin {
 				$p_user_id = auth_get_current_user_id();
 				$t_prefs = user_pref_get( $p_user_id );
 				$p_tz = new DateTimeZone($t_prefs->timezone);
-				$tz_time = new DateTime("now", $p_tz);
+				//$tz_time = new DateTime("now", $p_tz);
+				$tz_time = new DateTime($date_submitted, $p_tz);
 				$tz_offset = $tz_time->getOffset();
 /*				$tz_offset -= 3600; // Adjust server timezone offset (when server was in NL)
 				$date = getdate();
