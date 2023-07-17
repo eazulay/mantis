@@ -50,7 +50,7 @@ set_error_handler( 'error_handler' );
  * @uses database_api.php (optional)
  * @uses html_api.php (optional)
  */
-function error_handler( $p_type, $p_error, $p_file, $p_line, $p_context ) {
+function error_handler( $p_type, $p_error, $p_file, $p_line, $p_context=null ) {
 	global $g_error_parameters, $g_error_handled, $g_error_proceed_url;
 	global $g_lang_overrides;
 	global $g_error_send_page_header;
