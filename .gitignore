@@ -18,9 +18,6 @@ docbook/
 # Build output
 build/
 
-#libraries
-library/
-
 # IDE/Editor temporary files
 *~
 *.swp
