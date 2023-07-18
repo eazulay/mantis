@@ -23,6 +23,7 @@
 /**
  * MantisBT Core API's
  */
+error_reporting(E_ALL ^ E_DEPRECATED);
 require_once( 'core.php' );
 
 if ( auth_is_user_authenticated() ) {
