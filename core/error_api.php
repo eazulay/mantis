@@ -308,7 +308,7 @@ function error_print_stack_trace() {
 			foreach( $t_frame['args'] as $t_value ) {
 				$t_args[] = error_build_parameter_string( $t_value );
 			}
-			echo '<td>( ', htmlentities( implode(', ', $t_args ), ENT_COMPAT, 'UTF-8' ), ' )</td></tr>';
+			echo '<td>( ', htmlentities( implode( $t_args, ', ' ), ENT_COMPAT, 'UTF-8' ), ' )</td></tr>';
 		} else {
 			echo '<td>-</td></tr>';
 		}
@@ -335,7 +335,7 @@ function error_build_parameter_string( $p_param, $p_showtype = true, $p_depth = 
 			$t_results[] = '[' . error_build_parameter_string( $t_key, false, $p_depth ) . ']' . ' => ' . error_build_parameter_string( $t_value, false, $p_depth );
 		}
 
-		return '<Array> { ' . implode( ', ', $t_results ) . ' }';
+		return '<Array> { ' . implode( $t_results, ', ' ) . ' }';
 	}
 	else if( is_object( $p_param ) ) {
 		$t_results = array();
@@ -347,7 +347,7 @@ function error_build_parameter_string( $p_param, $p_showtype = true, $p_depth = 
 			$t_results[] = "[$t_name]" . ' => ' . error_build_parameter_string( $t_value, false, $p_depth );
 		}
 
-		return '<Object><' . $t_class_name . '> ( ' . implode( ', ', $t_results ) . ' )';
+		return '<Object><' . $t_class_name . '> ( ' . implode( $t_results, ', ' ) . ' )';
 	} else {
 		if( $p_showtype ) {
 			return '<' . gettype( $p_param ) . '>' . var_export( $p_param, true );
