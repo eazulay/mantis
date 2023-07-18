@@ -23,7 +23,8 @@
 /**
  * MantisBT Core API's
  */
-error_reporting(E_ALL ^ E_DEPRECATED);
+error_reporting(E_ALL ^ E_DEPRECATED); // Ignore deprecated warnings in PHP 7.4
+
 require_once( 'core.php' );
 
 if ( auth_is_user_authenticated() ) {
