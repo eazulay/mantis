@@ -437,7 +437,7 @@
 			<?php print_documentation_link( 'additional_information' ) ?>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="additional_info" cols="80" rows="10"><?php echo string_textarea( $f_additional_info ) ?></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="additional_info" cols="80" rows="3"><?php echo string_textarea( $f_additional_info ) ?></textarea>
 		</td>
 	</tr>
 <?php
