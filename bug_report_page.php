@@ -421,7 +421,7 @@
 	</tr>
 
 <?php if ( $tpl_show_steps_to_reproduce ) { ?>
-		<tr <?php echo helper_alternate_class() ?>>
+		<tr <?php echo helper_alternate_class() ?> id="steps_to_reproduce">
 			<td class="category">
 				<?php print_documentation_link( 'steps_to_reproduce' ) ?>
 			</td>
@@ -533,6 +533,13 @@
 <script type="text/javascript" language="JavaScript">
 <!--
 	window.document.report_bug_form.category_id.focus();
+
+    const reproductionSteps = document.querySelector('#steps_to_reproduce');
+    reproductionSteps.style.display = 'none';
+    window.document.report_bug_form.category_id.addEventListener('change', e => {
+        const isBug = e.currentTarget.value === '17';
+        reproductionSteps.style.display = isBug ? 'table-row' : 'none';
+    });
 -->
 </script>
 <?php  }
