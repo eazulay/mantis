@@ -98,10 +98,9 @@
 
 <br />
 <div align="center">
-<form method="post" action="bug_update.php">
+<form method="post" action="bug_update.php" id="status_update_form">
 <?php echo form_security_field( 'bug_update' ) ?>
 <table class="width75" cellspacing="0">
-
 
 <!-- Title -->
 <tr class="header">
@@ -362,5 +361,29 @@ if ( ( $f_new_status >= $t_resolved ) && ( $t_closed > $f_new_status ) ) { ?>
 
 <?php
 echo '<br />';
+
+if ( $t_resolved == $f_new_status ): ?>
+<script lang="javascript">
+<!--
+    const statusUpdateForm = document.getElementById("status_update_form");
+    statusUpdateForm.addEventListener("submit", function(event){
+        const fldResolution = statusUpdateForm.elements["resolution"];
+        const resolution = fldResolution.value;
+        console.log(resolution);
+        if ( resolution == '10' || resolution == '30' ){ /* open or reopen */
+            const tdRes = fldResolution.parentNode;
+            if (tdRes.lastChild.nodeName != 'SPAN'){
+                tdRes.classList.add("error");
+                const span = document.createElement("span");
+                span.innerHTML = " Invalid Resolve value";
+                tdRes.appendChild(span);
+            }
+            event.preventDefault();
+        }
+    });
+-->
+</script>
+<?php
+endif;
 
 include( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'bug_view_inc.php' );
