@@ -375,7 +375,7 @@ if ( $t_resolved == $f_new_status ): ?>
             if (tdRes.lastChild.nodeName != 'SPAN'){
                 tdRes.classList.add("error");
                 const span = document.createElement("span");
-                span.innerHTML = " Invalid Resolve value";
+                span.innerHTML = " Invalid Resolution value";
                 tdRes.appendChild(span);
             }
             event.preventDefault();
