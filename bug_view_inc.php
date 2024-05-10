@@ -274,7 +274,7 @@
         }
     }
 
-	function submitChangeStatus(formCount){
+	function submitChangeStatus(formCount){ /* There are two versions of this form (Issue Metadata section open and closed) */
 		var noteAddDiv = document.getElementById('bugnote_add_open');
 		var textArea = noteAddDiv.querySelector('textarea');
 		var statusText =  document.getElementsByName('change_status_text')[formCount];
@@ -295,7 +295,7 @@
 		if (newStatus){
 			newStatus = newStatus[0];
 			newStatus.value = '".ACKNOWLEDGED."';
-			submitChangeStatus();
+			submitChangeStatus(0);
 		}
 	";
 	}else{
