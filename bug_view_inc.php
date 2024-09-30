@@ -261,18 +261,26 @@
 	}
 	addLoadEvent(setWarningOnNavigate);
 
-    addLoadEvent(adjustScrollTop);
-    function adjustScrollTop(){
-        var html = document.querySelector('html');
-        if (window.location.href.includes('#')){
-            setTimeout(function(){
-                window.scrollTo(0, window.pageYOffset - 44);
-                setTimeout(function(){
-                    html.style.scrollBehavior = 'smooth';
-                }, 10);
-            }, 50);
-        }
-    }
+	html.style.scrollBehavior = 'smooth';
+	document.addEventListener('DOMContentLoaded', function(){
+		function adjustScroll(){
+			const headerHeight = document.querySelector('#fixed_scroll').offsetHeight;
+			const targetElement = document.querySelector(location.hash);
+
+			if (targetElement){
+				const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
+				window.scrollTo({
+					top: elementTop - headerHeight,
+					behavior: 'smooth'
+				});
+			}
+		}
+		// Adjust scroll when page loads with hash
+		if (window.location.hash)
+			adjustScroll();
+		// Adjust scroll when hash changes (clicking an internal link)
+		window.addEventListener('hashchange', adjustScroll);
+	});
 
 	function submitChangeStatus(formCount){ /* There are two versions of this form (Issue Metadata section open and closed) */
 		var noteAddDiv = document.getElementById('bugnote_add_open');
