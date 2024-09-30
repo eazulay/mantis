@@ -1,10 +1,10 @@
+html { scroll-behavior: smooth; }
 body {
 	background-color: #FEFCFA;
 	color: #111;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 9pt;
 	margin: 10px 20px;
-	scroll-behavior: smooth;
 }
 
 p					{ font-family: Verdana, Arial, Helvetica, sans-serif; }
