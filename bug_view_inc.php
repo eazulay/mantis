@@ -316,7 +316,7 @@
         var usefulCount = 0;
 		//var startTime = performance.now();
         links.forEach(link => {
-            if (link.href.includes('/mantis/view.php')){
+            if (link.href.includes('/view.php')){
                 if (typeof indexOccurs[link.href] === 'undefined'){
                     indexOccurs[link.href] = 1;
                 }else{
