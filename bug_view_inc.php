@@ -261,8 +261,8 @@
 	}
 	addLoadEvent(setWarningOnNavigate);
 
-	document.documentElement.style.scrollBehavior = 'smooth';
-	
+//	document.documentElement.style.scrollBehavior = 'smooth';
+
 	document.addEventListener('DOMContentLoaded', function(){
 		function adjustScroll(){
 			const headerHeight = document.querySelector('#fixed_scroll').offsetHeight;
