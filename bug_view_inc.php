@@ -265,7 +265,6 @@
 		function adjustScroll(){
 			const headerHeight = document.querySelector('#fixed_scroll').offsetHeight;
 			const targetElement = document.querySelector(location.hash);
-
 			if (targetElement){
 				const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
 				window.scrollTo({
@@ -276,7 +275,9 @@
 		}
 		// Adjust scroll when page loads with hash
 		if (window.location.hash)
-			adjustScroll();
+			setTimeout(function(){
+				adjustScroll();
+			}, 10);
 		// Adjust scroll when hash changes (clicking an internal link)
 		window.addEventListener('hashchange', adjustScroll);
 	});
