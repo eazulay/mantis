@@ -277,7 +277,7 @@
 		if (window.location.hash)
 			setTimeout(function(){
 				adjustScroll();
-			}, 10);
+			}, 50);
 		// Adjust scroll when hash changes (clicking an internal link)
 		window.addEventListener('hashchange', adjustScroll);
 	});
