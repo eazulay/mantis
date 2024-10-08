@@ -30,11 +30,11 @@
 	<meta http-equiv="Pragma-directive" content="no-cache" />
 	<meta http-equiv="Cache-Directive" content="no-cache" />
 	<meta name="robots" content="noindex,follow" />
-	<link rel="shortcut icon" href="/mantis/images/favicon.ico" type="image/x-icon" />
-	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="/mantis/browser_search_plugin.php?type=text" />	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="https://get-it-write.com/mantis/browser_search_plugin.php?type=id" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="browser_search_plugin.php?type=text" />	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="browser_search_plugin.php?type=id" />
 	<title>View Help Notes - Get-It-Write Tracking System</title>
-<script type="text/javascript" src="/mantis/javascript/min/common.js"></script>
-<script type="text/javascript">var loading_lang = "Loading...";</script><script type="text/javascript" src="/mantis/javascript/min/ajax.js"></script>
+<script type="text/javascript" src="/javascript/min/common.js"></script>
+<script type="text/javascript">var loading_lang = "Loading...";</script><script type="text/javascript" src="/javascript/min/ajax.js"></script>
 <script type="text/javascript">
 function selectElement(element) {
     if (window.getSelection) {
