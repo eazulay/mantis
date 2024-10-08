@@ -90,7 +90,7 @@ class EmailReportingPlugin extends MantisPlugin
 			'mail_debug'					=> OFF,
 
 			# Save mail contents to this directory if debug mode is ON
-			'mail_debug_directory'			=> '/tmp/mantis',
+			'mail_debug_directory'			=> '/home/jgetaita/subdomains/mantis/debug',
 
 			# Used for debugging the system.
 			# Shows the memory usage in different stages of the debugging process
