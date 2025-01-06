@@ -26,6 +26,7 @@ class EditNoteDatePlugin extends MantisPlugin {
 	}
 
 	function update_bug_form($p_event, $p_bug_id, $p_bugnote_id) {
+		global $update_issue_table_columns;
 		if (access_has_global_level(DEVELOPER)){
 			if ($p_bugnote_id > 0) {
 				$t_query = "SELECT date_submitted as date_submitted FROM mantis_bugnote_table WHERE id=" . db_param();
@@ -41,7 +42,7 @@ class EditNoteDatePlugin extends MantisPlugin {
 					echo '</td></tr>';
 				}
 			} else {
-				echo '<tr ', helper_alternate_class(), '><td class="category" colspan="', is_page_name('bug_update_page.php') ? '2' : '1', '">Submit Date</td><td colspan="8"><input type=text id="date_submitted" name="date_submitted" value="">';
+				echo '<tr ', helper_alternate_class(), '><td class="category" colspan="', is_page_name('bug_update_page.php') ? '2' : '1', '">Submit Date</td><td colspan="' . ($update_issue_table_columns - 2) . '"><input type=text id="date_submitted" name="date_submitted" value="">';
 
 				date_print_calendar('trigger_note');
 				date_finish_calendar( 'date_submitted', 'trigger_note');

@@ -36,9 +36,10 @@ class HelpNotesPlugin extends MantisPlugin {
 	}
 	
 	function create_bugnote_form_help($p_event, $p_bug_id) {
+		global $update_issue_table_columns;
 		if (access_has_global_level(DEVELOPER)){
 			$has_help = 0;
-			if ($p_bugnote_id > 0) {
+/*			if ($p_bugnote_id > 0) {
 				$t_help_table = plugin_table( 'bugnote_help' );
 				$t_query = "SELECT has_help FROM $t_help_table WHERE bugnote_id=" . db_param();
 				$t_result = db_query_bound( $t_query, array( $p_bugnote_id ) );
@@ -46,9 +47,9 @@ class HelpNotesPlugin extends MantisPlugin {
 					$t_row = db_fetch_array($t_result);
 					$has_help = $t_row['has_help'];
 				}
-			}
+			}*/
 			echo '<tr ' . helper_alternate_class() . '><td class="category" colspan="', is_page_name('bug_update_page.php') ? '2' : '1', '">Contains Help</td>
-<td colspan="8"><input type="hidden" name="has_help" value="0"> <input type="checkbox" id="has_help" name="has_help" value="1"'.($has_help==1?' checked':'').'> <label for="has_help">Help</label></td></tr>';
+<td colspan="' . ($update_issue_table_columns - 2) . '"><input type="hidden" name="has_help" value="0"> <input type="checkbox" id="has_help" name="has_help" value="1"'.($has_help==1?' checked':'').'> <label for="has_help">Help</label></td></tr>';
 		}
 	}
 	

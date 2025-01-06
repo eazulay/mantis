@@ -116,6 +116,8 @@ if ( $tpl_show_product_version ) {
 $tpl_formatted_bug_id = $tpl_show_id ? bug_format_id( $f_bug_id ) : '';
 $tpl_project_name = $tpl_show_project ? string_display_line( project_get_name( $tpl_bug->project_id ) ) : '';
 
+$update_issue_table_columns = access_has_global_level(DEVELOPER) ? 12 : 10;
+
 echo '<br />';
 echo '<form name="update_bug_form" method="post" action="bug_update.php">';
 echo form_security_field( 'bug_update' );
@@ -125,13 +127,13 @@ echo '<td class="form-title" colspan="6">';
 echo '<input type="hidden" name="bug_id" value="', $tpl_bug_id, '" />';
 echo '<input type="hidden" name="update_mode" value="1" />';
 echo lang_get( 'updating_bug_advanced_title' );
-echo '</td><td class="right" colspan="' . (access_has_global_level(DEVELOPER) ? '6' : '4') . '">';
+echo '</td><td class="right" colspan="' . ($update_issue_table_columns - 6) . '">';
 print_bracket_link( string_get_bug_view_url( $tpl_bug_id ), lang_get( 'back_to_bug_link' ) );
 echo '</td></tr>';
 
 # Submit Button
 if ( $tpl_top_buttons_enabled ) {
-        echo '<tr><td class="center" colspan="' . (access_has_global_level(DEVELOPER) ? '12' : '10') . '">';
+        echo '<tr><td class="center" colspan="' . $update_issue_table_columns . '">';
         echo '<input ', helper_get_tab_index(), ' type="submit" class="button" value="', lang_get( 'update_information_button' ), '" />';
         echo '</td></tr>';
 }
@@ -419,13 +421,13 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 
 event_signal( 'EVENT_UPDATE_BUG_FORM', array( $tpl_bug_id, true ) );
 
-echo '<tr class="padded-spacer"><td colspan="' . (access_has_global_level(DEVELOPER) ? '12' : '10') . '" style="padding:2px;" /></tr>';
+echo '<tr class="padded-spacer"><td colspan="' . $update_issue_table_columns . '" style="padding:2px;" /></tr>';
 
 # Summary
 if ( $tpl_show_summary ) {
 	echo '<tr class="row-2">';
 	echo '<td class="category" colspan="2">', lang_get( 'summary' ), '</td>';
-	echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">', '<input ', helper_get_tab_index(), ' type="text" name="summary" size="105" maxlength="128" value="', $tpl_summary_attribute, '" />';
+	echo '<td colspan="' . ($update_issue_table_columns - 2) . '">', '<input ', helper_get_tab_index(), ' type="text" name="summary" size="105" maxlength="128" value="', $tpl_summary_attribute, '" />';
 	echo '</td></tr>';
 }
 
@@ -433,7 +435,7 @@ if ( $tpl_show_summary ) {
 if ( $tpl_show_description ) {
 	echo '<tr ', helper_alternate_class(), '>';
 	echo '<td class="category" colspan="2">', lang_get( 'description' ), '</td>';
-	echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
+	echo '<td colspan="' . ($update_issue_table_columns - 2) . '">';
 	echo '<textarea ', helper_get_tab_index(), ' cols="80" rows="10" name="description">', $tpl_description_textarea, '</textarea>';
 	echo '</td></tr>';
 }
@@ -442,7 +444,7 @@ if ( $tpl_show_description ) {
 if ( $tpl_show_steps_to_reproduce ) {
 	echo '<tr ', helper_alternate_class(), '>';
 	echo '<td class="category" colspan="2">', lang_get( 'steps_to_reproduce' ), '</td>';
-	echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
+	echo '<td colspan="' . ($update_issue_table_columns - 2) . '">';
 	echo '<textarea ', helper_get_tab_index(), ' cols="80" rows="10" name="steps_to_reproduce">', $tpl_steps_to_reproduce_textarea, '</textarea>';
 	echo '</td></tr>';
 }
@@ -451,7 +453,7 @@ if ( $tpl_show_steps_to_reproduce ) {
 if ( $tpl_show_additional_information ) {
 	echo '<tr ', helper_alternate_class(), '>';
 	echo '<td class="category" colspan="2">', lang_get( 'additional_information' ), '</td>';
-	echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
+	echo '<td colspan="' . ($update_issue_table_columns - 2) . '">';
 	echo '<textarea ', helper_get_tab_index(), ' cols="80" rows="10" name="additional_information">', $tpl_additional_information_textarea, '</textarea>';
 	echo '</td></tr>';
 }
@@ -470,7 +472,7 @@ foreach ( $t_related_custom_field_ids as $t_id ) {
 			}
 
 			echo string_display( lang_get_defaulted( $t_def['name'] ) );
-			echo '</td><td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
+			echo '</td><td colspan="' . ($update_issue_table_columns - 2) . '">';
 			print_custom_field_input( $t_def, $tpl_bug_id );
 			echo '</td></tr>';
 		}
@@ -480,13 +482,13 @@ foreach ( $t_related_custom_field_ids as $t_id ) {
 # Bugnote Text Box
 echo '<tr ', helper_alternate_class(), '>';
 echo '<td class="category" colspan="2">', lang_get( 'add_bugnote_title' ), '</td>';
-echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '"><textarea ', helper_get_tab_index(), ' name="bugnote_text" cols="80" rows="10"></textarea></td></tr>';
+echo '<td colspan="' . ($update_issue_table_columns - 2) . '"><textarea ', helper_get_tab_index(), ' name="bugnote_text" cols="80" rows="10"></textarea></td></tr>';
 
 # Bugnote Private Checkbox (if permitted)
 if ( access_has_bug_level( config_get( 'private_bugnote_threshold' ), $tpl_bug_id ) ) {
 	echo '<tr ', helper_alternate_class(), '>';
 	echo '<td class="category" colspan="2">', lang_get( 'private' ), '</td>';
-	echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
+	echo '<td colspan="' . ($update_issue_table_columns - 2) . '">';
 
 	$t_default_bugnote_view_status = config_get( 'default_bugnote_view_status' );
 	if ( access_has_bug_level( config_get( 'set_view_status_threshold' ), $tpl_bug_id ) ) {
@@ -504,7 +506,7 @@ if ( config_get('time_tracking_enabled') ) {
 	if ( access_has_bug_level( config_get( 'time_tracking_edit_threshold' ), $tpl_bug_id ) ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'time_tracking' ), ' (HH:MM)</td>';
-		echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '"><input type="text" name="time_tracking" size="5" value="0:00" /></td></tr>';
+		echo '<td colspan="' . ($update_issue_table_columns - 2) . '"><input type="text" name="time_tracking" size="5" value="0:00" /></td></tr>';
 	}
 }
 
