@@ -680,7 +680,7 @@
 	echo '<table class="width100" cellspacing="0">';
 
 	echo '<tr class="header">';
-	echo '<td class="form-title" colspan="' . access_has_global_level(DEVELOPER) ? '12' : '10' . '">';
+	echo '<td class="form-title" colspan="' . (access_has_global_level(DEVELOPER) ? '12' : '10') . '">';
 
 	collapse_icon( 'issue_metadata' );
 
@@ -871,7 +871,7 @@
 	# Approval
 	echo '<tr ', helper_alternate_class(), '>';
 	echo '<td class="category" colspan="2">', string_display( 'Approval' ), '</td>';
-	echo '<td colspan="' . access_has_global_level(DEVELOPER) ? '10' : '8' . '">';
+	echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
 	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
 	if ( $auth_status != null && $auth_status != '' ){
 		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
@@ -895,7 +895,7 @@
 	if ( $tpl_show_tags ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tags' ), '</td>';
-		echo '<td colspan="' . access_has_global_level(DEVELOPER) ? '10' : '8' . '">';
+		echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
 		tag_display_attached( $tpl_bug_id );
 		echo '</td></tr>';
 	}
@@ -904,13 +904,13 @@
 	if ( $tpl_can_attach_tag ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tag_attach_long' ), '</td>';
-		echo '<td colspan="' . access_has_global_level(DEVELOPER) ? '10' : '8' . '">';
+		echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
 		print_tag_attach_form( $tpl_bug_id );
 		echo '</td></tr>';
 	}
 
 	echo '<tr class="footer">';
-	echo '<td class="center" colspan="' . access_has_global_level(DEVELOPER) ? '12' : '10' . '">';
+	echo '<td class="center" colspan="' . (access_has_global_level(DEVELOPER) ? '12' : '10') . '">';
 	html_buttons_view_bug_page( $tpl_bug_id, true );
 /*
 	if ( $tpl_show_reminder_link ) {
