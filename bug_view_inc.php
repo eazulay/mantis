@@ -690,7 +690,10 @@
 
 	# Labels
 	echo '<tr class="bottom-border">';
-	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th><th colspan="2">Class</th><th colspan="2">Progress</th>';
+	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th>';
+	if (access_has_global_level(DEVELOPER))
+		echo '<th colspan="2">Profile</th>';
+	echo '<th colspan="2">Class</th><th colspan="2">Progress</th>';
 	echo '</tr>';
 
 	if ( $tpl_show_id || $tpl_show_date_submitted || $tpl_show_reporter || $tpl_show_category || $tpl_show_status ) {
@@ -868,7 +871,7 @@
 	# Approval
 	echo '<tr ', helper_alternate_class(), '>';
 	echo '<td class="category" colspan="2">', string_display( 'Approval' ), '</td>';
-	echo '<td colspan="8">';
+	echo '<td colspan="' . access_has_global_level(DEVELOPER) ? '10' : '8' . '">';
 	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
 	if ( $auth_status != null && $auth_status != '' ){
 		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
