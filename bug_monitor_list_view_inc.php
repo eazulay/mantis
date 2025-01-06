@@ -35,7 +35,7 @@ if ( access_has_bug_level( config_get( 'show_monitor_list_threshold' ), $f_bug_i
 		$t_can_delete_others = access_has_bug_level( config_get( 'monitor_delete_others_bug_threshold' ), $f_bug_id );
 		$print_i = 0;
 		for ( $i = 0; $i < $num_users; $i++ ) {
-			if (in_array($t_users[$i], $t_bugnote_users))
+			if ($t_users[$i] == $tpl_bug->reporter_id || $t_users[$i] == $tpl_bug->handler_id || in_array($t_users[$i], $t_bugnote_users))
 				continue;
 			echo ($print_i > 0) ? ', ' : '';
 			echo print_user( $t_users[$i] );
