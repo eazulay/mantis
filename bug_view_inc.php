@@ -692,7 +692,7 @@
 	echo '<tr class="bottom-border">';
 	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th>';
 	if (access_has_global_level(DEVELOPER))
-		echo '<th colspan="2">Profile</th>';
+		echo '<th colspan="2">Environment</th>';
 	echo '<th colspan="2">Class</th><th colspan="2">Progress</th>';
 	echo '</tr>';
 
