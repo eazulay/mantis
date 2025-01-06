@@ -708,9 +708,11 @@
 			echo $submitter . ' for ';
 		print_user_with_subject( $tpl_bug->reporter_id, $tpl_bug_id );
 		echo '</td>';
-/*		# Profile
-		echo '<td class="category disabled" width="15%">', lang_get( 'profile' ), '</td>';
-		echo '<td />'; */
+		# Profile
+		if (access_has_global_level(DEVELOPER)) {
+			echo '<td class="category disabled" width="15%">', lang_get( 'profile' ), '</td>';
+			echo '<td />';
+		}
 		# Category
 		echo '<td class="category" width="8%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
 		echo '<td class="center" width="10%">', $tpl_category, '</td>';
@@ -739,8 +741,10 @@
 		print_user_with_subject( $tpl_bug->handler_id, $tpl_bug_id );
 		echo '';
 		# Platform
-//		echo '<td class="category">', $tpl_show_platform ? lang_get( 'platform' ) : '', '</td>';
-//		echo '<td class="center">',$tpl_show_platform ? $tpl_platform : '', '</td>';
+		if (access_has_global_level(DEVELOPER)) {
+			echo '<td class="category">', $tpl_show_platform ? lang_get( 'platform' ) : '', '</td>';
+			echo '<td class="center">',$tpl_show_platform ? $tpl_platform : '', '</td>';
+		}
 		# Type (Custom field)
 		$t_type_def = custom_field_get_definition( 1 );
 		$tpl_show_type = custom_field_has_read_access( 1, $f_bug_id );
@@ -774,8 +778,10 @@
 		include( $tpl_mantis_dir . 'bugnote_userlist_inc.php' );
 		echo '</td>';
 		# Operating System
-//		echo '<td class="category">', $tpl_show_os ? lang_get( 'os' ) : '', '</td>';
-//		echo '<td class="center">', $tpl_os, '</td>';
+		if (access_has_global_level(DEVELOPER)) {
+			echo '<td class="category">', $tpl_show_os ? lang_get( 'os' ) : '', '</td>';
+			echo '<td class="center">', $tpl_os, '</td>';
+		}
 		# Severity
 		echo '<td class="category">', $tpl_show_severity ? lang_get( 'severity' ) : '', '</td>';
 		echo '<td class="center">', $tpl_severity, '</td>';
@@ -803,8 +809,10 @@
 			include( $tpl_mantis_dir . 'bug_monitor_list_view_inc.php' );
 		echo '</td>';
 		# OS Version
-//		echo '<td class="category">', $tpl_show_os_version ? lang_get( 'os_version' ) : '', '</td>';
-//		echo '<td class="center">', $tpl_os_version, '</td>';
+		if (access_has_global_level(DEVELOPER)) {
+			echo '<td class="category">', $tpl_show_os_version ? lang_get( 'os_version' ) : '', '</td>';
+			echo '<td class="center">', $tpl_os_version, '</td>';
+		}
 		# Reproducibility
 		echo '<td class="category">', $tpl_show_reproducibility ? lang_get( 'reproducibility' ) : '', '</td>';
 		echo '<td class="center">', $tpl_reproducibility, '</td>';
