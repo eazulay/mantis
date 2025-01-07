@@ -224,9 +224,23 @@ function profile_get_all_for_user( $p_user_id ) {
 		return profile_get_all_rows( ALL_USERS );
 	} else {
 		$t_profiles_array = array_merge( profile_get_all_rows( ALL_USERS ), profile_get_all_rows( $p_user_id ) );
-		echo "<!-- Before sort: " . print_r( $t_profiles_array, true ) . " -->";
-		asort( $t_profiles_array, SORT_STRING );
-		echo "<!-- After sort: " . print_r( $t_profiles_array, true ) . " -->";
+		//echo "<!-- Before sort: " . print_r( $t_profiles_array, true ) . " -->";
+		
+		//asort( $t_profiles_array, SORT_STRING );
+
+		usort( $t_profiles_array, function($a, $b) {
+			if( $a['platform'] == $b['platform'] ) {
+				if( $a['os'] == $b['os'] ) {
+					return strcmp( $a['os_build'], $b['os_build'] );
+				} else {
+					return strcmp( $a['os'], $b['os'] );
+				}
+			} else {
+				return strcmp( $a['platform'], $b['platform'] );
+			}
+		});
+
+		//echo "<!-- After sort: " . print_r( $t_profiles_array, true ) . " -->";
 		return $t_profiles_array;
 	}
 }
