@@ -514,7 +514,10 @@
 <?php if ( ON == config_get( 'use_javascript' ) ) { ?>
 <script type="text/javascript" language="JavaScript">
 <!--
-	window.document.report_bug_form.category_id.focus();
+	if (window.document.report_bug_form.custom_field_1)
+		window.document.report_bug_form.custom_field_1.focus();
+	else
+		window.document.report_bug_form.category_id.focus();
 
     const reproductionSteps = document.querySelector('#steps_to_reproduce');
     reproductionSteps.style.display = 'none';
