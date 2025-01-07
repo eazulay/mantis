@@ -43,6 +43,8 @@
 		print_header_redirect( 'login_select_proj_page.php?ref=bug_report_page.php' );
 	}
 
+	access_ensure_project_level( config_get( 'report_bug_threshold' ) );
+
 	if ( $f_master_bug_id > 0 ) {
 		# master bug exists...
 		bug_ensure_exists( $f_master_bug_id );
@@ -69,7 +71,7 @@
             $t_changed_project = false;
         }
 
-	    access_ensure_project_level( config_get( 'report_bug_threshold' ) );
+	    //access_ensure_project_level( config_get( 'report_bug_threshold' ) );
 
 		$f_build				= $t_bug->build;
 		$f_platform				= $t_bug->platform;
@@ -93,7 +95,7 @@
 
 		$t_project_id			= $t_bug->project_id;
 	} else {
-	    access_ensure_project_level( config_get( 'report_bug_threshold' ) );
+	    //access_ensure_project_level( config_get( 'report_bug_threshold' ) );
 
 		$f_build				= gpc_get_string( 'build', '' );
 		$f_platform				= gpc_get_string( 'platform', '' );
