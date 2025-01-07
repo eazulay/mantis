@@ -471,8 +471,8 @@ $s_profile_deleted_msg = 'Deleted profile...';
 
 # account_profile_edit_page.php
 $s_edit_profile_title = 'Edit Profile';
-$s_platform = 'Platform';
-$s_operating_system = 'Operating System';
+$s_platform = 'Device/Platform';
+$s_operating_system = 'OS and Version';
 $s_additional_description = 'Additional Description';
 $s_update_profile_button = 'Update Profile';
 
@@ -631,9 +631,9 @@ $s_priority = 'Priority';
 $s_resolution = 'Resolution';
 $s_status = 'Status';
 $s_duplicate_id = 'Duplicate ID';
-$s_os = 'OS';
+$s_os = 'OS and Version';
 $s_projection = 'Projection';
-$s_os_version = 'OS Version';
+$s_os_version = 'Browser';
 $s_eta = 'Estimated Effort';
 $s_product_version = 'Product Version';
 $s_build = 'Build';
