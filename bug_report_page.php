@@ -236,40 +236,7 @@
 		</td>
 	</tr>
 <?php
-	}
-
-	if ( $tpl_show_priority ) { ?>
-	<tr <?php echo helper_alternate_class() ?>>
-		<td class="category">
-			<?php print_documentation_link( 'priority' ) ?>
-		</td>
-		<td>
-			<select <?php echo helper_get_tab_index() ?> name="priority">
-				<?php print_enum_string_option_list( 'priority', $f_priority ) ?>
-			</select>
-		</td>
-	</tr>
-<?php
-	}
-
-	if ( $tpl_show_due_date ) {
-		$t_date_to_display = '';
-
-		if ( !date_is_null( $f_due_date ) ) {
-			$t_date_to_display = date( config_get( 'calendar_date_format' ), $f_due_date );
-		} ?>
-	<tr <?php echo helper_alternate_class() ?>>
-		<td class="category">
-			<?php print_documentation_link( 'due_date' ) ?>
-		</td>
-		<td>
-		<?php
-		    print "<input ".helper_get_tab_index()." type=\"text\" id=\"due_date\" name=\"due_date\" size=\"20\" maxlength=\"16\" value=\"".$t_date_to_display."\" />";
-			date_print_calendar();
-		?>
-		</td>
-	</tr>
-<?php } ?>
+	} ?>
 <?php if ( $tpl_show_platform || $tpl_show_os || $tpl_show_os_version ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
@@ -381,36 +348,9 @@
 			<input <?php echo helper_get_tab_index() ?> type="text" name="build" size="32" maxlength="32" value="<?php echo string_attribute( $f_build ) ?>" />
 		</td>
 	</tr>
-<?php } ?>
+<?php }
 
-<?php if ( $tpl_show_handler ) { ?>
-	<tr <?php echo helper_alternate_class() ?>>
-		<td class="category">
-			<?php echo lang_get( 'assign_to' ) ?>
-		</td>
-		<td>
-			<select <?php echo helper_get_tab_index() ?> name="handler_id">
-				<option value="0" selected="selected"></option>
-				<?php print_assign_to_option_list( $f_handler_id ) ?>
-			</select>
-		</td>
-	</tr>
-<?php } ?>
-
-<?php // Target Version (if permissions allow)
-	if ( $tpl_show_target_version ) { ?>
-	<tr <?php echo helper_alternate_class() ?>>
-		<td class="category">
-			<?php echo lang_get( 'target_version' ) ?>
-		</td>
-		<td>
-			<select <?php echo helper_get_tab_index() ?> name="target_version">
-				<?php print_version_option_list() ?>
-			</select>
-		</td>
-	</tr>
-<?php } ?>
-<?php event_signal( 'EVENT_REPORT_BUG_FORM', array( $t_project_id ) ) ?>
+	event_signal( 'EVENT_REPORT_BUG_FORM', array( $t_project_id ) ) ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<span class="required">*</span><?php print_documentation_link( 'summary' ) ?>
@@ -465,6 +405,68 @@
 <?php
 	}
 
+	if ( $tpl_show_priority ) { ?>
+	<tr <?php echo helper_alternate_class() ?>>
+		<td class="category">
+			<?php print_documentation_link( 'priority' ) ?>
+		</td>
+		<td>
+			<select <?php echo helper_get_tab_index() ?> name="priority">
+				<?php print_enum_string_option_list( 'priority', $f_priority ) ?>
+			</select>
+		</td>
+	</tr>
+<?php
+	}
+	
+	if ( $tpl_show_due_date ) {
+		$t_date_to_display = '';
+
+		if ( !date_is_null( $f_due_date ) ) {
+			$t_date_to_display = date( config_get( 'calendar_date_format' ), $f_due_date );
+		} ?>
+	<tr <?php echo helper_alternate_class() ?>>
+		<td class="category">
+			<?php print_documentation_link( 'due_date' ) ?>
+		</td>
+		<td>
+		<?php
+		    print "<input ".helper_get_tab_index()." type=\"text\" id=\"due_date\" name=\"due_date\" size=\"20\" maxlength=\"16\" value=\"".$t_date_to_display."\" />";
+			date_print_calendar();
+		?>
+		</td>
+	</tr>
+<?php
+	}
+
+	if ( $tpl_show_handler ) { ?>
+	<tr <?php echo helper_alternate_class() ?>>
+		<td class="category">
+			<?php echo lang_get( 'assign_to' ) ?>
+		</td>
+		<td>
+			<select <?php echo helper_get_tab_index() ?> name="handler_id">
+				<option value="0" selected="selected"></option>
+				<?php print_assign_to_option_list( $f_handler_id ) ?>
+			</select>
+		</td>
+	</tr>
+<?php }
+
+	// Target Version (if permissions allow)
+	if ( $tpl_show_target_version ) { ?>
+	<tr <?php echo helper_alternate_class() ?>>
+		<td class="category">
+			<?php echo lang_get( 'target_version' ) ?>
+		</td>
+		<td>
+			<select <?php echo helper_get_tab_index() ?> name="target_version">
+				<?php print_version_option_list() ?>
+			</select>
+		</td>
+	</tr>
+<?php }
+
 	if ( $tpl_show_view_state ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
@@ -473,11 +475,12 @@
 		<td>
 			<label><input <?php echo helper_get_tab_index() ?> type="radio" name="view_state" value="<?php echo VS_PUBLIC ?>" <?php check_checked( $f_view_state, VS_PUBLIC ) ?> /> <?php echo lang_get( 'public' ) ?></label>
 			<label><input <?php echo helper_get_tab_index() ?> type="radio" name="view_state" value="<?php echo VS_PRIVATE ?>" <?php check_checked( $f_view_state, VS_PRIVATE ) ?> /> <?php echo lang_get( 'private' ) ?></label>
-	<?php
-		} ?>
 		</td>
 	</tr>
-<?php //Relationship (in case of cloned bug creation...)
+<?php
+	}
+
+	//Relationship (in case of cloned bug creation...)
 	if( $f_master_bug_id > 0 ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
