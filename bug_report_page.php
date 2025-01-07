@@ -211,7 +211,7 @@
 <?php }
 
 	if ( $tpl_show_reproducibility ) { ?>
-	<tr <?php echo helper_alternate_class() ?>>
+	<tr <?php echo helper_alternate_class() ?> id="reproducibility">
 		<td class="category">
 			<?php print_documentation_link( 'reproducibility' ) ?>
 		</td>
@@ -520,10 +520,16 @@
 		window.document.report_bug_form.category_id.focus();
 
     const reproductionSteps = document.querySelector('#steps_to_reproduce');
+    const reproducibility = document.querySelector('#reproducibility');
     reproductionSteps.style.display = 'none';
+	reproducibility.style.display = 'none';
     window.document.report_bug_form.category_id.addEventListener('change', e => {
         const isBug = e.currentTarget.value === '17';
-        reproductionSteps.style.display = isBug ? 'table-row' : 'none';
+		if (!isBug) {
+			window.document.report_bug_form.reproducibility.value = '100'; // "N/A (not a bug)"
+		}
+		reproductionSteps.style.display = isBug ? 'table-row' : 'none';
+		reproducibility.style.display = isBug ? 'table-row' : 'none';
     });
 -->
 </script>
