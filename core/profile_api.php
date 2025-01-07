@@ -224,7 +224,9 @@ function profile_get_all_for_user( $p_user_id ) {
 		return profile_get_all_rows( ALL_USERS );
 	} else {
 		$t_profiles_array = array_merge( profile_get_all_rows( ALL_USERS ), profile_get_all_rows( $p_user_id ) );
+		echo "<!-- Before sort: " . print_r( $t_profiles_array, true ) . " -->";
 		asort( $t_profiles_array, SORT_STRING );
+		echo "<!-- After sort: " . print_r( $t_profiles_array, true ) . " -->";
 		return $t_profiles_array;
 	}
 }
