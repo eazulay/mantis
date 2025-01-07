@@ -242,11 +242,11 @@
 			<?php echo lang_get( 'select_profile' ) ?>
 		</td>
 		<td>
-			<?php if (count(profile_get_all_for_user( auth_get_current_user_id() )) > 0) { ?>
-				<select <?php echo helper_get_tab_index() ?> name="profile_id">
-					<?php print_profile_option_list( auth_get_current_user_id(), $f_profile_id ) ?>
-				</select>
-			<?php } ?>
+		<?php if (count(profile_get_all_for_user( auth_get_current_user_id() )) > 0) { ?>
+			<select <?php echo helper_get_tab_index() ?> name="profile_id">
+				<?php print_profile_option_list( auth_get_current_user_id(), $f_profile_id ) ?>
+			</select>
+		<?php } ?>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?>>

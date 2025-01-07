@@ -193,14 +193,14 @@ function profile_get_row_direct( $p_profile_id ) {
  * @return array
  */
 function profile_get_all_rows( $p_user_id ) {
-	$c_user_id = db_prepare_int( $p_user_id );
+	$c_user_id = (int) $p_user_id;
 
 	$t_user_profile_table = db_get_table( 'mantis_user_profile_table' );
 
 	$query = "SELECT *
-				  FROM $t_user_profile_table
-				  WHERE user_id=" . db_param() . "
-				  ORDER BY platform, os, os_build";
+		FROM $t_user_profile_table
+		WHERE user_id=" . db_param() . "
+		ORDER BY platform, os, os_build";
 	$result = db_query_bound( $query, Array( $c_user_id ) );
 
 	$t_rows = array();
@@ -224,7 +224,7 @@ function profile_get_all_for_user( $p_user_id ) {
 		return profile_get_all_rows( ALL_USERS );
 	} else {
 		$t_profiles_array = array_merge( profile_get_all_rows( ALL_USERS ), profile_get_all_rows( $p_user_id ) );
-		asort( $t_profiles_array );
+		asort( $t_profiles_array, SORT_STRING );
 		return $t_profiles_array;
 	}
 }
