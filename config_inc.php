@@ -99,7 +99,7 @@ $g_status_enum_workflow[CLOSED] = '20:feedback,50:assigned,55:progress,80:resolv
 
 $g_bug_acknowledged_status = ACKNOWLEDGED;
 
-$g_severity_enum_string = ',20:nice_to_have,50:important,60:critical,80:block';
+$g_severity_enum_string = '20:nice_to_have,50:important,60:critical,80:block';
 //$g_severity_enum_string = '10:feature,20:trivial,30:text,40:tweak,50:minor,60:major,70:crash,80:block';
 
 
