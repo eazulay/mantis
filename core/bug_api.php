@@ -76,7 +76,7 @@ class BugData {
 	protected $handler_id = 0;
 	protected $duplicate_id = 0;
 	protected $priority = NORMAL;
-	protected $severity = UNSPECIFIED;
+	protected $severity = NICE_TO_HAVE;
 	protected $reproducibility = 10;
 	protected $status = NEW_;
 	protected $resolution = OPEN;

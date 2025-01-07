@@ -82,13 +82,13 @@ define( 'URGENT', 50 );
 define( 'IMMEDIATE', 60 );
 
 # severity
-define( 'UNSPECIFIED', 10 );
+//define( 'UNSPECIFIED', 10 );
 define( 'NICE_TO_HAVE', 20 );
 //define( 'TEXT', 30 );
 //define( 'TWEAK', 40 );
 define( 'IMPORTANT', 50 );
 define( 'CRITICAL', 60 );
-define( 'CRASH', 70 );
+//define( 'CRASH', 70 );
 define( 'BLOCK', 80 );
 
 # reproducibility

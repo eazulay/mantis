@@ -1127,7 +1127,7 @@
 	 * Default bug severity when reporting a new bug
 	 * @global int $g_default_bug_severity
 	 */
-	$g_default_bug_severity = UNSPECIFIED;
+	$g_default_bug_severity = NICE_TO_HAVE;
 
 	/**
 	 * Default bug priority when reporting a new bug
@@ -1360,11 +1360,11 @@
 	 * result in an increase in reporter effectiveness.
 	 * @global array $g_severity_multipliers
 	 */
-	$g_severity_multipliers = array( UNSPECIFIED => 5,
+	$g_severity_multipliers = array( //UNSPECIFIED => 5,
 	                                 NICE_TO_HAVE => 3,
 	                                 IMPORTANT    => 7,
 	                                 CRITICAL   => 8,
-	                                 CRASH   => 9,
+	                                 //CRASH   => 9,
 	                                 BLOCK   => 10 );
 
 	/**

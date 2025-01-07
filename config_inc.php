@@ -99,7 +99,7 @@ $g_status_enum_workflow[CLOSED] = '20:feedback,50:assigned,55:progress,80:resolv
 
 $g_bug_acknowledged_status = ACKNOWLEDGED;
 
-$g_severity_enum_string = '10:unspecified,20:nice_to_have,50:important,60:critical,70:crash,80:block';
+$g_severity_enum_string = ',20:nice_to_have,50:important,60:critical,80:block';
 //$g_severity_enum_string = '10:feature,20:trivial,30:text,40:tweak,50:minor,60:major,70:crash,80:block';
 
 
@@ -213,7 +213,7 @@ $g_default_timezone = 'Europe/Paris';
 $g_html_valid_tags		= 'p, li, ul, ol, br, pre, i, b, u, em, strong';
 
 /* Default settings */
-$g_default_bug_severity = UNSPECIFIED;
+$g_default_bug_severity = NICE_TO_HAVE;
 $g_default_bugnote_order = 'DESC';
 $g_default_bug_reproducibility = REPRODUCIBILITY_NOTAPPLICABLE;
 $g_filter_custom_fields_per_row = 6;
