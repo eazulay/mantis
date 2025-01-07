@@ -213,7 +213,7 @@
 	if ( $tpl_show_reproducibility ) { ?>
 	<tr <?php echo helper_alternate_class() ?> id="reproducibility">
 		<td class="category">
-			<?php print_documentation_link( 'reproducibility' ) ?>
+			<span class="required">*</span><?php print_documentation_link( 'reproducibility' ) ?>
 		</td>
 		<td>
 			<select <?php echo helper_get_tab_index() ?> name="reproducibility">
