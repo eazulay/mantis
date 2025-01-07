@@ -483,7 +483,9 @@
 			<?php echo '<b>' . lang_get( 'bug' ) . ' ' . bug_format_id( $f_master_bug_id ) . '</b>' ?>
 		</td>
 	</tr>
-<?php } ?>
+<?php }
+
+	if ( $t_has_develper_access_level ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php print_documentation_link( 'report_stay' ) ?>
@@ -492,6 +494,8 @@
 			<label><input <?php echo helper_get_tab_index() ?> type="checkbox" id="report_stay" name="report_stay" <?php check_checked( $f_report_stay ) ?> /> <?php echo lang_get( 'check_report_more_bugs' ) ?></label>
 		</td>
 	</tr>
+<?php }
+?>
 	<tr class="footer">
 		<td class="left">
 			<span class="required"> * <?php echo lang_get( 'required' ) ?></span>
