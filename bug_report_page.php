@@ -221,8 +221,7 @@
 			</select>
 		</td>
 	</tr>
-<?php
-	}
+<?php }
 
 	if ( $tpl_show_severity ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
@@ -235,9 +234,9 @@
 			</select>
 		</td>
 	</tr>
-<?php
-	} ?>
-<?php if ( $tpl_show_platform || $tpl_show_os || $tpl_show_os_version ) { ?>
+<?php }
+	
+	if ( $tpl_show_platform || $tpl_show_os || $tpl_show_os_version ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php echo lang_get( 'select_profile' ) ?>
@@ -319,8 +318,7 @@
 		<?php } ?>
 		</td>
 	</tr>
-<?php } ?>
-<?php
+<?php }
 	if ( $tpl_show_product_version ) {
 		$t_product_version_released_mask = VERSION_RELEASED;
 
@@ -337,9 +335,8 @@
 			</select>
 		</td>
 	</tr>
-<?php
-	} ?>
-<?php if ( $tpl_show_product_build ) { ?>
+<?php }
+	if ( $tpl_show_product_build ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php echo lang_get( 'product_build' ) ?>
@@ -367,8 +364,8 @@
 			<textarea <?php echo helper_get_tab_index() ?> name="description" cols="80" rows="10"><?php echo string_textarea( $f_description ) ?></textarea>
 		</td>
 	</tr>
-
-<?php if ( $tpl_show_steps_to_reproduce ) { ?>
+<?php
+	if ( $tpl_show_steps_to_reproduce ) { ?>
 		<tr <?php echo helper_alternate_class() ?> id="steps_to_reproduce">
 			<td class="category">
 				<?php print_documentation_link( 'steps_to_reproduce' ) ?>
@@ -377,9 +374,9 @@
 				<textarea <?php echo helper_get_tab_index() ?> name="steps_to_reproduce" cols="80" rows="10"><?php echo string_textarea( $f_steps_to_reproduce ) ?></textarea>
 			</td>
 		</tr>
-<?php } ?>
+<?php }
 
-<?php if ( $tpl_show_additional_info ) { ?>
+	if ( $tpl_show_additional_info ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php print_documentation_link( 'additional_information' ) ?>
@@ -388,8 +385,7 @@
 			<textarea <?php echo helper_get_tab_index() ?> name="additional_info" cols="80" rows="3"><?php echo string_textarea( $f_additional_info ) ?></textarea>
 		</td>
 	</tr>
-<?php
-	} ?>
+<?php } ?>
 <?php if ( $tpl_show_attachments ) { // File Upload (if enabled)
 	$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) ); ?>
 	<tr <?php echo helper_alternate_class() ?>>
@@ -402,8 +398,7 @@
 			<input <?php echo helper_get_tab_index() ?> name="file" type="file" size="60" />
 		</td>
 	</tr>
-<?php
-	}
+<?php }
 
 	if ( $tpl_show_priority ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
@@ -416,8 +411,7 @@
 			</select>
 		</td>
 	</tr>
-<?php
-	}
+<?php }
 	
 	if ( $tpl_show_due_date ) {
 		$t_date_to_display = '';
@@ -436,8 +430,7 @@
 		?>
 		</td>
 	</tr>
-<?php
-	}
+<?php }
 
 	if ( $tpl_show_handler ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
@@ -477,8 +470,7 @@
 			<label><input <?php echo helper_get_tab_index() ?> type="radio" name="view_state" value="<?php echo VS_PRIVATE ?>" <?php check_checked( $f_view_state, VS_PRIVATE ) ?> /> <?php echo lang_get( 'private' ) ?></label>
 		</td>
 	</tr>
-<?php
-	}
+<?php }
 
 	//Relationship (in case of cloned bug creation...)
 	if( $f_master_bug_id > 0 ) { ?>
@@ -491,8 +483,7 @@
 			<?php echo '<b>' . lang_get( 'bug' ) . ' ' . bug_format_id( $f_master_bug_id ) . '</b>' ?>
 		</td>
 	</tr>
-<?php
-	} ?>
+<?php } ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php print_documentation_link( 'report_stay' ) ?>
