@@ -519,8 +519,6 @@
 
     const reproductionSteps = document.querySelector('#steps_to_reproduce');
     const reproducibility = document.querySelector('#reproducibility');
-    //reproductionSteps.style.display = 'none';
-	//reproducibility.style.display = 'none';
     window.document.report_bug_form.category_id.addEventListener('change', e => {
         const isBug = e.currentTarget.value === '17';
 		if (!isBug && window.document.report_bug_form.reproducibility.value != '100') {
