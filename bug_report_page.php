@@ -71,8 +71,6 @@
             $t_changed_project = false;
         }
 
-	    //access_ensure_project_level( config_get( 'report_bug_threshold' ) );
-
 		$f_build				= $t_bug->build;
 		$f_platform				= $t_bug->platform;
 		$f_os					= $t_bug->os;
@@ -95,8 +93,6 @@
 
 		$t_project_id			= $t_bug->project_id;
 	} else {
-	    //access_ensure_project_level( config_get( 'report_bug_threshold' ) );
-
 		$f_build				= gpc_get_string( 'build', '' );
 		$f_platform				= gpc_get_string( 'platform', '' );
 		$f_os					= gpc_get_string( 'os', '' );
@@ -175,8 +171,25 @@
 <?php
 	event_signal( 'EVENT_REPORT_BUG_FORM_TOP', array( $t_project_id ) );
 
-	if ( $tpl_show_category ) {
-?>
+	// Custom Fields
+	$t_related_custom_field_ids = custom_field_get_linked_ids( $t_project_id );
+	foreach( $t_related_custom_field_ids as $t_id ) {
+		$t_def = custom_field_get_definition( $t_id );
+		// Include fields configured for Raising Issues "display_report"
+		if( ( $t_def['display_report'] || $t_def['require_report']) && custom_field_has_write_access_to_project( $t_id, $t_project_id ) ) { ?>
+	<tr <?php echo helper_alternate_class() ?>>
+		<td class="category">
+			<?php if($t_def['require_report']) {?><span class="required">*</span><?php } echo string_display( lang_get_defaulted( $t_def['name'] ) ) ?>
+		</td>
+		<td>
+			<?php print_custom_field_input( $t_def, ( $f_master_bug_id === 0 ) ? null : $f_master_bug_id ) ?>
+		</td>
+	</tr>
+<?php
+		}
+	}
+
+	if ( $tpl_show_category ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category" width="30%">
 			<?php echo config_get( 'allow_no_category' ) ? '' : '<span class="required">*</span>'; print_documentation_link( 'category' ) ?>
@@ -197,9 +210,7 @@
 	</tr>
 <?php }
 
-	if ( $tpl_show_reproducibility ) {
-?>
-
+	if ( $tpl_show_reproducibility ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php print_documentation_link( 'reproducibility' ) ?>
@@ -213,8 +224,7 @@
 <?php
 	}
 
-	if ( $tpl_show_severity ) {
-?>
+	if ( $tpl_show_severity ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php print_documentation_link( 'severity' ) ?>
@@ -228,8 +238,7 @@
 <?php
 	}
 
-	if ( $tpl_show_priority ) {
-?>
+	if ( $tpl_show_priority ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php print_documentation_link( 'priority' ) ?>
@@ -248,8 +257,7 @@
 
 		if ( !date_is_null( $f_due_date ) ) {
 			$t_date_to_display = date( config_get( 'calendar_date_format' ), $f_due_date );
-		}
-?>
+		} ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php print_documentation_link( 'due_date' ) ?>
@@ -351,8 +359,7 @@
 
 		if (access_has_project_level( config_get( 'report_issues_for_unreleased_versions_threshold' ) ) ) {
 			$t_product_version_released_mask = VERSION_ALL;
-		}
-?>
+		} ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php echo lang_get( 'product_version' ) ?>
@@ -364,8 +371,7 @@
 		</td>
 	</tr>
 <?php
-	}
-?>
+	} ?>
 <?php if ( $tpl_show_product_build ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
@@ -443,31 +449,9 @@
 		</td>
 	</tr>
 <?php
-	}
-
-	$t_custom_fields_found = false;
-	$t_related_custom_field_ids = custom_field_get_linked_ids( $t_project_id );
-
-	foreach( $t_related_custom_field_ids as $t_id ) {
-		$t_def = custom_field_get_definition( $t_id );
-		if( ( $t_def['display_report'] || $t_def['require_report']) && custom_field_has_write_access_to_project( $t_id, $t_project_id ) ) {
-			$t_custom_fields_found = true;
-?>
-	<tr <?php echo helper_alternate_class() ?>>
-		<td class="category">
-			<?php if($t_def['require_report']) {?><span class="required">*</span><?php } echo string_display( lang_get_defaulted( $t_def['name'] ) ) ?>
-		</td>
-		<td>
-			<?php print_custom_field_input( $t_def, ( $f_master_bug_id === 0 ) ? null : $f_master_bug_id ) ?>
-		</td>
-	</tr>
-<?php
-		}
-	} # foreach( $t_related_custom_field_ids as $t_id )
-?>
+	} ?>
 <?php if ( $tpl_show_attachments ) { // File Upload (if enabled)
-	$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) );
-?>
+	$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) ); ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php echo lang_get( 'upload_file' ) ?>
@@ -481,8 +465,7 @@
 <?php
 	}
 
-	if ( $tpl_show_view_state ) {
-?>
+	if ( $tpl_show_view_state ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php echo lang_get( 'view_status' ) ?>
@@ -491,13 +474,11 @@
 			<label><input <?php echo helper_get_tab_index() ?> type="radio" name="view_state" value="<?php echo VS_PUBLIC ?>" <?php check_checked( $f_view_state, VS_PUBLIC ) ?> /> <?php echo lang_get( 'public' ) ?></label>
 			<label><input <?php echo helper_get_tab_index() ?> type="radio" name="view_state" value="<?php echo VS_PRIVATE ?>" <?php check_checked( $f_view_state, VS_PRIVATE ) ?> /> <?php echo lang_get( 'private' ) ?></label>
 	<?php
-		}
-	?>
+		} ?>
 		</td>
 	</tr>
 <?php //Relationship (in case of cloned bug creation...)
-	if( $f_master_bug_id > 0 ) {
-?>
+	if( $f_master_bug_id > 0 ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php echo lang_get( 'relationship_with_parent' ) ?>
@@ -508,8 +489,7 @@
 		</td>
 	</tr>
 <?php
-	}
-?>
+	} ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<?php print_documentation_link( 'report_stay' ) ?>
