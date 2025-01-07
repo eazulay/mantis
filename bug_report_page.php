@@ -519,16 +519,17 @@
 
     const reproductionSteps = document.querySelector('#steps_to_reproduce');
     const reproducibility = document.querySelector('#reproducibility');
-    reproductionSteps.style.display = 'none';
-	reproducibility.style.display = 'none';
+    //reproductionSteps.style.display = 'none';
+	//reproducibility.style.display = 'none';
     window.document.report_bug_form.category_id.addEventListener('change', e => {
         const isBug = e.currentTarget.value === '17';
-		if (!isBug) {
+		if (!isBug && window.document.report_bug_form.reproducibility.value != '100') {
 			window.document.report_bug_form.reproducibility.value = '100'; // "N/A (not a bug)"
 		}
 		reproductionSteps.style.display = isBug ? 'table-row' : 'none';
 		reproducibility.style.display = isBug ? 'table-row' : 'none';
     });
+	window.document.report_bug_form.category_id.dispatchEvent(new Event('change', { bubbles: true }));
 -->
 </script>
 <?php  }
