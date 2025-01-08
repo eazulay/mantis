@@ -328,8 +328,12 @@
 			e.preventDefault();
 			var noteAddDiv = document.getElementById('bugnote_add_open');
 			var textArea = noteAddDiv.querySelector('textarea');
-			textArea.value = 'Update/Extension of ~'+noteID+':'+String.fromCharCode(10)+noteRow.querySelector('input[name=\"bugnote_text\"]').value;
-			noteAddDiv.scrollIntoView();
+			var noteText = noteRow.querySelector('input[name=\"bugnote_text\"]').value;
+			if (noteText.substring(0, 12) == 'Duplicate of'){
+				noteText = 'Update/Extension'+noteText.substring(9);
+				textArea.value = noteText;
+				noteAddDiv.scrollIntoView();
+			}
 		}
 	}
 
