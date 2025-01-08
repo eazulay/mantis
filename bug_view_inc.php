@@ -317,7 +317,7 @@
 
 	function copyNote(noteID) {
 		var noteRow = document.getElementById('c'+noteID);
-		var copyOptions = noteRow.querySelector('.copy_options');
+		var copyOptions = noteRow.querySelector('.copy-options');
 		copyOptions.style.classList.toggle('hidden');
 	}
 
