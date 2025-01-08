@@ -238,15 +238,15 @@
     echo "<script type='text/javascript'>
 	var fixedTable = document.getElementById('fixed_scroll');
 	window.onscroll = scroll;
-	function scroll(){
-		if (window.pageYOffset > 200){
+	function scroll() {
+		if (window.pageYOffset > 200) {
 			if (fixedTable.classList.contains('hidden-first'))
 				fixedTable.classList.remove('hidden-first');
 			if (fixedTable.classList.contains('transparent'))
 				fixedTable.classList.remove('transparent');
 			if (!fixedTable.classList.contains('opaque'))
 				fixedTable.classList.add('opaque');
-		}else{
+		} else {
 			if (fixedTable.classList.contains('opaque'))
 				fixedTable.classList.remove('opaque');
 			if (!fixedTable.classList.contains('transparent') && !fixedTable.classList.contains('hidden-first'))
@@ -256,13 +256,13 @@
 
 	addLoadEvent(adjustFixedWidth);
 	window.onresize = adjustFixedWidth;
-	function adjustFixedWidth(){
+	function adjustFixedWidth() {
 		fixedTable.style.width = (window.innerWidth - 85) + 'px';
 	}
 	addLoadEvent(setWarningOnNavigate);
 
-	document.addEventListener('DOMContentLoaded', function(){
-		function adjustScroll(){
+	document.addEventListener('DOMContentLoaded', function() {
+		function adjustScroll() {
 			const headerHeight = document.querySelector('#fixed_scroll').offsetHeight;
 			const targetElement = document.querySelector(location.hash);
 			if (targetElement){
@@ -282,7 +282,7 @@
 		window.addEventListener('hashchange', adjustScroll);
 	});
 
-	function submitChangeStatus(formCount){ /* There are two versions of this form (Issue Metadata section open and closed) */
+	function submitChangeStatus(formCount) { /* There are two versions of this form (Issue Metadata section open and closed) */
 		var noteAddDiv = document.getElementById('bugnote_add_open');
 		var textArea = noteAddDiv.querySelector('textarea');
 		var statusText =  document.getElementsByName('change_status_text')[formCount];
@@ -298,9 +298,9 @@
 		if (textArea.value == '')
 			textArea.value = 'Re ~'+noteID+': ';
 		";
-	if ($tpl_bug->status == $t_feedback){
+	if ($tpl_bug->status == $t_feedback) {
 		echo "var newStatus =  document.getElementsByName('new_status');
-		if (newStatus){
+		if (newStatus) {
 			newStatus = newStatus[0];
 			newStatus.value = '".ACKNOWLEDGED."';
 			submitChangeStatus(0);
@@ -308,7 +308,7 @@
 	";
 	}else{
 		echo "noteAddDiv.scrollIntoView();
-		setTimeout(function(){
+		setTimeout(function() {
 			textArea.focus();
 		}, 500);
 	";
@@ -333,6 +333,9 @@
 				noteText = 'Update/Extension'+noteText.substring(9);
 				textArea.value = noteText;
 				noteAddDiv.scrollIntoView();
+				setTimeout(function() {
+					textArea.focus();
+				}, 500);
 			}
 		}
 	}
