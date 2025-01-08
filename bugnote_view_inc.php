@@ -134,14 +134,14 @@ $num_notes = count( $t_bugnotes );
     <td class="<?php echo $t_bugnote_css ?>">
 		<?php if ( ON  == config_get("show_avatar") ) print_avatar( $t_bugnote->reporter_id ); ?>
         <?php # Note Selection checkbox
-        if (access_has_global_level(DEVELOPER)){
+        if (access_has_global_level(DEVELOPER)) {
             echo '<div style="float:right;"><label for="note_selected_'.$t_bugnote->id.'" style="font-weight:normal;">Select</label> <input type="checkbox" id="note_selected_'.$t_bugnote->id.'" name="note_selected['.$t_bugnote->id.']" value="1" form="bugnotes_move" onclick="note_selected(this.checked, '.$t_bugnote->id.')"></div>';
         }
         ?>
 		<span style="font-weight:bold;"><a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?></a></span>
         <br />
 		<?php # Has Help
-		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)){
+		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)) {
 			echo '<div style="float:right; clear:right;"><label for="has_help_'.$t_bugnote->id.'" style="font-weight:normal;">Help</label> <input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"></div>';
 		}
 		echo print_user( $t_bugnote->reporter_id );
@@ -198,8 +198,15 @@ $num_notes = count( $t_bugnotes );
 			}
 
 			echo ' <input type="button" class="button-small" onclick="replyToNote('.$t_bugnote->id.');" value="Reply" />';
-
-			echo '</div>';
+			echo ' <input type="button" class="button-small" onclick="copyNote('.$t_bugnote->id.');" value="Copy" />
+		<div class="copy-options hidden">
+			<form method="post" action="bugnote_add.php">
+				<input type="hidden" name="bugnote_text" value="'.addslashes($t_bugnote->note).'" />
+				<Label>To: <input type="number" name="bug_id" min="1" value="'.$f_bug_id.'" /></Label>
+				<input type="submit" class="button-small" onclick="(e)=>copyNoteOverride(e,'.$t_bugnote->id.','.$f_bug_id.')" value="Apply" />
+			</form>
+		</div>
+	</div>';
 		}
 		?>
 	</td>

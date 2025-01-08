@@ -292,7 +292,7 @@
 		return false;
 	}
 
-	function replyToNote(noteID){
+	function replyToNote(noteID) {
 		var noteAddDiv = document.getElementById('bugnote_add_open');
 		var textArea = noteAddDiv.querySelector('textarea');
 		if (textArea.value == '')
@@ -315,8 +315,26 @@
 	}
 	echo "}
 
+	function copyNote(noteID) {
+		var noteRow = document.getElementById('c'+noteID);
+		var copyOptions = noteRow.querySelector('.copy_options');
+		copyOptions.style.classList.toggle('hidden');
+	}
+
+	function copyNoteOverride(e, noteID, fromBugID) {
+		var noteRow = document.getElementById('c'+noteID);
+		var copyTo = noteRow.getElementsByName('bug_id')[0].value;
+		if (copyTo == fromBugID){
+			e.preventDefault();
+			var noteAddDiv = document.getElementById('bugnote_add_open');
+			var textArea = noteAddDiv.querySelector('textarea');
+			textArea.value = 'Update/Extension of ~'+noteID+': '+noteRow.getElementsByName('bugnote_text')[0].value;
+			noteAddDiv.scrollIntoView();
+		}
+	}
+
     addLoadEvent(colourifyLinks);
-    function colourifyLinks(){
+    function colourifyLinks() {
         var notesDiv = document.getElementById('bugnotes_open');
         var links = notesDiv.querySelectorAll('a');
         var indexOccurs = [];
@@ -324,8 +342,8 @@
         var usefulCount = 0;
 		//var startTime = performance.now();
         links.forEach(link => {
-            if (link.href.includes('/view.php')){
-                if (typeof indexOccurs[link.href] === 'undefined'){
+            if (link.href.includes('/view.php')) {
+                if (typeof indexOccurs[link.href] === 'undefined') {
                     indexOccurs[link.href] = 1;
                 }else{
                     indexOccurs[link.href]++;
@@ -351,17 +369,17 @@
 		//console.log('Assigning colours to links took '+(endTime - startTime)+' ms.');
     }
 
-    function generateUniqueColours(colourCount){
+    function generateUniqueColours(colourCount) {
         var colourArray = [];
-        if (colourCount > 0){
+        if (colourCount > 0) {
             var r = 0, g = 0, b = 0;
             var colourEntries = Math.ceil(Math.cbrt(colourCount));
             var colourDistance = 255;
             if (colourEntries > 1)
                 colourDistance = Math.floor(255 / (colourEntries - 1));
-            for(var ri = 0; ri < colourEntries; ri++){
-                for(var gi = 0; gi < colourEntries; gi++){
-                    for(var bi = 0; bi < colourEntries; bi++){
+            for(var ri = 0; ri < colourEntries; ri++) {
+                for(var gi = 0; gi < colourEntries; gi++) {
+                    for(var bi = 0; bi < colourEntries; bi++) {
                         r = ri * colourDistance;
                         g = gi * colourDistance;
                         b = bi * colourDistance;
@@ -376,7 +394,7 @@
         return colourArray;
     }
 
-    function colourIsDark(r, g, b){
+    function colourIsDark(r, g, b) {
 		return (r / 255.0 * 0.299 + g / 255.0 * 0.587 + b / 255.0 * 0.114) < 0.5;
         /* return ((r < 128 ? 0 : 1) +
                 (g < 128 ? 0 : 1) +
