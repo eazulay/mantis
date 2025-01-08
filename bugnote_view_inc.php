@@ -203,7 +203,7 @@ $num_notes = count( $t_bugnotes );
 			<form method="post" action="bugnote_add.php">
 				<input type="hidden" name="bugnote_text" value="'.addslashes($t_bugnote->note).'" />
 				<Label>To: <input type="number" name="bug_id" min="1" value="'.$f_bug_id.'" /></Label>
-				<input type="submit" class="button-small" onclick="(e)=>copyNoteOverride(e,'.$t_bugnote->id.','.$f_bug_id.')" value="Apply" />
+				<input type="submit" class="button-small" onclick="(e)=>{copyNoteOverride(e,'.$t_bugnote->id.','.$f_bug_id.')}" value="Apply" />
 			</form>
 		</div>
 	</div>';
