@@ -322,8 +322,10 @@
 	}
 
 	function copyNoteOverride(e, noteID, fromBugID) {
+e.preventDefault();
 		var noteRow = document.getElementById('c'+noteID);
 		var copyTo = noteRow.getElementsByName('bug_id')[0].value;
+		console.log(copyTo, fromBugID);
 		if (copyTo == fromBugID){
 			e.preventDefault();
 			var noteAddDiv = document.getElementById('bugnote_add_open');
