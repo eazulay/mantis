@@ -328,8 +328,7 @@
 			e.preventDefault();
 			var noteAddDiv = document.getElementById('bugnote_add_open');
 			var textArea = noteAddDiv.querySelector('textarea');
-			textArea.value = 'Update/Extension of ~'+noteID+':
-'+noteRow.querySelector('input[name=\"bugnote_text\"]').value;
+			textArea.value = 'Update/Extension of ~'+noteID+':'+char(10)+noteRow.querySelector('input[name=\"bugnote_text\"]').value;
 			noteAddDiv.scrollIntoView();
 		}
 	}
