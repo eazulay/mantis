@@ -324,7 +324,7 @@
 	function copyNoteOverride(e, noteID, fromBugID) {
 e.preventDefault();
 		var noteRow = document.getElementById('c'+noteID);
-		var copyTo = noteRow.getElementsByName('bug_id')[0].value;
+		var copyTo = noteRow.querySelector('[name=\"bug_id\"]').value;
 		console.log(copyTo, fromBugID);
 		if (copyTo == fromBugID){
 			e.preventDefault();
