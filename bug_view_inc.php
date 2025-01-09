@@ -734,7 +734,7 @@
 		echo '<td class="center" width="11%">', $tpl_date_submitted, '</td>';
 		# Reporter
 		echo '<td class="category" width="7%">', $tpl_show_reporter ? lang_get( 'reporter' ) : '', '</td>';
-		echo '<td class="center" width="15%">';
+		echo '<td class="center" width="14%">';
 		if ( $submitter != '' && $submitter != user_get_name( $tpl_bug->reporter_id ) )
 			echo $submitter . ' for ';
 		print_user_with_subject( $tpl_bug->reporter_id, $tpl_bug_id );
@@ -742,7 +742,7 @@
 		# Profile
 		if ($category_is_bug) {
 			echo '<td class="category disabled" width="8%">', lang_get( 'profile' ), '</td>';
-			echo '<td width="5%"></td>';
+			echo '<td width="6%"></td>';
 		}
 		# Category
 		echo '<td class="category" width="7%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
