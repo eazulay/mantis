@@ -267,7 +267,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 				$t_date_to_display = '';
 				if ( !date_is_null( $tpl_bug->due_date ) )
 					$t_date_to_display = date( config_get( 'calendar_date_format' ), $tpl_bug->due_date );
-				echo '<input ', helper_get_tab_index(), ' type="text" id="due_date" name="due_date" size="16" maxlength="16" value="', $t_date_to_display, '">';
+				echo '<input ', helper_get_tab_index(), ' type="text" id="due_date" name="due_date" size="13" maxlength="16" value="', $t_date_to_display, '">';
 				date_print_calendar();
 				date_finish_calendar( 'due_date', 'trigger');
 			} else {
