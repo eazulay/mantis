@@ -742,7 +742,7 @@
 		# Profile
 		if ($category_is_bug) {
 			echo '<td class="category disabled" width="8%">', lang_get( 'profile' ), '</td>';
-			echo '<td width="4%"></td>';
+			echo '<td width="5%"></td>';
 		}
 		# Category
 		echo '<td class="category" width="7%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
@@ -750,7 +750,7 @@
 		# Status
 		echo '<td class="category" width="6%" rowspan="2">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
 		if ( $tpl_show_status ) {
-			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="9%" rowspan="2">', $tpl_status, '</td>';
+			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="8%" rowspan="2">', $tpl_status, '</td>';
 		}
 		echo '</tr>';
 	}
