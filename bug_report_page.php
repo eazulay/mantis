@@ -135,7 +135,7 @@
 	$tpl_show_priority = in_array( 'priority', $t_fields ) && $t_has_develper_access_level;
 	$tpl_show_steps_to_reproduce = in_array( 'steps_to_reproduce', $t_fields );
 	$tpl_show_handler = in_array( 'handler', $t_fields ) && $t_has_develper_access_level;
-	$tpl_show_profiles = config_get( 'enable_profiles' ) && $t_has_develper_access_level;
+	$tpl_show_profiles = config_get( 'enable_profiles' );
 	$tpl_show_platform = $tpl_show_profiles && in_array( 'platform', $t_fields );
 	$tpl_show_os = $tpl_show_profiles && in_array( 'os', $t_fields );
 	$tpl_show_os_version = $tpl_show_profiles && in_array( 'os_version', $t_fields );
@@ -237,7 +237,7 @@
 <?php }
 	
 	if ( $tpl_show_platform || $tpl_show_os || $tpl_show_os_version ) { ?>
-	<tr <?php echo helper_alternate_class() ?>>
+	<tr <?php echo helper_alternate_class() ?> id="profile">
 		<td class="category">
 			<?php echo lang_get( 'select_profile' ) ?>
 		</td>
@@ -249,7 +249,7 @@
 		<?php } ?>
 		</td>
 	</tr>
-	<tr <?php echo helper_alternate_class() ?>>
+	<tr <?php echo helper_alternate_class() ?> id="profile_fields">
 		<td colspan="2" class="none">
 			<?php if( ON == config_get( 'use_javascript' ) ) { ?>
 				<?php collapse_open( 'profile' ); collapse_icon('profile'); ?>
@@ -508,7 +508,7 @@
 </form>
 </div>
 
-<!-- Autofocus JS -->
+<!-- Autofocus, show/hide bug-specific fields -->
 <?php if ( ON == config_get( 'use_javascript' ) ) { ?>
 <script type="text/javascript" language="JavaScript">
 <!--
@@ -517,20 +517,24 @@
 	else
 		window.document.report_bug_form.category_id.focus();
 
-    const reproductionSteps = document.querySelector('#steps_to_reproduce');
-    const reproducibility = document.querySelector('#reproducibility');
+    const reproductionSteps_row = document.querySelector('#steps_to_reproduce');
+    const reproducibility_row = document.querySelector('#reproducibility');
+	const profile_row = document.querySelector('#profile');
+	const profile_fields_row = document.querySelector('#profile_fields');
     window.document.report_bug_form.category_id.addEventListener('change', e => {
         const isBug = e.currentTarget.value === '17';
 		if (!isBug && window.document.report_bug_form.reproducibility.value != '100') {
 			window.document.report_bug_form.reproducibility.value = '100'; // "N/A (not a bug)"
 		}
-		reproductionSteps.style.display = isBug ? 'table-row' : 'none';
-		reproducibility.style.display = isBug ? 'table-row' : 'none';
+		reproductionSteps_row.style.display = isBug ? 'table-row' : 'none';
+		reproducibility_row.style.display = isBug ? 'table-row' : 'none';
+		profile_row.style.display = isBug ? 'table-row' : 'none';
+		profile_fields_row.style.display = isBug ? 'table-row' : 'none';
     });
 	window.document.report_bug_form.category_id.dispatchEvent(new Event('change', { bubbles: true }));
 -->
 </script>
-<?php  }
+<?php }
 if ( $tpl_show_due_date ) {
 	date_finish_calendar( 'due_date', 'trigger' );
 }
