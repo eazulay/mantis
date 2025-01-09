@@ -332,6 +332,8 @@
 			if (noteText.substring(0, 12) == 'Duplicate of'){
 				noteText = 'Update/Extension'+noteText.substring(9);
 				textArea.value = noteText;
+				var copyOptions = noteRow.querySelector('.copy-options');
+				copyOptions.classList.toggle('hidden');
 				noteAddDiv.scrollIntoView();
 				setTimeout(function() {
 					textArea.focus();
