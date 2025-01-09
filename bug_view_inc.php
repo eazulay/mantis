@@ -174,7 +174,8 @@
 	$tpl_show_attachments = in_array( 'attachments', $t_fields );
 	$tpl_can_attach_tag = $tpl_show_tags && !$tpl_force_readonly && access_has_bug_level( config_get( 'tag_attach_threshold' ), $f_bug_id );
 	$tpl_show_category = in_array( 'category_id', $t_fields );
-	$tpl_category = $tpl_show_category ? string_display_line( category_get_name( $tpl_bug->category_id ) ) : ''; // Changed from category_full_name($tpl_bug->category_id)
+	$tpl_category = $tpl_show_category ? string_display_line( category_get_name( $tpl_bug->category_id ) ) : '';
+	$category_is_bug = $tpl_bug->category_id == 17;
 	$tpl_show_priority = in_array( 'priority', $t_fields );
 	$tpl_priority = $tpl_show_priority ? string_display_line( get_enum_element( 'priority', $tpl_bug->priority ) ) : '';
 	$tpl_show_severity = in_array( 'severity', $t_fields );
@@ -707,7 +708,7 @@
 	echo '<table class="width100" cellspacing="0">';
 
 	echo '<tr class="header">';
-	echo '<td class="form-title" colspan="' . (access_has_global_level(DEVELOPER) ? '12' : '10') . '">';
+	echo '<td class="form-title" colspan="' . ($category_is_bug ? '12' : '10') . '">';
 
 	collapse_icon( 'issue_metadata' );
 
@@ -718,7 +719,7 @@
 	# Labels
 	echo '<tr class="bottom-border">';
 	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th>';
-	if (access_has_global_level(DEVELOPER))
+	if ($category_is_bug)
 		echo '<th colspan="2">Environment</th>';
 	echo '<th colspan="2">Class</th><th colspan="2">Progress</th>';
 	echo '</tr>';
@@ -739,7 +740,7 @@
 		print_user_with_subject( $tpl_bug->reporter_id, $tpl_bug_id );
 		echo '</td>';
 		# Profile
-		if (access_has_global_level(DEVELOPER)) {
+		if ($category_is_bug) {
 			echo '<td class="category disabled" width="15%">', lang_get( 'profile' ), '</td>';
 			echo '<td />';
 		}
@@ -770,8 +771,8 @@
 		echo '<td class="center">';
 		print_user_with_subject( $tpl_bug->handler_id, $tpl_bug_id );
 		echo '';
-		# Platform
-		if (access_has_global_level(DEVELOPER)) {
+		# Platform (now Device/Profile)
+		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_platform ? lang_get( 'platform' ) : '', '</td>';
 			echo '<td class="center">',$tpl_show_platform ? $tpl_platform : '', '</td>';
 		}
@@ -807,8 +808,8 @@
 		echo '<td class="center">';
 		include( $tpl_mantis_dir . 'bugnote_userlist_inc.php' );
 		echo '</td>';
-		# Operating System
-		if (access_has_global_level(DEVELOPER)) {
+		# Operating System (now OS and Version)
+		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_os ? lang_get( 'os' ) : '', '</td>';
 			echo '<td class="center">', $tpl_os, '</td>';
 		}
@@ -838,8 +839,8 @@
 		if ( $tpl_show_monitor_box )
 			include( $tpl_mantis_dir . 'bug_monitor_list_view_inc.php' );
 		echo '</td>';
-		# OS Version
-		if (access_has_global_level(DEVELOPER)) {
+		# OS Version (now Browser)
+		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_os_version ? lang_get( 'os_version' ) : '', '</td>';
 			echo '<td class="center">', $tpl_os_version, '</td>';
 		}
@@ -898,7 +899,7 @@
 	# Approval
 	echo '<tr ', helper_alternate_class(), '>';
 	echo '<td class="category" colspan="2">', string_display( 'Approval' ), '</td>';
-	echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
+	echo '<td colspan="' . ($category_is_bug ? '10' : '8') . '">';
 	$t_def = custom_field_get_definition( 3 ); $auth_status = custom_field_get_value( $t_def['id'], $f_bug_id );
 	if ( $auth_status != null && $auth_status != '' ){
 		print_custom_field_value( $t_def, $t_def['id'], $f_bug_id );
@@ -922,7 +923,7 @@
 	if ( $tpl_show_tags ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tags' ), '</td>';
-		echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
+		echo '<td colspan="' . ($category_is_bug ? '10' : '8') . '">';
 		tag_display_attached( $tpl_bug_id );
 		echo '</td></tr>';
 	}
@@ -931,13 +932,13 @@
 	if ( $tpl_can_attach_tag ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category" colspan="2">', lang_get( 'tag_attach_long' ), '</td>';
-		echo '<td colspan="' . (access_has_global_level(DEVELOPER) ? '10' : '8') . '">';
+		echo '<td colspan="' . ($category_is_bug ? '10' : '8') . '">';
 		print_tag_attach_form( $tpl_bug_id );
 		echo '</td></tr>';
 	}
 
 	echo '<tr class="footer">';
-	echo '<td class="center" colspan="' . (access_has_global_level(DEVELOPER) ? '12' : '10') . '">';
+	echo '<td class="center" colspan="' . ($category_is_bug ? '12' : '10') . '">';
 	html_buttons_view_bug_page( $tpl_bug_id, true );
 /*
 	if ( $tpl_show_reminder_link ) {
