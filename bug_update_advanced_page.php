@@ -116,7 +116,8 @@ if ( $tpl_show_product_version ) {
 $tpl_formatted_bug_id = $tpl_show_id ? bug_format_id( $f_bug_id ) : '';
 $tpl_project_name = $tpl_show_project ? string_display_line( project_get_name( $tpl_bug->project_id ) ) : '';
 
-$update_issue_table_columns = access_has_global_level(DEVELOPER) ? 12 : 10;
+$category_is_bug = $tpl_bug->category_id == 17;
+$update_issue_table_columns = $category_is_bug ? 12 : 10;
 
 echo '<br />';
 echo '<form name="update_bug_form" method="post" action="bug_update.php">';
@@ -143,7 +144,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 	# Labels
 	echo '<tr>';
 	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th>';
-	if (access_has_global_level(DEVELOPER))
+	if ($category_is_bug)
 		echo '<th colspan="2">Environment</th>';
 	echo '<th colspan="2">Class</th><th colspan="2">Progress</th>';
 	echo '</tr>';
@@ -171,7 +172,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		}
 		echo '</td>';
 		# Profile
-		if (access_has_global_level(DEVELOPER)) {
+		if ($category_is_bug) {
 			echo '<td class="category disabled" width="15%">', lang_get( 'profile' ), '</td>';
 			echo '<td />';
 		}
@@ -216,8 +217,8 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 			echo $tpl_handler_name;
 		}
 		echo '</td>';
-		# Platform
-		if (access_has_global_level(DEVELOPER)) {
+		# Platform (now Device/Profile)
+		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_platform ? lang_get( 'platform' ) : '', '</td>';
 			echo '<td class="center">';
 			if ( $tpl_show_platform ) {
@@ -281,8 +282,8 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '<td class="center">';
 		include( $tpl_mantis_dir . 'bugnote_userlist_inc.php' );
 		echo '</td>';
-		# Operating System
-		if (access_has_global_level(DEVELOPER)) {
+		# Operating System (now OS and Version)
+		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_os ? lang_get( 'os' ) : '', '</td>';
 			echo '<td class="center">';
 			if ( $tpl_show_os ) {
@@ -335,8 +336,8 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '<td class="center">';
 //		include( $tpl_mantis_dir . 'bug_monitor_list_view_inc.php' );
 		echo '</td>';
-		# OS Version
-		if (access_has_global_level(DEVELOPER)) {
+		# OS Version (now Browser)
+		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_os_version ? lang_get( 'os_version' ) : '', '</td>';
 			echo '<td class="center">';
 			if ( $tpl_show_os_version ) {
@@ -514,7 +515,7 @@ event_signal( 'EVENT_BUGNOTE_ADD_FORM', array( $tpl_bug_id ) );
 
 # Submit Button
 if ( $tpl_bottom_buttons_enabled ) {
-       echo '<tr class="footer"><td class="center" colspan="' . (access_has_global_level(DEVELOPER) ? '12' : '10') . '">';
+       echo '<tr class="footer"><td class="center" colspan="' . $update_issue_table_columns . '">';
        echo '<input ', helper_get_tab_index(), ' type="submit" class="button" value="', lang_get( 'update_information_button' ), '" />';
        echo '</td></tr>';
 }
