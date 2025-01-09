@@ -99,7 +99,7 @@
 		$f_os_build				= gpc_get_string( 'os_build', '' );
 		$f_product_version		= gpc_get_string( 'product_version', '' );
 		$f_target_version		= gpc_get_string( 'target_version', '' );
-		$f_profile_id			= gpc_get_int( 'profile_id', 0 );
+		$f_profile_id			= profile_get_default( auth_get_current_user_id() ); // gpc_get_int( 'profile_id', 0 );
 		$f_handler_id			= gpc_get_int( 'handler_id', 0 );
 
 		$f_category_id			= gpc_get_int( 'category_id', 0 );
