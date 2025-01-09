@@ -728,29 +728,29 @@
 		echo '<tr class="bug-primary row-2">';
 		# Bug ID
 		echo '<td class="category" width="7%">', $tpl_show_id ? lang_get( 'issue_id' ) : '', '</td>';
-		echo '<td class="center" width="10%">', $tpl_formatted_bug_id, '</td>';
+		echo '<td class="center" width="9%">', $tpl_formatted_bug_id, '</td>';
 		# Date Submitted
-		echo '<td class="category" width="9%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
-		echo '<td class="center" width="12%">', $tpl_date_submitted, '</td>';
+		echo '<td class="category" width="8%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
+		echo '<td class="center" width="11%">', $tpl_date_submitted, '</td>';
 		# Reporter
-		echo '<td class="category" width="8%">', $tpl_show_reporter ? lang_get( 'reporter' ) : '', '</td>';
-		echo '<td class="center" width="17%">';
+		echo '<td class="category" width="7%">', $tpl_show_reporter ? lang_get( 'reporter' ) : '', '</td>';
+		echo '<td class="center" width="15%">';
 		if ( $submitter != '' && $submitter != user_get_name( $tpl_bug->reporter_id ) )
 			echo $submitter . ' for ';
 		print_user_with_subject( $tpl_bug->reporter_id, $tpl_bug_id );
 		echo '</td>';
 		# Profile
 		if ($category_is_bug) {
-			echo '<td class="category disabled" width="15%">', lang_get( 'profile' ), '</td>';
-			echo '<td />';
+			echo '<td class="category disabled" width="8%">', lang_get( 'profile' ), '</td>';
+			echo '<td width="4%"></td>';
 		}
 		# Category
-		echo '<td class="category" width="8%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
-		echo '<td class="center" width="10%">', $tpl_category, '</td>';
+		echo '<td class="category" width="7%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
+		echo '<td class="center" width="9%">', $tpl_category, '</td>';
 		# Status
-		echo '<td class="category" width="8%" rowspan="2">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
+		echo '<td class="category" width="6%" rowspan="2">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
 		if ( $tpl_show_status ) {
-			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%" rowspan="2">', $tpl_status, '</td>';
+			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="9%" rowspan="2">', $tpl_status, '</td>';
 		}
 		echo '</tr>';
 	}
@@ -967,7 +967,7 @@
 
     # Change status button/dropdown
     if (! bug_is_readonly($tpl_bug->id) || config_get('allow_reporter_close')){
-        echo '<td class="center" width="280">';
+        echo '<td class="center" width="300">';
         html_button_bug_change_status($tpl_bug->id);
         echo '</td>';
     }
