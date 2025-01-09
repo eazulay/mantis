@@ -72,12 +72,12 @@
         }
 
 		$f_build				= $t_bug->build;
+		$f_profile_id			= 0;
 		$f_platform				= $t_bug->platform;
 		$f_os					= $t_bug->os;
 		$f_os_build				= $t_bug->os_build;
 		$f_product_version		= $t_bug->version;
 		$f_target_version		= $t_bug->target_version;
-		$f_profile_id			= 0;
 		$f_handler_id			= $t_bug->handler_id;
 
 		$f_category_id			= $t_bug->category_id;
