@@ -152,14 +152,14 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 	if ( $tpl_show_id || $tpl_show_date_submitted || $tpl_show_reporter || $tpl_show_category || $tpl_show_status ) {
 		echo '<tr class="bug-primary row-2">';
 		# Bug ID
-		echo '<td class="category" width="7%">', $tpl_show_id ? lang_get( 'issue_id' ) : '', '</td>';
-		echo '<td class="center" width="10%">', $tpl_formatted_bug_id, '</td>';
+		echo '<td class="category" width="6%">', $tpl_show_id ? lang_get( 'issue_id' ) : '', '</td>';
+		echo '<td class="center" width="8%">', $tpl_formatted_bug_id, '</td>';
 		# Date Submitted
-		echo '<td class="category" width="10%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
-		echo '<td class="center" width="14%">', $tpl_date_submitted, '</td>';
+		echo '<td class="category" width="8%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
+		echo '<td class="center" width="12%">', $tpl_date_submitted, '</td>';
 		# Reporter
-		echo '<td class="category" width="8%">', $tpl_show_reporter ? lang_get( 'reporter' ) : '', '</td>';
-		echo '<td class="center" width="14%">';
+		echo '<td class="category" width="7%">', $tpl_show_reporter ? lang_get( 'reporter' ) : '', '</td>';
+		echo '<td class="center" width="12%">';
 		if ( $tpl_show_reporter ) {
 			if ( ON == config_get( 'use_javascript' ) ) {
 				$t_username = prepare_user_name( $tpl_bug->reporter_id );
@@ -173,12 +173,12 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '</td>';
 		# Profile
 		if ($category_is_bug) {
-			echo '<td class="category disabled" width="15%">', lang_get( 'profile' ), '</td>';
-			echo '<td />';
+			echo '<td class="category disabled" width="12%">', lang_get( 'profile' ), '</td>';
+			echo '<td width="6%"></td>';
 		}
 		# Category
-		echo '<td class="category" width="8%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
-		echo '<td class="center" width="10%">';
+		echo '<td class="category" width="7%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
+		echo '<td class="center" width="8%">';
 		if ( $tpl_show_category ) {
 			echo '<select ', helper_get_tab_index(), ' name="category_id">';
 			print_category_option_list( $tpl_bug->category_id, $tpl_bug->project_id );
@@ -187,8 +187,8 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '</td>';
 		# Status
 		if ( $tpl_show_status ) {
-			echo '<td class="category" width="8%" rowspan="2">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
-			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="10%" rowspan="2">';
+			echo '<td class="category" width="6%" rowspan="2">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
+			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="8%" rowspan="2">';
 			print_status_option_list( 'status', $tpl_bug->status,
 								( $tpl_bug->reporter_id == auth_get_current_user_id() &&
 										( ON == config_get( 'allow_reporter_close' ) ) ), $tpl_bug->project_id );
