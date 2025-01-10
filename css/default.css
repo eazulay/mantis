@@ -104,7 +104,7 @@ table.width90 td		{ padding: 0 12px 0 0; }
 table.width90 td:first-child 	{ padding: 10px 12px; }
 table.width90 input[type="text"]{ border: none; padding: 8px; }
 table.width90 textarea			{ border: none; padding: 4px 8px; }
-input::placeholder, textarea::placeholder { color: #666; }
+input::placeholder, textarea::placeholder { color: #555; }
 table.width90 select			{ min-width: 280px; border: none; padding: 7px 8px 8px; }
 table.width90 table.width100 { border: none; }
 td tr:first-child.vcenter td{ padding: 0px 8px; }
