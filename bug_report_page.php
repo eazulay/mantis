@@ -313,7 +313,7 @@
 					</tr>
 			<?php if( ON == config_get( 'use_javascript' ) ) { ?>
 			</table>
-			<?php collapse_closed( 'profile' ); collapse_icon('profile'); echo lang_get( 'or_fill_in' );?>
+			<?php collapse_closed( 'profile' ); collapse_icon('profile'); ?> <strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
 			<?php collapse_end( 'profile' ); ?>
 		<?php } ?>
 		</td>
