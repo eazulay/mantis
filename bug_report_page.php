@@ -605,6 +605,7 @@
 	const profile_fields_row = document.querySelector('#profile_fields');
     const aim_row = document.querySelector('#aim');
     const question_row = document.querySelector('#question');
+    const motivation_row = document.querySelector('#motivation');
     const steps_row = document.querySelector('#steps');
     const excpectation_row = document.querySelector('#excpectation');
     const outcome_row = document.querySelector('#outcome');
@@ -629,6 +630,7 @@
 		aim_row.style.display = isQuery ? 'none' : 'table-row';
 		aim_row.querySelector('textarea').placeholder = isBug ? 'I wanted to…' : 'I want to do/see…';
 		question_row.style.display = isQuery ? 'table-row' : 'none';
+		motivation_row.style.display = isBug ? 'none' : 'table-row';
 		steps_row.style.display = isBug ? 'table-row' : 'none';
 		excpectation_row.style.display = isBug ? 'table-row' : 'none';
 		outcome_row.style.display = isQuery ? 'none' : 'table-row';
@@ -664,12 +666,12 @@
 				validateMandatory(window.document.report_bug_form.outcome);
 			}
 		} else if (isQuery) {
-			description_fld.value = window.document.report_bug_form.question.value.trim();
-			if (window.document.report_bug_form.motivation.value.trim())
-				description_fld.value += "\n\nMotivation: " + window.document.report_bug_form.motivation.value.trim();
-			if (window.document.report_bug_form.question.value.trim() == '') {
+			description_fld.value = window.document.report_bug_form.question.value.trim() + "\n\n" +			
+				"Motivation: " + window.document.report_bug_form.motivation.value.trim();
+			if (window.document.report_bug_form.question.value.trim() == '' || window.document.report_bug_form.motivation.value.trim()) {
 				e.preventDefault();
 				validateMandatory(window.document.report_bug_form.question);
+				validateMandatory(window.document.report_bug_form.motivation);
 			}
 		} else { // Quoted Project, Change Request, Improvement, Admin
 			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n\n" +
@@ -678,6 +680,8 @@
 			if (window.document.report_bug_form.aim.value.trim() == '') {
 				e.preventDefault();
 				validateMandatory(window.document.report_bug_form.aim);
+				validateMandatory(window.document.report_bug_form.motivation);
+				validateMandatory(window.document.report_bug_form.outcome);
 			}
 		}
 
