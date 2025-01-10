@@ -191,10 +191,10 @@
 
 	if ( $tpl_show_category ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
-		<td class="category" width="30%">
+		<td class="category" width="20%">
 			<?php echo config_get( 'allow_no_category' ) ? '' : '<span class="required">*</span>'; print_documentation_link( 'category' ) ?>
 		</td>
-		<td width="70%">
+		<td width="80%">
 			<?php if ( $t_changed_project ) {
 				echo "[" . project_get_field( $t_bug->project_id, 'name' ) . "] ";
 			} ?>
