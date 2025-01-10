@@ -363,7 +363,7 @@
 			Aim <span class="required">*</span>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="aim" cols="80" rows="3"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="aim" cols="80" rows="2"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="question" style="display:none;">
@@ -371,7 +371,7 @@
 			Question <span class="required">*</span>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="question" cols="80" rows="3" placeholder="Who...? What...? When...? Where...? Why...? How...?"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="question" cols="80" rows="2" placeholder="Who...? What...? When...? Where...? Why...? How...?"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="motivation" style="display:none;">
@@ -379,7 +379,7 @@
 			Motivation <span class="required">*</span>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="motivation" cols="80" rows="3" placeholder="Because/in order to…"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="motivation" cols="80" rows="2" placeholder="Because/in order to…"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="steps" style="display:none;">
@@ -387,7 +387,7 @@
 			Steps <span class="required">*</span>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="3" placeholder="Here's what I did, step by step…"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="2" placeholder="Here's what I did, step by step…"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="expectation" style="display:none;">
@@ -395,7 +395,7 @@
 			Expectation <span class="required">*</span>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="expectation" cols="80" rows="3" placeholder="I expected…"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="expectation" cols="80" rows="2" placeholder="I expected…"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="outcome" style="display:none;">
@@ -403,7 +403,7 @@
 			Outcome <span class="required">*</span>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="outcome" cols="80" rows="3"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="outcome" cols="80" rows="2"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="error_message" style="display:none;">
@@ -411,7 +411,7 @@
 			Error Message
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="error_message" cols="80" rows="3" placeholder="Copy or describe the message."></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="error_message" cols="80" rows="2" placeholder="Copy or describe the message."></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="other_approaches" style="display:none;">
@@ -419,7 +419,7 @@
 			Other Approaches
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="other_approaches" cols="80" rows="3" placeholder="To achieve my Aim, I also tried…"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="other_approaches" cols="80" rows="2" placeholder="To achieve my Aim, I also tried…"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="last_success" style="display:none;">
@@ -427,7 +427,7 @@
 			Last Successful Use
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="last_success" cols="80" rows="3" placeholder="E.g., Never, Date, Yesterday, Last week, Last month..."></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="last_success" cols="80" rows="2" placeholder="E.g., Never, Date, Yesterday, Last week, Last month..."></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="recent_changes" style="display:none;">
@@ -435,7 +435,7 @@
 			Recent Changes
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="recent_changes" cols="80" rows="3" placeholder="E.g., System updates, new programs, settings changes, errors elsewhere…"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="recent_changes" cols="80" rows="" placeholder="E.g., System updates, new programs, settings changes, errors elsewhere…"></textarea>
 		</td>
 	</tr>
 <?php /* 2025-01-10 removed Steps to Reproduce Bug #2719
@@ -456,7 +456,7 @@
 			<?php print_documentation_link( 'additional_information' ) ?>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="additional_info" cols="80" rows="3"><?php echo string_textarea( $f_additional_info ) ?></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="additional_info" cols="80" rows="2"><?php echo string_textarea( $f_additional_info ) ?></textarea>
 		</td>
 	</tr>
 <?php } ?>
