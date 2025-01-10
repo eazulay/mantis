@@ -99,7 +99,7 @@
 		$f_os_build				= gpc_get_string( 'os_build', '' );
 		$f_product_version		= gpc_get_string( 'product_version', '' );
 		$f_target_version		= gpc_get_string( 'target_version', '' );
-		$f_profile_id			= profile_get_default( auth_get_current_user_id() ); // gpc_get_int( 'profile_id', 0 );
+		$f_profile_id			= gpc_get_int( 'profile_id', profile_get_default( auth_get_current_user_id() ) );
 		$f_handler_id			= gpc_get_int( 'handler_id', 0 );
 
 		$f_category_id			= gpc_get_int( 'category_id', 0 );
@@ -354,8 +354,10 @@
 		</td>
 		<td>
 			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" size="105" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" />
+			<input type="hidden" name="description" value="" />
 		</td>
 	</tr>
+<?php /* 2025-01-10 replaced Description with a hidden field (added to Summary above), populated by alternative fields #2719 ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
 			<span class="required">*</span><?php print_documentation_link( 'description' ) ?>
@@ -364,7 +366,88 @@
 			<textarea <?php echo helper_get_tab_index() ?> name="description" cols="80" rows="10"><?php echo string_textarea( $f_description ) ?></textarea>
 		</td>
 	</tr>
-<?php
+<?php */ ?>
+	<tr <?php echo helper_alternate_class() ?> id="aim" style="display:none;">
+		<td class="category">
+			<span class="required">*</span>Aim
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="aim" cols="80" rows="3"></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="question" style="display:none;">
+		<td class="category">
+			<span class="required">*</span>Question
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="question" cols="80" rows="3" placeholder="Who...? What...? When...? Where...? Why...? How...?"></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="motivation" style="display:none;">
+		<td class="category">
+			<span class="required">*</span>Motivation
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="motivation" cols="80" rows="3" placeholder="Because/in order to…"></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="steps" style="display:none;">
+		<td class="category">
+			<span class="required">*</span>Steps
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="3" placeholder="Here’s what I did step by step…"></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="excpectation" style="display:none;">
+		<td class="category">
+			<span class="required">*</span>Expectation
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="excpectation" cols="80" rows="3" placeholder="I expected…"></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="outcome" style="display:none;">
+		<td class="category">
+			<span class="required">*</span>Outcome
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="outcome" cols="80" rows="3"></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="error_message" style="display:none;">
+		<td class="category">
+			Error Message
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="error_message" cols="80" rows="3" placeholder="Copy or describe the message."></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="other_approaches" style="display:none;">
+		<td class="category">
+			Other Approaches
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="other_approaches" cols="80" rows="3" placeholder="To achieve my Aim, I also tried…"></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="recent_changes" style="display:none;">
+		<td class="category">
+			Recent Changes
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="recent_changes" cols="80" rows="3" placeholder="E.g., System updates, new programs, settings changes, errors elsewhere…"></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="last_success" style="display:none;">
+		<td class="category">
+			Last Successful Use
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="last_success" cols="80" rows="3" placeholder="E.g., Never, Date, Yesterday, Last week, Last month..."></textarea>
+		</td>
+	</tr>
+<?php /* 2025-01-10 removed Steps to Reproduce Bug #2719
 	if ( $tpl_show_steps_to_reproduce ) { ?>
 		<tr <?php echo helper_alternate_class() ?> id="steps_to_reproduce">
 			<td class="category">
@@ -374,7 +457,7 @@
 				<textarea <?php echo helper_get_tab_index() ?> name="steps_to_reproduce" cols="80" rows="10"><?php echo string_textarea( $f_steps_to_reproduce ) ?></textarea>
 			</td>
 		</tr>
-<?php }
+<?php } */
 
 	if ( $tpl_show_additional_info ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
@@ -517,21 +600,94 @@
 	else
 		window.document.report_bug_form.category_id.focus();
 
-    const reproductionSteps_row = document.querySelector('#steps_to_reproduce');
     const reproducibility_row = document.querySelector('#reproducibility');
 	const profile_row = document.querySelector('#profile');
 	const profile_fields_row = document.querySelector('#profile_fields');
+    const aim_row = document.querySelector('#aim');
+    const question_row = document.querySelector('#question');
+    const steps_row = document.querySelector('#steps');
+    const excpectation_row = document.querySelector('#excpectation');
+    const outcome_row = document.querySelector('#outcome');
+    const error_message_row = document.querySelector('#error_message');
+    const other_approaches_row = document.querySelector('#other_approaches');
+    const recent_changes_row = document.querySelector('#recent_changes');
+    const last_success_row = document.querySelector('#last_success');
+	let isBug = false;
+	let isQuery = false;
     window.document.report_bug_form.category_id.addEventListener('change', e => {
-        const isBug = e.currentTarget.value === '17';
+		const categoryID = e.currentTarget.value;
+		if (categoryID == '0')
+			return;
+        isBug = e.currentTarget.value === '17';
+		isQuery = e.currentTarget.value === '19';
 		if (!isBug && window.document.report_bug_form.reproducibility.value != '100') {
 			window.document.report_bug_form.reproducibility.value = '100'; // "N/A (not a bug)"
 		}
-		reproductionSteps_row.style.display = isBug ? 'table-row' : 'none';
 		reproducibility_row.style.display = isBug ? 'table-row' : 'none';
 		profile_row.style.display = isBug ? 'table-row' : 'none';
 		profile_fields_row.style.display = isBug ? 'table-row' : 'none';
+		aim_row.style.display = isQuery ? 'none' : 'table-row';
+		aim_row.querySelector('textarea').placeholder = isBug ? 'I wanted to…' : 'I want to do/see…';
+		question_row.style.display = isQuery ? 'table-row' : 'none';
+		steps_row.style.display = isBug ? 'table-row' : 'none';
+		excpectation_row.style.display = isBug ? 'table-row' : 'none';
+		outcome_row.style.display = isQuery ? 'none' : 'table-row';
+		error_message_row.style.display = isBug ? 'table-row' : 'none';
+		recent_changes_row.style.display = isBug ? 'table-row' : 'none';
+		last_success_row.style.display = isBug ? 'table-row' : 'none';
     });
+	// Ensure browser [back] button, which remembers field values (e.g. Category) also shows/hides related fields.
 	window.document.report_bug_form.category_id.dispatchEvent(new Event('change', { bubbles: true }));
+	// Calculate Description value
+	const description_fld = window.document.report_bug_form.description;
+	window.document.report_bug_form.addEventListener('submit', function(e) {
+		description_fld.value = "";
+		if (isBug) {
+			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n\n" +
+			"Steps: " + window.document.report_bug_form.steps.value.trim() + "\n\n" +
+			"Expectation: " + window.document.report_bug_form.expectation.value.trim() + "\n\n" +
+			"Outcome: " + window.document.report_bug_form.outcome.value.trim();
+			if (window.document.report_bug_form.error_message.value.trim())
+				description_fld.value += "\n\nError Message: " + window.document.report_bug_form.error_message.value.trim();
+			if (window.document.report_bug_form.other_approaches.value.trim())
+				description_fld.value += "\n\nOther Approaches: " + window.document.report_bug_form.other_approaches.value.trim();
+			if (window.document.report_bug_form.recent_changes.value.trim())
+				description_fld.value += "\n\nRecent Changes: " + window.document.report_bug_form.recent_changes.value.trim();
+			if (window.document.report_bug_form.last_success.value.trim())
+				description_fld.value += "\n\nLast Successful Use: " + window.document.report_bug_form.last_success.value.trim();
+			if (window.document.report_bug_form.aim.value.trim() == '' || window.document.report_bug_form.steps.value.trim() == '' ||
+				window.document.report_bug_form.expectation.value.trim() == '' || window.document.report_bug_form.outcome.value.trim()) {
+				e.preventDefault();
+				validateMandatory(window.document.report_bug_form.aim);
+				validateMandatory(window.document.report_bug_form.steps);
+				validateMandatory(window.document.report_bug_form.expectation);
+				validateMandatory(window.document.report_bug_form.outcome);
+			}
+		} else if (isQuery) {
+			description_fld.value = window.document.report_bug_form.question.value.trim();
+			if (window.document.report_bug_form.motivation.value.trim())
+				description_fld.value += "\n\nMotivation: " + window.document.report_bug_form.motivation.value.trim();
+			if (window.document.report_bug_form.question.value.trim() == '') {
+				e.preventDefault();
+				validateMandatory(window.document.report_bug_form.question);
+			}
+		} else { // Quoted Project, Change Request, Improvement, Admin
+			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n\n" +
+			"Motivation: " + window.document.report_bug_form.motivation.value.trim() + "\n\n" +
+			"Outcome: " + window.document.report_bug_form.outcome.value.trim();
+			if (window.document.report_bug_form.aim.value.trim() == '') {
+				e.preventDefault();
+				validateMandatory(window.document.report_bug_form.aim);
+			}
+		}
+
+	});
+	function validateMandatory(inputElement) {
+		if (inputElement.value.trim() == '')
+			inputElement.parentElement.classList.add('error');
+		else
+			inputElement.parentElement.classList.remove('error');
+	}
 -->
 </script>
 <?php }
