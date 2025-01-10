@@ -431,20 +431,20 @@
 			<textarea <?php echo helper_get_tab_index() ?> name="other_approaches" cols="80" rows="3" placeholder="To achieve my Aim, I also tried…"></textarea>
 		</td>
 	</tr>
-	<tr <?php echo helper_alternate_class() ?> id="recent_changes" style="display:none;">
-		<td class="category">
-			Recent Changes
-		</td>
-		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="recent_changes" cols="80" rows="3" placeholder="E.g., System updates, new programs, settings changes, errors elsewhere…"></textarea>
-		</td>
-	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="last_success" style="display:none;">
 		<td class="category">
 			Last Successful Use
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="last_success" cols="80" rows="3" placeholder="E.g., Never, Date, Yesterday, Last week, Last month..."></textarea>
+		</td>
+	</tr>
+	<tr <?php echo helper_alternate_class() ?> id="recent_changes" style="display:none;">
+		<td class="category">
+			Recent Changes
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?> name="recent_changes" cols="80" rows="3" placeholder="E.g., System updates, new programs, settings changes, errors elsewhere…"></textarea>
 		</td>
 	</tr>
 <?php /* 2025-01-10 removed Steps to Reproduce Bug #2719
@@ -611,8 +611,8 @@
     const outcome_row = document.querySelector('#outcome');
     const error_message_row = document.querySelector('#error_message');
     const other_approaches_row = document.querySelector('#other_approaches');
-    const recent_changes_row = document.querySelector('#recent_changes');
     const last_success_row = document.querySelector('#last_success');
+    const recent_changes_row = document.querySelector('#recent_changes');
 	let isBug = false;
 	let isQuery = false;
     window.document.report_bug_form.category_id.addEventListener('change', e => {
@@ -636,8 +636,8 @@
 		outcome_row.style.display = isQuery ? 'none' : 'table-row';
 		outcome_row.querySelector('textarea').placeholder = isBug ? 'Instead, this happened…' : 'I want these results… (request a preferred format if relevant)';
 		error_message_row.style.display = isBug ? 'table-row' : 'none';
-		recent_changes_row.style.display = isBug ? 'table-row' : 'none';
 		last_success_row.style.display = isBug ? 'table-row' : 'none';
+		recent_changes_row.style.display = isBug ? 'table-row' : 'none';
     });
 	// Ensure browser [back] button, which remembers field values (e.g. Category) also shows/hides related fields.
 	window.document.report_bug_form.category_id.dispatchEvent(new Event('change', { bubbles: true }));
@@ -659,10 +659,10 @@
 				description_fld.value += "\n\nError Message: " + window.document.report_bug_form.error_message.value.trim();
 			if (window.document.report_bug_form.other_approaches.value.trim())
 				description_fld.value += "\n\nOther Approaches: " + window.document.report_bug_form.other_approaches.value.trim();
-			if (window.document.report_bug_form.recent_changes.value.trim())
-				description_fld.value += "\n\nRecent Changes: " + window.document.report_bug_form.recent_changes.value.trim();
 			if (window.document.report_bug_form.last_success.value.trim())
 				description_fld.value += "\n\nLast Successful Use: " + window.document.report_bug_form.last_success.value.trim();
+			if (window.document.report_bug_form.recent_changes.value.trim())
+				description_fld.value += "\n\nRecent Changes: " + window.document.report_bug_form.recent_changes.value.trim();
 			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.steps) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.expectation) || preventSubmit;
