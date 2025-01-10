@@ -253,8 +253,8 @@
 		<td colspan="2" class="none">
 			<?php if( ON == config_get( 'use_javascript' ) ) { ?>
 				<?php collapse_open( 'profile' ); collapse_icon('profile'); ?>
-				<?php echo lang_get( 'or_fill_in' ); ?>
-			<table class="width90" cellspacing="0">
+				<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
+			<table class="width90" cellspacing="0" style="margin-top:5px;">
 					<?php } else { ?>
 						<?php echo lang_get( 'or_fill_in' ); ?>
 					<?php } ?>
