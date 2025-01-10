@@ -21,8 +21,8 @@ a > img				{ border: none; }
 
 form				{ display: inline; }
 
-textarea			{ padding: 2px 4px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; width: calc(100% - 10px); border-color: #AC7F2A; border-width: 1px; }
-input				{ padding: 2px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; border-color: #AC7F2A; border-width: 1px; vertical-align: middle; }
+textarea			{ padding: 2px 4px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; width: calc(100% - 10px); border-color: #a8e1cb; border-width: 1px; }
+input				{ padding: 2px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; border-color: #a8e1cb; border-width: 1px; vertical-align: middle; }
 input[type="button"], input[type="submit"], input.button, input.button-small, a.button, button {
 	background-color: #E8F2C8;
 	background: -webkit-linear-gradient(#E2E7E6, #E8F2C8);
