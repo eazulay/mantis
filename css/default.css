@@ -68,13 +68,13 @@ span.dependency_unmet	{ color: red; }
 span.dependency_upgrade	{ color: orange; }
 
 table.hide			{ width: 100%; border: solid 0px #ffffff; border-spacing: 0; }
-table.width100		{ width: 100%; border: solid 1px #AC7F2A; }
-table.width90		{ width: 90%;  border: solid 1px #AC7F2A; margin-left: auto; margin-right: auto; }
-table.width75		{ width: 75%;  border: solid 1px #AC7F2A; margin-left: auto; margin-right: auto; }
-table.width60		{ width: 60%;  border: solid 1px #AC7F2A; margin-left: auto; margin-right: auto; }
-table.width50		{ width: 50%;  border: solid 1px #AC7F2A; margin-left: auto; margin-right: auto; }
+table.width100		{ width: 100%; border: solid 1px #054a30; }
+table.width90		{ width: 90%;  border: solid 1px #054a30; margin-left: auto; margin-right: auto; }
+table.width75		{ width: 75%;  border: solid 1px #054a30; margin-left: auto; margin-right: auto; }
+table.width60		{ width: 60%;  border: solid 1px #054a30; margin-left: auto; margin-right: auto; }
+table.width50		{ width: 50%;  border: solid 1px #054a30; margin-left: auto; margin-right: auto; }
 
-div.width100		{ width: 100%; border: solid 1px #AC7F2A; padding:15px; }
+div.width100		{ width: 100%; border: solid 1px #054a30; padding:15px; }
 table.menu			{ width: 100%; border: none; }
 
 #fixed_scroll 		{ position: fixed; top: 0; width:94%; border: solid 2px #000; background: white; z-index: 1000; }
