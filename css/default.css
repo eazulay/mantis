@@ -91,8 +91,8 @@ tr.row-category th	{ text-align: center; }
 th			{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; padding: 8px; text-align: center;
 			  background-color: #054a30; color: #fff; font-weight: bold; vertical-align: top; }
 tr:not(.row-category) th{  font-variant: small-caps; }
-th:not(:first-child)	{ border-left: 1px solid #E3C389; }
-table#buglist tr > td:not(:first-child) { border-left: 1px solid #E3C389; }
+th:not(:first-child)	{ border-left: 1px solid #a8e1cb; }
+table#buglist tr > td:not(:first-child) { border-left: 1px solid #a8e1cb; }
 table#buglist tr > td, table#buglist tr > th { border-bottom: 1px solid #C28E2E; }
 table#buglist td	{ word-wrap: break-word; max-width: 300px; position: relative; }
 table#buglist tr.expandable td div { overflow: hidden; max-height: 74px; transition: max-height 1s; }
@@ -132,7 +132,7 @@ td.error			{ background-color: #ff6060; color: #212121; font-weight: bold; }
 
 td.col-1			{ background-color: #F9F9F9; color: #212121; }
 td.col-2			{ background-color: #8FD594; color: #212121; }
-td.form-title		{ color: #212121; font-weight: bold; text-align: left; background: #edfef8; /*#F6EBDF;*/ border-bottom: 1px solid #E3C389; }
+td.form-title		{ color: #212121; font-weight: bold; text-align: left; background: #edfef8; border-bottom: 1px solid #a8e1cb; }
 td.form-title-caps	{ color: #212121; font-weight: bold; text-align: left; text-transform: uppercase; }
 td.nopad			{ padding: 0px; }
 td.small-caption	{ font-size: 8pt; }
@@ -142,21 +142,21 @@ td.print-overdue		{ font-size: 8pt; color: #212121; font-weight: bold; padding: 
 td.print-bottom		{ border-bottom: 1px solid #212121; }
 td.print-spacer		{ background-color: #F6EBDF; color: #212121; font-size: 1pt; line-height: 0.1; padding: 0px; }
 
-tr.spacer			{ background-color: #E3C389; color: #212121; height: 1px; }
+tr.spacer			{ background-color: #a8e1cb; color: #212121; height: 1px; }
 tr.spacer td		{ padding: 0; }
 tr.padded-spacer	{ background-color: #F6EBDF; color: #212121; height: 1px; }
-tr.padded-spacer td	{ padding: 2px; border-top: 1px solid #E3C389; border-bottom: 1px solid #E3C389; }
+tr.padded-spacer td	{ padding: 2px; border-top: 1px solid #a8e1cb; border-bottom: 1px solid #a8e1cb; }
 tr.row-1			{ background-color: #f8fcfb; color: #212121; }
 tr.row-2			{ background-color: #f1faf7; color: #212121; }
 tr.row-1 > td:not(:first-child), tr.row-2 > td:not(:first-child),
-#issue_metadata_closed tr:first-child td.category	{ border-left: 1px solid #E3C389; }
+#issue_metadata_closed tr:first-child td.category	{ border-left: 1px solid #a8e1cb; }
 tr.header, tr.footer{ background-color: #edfef8; }
-tr.header > td		{ border-bottom: 1px solid #E3C389; }
-tr.footer > td		{ border-top: 1px solid #E3C389; }
+tr.header > td		{ border-bottom: 1px solid #a8e1cb; }
+tr.footer > td		{ border-top: 1px solid #a8e1cb; }
 #filter_closed tr.footer > td { border-top: none; }
 tr.footer:first-child > td { padding: 0; }
-tr.bottom-border > td, tr.bottom-border > th	{ border-bottom: 1px solid #E3C389; }
-tr.top-border > td	{ border-top: 1px solid #E3C389; }
+tr.bottom-border > td, tr.bottom-border > th	{ border-bottom: 1px solid #a8e1cb; }
+tr.top-border > td	{ border-top: 1px solid #a8e1cb; }
 td#relationship_type_filter_target, td#tag_string_filter_target, td#show_sort_filter_target, td#sticky_issues_filter_target, td#per_page_filter_target { background-color: #F9F9F9; }
 tr.row-category		{ background-color: #F6E6CB; color: #212121;
 	background: -webkit-linear-gradient(#FCF5ED, #F6E6CB);
@@ -166,7 +166,7 @@ tr.row-category		{ background-color: #F6E6CB; color: #212121;
 }
 tr.row-category td	{  text-align:center; }
 tr.row-category-history { background-color: #F6E6CB; color: #212121; font-weight: bold;}
-tr.row-category-history td {  text-align: left; border-bottom:1px solid #E3C389; }
+tr.row-category-history td {  text-align: left; border-bottom:1px solid #a8e1cb; }
 tr.vcenter			{ vertical-align: middle; }
 tr.print			{ vertical-align: top; }
 tr.print-category	{ color: #212121; font-weight: bold; }
@@ -180,7 +180,7 @@ td.bugnote-public	{ background-color: #F6E6CB; color: #212121; font-weight: bold
 	background: linear-gradient(#FCF5ED, #F6E6CB);
 }
 td.bugnote-private		{ background-color: #FCF5ED; color: #212121; font-weight: bold; width: 25%; line-height: 1.4; vertical-align: top; }
-td.bugnote-note-public	{ background-color: #FEFAF5; color: #212121; width: 75%; vertical-align: top; border-left: 1px solid #E3C389; }
+td.bugnote-note-public	{ background-color: #FEFAF5; color: #212121; width: 75%; vertical-align: top; border-left: 1px solid #a8e1cb; }
 td.bugnote-note-private	{ background-color: #FCF5ED; color: #212121; width: 75%; vertical-align: top; }
 tr.bugnote-hashelp td:first-child { border-right: 6px solid #FFB544; }
 tr.bugnote-hashelp td:last-child strong { color: #007a7c; }
