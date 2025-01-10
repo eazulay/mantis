@@ -348,15 +348,6 @@
 <?php }
 
 	event_signal( 'EVENT_REPORT_BUG_FORM', array( $t_project_id ) ) ?>
-	<tr <?php echo helper_alternate_class() ?>>
-		<td class="category">
-			<?php print_documentation_link( 'summary' ) ?><span class="required">*</span>
-		</td>
-		<td>
-			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" style="width:99%" />
-			<input type="hidden" name="description" value="" />
-		</td>
-	</tr>
 <?php /* 2025-01-10 replaced Description with a hidden field (added to Summary above), populated by alternative fields #2719 ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
@@ -469,6 +460,15 @@
 		</td>
 	</tr>
 <?php } ?>
+	<tr <?php echo helper_alternate_class() ?>>
+		<td class="category">
+			<?php print_documentation_link( 'summary' ) ?><span class="required">*</span>
+		</td>
+		<td>
+			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" style="width:99%" />
+			<input type="hidden" name="description" value="" />
+		</td>
+	</tr>
 <?php if ( $tpl_show_attachments ) { // File Upload (if enabled)
 	$t_max_file_size = (int)min( ini_get_number( 'upload_max_filesize' ), ini_get_number( 'post_max_size' ), config_get( 'max_file_size' ) ); ?>
 	<tr <?php echo helper_alternate_class() ?>>
