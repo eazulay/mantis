@@ -387,7 +387,7 @@
 			Steps <span class="required">*</span>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="2" placeholder="Here's what I did, step by step…"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="4" placeholder="Here's what I did, step by step…"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="expectation" style="display:none;">
