@@ -117,10 +117,10 @@ td.center > table	{ margin-left: auto; margin-right: auto; }
 td.left				{ text-align: left; }
 td.right				{ text-align: right; }
 td.category			{ background-color: #F6E6CB; color: #212121; vertical-align: top;
-	background: -webkit-linear-gradient(#f1faf7, #e2f5ee);
-	background: -o-linear-gradient(#f1faf7, #e2f5ee);
-	background: -moz-linear-gradient(#f1faf7, #e2f5ee);
-	background: linear-gradient(#f1faf7, #e2f5ee);
+	background: -webkit-linear-gradient(#FCF5ED, #F6E6CB);
+	background: -o-linear-gradient(#FCF5ED, #F6E6CB);
+	background: -moz-linear-gradient(#FCF5ED, #F6E6CB);
+	background: linear-gradient(#FCF5ED, #F6E6CB);
 	font-weight: bold;
 }
 tr.header > td.category	{ vertical-align: middle; }
@@ -146,8 +146,8 @@ tr.spacer			{ background-color: #E3C389; color: #212121; height: 1px; }
 tr.spacer td		{ padding: 0; }
 tr.padded-spacer	{ background-color: #F6EBDF; color: #212121; height: 1px; }
 tr.padded-spacer td	{ padding: 2px; border-top: 1px solid #E3C389; border-bottom: 1px solid #E3C389; }
-tr.row-1			{ background-color: #f8fcfb; color: #212121; }
-tr.row-2			{ background-color: #f1faf7; color: #212121; }
+tr.row-1			{ background-color: #F9EFE1; color: #212121; }
+tr.row-2			{ background-color: #FCF5ED; color: #212121; }
 tr.row-1 > td:not(:first-child), tr.row-2 > td:not(:first-child),
 #issue_metadata_closed tr:first-child td.category	{ border-left: 1px solid #E3C389; }
 tr.header, tr.footer{ background-color: #edfef8; }
