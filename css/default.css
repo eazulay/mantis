@@ -132,7 +132,7 @@ td.error			{ background-color: #ff6060; color: #212121; font-weight: bold; }
 
 td.col-1			{ background-color: #F9F9F9; color: #212121; }
 td.col-2			{ background-color: #8FD594; color: #212121; }
-td.form-title		{ color: #212121; font-weight: bold; text-align: left; background: #edfef8; border-bottom: 1px solid #a8e1cb; }
+td.form-title		{ color: #212121; font-weight: bold; text-align: left; background: #fefce9; border-bottom: 1px solid #a8e1cb; }
 td.form-title-caps	{ color: #212121; font-weight: bold; text-align: left; text-transform: uppercase; }
 td.nopad			{ padding: 0px; }
 td.small-caption	{ font-size: 8pt; }
@@ -150,7 +150,7 @@ tr.row-1			{ background-color: #f8fcfb; color: #212121; }
 tr.row-2			{ background-color: #f1faf7; color: #212121; }
 tr.row-1 > td:not(:first-child), tr.row-2 > td:not(:first-child),
 #issue_metadata_closed tr:first-child td.category	{ border-left: 1px solid #a8e1cb; }
-tr.header, tr.footer{ background-color: #edfef8; }
+tr.header, tr.footer{ background-color: #fefce9; }
 tr.header > td		{ border-bottom: 1px solid #a8e1cb; }
 tr.footer > td		{ border-top: 1px solid #a8e1cb; }
 #filter_closed tr.footer > td { border-top: none; }
