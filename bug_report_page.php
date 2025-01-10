@@ -685,10 +685,10 @@
 	});
 	function validateMandatory(inputElement, emptyValue='') {
 		if (inputElement.value.trim() == emptyValue) {
-			inputElement.parentElement.classList.add('error');
+			inputElement.classList.add('error');
 			return true;
 		} else {
-			inputElement.parentElement.classList.remove('error');
+			inputElement.classList.remove('error');
 			return false;
 		}
 	}

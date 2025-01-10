@@ -107,6 +107,7 @@ table.width90 textarea			{ border: none; padding: 4px 8px; }
 input::placeholder, textarea::placeholder { color: #555; }
 table.width90 select			{ min-width: 280px; border: none; padding: 7px 8px 8px; }
 table.width90 table.width100 { border: none; }
+input.error, select.error, textarea.error { border: 1px solid #b00; }
 td tr:first-child.vcenter td{ padding: 0px 8px; }
 .row-2 td.small-caption		{ text-align: center; }
 #history_open .row-2 td.small-caption, #bugnotestats_open .row-2 td.small-caption	{ text-align: left; }
