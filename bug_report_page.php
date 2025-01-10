@@ -179,7 +179,7 @@
 		if( ( $t_def['display_report'] || $t_def['require_report']) && custom_field_has_write_access_to_project( $t_id, $t_project_id ) ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
-			<?php if($t_def['require_report']) {?><span class="required">*</span><?php } echo string_display( lang_get_defaulted( $t_def['name'] ) ) ?>
+			<?php if($t_def['require_report']) {?><?php } echo string_display( lang_get_defaulted( $t_def['name'] ) ) ?><span class="required">*</span>
 		</td>
 		<td>
 			<?php print_custom_field_input( $t_def, ( $f_master_bug_id === 0 ) ? null : $f_master_bug_id ) ?>
@@ -192,7 +192,7 @@
 	if ( $tpl_show_category ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category" width="20%">
-			<?php echo config_get( 'allow_no_category' ) ? '' : '<span class="required">*</span>'; print_documentation_link( 'category' ) ?>
+			<?php print_documentation_link( 'category' ); echo config_get( 'allow_no_category' ) ? '' : '<span class="required">*</span>'; ?>
 		</td>
 		<td width="80%">
 			<?php if ( $t_changed_project ) {
@@ -213,7 +213,7 @@
 	if ( $tpl_show_reproducibility ) { ?>
 	<tr <?php echo helper_alternate_class() ?> id="reproducibility">
 		<td class="category">
-			<span class="required">*</span><?php print_documentation_link( 'reproducibility' ) ?>
+			<?php print_documentation_link( 'reproducibility' ) ?><span class="required">*</span>
 		</td>
 		<td>
 			<select <?php echo helper_get_tab_index() ?> name="reproducibility">
@@ -350,7 +350,7 @@
 	event_signal( 'EVENT_REPORT_BUG_FORM', array( $t_project_id ) ) ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
-			<span class="required">*</span><?php print_documentation_link( 'summary' ) ?>
+			<?php print_documentation_link( 'summary' ) ?><span class="required">*</span>
 		</td>
 		<td>
 			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" size="105" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" />
@@ -360,7 +360,7 @@
 <?php /* 2025-01-10 replaced Description with a hidden field (added to Summary above), populated by alternative fields #2719 ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
-			<span class="required">*</span><?php print_documentation_link( 'description' ) ?>
+			<?php print_documentation_link( 'description' ) ?><span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="description" cols="80" rows="10"><?php echo string_textarea( $f_description ) ?></textarea>
@@ -369,7 +369,7 @@
 <?php */ ?>
 	<tr <?php echo helper_alternate_class() ?> id="aim" style="display:none;">
 		<td class="category">
-			<span class="required">*</span>Aim
+			Aim<span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="aim" cols="80" rows="3"></textarea>
@@ -377,7 +377,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="question" style="display:none;">
 		<td class="category">
-			<span class="required">*</span>Question
+			Question<span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="question" cols="80" rows="3" placeholder="Who...? What...? When...? Where...? Why...? How...?"></textarea>
@@ -385,7 +385,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="motivation" style="display:none;">
 		<td class="category">
-			<span class="required">*</span>Motivation
+			Motivation<span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="motivation" cols="80" rows="3" placeholder="Because/in order to…"></textarea>
@@ -393,7 +393,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="steps" style="display:none;">
 		<td class="category">
-			<span class="required">*</span>Steps
+			Steps<span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="3" placeholder="Here’s what I did step by step…"></textarea>
@@ -401,7 +401,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="expectation" style="display:none;">
 		<td class="category">
-			<span class="required">*</span>Expectation
+			Expectation<span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="expectation" cols="80" rows="3" placeholder="I expected…"></textarea>
@@ -409,7 +409,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="outcome" style="display:none;">
 		<td class="category">
-			<span class="required">*</span>Outcome
+			Outcome<span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="outcome" cols="80" rows="3"></textarea>
