@@ -399,12 +399,12 @@
 			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="3" placeholder="Here’s what I did step by step…"></textarea>
 		</td>
 	</tr>
-	<tr <?php echo helper_alternate_class() ?> id="excpectation" style="display:none;">
+	<tr <?php echo helper_alternate_class() ?> id="expectation" style="display:none;">
 		<td class="category">
 			<span class="required">*</span>Expectation
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="excpectation" cols="80" rows="3" placeholder="I expected…"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="expectation" cols="80" rows="3" placeholder="I expected…"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="outcome" style="display:none;">
