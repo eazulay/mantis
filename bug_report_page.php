@@ -192,7 +192,7 @@
 	if ( $tpl_show_category ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category" width="20%">
-			<?php print_documentation_link( 'category' ); echo config_get( 'allow_no_category' ) ? '' : '<span class="required">*</span>'; ?>
+			<?php print_documentation_link( 'category' ); echo config_get( 'allow_no_category' ) ? '' : ' <span class="required">*</span>'; ?>
 		</td>
 		<td width="80%">
 			<?php if ( $t_changed_project ) {
@@ -369,7 +369,7 @@
 <?php */ ?>
 	<tr <?php echo helper_alternate_class() ?> id="aim" style="display:none;">
 		<td class="category">
-			Aim<span class="required">*</span>
+			Aim <span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="aim" cols="80" rows="3"></textarea>
@@ -377,7 +377,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="question" style="display:none;">
 		<td class="category">
-			Question<span class="required">*</span>
+			Question <span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="question" cols="80" rows="3" placeholder="Who...? What...? When...? Where...? Why...? How...?"></textarea>
@@ -385,7 +385,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="motivation" style="display:none;">
 		<td class="category">
-			Motivation<span class="required">*</span>
+			Motivation <span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="motivation" cols="80" rows="3" placeholder="Because/in order to…"></textarea>
@@ -393,7 +393,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="steps" style="display:none;">
 		<td class="category">
-			Steps<span class="required">*</span>
+			Steps <span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="3" placeholder="Here’s what I did step by step…"></textarea>
@@ -401,7 +401,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="expectation" style="display:none;">
 		<td class="category">
-			Expectation<span class="required">*</span>
+			Expectation <span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="expectation" cols="80" rows="3" placeholder="I expected…"></textarea>
@@ -409,7 +409,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="outcome" style="display:none;">
 		<td class="category">
-			Outcome<span class="required">*</span>
+			Outcome <span class="required">*</span>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="outcome" cols="80" rows="3"></textarea>
