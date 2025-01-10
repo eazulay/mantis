@@ -645,7 +645,8 @@
 	const description_fld = window.document.report_bug_form.description;
 	window.document.report_bug_form.addEventListener('submit', function(e) {
 		validateMandatory(window.document.report_bug_form.custom_field_1); // Type
-		validateMandatory(window.document.report_bug_form.category_id);
+		validateMandatory(window.document.report_bug_form.category_id, '0');
+		validateMandatory(window.document.report_bug_form.reproducibility, '100');
 		validateMandatory(window.document.report_bug_form.summary);
 		description_fld.value = "";
 		if (isBug) {
@@ -690,8 +691,8 @@
 		}
 
 	});
-	function validateMandatory(inputElement) {
-		if (inputElement.value.trim() == '' || inputElement.value == '0')
+	function validateMandatory(inputElement, emptyValue='') {
+		if (inputElement.value.trim() == emptyValue)
 			inputElement.parentElement.classList.add('error');
 		else
 			inputElement.parentElement.classList.remove('error');
