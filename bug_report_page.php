@@ -622,7 +622,7 @@
         isBug = e.currentTarget.value === '17';
 		isQuery = e.currentTarget.value === '19';
 		if (!isBug && window.document.report_bug_form.reproducibility.value != '100') {
-			window.document.report_bug_form.reproducibility.value = '100'; // "N/A (not a bug)"
+			window.document.report_bug_form.reproducibility.value = '100'; // (not a bug)
 		}
 		reproducibility_row.style.display = isBug ? 'table-row' : 'none';
 		profile_row.style.display = isBug ? 'table-row' : 'none';

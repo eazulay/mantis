@@ -284,7 +284,7 @@ class BugData {
 			trigger_error( ERROR_EMPTY_FIELD, ERROR );
 		}
 
-		if ($this->category_id == 17 && $this->reproducibility == 100 ) { // Bug and reproducibility is "N/A (not a bug)"
+		if ($this->category_id == 17 && $this->reproducibility == 100 ) { // Bug and reproducibility is "(not a bug)"
 			error_parameters( lang_get( 'reproducibility' ) );
 			trigger_error( ERROR_EMPTY_FIELD, ERROR );
 		}
