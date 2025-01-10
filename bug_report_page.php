@@ -663,18 +663,22 @@
 				description_fld.value += "\n\nRecent Changes: " + window.document.report_bug_form.recent_changes.value.trim();
 			if (window.document.report_bug_form.last_success.value.trim())
 				description_fld.value += "\n\nLast Successful Use: " + window.document.report_bug_form.last_success.value.trim();
-			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || validateMandatory(window.document.report_bug_form.steps) ||
-				validateMandatory(window.document.report_bug_form.expectation) || validateMandatory(window.document.report_bug_form.outcome) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.steps) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.expectation) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.outcome) || preventSubmit;
 		} else if (isQuery) {
 			description_fld.value = window.document.report_bug_form.question.value.trim() + "\n\n" +			
 				"Motivation: " + window.document.report_bug_form.motivation.value.trim();
-			preventSubmit = validateMandatory(window.document.report_bug_form.question) || validateMandatory(window.document.report_bug_form.motivation) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.question) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.motivation) || preventSubmit;
 		} else { // Quoted Project, Change Request, Improvement, Admin
 			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n\n" +
 			"Motivation: " + window.document.report_bug_form.motivation.value.trim() + "\n\n" +
 			"Outcome: " + window.document.report_bug_form.outcome.value.trim();
-			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || validateMandatory(window.document.report_bug_form.motivation) ||
-				validateMandatory(window.document.report_bug_form.outcome) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.motivation) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.outcome) || preventSubmit;
 		}
 		if (preventSubmit)
 			e.preventDefault();
