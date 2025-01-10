@@ -256,7 +256,7 @@
 				<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
 			<table class="width90" cellspacing="0" style="margin-top:5px;">
 					<?php } else { ?>
-						<?php echo lang_get( 'or_fill_in' ); ?>
+						<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
 					<?php } ?>
 					<tr <?php echo helper_alternate_class() ?>>
 						<td class="category" width="20%">
