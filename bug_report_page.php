@@ -644,6 +644,9 @@
 	// Calculate Description value
 	const description_fld = window.document.report_bug_form.description;
 	window.document.report_bug_form.addEventListener('submit', function(e) {
+		validateMandatory(window.document.report_bug_form.custom_field_1); // Type
+		validateMandatory(window.document.report_bug_form.category_id);
+		validateMandatory(window.document.report_bug_form.summary);
 		description_fld.value = "";
 		if (isBug) {
 			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n\n" +
