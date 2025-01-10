@@ -353,7 +353,7 @@
 			<?php print_documentation_link( 'summary' ) ?><span class="required">*</span>
 		</td>
 		<td>
-			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" size="105" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" />
+			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" sty;e="width:99%" />
 			<input type="hidden" name="description" value="" />
 		</td>
 	</tr>
