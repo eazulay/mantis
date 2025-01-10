@@ -88,8 +88,8 @@ table.menu			{ width: 100%; border: none; }
 @keyframes hide         { from { opacity: 1; filter:alpha(opacity=100); } to { opacity: 0; filter:alpha(opacity=0); } }
 
 tr.row-category th	{ text-align: center; }
-th					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; padding: 8px; text-align: center;
-					  background-color: #F6E6CB; color: #212121; font-weight: bold; vertical-align: top; }
+th			{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; padding: 8px; text-align: center;
+			  background-color: #054a30; color: #fff; font-weight: bold; vertical-align: top; }
 tr:not(.row-category) th{  font-variant: small-caps; }
 th:not(:first-child)	{ border-left: 1px solid #E3C389; }
 table#buglist tr > td:not(:first-child) { border-left: 1px solid #E3C389; }
