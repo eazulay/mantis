@@ -691,7 +691,7 @@
 
 	});
 	function validateMandatory(inputElement) {
-		if (inputElement.value.trim() == '')
+		if (inputElement.value.trim() == '' || inputElement.value == '0')
 			inputElement.parentElement.classList.add('error');
 		else
 			inputElement.parentElement.classList.remove('error');
