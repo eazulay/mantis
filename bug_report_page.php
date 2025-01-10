@@ -306,7 +306,7 @@
 								</select>
 							<?php
 								} else {
-									projax_autocomplete( 'os_build_get_with_prefix', 'os_build', array( 'value' => $f_os_build, 'size' => '16', 'maxlength' => '16', 'tabindex' => helper_get_tab_index_value() ) );
+									projax_autocomplete( 'os_build_get_with_prefix', 'os_build', array( 'value' => $f_os_build, 'size' => '32', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
 								}
 							?>
 						</td>
