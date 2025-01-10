@@ -634,6 +634,7 @@
 		steps_row.style.display = isBug ? 'table-row' : 'none';
 		excpectation_row.style.display = isBug ? 'table-row' : 'none';
 		outcome_row.style.display = isQuery ? 'none' : 'table-row';
+		outcome_row.querySelector('textarea').placeholder = isBug ? 'Instead, this happened…' : 'I want these results… (request a preferred format if relevant)';
 		error_message_row.style.display = isBug ? 'table-row' : 'none';
 		recent_changes_row.style.display = isBug ? 'table-row' : 'none';
 		last_success_row.style.display = isBug ? 'table-row' : 'none';
