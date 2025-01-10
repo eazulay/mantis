@@ -54,7 +54,7 @@ input[type="checkbox"] {
     top: 2px;
 }
 select				{ border-color: #AC7F2A; border-width: 1px; background: #fff; padding: 1px 4px 2px; }
-table.width90 select { min-width: 280px; border: none; }
+table.width90 select { min-width: 280px; border: none; padding: 3px 4px 4px; }
 
 span				{ font-family: Verdana, Arial, Helvetica, sans-serif; }
 span.print			{ font-size: 8pt; }
@@ -103,7 +103,7 @@ td 					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; pa
 td td						{ padding: 8px; }
 table.width90 td			{ padding: 0 12px 0 0; }
 table.width90 td:first-child { padding: 8px 12px; }
-table.width90 input, table.width90 textarea { border: none; }
+table.width90 input, table.width90 textarea { border: none; padding: 4px; }
 td tr:first-child.vcenter td{ padding: 0px 8px; }
 .row-2 td.small-caption		{ text-align: center; }
 #history_open .row-2 td.small-caption, #bugnotestats_open .row-2 td.small-caption	{ text-align: left; }
