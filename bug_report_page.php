@@ -651,30 +651,30 @@
 		preventSubmit = validateMandatory(window.document.report_bug_form.summary) || preventSubmit;
 		description_fld.value = "";
 		if (isBug) {
-			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n\n" +
-			"Steps: " + window.document.report_bug_form.steps.value.trim() + "\n\n" +
-			"Expectation: " + window.document.report_bug_form.expectation.value.trim() + "\n\n" +
+			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n" +
+			"Steps: " + window.document.report_bug_form.steps.value.trim() + "\n" +
+			"Expectation: " + window.document.report_bug_form.expectation.value.trim() + "\n" +
 			"Outcome: " + window.document.report_bug_form.outcome.value.trim();
 			if (window.document.report_bug_form.error_message.value.trim())
-				description_fld.value += "\n\nError Message: " + window.document.report_bug_form.error_message.value.trim();
+				description_fld.value += "\nError Message: " + window.document.report_bug_form.error_message.value.trim();
 			if (window.document.report_bug_form.other_approaches.value.trim())
-				description_fld.value += "\n\nOther Approaches: " + window.document.report_bug_form.other_approaches.value.trim();
+				description_fld.value += "\nOther Approaches: " + window.document.report_bug_form.other_approaches.value.trim();
 			if (window.document.report_bug_form.last_success.value.trim())
-				description_fld.value += "\n\nLast Successful Use: " + window.document.report_bug_form.last_success.value.trim();
+				description_fld.value += "\nLast Successful Use: " + window.document.report_bug_form.last_success.value.trim();
 			if (window.document.report_bug_form.recent_changes.value.trim())
-				description_fld.value += "\n\nRecent Changes: " + window.document.report_bug_form.recent_changes.value.trim();
+				description_fld.value += "\nRecent Changes: " + window.document.report_bug_form.recent_changes.value.trim();
 			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.steps) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.expectation) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.outcome) || preventSubmit;
 		} else if (isQuery) {
-			description_fld.value = window.document.report_bug_form.question.value.trim() + "\n\n" +			
+			description_fld.value = window.document.report_bug_form.question.value.trim() + "\n" +			
 				"Motivation: " + window.document.report_bug_form.motivation.value.trim();
 			preventSubmit = validateMandatory(window.document.report_bug_form.question) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.motivation) || preventSubmit;
 		} else { // Quoted Project, Change Request, Improvement, Admin
-			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n\n" +
-			"Motivation: " + window.document.report_bug_form.motivation.value.trim() + "\n\n" +
+			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n" +
+			"Motivation: " + window.document.report_bug_form.motivation.value.trim() + "\n" +
 			"Outcome: " + window.document.report_bug_form.outcome.value.trim();
 			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.motivation) || preventSubmit;
