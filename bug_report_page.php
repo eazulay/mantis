@@ -432,7 +432,7 @@
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="recent_changes" style="display:none;">
 		<td class="category">
-			Recent Changes
+			Recent System Changes
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?> name="recent_changes" cols="80" rows="" placeholder="E.g., System updates, new programs, settings changes, errors elsewhere…"></textarea>
