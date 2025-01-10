@@ -254,7 +254,7 @@
 			<?php if( ON == config_get( 'use_javascript' ) ) { ?>
 				<?php collapse_open( 'profile' ); collapse_icon('profile'); ?>
 				<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
-			<table class="width100" cellspacing="0" style="margin-top:10px;">
+			<table class="width100" cellspacing="0" style="margin:10px 10px 0;">
 					<?php } else { ?>
 						<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
 					<?php } ?>
