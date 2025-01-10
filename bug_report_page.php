@@ -644,10 +644,11 @@
 	// Calculate Description value
 	const description_fld = window.document.report_bug_form.description;
 	window.document.report_bug_form.addEventListener('submit', function(e) {
-		validateMandatory(window.document.report_bug_form.custom_field_1); // Type
-		validateMandatory(window.document.report_bug_form.category_id, '0');
-		validateMandatory(window.document.report_bug_form.reproducibility, '100');
-		validateMandatory(window.document.report_bug_form.summary);
+		var preventSubmit = false;
+		preventSubmit = validateMandatory(window.document.report_bug_form.custom_field_1) || preventSubmit; // Type
+		preventSubmit = validateMandatory(window.document.report_bug_form.category_id, '0') || preventSubmit;
+		preventSubmit = validateMandatory(window.document.report_bug_form.reproducibility, '100') || preventSubmit;
+		preventSubmit = validateMandatory(window.document.report_bug_form.summary) || preventSubmit;
 		description_fld.value = "";
 		if (isBug) {
 			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n\n" +
@@ -662,40 +663,30 @@
 				description_fld.value += "\n\nRecent Changes: " + window.document.report_bug_form.recent_changes.value.trim();
 			if (window.document.report_bug_form.last_success.value.trim())
 				description_fld.value += "\n\nLast Successful Use: " + window.document.report_bug_form.last_success.value.trim();
-			if (window.document.report_bug_form.aim.value.trim() == '' || window.document.report_bug_form.steps.value.trim() == '' ||
-				window.document.report_bug_form.expectation.value.trim() == '' || window.document.report_bug_form.outcome.value.trim()) {
-				e.preventDefault();
-				validateMandatory(window.document.report_bug_form.aim);
-				validateMandatory(window.document.report_bug_form.steps);
-				validateMandatory(window.document.report_bug_form.expectation);
-				validateMandatory(window.document.report_bug_form.outcome);
-			}
+			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || validateMandatory(window.document.report_bug_form.steps) ||
+				validateMandatory(window.document.report_bug_form.expectation) || validateMandatory(window.document.report_bug_form.outcome) || preventSubmit;
 		} else if (isQuery) {
 			description_fld.value = window.document.report_bug_form.question.value.trim() + "\n\n" +			
 				"Motivation: " + window.document.report_bug_form.motivation.value.trim();
-			if (window.document.report_bug_form.question.value.trim() == '' || window.document.report_bug_form.motivation.value.trim()) {
-				e.preventDefault();
-				validateMandatory(window.document.report_bug_form.question);
-				validateMandatory(window.document.report_bug_form.motivation);
-			}
+			preventSubmit = validateMandatory(window.document.report_bug_form.question) || validateMandatory(window.document.report_bug_form.motivation) || preventSubmit;
 		} else { // Quoted Project, Change Request, Improvement, Admin
 			description_fld.value = "Aim: " + window.document.report_bug_form.aim.value.trim() + "\n\n" +
 			"Motivation: " + window.document.report_bug_form.motivation.value.trim() + "\n\n" +
 			"Outcome: " + window.document.report_bug_form.outcome.value.trim();
-			if (window.document.report_bug_form.aim.value.trim() == '') {
-				e.preventDefault();
-				validateMandatory(window.document.report_bug_form.aim);
-				validateMandatory(window.document.report_bug_form.motivation);
-				validateMandatory(window.document.report_bug_form.outcome);
-			}
+			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || validateMandatory(window.document.report_bug_form.motivation) ||
+				validateMandatory(window.document.report_bug_form.outcome) || preventSubmit;
 		}
-
+		if (preventSubmit)
+			e.preventDefault();
 	});
 	function validateMandatory(inputElement, emptyValue='') {
-		if (inputElement.value.trim() == emptyValue)
+		if (inputElement.value.trim() == emptyValue) {
 			inputElement.parentElement.classList.add('error');
-		else
+			return true;
+		} else {
 			inputElement.parentElement.classList.remove('error');
+			return false;
+		}
 	}
 -->
 </script>
