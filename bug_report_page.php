@@ -162,11 +162,11 @@
 <?php echo form_security_field( 'bug_report' ) ?>
 <table class="width90" cellspacing="0">
 	<tr>
-		<td class="form-title" colspan="2">
+		<th class="form-title" colspan="2">
 			<input type="hidden" name="m_id" value="<?php echo $f_master_bug_id ?>" />
 			<input type="hidden" name="project_id" value="<?php echo $t_project_id ?>" />
 			<?php echo lang_get( 'enter_report_details_title' ) ?>
-		</td>
+		</th>
 	</tr>
 <?php
 	event_signal( 'EVENT_REPORT_BUG_FORM_TOP', array( $t_project_id ) );
