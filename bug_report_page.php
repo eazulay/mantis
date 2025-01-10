@@ -179,7 +179,7 @@
 		if( ( $t_def['display_report'] || $t_def['require_report']) && custom_field_has_write_access_to_project( $t_id, $t_project_id ) ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
 		<td class="category">
-			<?php if($t_def['require_report']) {?><?php } echo string_display( lang_get_defaulted( $t_def['name'] ) ) ?><span class="required">*</span>
+			<?php if($t_def['require_report']) {?><?php } echo string_display( lang_get_defaulted( $t_def['name'] ) ) ?> <span class="required">*</span>
 		</td>
 		<td>
 			<?php print_custom_field_input( $t_def, ( $f_master_bug_id === 0 ) ? null : $f_master_bug_id ) ?>
