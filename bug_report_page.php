@@ -607,7 +607,7 @@
     const question_row = document.querySelector('#question');
     const motivation_row = document.querySelector('#motivation');
     const steps_row = document.querySelector('#steps');
-    const excpectation_row = document.querySelector('#excpectation');
+    const expectation_row = document.querySelector('#expectation');
     const outcome_row = document.querySelector('#outcome');
     const error_message_row = document.querySelector('#error_message');
     const other_approaches_row = document.querySelector('#other_approaches');
@@ -632,7 +632,7 @@
 		question_row.style.display = isQuery ? 'table-row' : 'none';
 		motivation_row.style.display = isBug ? 'none' : 'table-row';
 		steps_row.style.display = isBug ? 'table-row' : 'none';
-		excpectation_row.style.display = isBug ? 'table-row' : 'none';
+		expectation_row.style.display = isBug ? 'table-row' : 'none';
 		outcome_row.style.display = isQuery ? 'none' : 'table-row';
 		outcome_row.querySelector('textarea').placeholder = isBug ? 'Instead, this happened…' : 'I want these results… (request a preferred format if relevant)';
 		error_message_row.style.display = isBug ? 'table-row' : 'none';
