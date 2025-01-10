@@ -259,10 +259,10 @@
 						<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
 					<?php } ?>
 					<tr <?php echo helper_alternate_class() ?>>
-						<td class="category" width="15%">
+						<td class="category" width="20%">
 							<?php echo lang_get( 'platform' ) ?>
 						</td>
-						<td width="85%">
+						<td width="80%">
 							<?php if ( config_get( 'allow_freetext_in_profile_fields' ) == OFF ) { ?>
 							<select name="platform">
 								<option value=""></option>
