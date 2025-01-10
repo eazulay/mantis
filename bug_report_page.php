@@ -254,15 +254,15 @@
 			<?php if( ON == config_get( 'use_javascript' ) ) { ?>
 				<?php collapse_open( 'profile' ); collapse_icon('profile'); ?>
 				<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
-			<table class="width90" cellspacing="0" style="margin-top:5px;">
+			<table class="width100" cellspacing="0" style="margin-top:10px;">
 					<?php } else { ?>
 						<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
 					<?php } ?>
 					<tr <?php echo helper_alternate_class() ?>>
-						<td class="category" width="20%">
+						<td class="category" width="15%">
 							<?php echo lang_get( 'platform' ) ?>
 						</td>
-						<td width="80%">
+						<td width="85%">
 							<?php if ( config_get( 'allow_freetext_in_profile_fields' ) == OFF ) { ?>
 							<select name="platform">
 								<option value=""></option>
@@ -396,7 +396,7 @@
 			Steps <span class="required">*</span>
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="3" placeholder="Here’s what I did step by step…"></textarea>
+			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="3" placeholder="Here's what I did, step by step…"></textarea>
 		</td>
 	</tr>
 	<tr <?php echo helper_alternate_class() ?> id="expectation" style="display:none;">
