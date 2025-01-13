@@ -31,11 +31,11 @@
 
 	form_security_validate( 'bug_file_delete' );
 
-	$file_id_array = gpc_get_int_array( 'file_ids' );
-
-	if( !is_array( $file_id_array ) || count( $file_id_array ) == 0 ) {
-		$f_file_id = gpc_get_int( 'file_id' );
+	if ( isset( $_GET['file_id'] ) ) {
+		$f_file_id = $_GET( 'file_id' );
 		$file_id_array = array( $f_file_id );
+	} else {
+		$file_id_array = gpc_get_int_array( 'file_ids' );
 	}
 
 	$first_file_id = $file_id_array[0];
