@@ -1778,13 +1778,13 @@ document.getElementById( span ).style.display = displayType;
 			}
 		}
 
-		//if ( $i != ( $t_attachments_count - 1 ) ) {
 		echo "<br />\n";
 		$i++;
-		//}
 	}
 
-	echo '<input type="submit" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" />';
+	if ( $t_attachments > 0 ) {
+		echo '<input type="submit" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" />';
+	}
 	echo '</form>';
 
 	return $t_attachments_count;
