@@ -31,12 +31,10 @@
 
 	form_security_validate( 'bug_file_delete' );
 
-	$f_file_id = gpc_get_int( 'file_id' );
-
 	$file_id_array = gpc_get_int_array( 'file_ids' );
 
-	// check if $f_file_id is an array
 	if( !is_array( $file_id_array ) || count( $file_id_array ) == 0 ) {
+		$f_file_id = gpc_get_int( 'file_id' );
 		$file_id_array = array( $f_file_id );
 	}
 
