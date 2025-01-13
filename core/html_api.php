@@ -834,7 +834,7 @@ function print_menu() {
 		if( !current_user_is_anonymous() ) {
 			$t_menu_options[] = '<a href="' . helper_mantis_url( 'logout_page.php">' ) . lang_get( 'logout_link' ) . '</a>';
 		}
-		echo implode( $t_menu_options, ' | ' );
+		echo implode( ' | ', $t_menu_options );
 		echo '</td>';
 		echo '<td class="menu right nowrap">';
 		jump_issue_form('small');
@@ -1395,8 +1395,8 @@ function html_button_bug_change_status( $p_bug_id ) {
 
 	if (count($t_enum_list) > 0){
 		# resort the list into ascending order after noting the key from the first element (the default)
-		$t_default_arr = each( $t_enum_list );
-		$t_default = $t_default_arr['key'];
+		reset( $t_enum_list );
+		$t_default = key( $t_enum_list );
 		ksort( $t_enum_list );
 		reset( $t_enum_list );
 

@@ -104,7 +104,7 @@ class MantisEnum {
 	 * are the array indices and the labels are the array values.
 	 *
 	 * @param string $enumString
-	 * @return associate array indexed by labels.
+	 * @return array indexed by labels.
 	 */
 	public static function getAssocArrayIndexedByValues( $enumString ) {
 		if( isset( self::$_cacheAssocArrayIndexedByValues[$enumString] ) ) {
