@@ -1671,9 +1671,9 @@ function get_dropdown( $p_control_array, $p_control_name, $p_match = '', $p_add_
 	$t_script = ( $p_change_script == '' ? '' : ' onchange="' . $p_change_script . '"' );
 	$t_info = sprintf( "<select %s name=\"%s\" id=\"%s\"%s%s>", $t_multiple, $p_control_name, $p_control_name, $t_size, $t_script );
 	if( $p_add_any ) {
-		array_unshift_assoc( $t_control_array, META_FILTER_ANY, lang_trans( '[any]' ) );
+		$t_control_array = array_merge(array(META_FILTER_ANY => '['.lang_get( 'any' ).']'), $t_control_array);
 	}
-	while( list( $t_name, $t_desc ) = each( $t_control_array ) ) {
+	foreach ($t_control_array as $t_name => $t_desc) {
 		$t_sel = '';
 		if( is_array( $p_match ) ) {
 			if( in_array( $t_name, array_values( $p_match ) ) || in_array( $t_desc, array_values( $p_match ) ) ) {

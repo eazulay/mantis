@@ -68,14 +68,13 @@ function token_ensure_exists( $p_token_id ) {
 function token_get( $p_type, $p_user_id = null ) {
 	token_purge_expired_once();
 
-	$c_type = db_prepare_int( $p_type );
-	$c_user_id = db_prepare_int( $p_user_id == null ? auth_get_current_user_id() : $p_user_id );
+	$c_user_id = ( $p_user_id == null ? auth_get_current_user_id() : $p_user_id );
 
 	$t_tokens_table = db_get_table( 'mantis_tokens_table' );
 
 	$t_query = "SELECT * FROM $t_tokens_table
 					WHERE type=" . db_param() . " AND owner=" . db_param();
-	$t_result = db_query_bound( $t_query, Array( $c_type, $c_user_id ) );
+	$t_result = db_query_bound( $t_query, Array( $p_type, $c_user_id ) );
 
 	if( db_num_rows( $t_result ) > 0 ) {
 		return db_fetch_array( $t_result );
@@ -88,7 +87,7 @@ function token_get( $p_type, $p_user_id = null ) {
  * Get a token's value or null if not found
  * @param integer Token type
  * @param integer User ID (null for current user)
- * @return array Token row
+ * @return string Token row
  */
 function token_get_value( $p_type, $p_user_id = null ) {
 	$t_token = token_get( $p_type, $p_user_id );

@@ -110,7 +110,7 @@ function current_user_set_default_project( $p_project_id ) {
  * user.
  *
  * @param show_disabled	Include disabled projects.
- * @return an array of accessible project ids.
+ * @return array of accessible project ids.
  * @access public
  */
 function current_user_get_accessible_projects( $p_show_disabled = false ) {
@@ -123,7 +123,7 @@ function current_user_get_accessible_projects( $p_show_disabled = false ) {
  *
  * @param project_id	Parent project id.
  * @param show_disabled	Include disabled projects.
- * @return an array of accessible sub-project ids.
+ * @return array of accessible sub-project ids.
  * @access public
  */
 function current_user_get_accessible_subprojects( $p_project_id, $p_show_disabled = false ) {

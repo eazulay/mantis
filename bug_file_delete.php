@@ -33,7 +33,18 @@
 
 	$f_file_id = gpc_get_int( 'file_id' );
 
-	$t_bug_id = file_get_field( $f_file_id, 'bug_id' );
+	$file_id_array = array();
+
+	// check if $f_file_id is an array
+	if( is_array( $f_file_id ) ) {
+		$file_id_array = $f_file_id;
+	} else {
+		$file_id_array[] = $f_file_id;
+	}
+
+	$first_file_id = $file_id_array[0];
+
+	$t_bug_id = file_get_field( $first_file_id, 'bug_id' );
 
 	$t_bug = bug_get( $t_bug_id, true );
 	if( $t_bug->project_id != helper_get_current_project() ) {
@@ -44,9 +55,18 @@
 
 	access_ensure_bug_level( config_get( 'update_bug_threshold' ), $t_bug_id );
 
-	helper_ensure_confirmed( lang_get( 'delete_attachment_sure_msg' ), lang_get( 'delete_attachment_button' ) );
+	$filenames = array();
+	for ( $i = 0; $i < count( $file_id_array ); $i++ ) {
+		$filenames[] = file_get_field( $file_id_array[$i], 'filename' );
+	}
 
-	file_delete( $f_file_id, 'bug' );
+	helper_ensure_confirmed(
+		lang_get( ( count( $file_id_array ) == 1 ? 'delete_attachment_sure_msg' : 'delete_attachments_sure_msg' ) ) . '<br />' . implode( '<br />', $filenames ),
+		lang_get( 'delete_attachment_button' ) );
+
+	for ( $i = 0; $i < count( $file_id_array ); $i++ ) {
+		file_delete( $file_id_array[$i], 'bug' );
+	}
 
 	form_security_purge( 'bug_file_delete' );
 

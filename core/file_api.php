@@ -156,7 +156,7 @@ function file_get_icon_url( $p_display_filename ) {
  * @param string $p_path       The path.
  * @param string $p_filename   The file name.
  *
- * @return The combined full path.
+ * @return string The combined full path.
  */
 function file_path_combine( $p_path, $p_filename ) {
 	$t_path = $p_path;
@@ -179,7 +179,7 @@ function file_path_combine( $p_path, $p_filename ) {
  *
  * @param string $p_diskfile  The disk file (full path or just filename).
  * @param integer The project id - shouldn't be 0 (ALL_PROJECTS).
- * @return The normalized full path.
+ * @return string The normalized full path.
  */
 function file_normalize_attachment_path( $p_diskfile, $p_project_id ) {
 	if ( file_exists( $p_diskfile ) ) {
@@ -457,13 +457,12 @@ function file_delete_local( $p_filename ) {
 
 # Return the specified field value
 function file_get_field( $p_file_id, $p_field_name, $p_table = 'bug' ) {
-	$c_field_name = db_prepare_string( $p_field_name );
 	$t_bug_file_table = db_get_table( 'mantis_' . $p_table . '_file_table' );
 
 	# get info
-	$query = "SELECT $c_field_name
-				  FROM $t_bug_file_table
-				  WHERE id=" . db_param();
+	$query = "SELECT $p_field_name
+			  FROM $t_bug_file_table
+			  WHERE id=" . db_param();
 	$result = db_query_bound( $query, Array( (int) $p_file_id ), 1 );
 
 	return db_result( $result );
@@ -472,7 +471,6 @@ function file_get_field( $p_file_id, $p_field_name, $p_table = 'bug' ) {
 function file_delete( $p_file_id, $p_table = 'bug' ) {
 	$t_upload_method = config_get( 'file_upload_method' );
 
-	$c_file_id = db_prepare_int( $p_file_id );
 	$t_filename = file_get_field( $p_file_id, 'filename', $p_table );
 	$t_diskfile = file_get_field( $p_file_id, 'diskfile', $p_table );
 
@@ -504,7 +502,7 @@ function file_delete( $p_file_id, $p_table = 'bug' ) {
 	$t_file_table = db_get_table( 'mantis_' . $p_table . '_file_table' );
 	$query = "DELETE FROM $t_file_table
 				WHERE id=" . db_param();
-	db_query_bound( $query, Array( $c_file_id ) );
+	db_query_bound( $query, Array( $p_file_id ) );
 	return true;
 }
 

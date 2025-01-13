@@ -494,7 +494,7 @@ function print_subproject_option_list( $p_parent_id, $p_project_id = null, $p_fi
 		if( $t_id != $p_filter_project_id ) {
 			echo "<option value=\"";
 			if( $p_trace ) {
-				$t_full_id = join( $p_parents, ";" ) . ';' . $t_id;
+				$t_full_id = implode( ';', $p_parents ) . ';' . $t_id;
 			}
 			echo $t_full_id . '"';
 			check_selected( $p_project_id, $t_full_id );
@@ -1004,7 +1004,7 @@ function print_all_bug_action_option_list() {
 		}
 	}
 
-	while( list( $key, $val ) = each( $commands ) ) {
+	foreach ($commands as $key => $val) {
 		echo '<option value="' . $key . '">' . $val . '</option>';
 	}
 }
@@ -1263,7 +1263,7 @@ function print_view_bug_sort_link( $p_string, $p_sort_field, $p_sort, $p_dir, $p
 	}
 }
 
-function print_manage_user_sort_link( $p_page, $p_string, $p_field, $p_dir, $p_sort_by, $p_hide = 0, $p_filter = ALL ) {
+function print_manage_user_sort_link( $p_page, $p_string, $p_field, $p_dir, $p_sort_by, $p_hide = 0, $p_filter = 'ALL' ) {
 	if( $p_sort_by == $p_field ) {
 
 		# If this is the selected field flip the order
@@ -1630,9 +1630,10 @@ function get_dropdown( $p_control_array, $p_control_name, $p_match = '', $p_add_
 	$t_script = ( $p_change_script == '' ? '' : ' onchange="' . $p_change_script . '"' );
 	$t_info = sprintf( "<select %s name=\"%s\" id=\"%s\"%s%s>", $t_multiple, $p_control_name, $p_control_name, $t_size, $t_script );
 	if( $p_add_any ) {
-		array_unshift_assoc( $t_control_array, META_FILTER_ANY, lang_trans( '[any]' ) );
+		$t_control_array = array_merge(array(META_FILTER_ANY => '['.lang_get( 'any' ).']'), $t_control_array);
+		//array_unshift_assoc( $t_control_array, META_FILTER_ANY, lang_trans( '[any]' ) );
 	}
-	while( list( $t_name, $t_desc ) = each( $t_control_array ) ) {
+	foreach ($t_control_array as $t_name => $t_desc) {
 		$t_sel = '';
 		if( is_array( $p_match ) ) {
 			if( in_array( $t_name, array_values( $p_match ) ) || in_array( $t_desc, array_values( $p_match ) ) ) {
@@ -1658,6 +1659,8 @@ function print_bug_attachments_list( $p_bug_id ) {
 	$i = 0;
 	$image_previewed = false;
 
+	echo '<form method="post" action="bug_file_delete.php">';
+
 	foreach ( $t_attachments as $t_attachment ) {
 		$t_file_display_name = string_display_line( $t_attachment['display_name'] );
 		$t_filesize = number_format( $t_attachment['size'] );
@@ -1666,6 +1669,10 @@ function print_bug_attachments_list( $p_bug_id ) {
 		if ( $image_previewed ) {
 			$image_previewed = false;
 			echo '<br />';
+		}
+
+		if ( $t_attachment['can_delete'] ) {
+			echo '<input type="checkbox" name="file_id[]" value="' . $t_attachment['id'] . '" />';
 		}
 
 		if ( $t_attachment['can_download'] ) {
@@ -1698,7 +1705,7 @@ function print_bug_attachments_list( $p_bug_id ) {
 			}
 
 			if ( $t_attachment['preview'] && ( $t_attachment['type'] == 'text' ) ) {
-				 $c_id = db_prepare_int( $t_attachment['id'] );
+				 $c_id = intval( $t_attachment['id'] );
 				 $t_bug_file_table = db_get_table( 'mantis_bug_file_table' );
 
 				echo "<script type=\"text/javascript\" language=\"JavaScript\">
@@ -1734,8 +1741,8 @@ document.getElementById( span ).style.display = displayType;
 						break;
 					default:
 						$query = "SELECT *
-	                  					FROM $t_bug_file_table
-				            			WHERE id=" . db_param();
+								  FROM $t_bug_file_table
+								  WHERE id=" . db_param();
 						$result = db_query_bound( $query, Array( $c_id ) );
 						$row = db_fetch_array( $result );
 						$v_content = $row['content'];
@@ -1771,11 +1778,14 @@ document.getElementById( span ).style.display = displayType;
 			}
 		}
 
-		if ( $i != ( $t_attachments_count - 1 ) ) {
-			echo "<br />\n";
-			$i++;
-		}
+		//if ( $i != ( $t_attachments_count - 1 ) ) {
+		echo "<br />\n";
+		$i++;
+		//}
 	}
+
+	echo '<input type="submit" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" />';
+	echo '</form>';
 
 	return $t_attachments_count;
 }

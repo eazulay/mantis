@@ -1089,6 +1089,7 @@ $s_confirm_file_delete_msg = 'Are you sure you wish to delete this file?';
 $s_filename = 'Filename';
 $s_file_update_button = 'Update File';
 $s_file_delete_button = 'Delete File';
+$s_file_delete_selected_button = 'Delete Selected Files';
 
 # proj_doc_page.php
 $s_project_documentation_title = 'Project Documentation';
@@ -1436,6 +1437,7 @@ $s_download_attachments = 'Download attachments';
 $s_delete_attachments = 'Delete attachments';
 $s_delete_attachment_button = 'Delete';
 $s_delete_attachment_sure_msg = 'Are you sure you wish to delete this attachment?';
+$s_delete_attachments_sure_msg = 'Are you sure you wish to delete these attachments?';
 $s_upload_issue_attachments = 'Upload issue attachments';
 $s_filters = 'filters';
 $s_save_filters = 'Save filters';

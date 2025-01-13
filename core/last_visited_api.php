@@ -70,9 +70,9 @@ function last_visited_issue( $p_issue_id, $p_user_id = null ) {
  * Get an array of the last visited bug ids.  We intentionally don't check
  * if the ids still exists to avoid performance degradation.
  *
- * @param user_id	The user id to get the last visited issues for,
+ * @param integer user_id	The user id to get the last visited issues for,
  * 				or null for current logged in user.
- * @return An array of issue ids or an empty array if none found.
+ * @return array An array of issue ids or an empty array if none found.
  * @access public
  */
 function last_visited_get_array( $p_user_id = null ) {
