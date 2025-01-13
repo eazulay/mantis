@@ -1782,7 +1782,7 @@ document.getElementById( span ).style.display = displayType;
 		$i++;
 	}
 
-	if ( $t_attachments > 0 ) {
+	if ( $t_attachments_count > 0 ) {
 		echo '<input type="submit" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" />';
 	}
 	echo '</form>';
