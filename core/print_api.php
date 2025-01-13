@@ -1672,7 +1672,7 @@ function print_bug_attachments_list( $p_bug_id ) {
 		}
 
 		if ( $t_attachment['can_delete'] ) {
-			echo '<input type="checkbox" name="file_id[]" value="' . $t_attachment['id'] . '" />';
+			echo '<input type="checkbox" name="file_ids[]" value="' . $t_attachment['id'] . '" />';
 		}
 
 		if ( $t_attachment['can_download'] ) {
