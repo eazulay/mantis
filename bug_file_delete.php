@@ -32,7 +32,7 @@
 	form_security_validate( 'bug_file_delete' );
 
 	if ( isset( $_GET['file_id'] ) ) {
-		$f_file_id = $_GET( 'file_id' );
+		$f_file_id = $_GET['file_id'];
 		$file_id_array = array( $f_file_id );
 	} else {
 		$file_id_array = gpc_get_int_array( 'file_ids' );
