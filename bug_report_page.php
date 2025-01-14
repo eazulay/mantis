@@ -647,7 +647,6 @@
 		var preventSubmit = false;
 		preventSubmit = validateMandatory(window.document.report_bug_form.custom_field_1) || preventSubmit; // Type
 		preventSubmit = validateMandatory(window.document.report_bug_form.category_id, '0') || preventSubmit;
-		preventSubmit = validateMandatory(window.document.report_bug_form.reproducibility, '100') || preventSubmit;
 		preventSubmit = validateMandatory(window.document.report_bug_form.summary) || preventSubmit;
 		description_fld.value = "";
 		if (isBug) {
@@ -664,6 +663,7 @@
 			if (window.document.report_bug_form.recent_changes.value.trim())
 				description_fld.value += "\nRecent Changes: " + window.document.report_bug_form.recent_changes.value.trim();
 			preventSubmit = validateMandatory(window.document.report_bug_form.aim) || preventSubmit;
+			preventSubmit = validateMandatory(window.document.report_bug_form.reproducibility, '100') || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.steps) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.expectation) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.outcome) || preventSubmit;
