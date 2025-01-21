@@ -1672,7 +1672,7 @@ function print_bug_attachments_list( $p_bug_id ) {
 		}
 
 		if ( $t_attachment['can_delete'] ) {
-			echo '<input type="checkbox" name="file_ids[]" value="' . $t_attachment['id'] . '" style="top:0;" onchange="toggleDeleteFile(this)" />';
+			echo '<input type="checkbox" name="file_ids[]" value="' . $t_attachment['id'] . '" style="top:0;" onchange="toggleDeleteFile(event)" />';
 		}
 
 		if ( $t_attachment['can_download'] ) {
@@ -1782,15 +1782,15 @@ document.getElementById( span ).style.display = displayType;
 	}
 
 	if ( $t_attachments_count > 0 ) {
-		echo '<input type="submit" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" />';
+		echo '<input type="submit" id="fileDeleteBtn" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" />';
 		echo "<script type=\"text/javascript\" language=\"JavaScript\">
 <!--
 		var fileSelectCount = 0;
-		element.disabled = (fileSelectCount == 0);
-		function toggleDeleteFile(element) {
-			fileSelectCount = fileSelectCount + (element.value == 1 ? 1 : -1);
+		Document.getElementById(\"fileDeleteBtn\").disabled = (fileSelectCount == 0);
+		function toggleDeleteFile(event) {
+			fileSelectCount = fileSelectCount + (event.target.value == 1 ? 1 : -1);
 			console.log(fileSelectCount);
-			element.disabled = (fileSelectCount == 0);
+			Document.getElementById(\"fileDeleteBtn\").disabled = (fileSelectCount == 0);
 		}
  -->
 </script>";
