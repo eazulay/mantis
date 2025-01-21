@@ -42,7 +42,7 @@ input[type="button"], input[type="submit"], input.button, input.button-small, a.
 input.button-small button.button-small {
     font-size: 8pt;
 }
-input[type="button"]:hover:not(:disabled), input[type="submit"]:hover:not(:disabled), input.button:hover, input.button-small:hover, a.button:hover, button:hover {
+input[type="button"]:hover:not(:disabled), input[type="submit"]:hover:not(:disabled), input.button:hover:not(:disabled), input.button-small:hover:not(:disabled), a.button:hover, button:hover:not(:disabled) {
 	background-color: #F4F8E0;
 	background: -webkit-linear-gradient(#EEEFEF, #F4F8E0);
 	background: -o-linear-gradient(#EEEFEF, #F4F8E0);
