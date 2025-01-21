@@ -1786,11 +1786,11 @@ document.getElementById( span ).style.display = displayType;
 		echo "<script type=\"text/javascript\" language=\"JavaScript\">
 <!--
 		var fileSelectCount = 0;
-		Document.getElementById(\"fileDeleteBtn\").disabled = (fileSelectCount == 0);
+		document.getElementById(\"fileDeleteBtn\").disabled = (fileSelectCount == 0);
 		function toggleDeleteFile(event) {
 			fileSelectCount = fileSelectCount + (event.target.value == 1 ? 1 : -1);
 			console.log(fileSelectCount);
-			Document.getElementById(\"fileDeleteBtn\").disabled = (fileSelectCount == 0);
+			document.getElementById(\"fileDeleteBtn\").disabled = (fileSelectCount == 0);
 		}
  -->
 </script>";
