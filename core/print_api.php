@@ -1787,7 +1787,7 @@ document.getElementById( span ).style.display = displayType;
 <!--
 		var fileSelectCount = 0;
 		var fileDeleteBtn;
-		document.onload = function() {
+		window.onload = function() {
 			fileDeleteBtn = document.getElementById(\"fileDeleteBtn\");
 			fileDeleteBtn.disabled = (fileSelectCount == 0);
 		}
