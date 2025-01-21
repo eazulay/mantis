@@ -1672,7 +1672,7 @@ function print_bug_attachments_list( $p_bug_id ) {
 		}
 
 		if ( $t_attachment['can_delete'] ) {
-			echo '<input type="checkbox" name="file_ids[]" value="' . $t_attachment['id'] . '" style="top:0;" />';
+			echo '<input type="checkbox" name="file_ids[]" value="' . $t_attachment['id'] . '" style="top:0;" onchange="toggleDeleteFile(this)" />';
 		}
 
 		if ( $t_attachment['can_download'] ) {
@@ -1714,7 +1714,6 @@ function swap_content( span ) {
 displayType = ( document.getElementById( span ).style.display == 'none' ) ? '' : 'none';
 document.getElementById( span ).style.display = displayType;
 }
-
  -->
  </script>";
 				echo " <span id=\"hideSection_$c_id\">[<a class=\"small\" href='#' id='attmlink_" . $c_id . "' onclick='swap_content(\"hideSection_" . $c_id . "\");swap_content(\"showSection_" . $c_id . "\");return false;'>" . lang_get( 'show_content' ) . "</a>]</span>";
@@ -1784,6 +1783,17 @@ document.getElementById( span ).style.display = displayType;
 
 	if ( $t_attachments_count > 0 ) {
 		echo '<input type="submit" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" />';
+		echo "<script type=\"text/javascript\" language=\"JavaScript\">
+<!--
+		var fileSelectCount = 0;
+		element.disabled = (fileSelectCount == 0);
+		function toggleDeleteFile(element) {
+			fileSelectCount = fileSelectCount + (element.value == 1 ? 1 : -1);
+			console.log(fileSelectCount);
+			element.disabled = (fileSelectCount == 0);
+		}
+ -->
+</script>";
 	}
 	echo '</form>';
 
