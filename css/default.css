@@ -49,7 +49,7 @@ input[type="button"]:hover, input[type="submit"]:hover, input.button:hover, inpu
 	background: -moz-linear-gradient(#EEEFEF, #F4F8E0);
 	background: linear-gradient(#EEEFEF, #F4F8E0);
 }
-input[type="button"]:disabled {
+input[type="submit"]:disabled, input[type="button"]:disabled {
 	color: #788798;
 	border-color: RGBA(232,245,232,0.3) RGBA(63,118,53,0.3) RGBA(63,118,53,0.3) RGBA(232,245,232,0.3);
 }
