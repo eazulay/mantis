@@ -1793,7 +1793,6 @@ document.getElementById( span ).style.display = displayType;
 		}
 		function toggleDeleteFile(event) {
 			fileSelectCount = fileSelectCount + (event.target.checked ? 1 : -1);
-			console.log(fileSelectCount);
 			fileDeleteBtn.disabled = (fileSelectCount == 0);
 		}
  -->
