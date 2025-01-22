@@ -270,7 +270,7 @@ function filter_get_url( $p_custom_filter ) {
 	}
 
 	if( count( $t_query ) > 0 ) {
-		$t_query_str = implode( $t_query, '&' );
+		$t_query_str = implode( '&', $t_query );
 		$t_url = config_get( 'path' ) . 'search.php?' . $t_query_str;
 	} else {
 		$t_url = '';
@@ -302,7 +302,7 @@ function filter_encode_field_and_value( $p_field_name, $p_field_value, $p_field_
 		$t_query_array[] = urlencode( $p_field_name ) . '=' . urlencode( $p_field_value );
 	}
 
-	return implode( $t_query_array, '&' );
+	return implode( '&', $t_query_array );
 }
 
 # ==========================================================================
@@ -2501,7 +2501,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			}
 			$t_output = '';
 			$t_any_found = false;
-			$t_values .= '<td class="center" id="custom_field_' . $t_accessible_custom_fields_ids[0] . '_filter_target"> ';
+			$t_values = '<td class="center" id="custom_field_' . $t_accessible_custom_fields_ids[0] . '_filter_target"> ';
 			if( !isset( $t_filter['custom_fields'][$t_accessible_custom_fields_ids[0]] ) ) {
 				$t_values .= lang_get( 'any' );
 			} else {
