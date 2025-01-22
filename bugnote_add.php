@@ -33,6 +33,7 @@
 	form_security_validate( 'bugnote_add' );
 
 	$f_bug_id		= gpc_get_int( 'bug_id' );
+	$f_return_to_bug_id = gpc_get_int( 'return_to_bug_id', $f_bug_id );
 	$f_private		= gpc_get_bool( 'private' );
 	$f_time_tracking	= gpc_get_string( 'time_tracking', '0:00' );
 	$f_bugnote_text	= trim( gpc_get_string( 'bugnote_text', '' ) );
@@ -64,4 +65,10 @@
 
 	form_security_purge( 'bugnote_add' );
 
-	print_successful_redirect_to_bug( $f_bug_id );
+	if ($f_return_to_bug_id != $f_bug_id) {
+		bugnote_set_text( $f_return_to_bug_id, "Duplicated to #" . $f_bug_id . "\n" . bugnote_get_text( $f_return_to_bug_id ));
+		$t_url = string_get_bug_view_url( $p_bug_id, auth_get_current_user_id() );
+		print_successful_redirect( $t_url . "#c" . $f_return_to_bug_id );
+	} else {
+		print_successful_redirect_to_bug( $f_return_to_bug_id );
+	}
