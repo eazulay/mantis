@@ -798,7 +798,7 @@ class ADORecordSet_mysqli extends ADORecordSet{
 	var $databaseType = "mysqli";
 	var $canSeek = true;
 	
-	function ADORecordSet_mysqli($queryID, $mode = false) 
+	function __construct($queryID, $mode = false) 
 	{
 	  if ($mode === false) 
 	   { 
@@ -821,7 +821,7 @@ class ADORecordSet_mysqli extends ADORecordSet{
 	      break;
 	    }
 	  $this->adodbFetchMode = $mode;
-	  $this->ADORecordSet($queryID);	
+	  parent::__construct($queryID); // Call the parent class's constructor
 	}
 	
 	function _initrs()
