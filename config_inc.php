@@ -229,3 +229,5 @@ $g_show_project_menu_bar = ON;
 $g_form_security_validation = OFF;
 
 $g_css_include_file = 'css/default.css?v=20250122';
+
+$g_relationship_graph_enable = ON;
