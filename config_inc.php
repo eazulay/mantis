@@ -230,4 +230,4 @@ $g_form_security_validation = OFF;
 
 $g_css_include_file = 'css/default.css?v=20250122';
 
-$g_relationship_graph_enable = ON;
+// $g_relationship_graph_enable = ON;
