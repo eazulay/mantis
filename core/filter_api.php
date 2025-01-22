@@ -2022,7 +2022,9 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 		$t_textsearch_where_clause .= ' )';
 */
         $t_textsearch_where_clause = "( MATCH(" .
-			"description, steps_to_reproduce, additional_information) AGAINST ('" .
+			$t_bug_text_table . ".description, " .
+			"steps_to_reproduce, " .
+			"additional_information) AGAINST ('" .
 			$keyword_search_string . "' IN BOOLEAN MODE) " .
 			"OR MATCH (" . $t_bugnote_text_table . ".note) AGAINST ('" .
 			$keyword_search_string . "' IN BOOLEAN MODE) )";
