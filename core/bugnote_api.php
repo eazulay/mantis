@@ -683,17 +683,17 @@ function bugnote_stats_get_events_array( $p_bug_id, $p_from, $p_to ) {
  */
 function bugnote_stats_get_project_array( $p_project_id, $p_from, $p_to, $p_cost, $p_category = '0', $p_by_user = true) {
 																	// $p_category and $p_by_user added by Eyal Azulay
-	$c_project_id = db_prepare_int( $p_project_id );
+	$c_project_id = (int) $p_project_id;
 
 	$c_to = strtotime( $p_to ) + SECONDS_PER_DAY - 1;
 	$c_from = strtotime( $p_from );
 
 	if ( $c_to === false || $c_from === false ) {
-		error_parameters( array( $p_form, $p_to ) );
+		error_parameters( array( $p_from, $p_to ) );
 		trigger_error( ERROR_GENERIC, ERROR );
 	}
 
-	$c_cost = db_prepare_double( $p_cost );
+	$c_cost = (float) $p_cost;
 
 	$t_bug_table = db_get_table( 'mantis_bug_table' );
 	$t_user_table = db_get_table( 'mantis_user_table' );

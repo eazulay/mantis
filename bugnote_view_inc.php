@@ -183,7 +183,7 @@ $num_notes = count( $t_bugnotes );
 			# users above delete_bugnote_threshold should be able to delete this bugnote
 			if ( $t_can_delete_note || access_has_bug_level( config_get( 'delete_bugnote_threshold' ), $f_bug_id ) ) {
 				echo " ";
-				print_button( 'bugnote_delete.php?bugnote_id='.$t_bugnote->id, lang_get( 'delete_link' ) );
+				print_button( 'bugnote_delete.php?bugnote_id=' . $t_bugnote->id, lang_get( 'delete_link' ) );
 			}
 
 			# users with access to both update and change view status (or the bugnote author) can change public/private status
@@ -202,7 +202,8 @@ $num_notes = count( $t_bugnotes );
 		<div class="copy-options hidden">
 			<form method="post" action="bugnote_add.php">
 				<input type="hidden" name="bugnote_text" value="Duplicate of ~'.$t_bugnote->id.":\n". str_replace('"', '\"', $t_bugnote->note).'" />
-				<input type="hidden" name="date_submitted" value="'.date('Y-m-d H:i:s', $t_bugnote->date_submitted).'" />
+				<input type="hidden" name="date_submitted" value="' . date('Y-m-d H:i:s', $t_bugnote->date_submitted) . '" />
+				<input type="hidden" name="source_bugnote_id" value="'.$t_bugnote->id.'" />
 				<input type="hidden" name="return_to_bug_id" value="'.$f_bug_id.'" />
 				<Label>To: <input type="number" name="bug_id" min="1" value="'.$f_bug_id.'" /></Label>
 				<input type="submit" class="button-small" onclick="copyNoteOverride(event,'.$t_bugnote->id.','.$f_bug_id.');" value="Apply" />
