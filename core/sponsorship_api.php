@@ -160,7 +160,7 @@ function sponsorship_get_id( $p_bug_id, $p_user_id = null ) {
 /**
  * get information about a sponsorship given its id
  * @param int $p_sponsorship_id
- * @return array
+ * @return object
  */
 function sponsorship_get( $p_sponsorship_id ) {
 	$row = sponsorship_cache_row( $p_sponsorship_id );
@@ -190,7 +190,7 @@ function sponsorship_get_all_ids( $p_bug_id ) {
 	global $g_cache_sponsorships;
 	static $s_cache_sponsorship_bug_ids = array();
 
-	$c_bug_id = db_prepare_int( $p_bug_id );
+	$c_bug_id = (int) $p_bug_id;
 	
 	if( isset( $s_cache_sponsorship_bug_ids[$c_bug_id] ) ) {
 		return $s_cache_sponsorship_bug_ids[$c_bug_id];
@@ -269,7 +269,7 @@ function sponsorship_update_bug( $p_bug_id ) {
  * if sponsorship contains a non-zero id, then update the corresponding record.
  * if sponsorship contains a zero id, search for bug_id/user_id, if found, then update the entry
  * otherwise add a new entry
- * @param int $p_sponsorship
+ * @param object $p_sponsorship
  * @return int
  */
 function sponsorship_set( $p_sponsorship ) {
