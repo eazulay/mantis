@@ -201,7 +201,7 @@ $num_notes = count( $t_bugnotes );
 			echo ' <input type="button" class="button-small" onclick="copyNote('.$t_bugnote->id.');" value="Copy" />
 		<div class="copy-options hidden">
 			<form method="post" action="bugnote_add.php">
-				<input type="hidden" name="bugnote_text" value="Duplicate of ~'.$t_bugnote->id.":\n". str_replace('"', '\"', $t_bugnote->note).'" />
+				<input type="hidden" name="bugnote_text" value="Duplicate of ~'.$t_bugnote->id.":\n". htmlspecialchars($t_bugnote->note, ENT_QUOTES, 'UTF-8').'" />
 				<input type="hidden" name="date_submitted" value="' . date('Y-m-d H:i:s', $t_bugnote->date_submitted) . '" />
 				<input type="hidden" name="source_bugnote_id" value="'.$t_bugnote->id.'" />
 				<input type="hidden" name="return_to_bug_id" value="'.$f_bug_id.'" />
