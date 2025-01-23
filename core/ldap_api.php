@@ -26,7 +26,7 @@
 
 /**
  * Logs the most recent LDAP error
- * @param resource $p_ds  LDAP resource identifier returned by ldap_connect
+ * @param LDAP\Connection $p_ds  LDAP resource identifier returned by ldap_connect
  */
 function ldap_log_error( $p_ds ) {
 	log_event( LOG_LDAP, "ERROR #" . ldap_errno( $p_ds ) . ": " . ldap_error( $p_ds ) );
@@ -36,7 +36,7 @@ function ldap_log_error( $p_ds ) {
  * Connect and bind to the LDAP directory
  * @param string $p_binddn
  * @param string $p_password
- * @return resource or false
+ * @return LDAP\Connection or false
  */
 function ldap_connect_bind( $p_binddn = '', $p_password = '' ) {
 	if( !extension_loaded( 'ldap' ) ) {
