@@ -202,7 +202,7 @@ class PEAR
     * @return mixed   A reference to the variable. If not set it will be
     *                 auto initialised to NULL.
     */
-    function &getStaticProperty($class, $var)
+    static function &getStaticProperty($class, $var)
     {
         static $properties;
         if (!isset($properties[$class])) {
@@ -247,7 +247,7 @@ class PEAR
      * @access  public
      * @return  bool    true if parameter is an error
      */
-    function isError($data, $code = null)
+    static function isError($data, $code = null)
     {
         if (!is_a($data, 'PEAR_Error')) {
             return false;
@@ -747,7 +747,8 @@ function _PEAR_call_destructors()
             $_PEAR_destructor_object_list = array_reverse($_PEAR_destructor_object_list);
         }
 
-        while (list($k, $objref) = each($_PEAR_destructor_object_list)) {
+        reset($_PEAR_destructor_object_list);
+        while (list($k, $objref) = [key($_PEAR_destructor_object_list), current($_PEAR_destructor_object_list)]) {
             $classname = get_class($objref);
             while ($classname) {
                 $destructor = "_$classname";
@@ -758,6 +759,7 @@ function _PEAR_call_destructors()
                     $classname = get_parent_class($classname);
                 }
             }
+            next($_PEAR_destructor_object_list);
         }
         // Empty the object list to ensure that destructors are
         // not called more than once.
@@ -802,6 +804,7 @@ class PEAR_Error
     var $message              = '';
     var $userinfo             = '';
     var $backtrace            = null;
+    var $callback             = null;
 
     /**
      * PEAR_Error constructor

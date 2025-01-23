@@ -161,7 +161,7 @@ class ERP_mailbox_api
 
 	# --------------------
 	# process all mails for an mailbox
-	#  return a boolean for whether the mailbox was successfully processed
+	#  return mixed - true if the mailbox was successfully processed, otherwise error object
 	public function process_mailbox( $p_mailbox )
 	{
 		$this->_mailbox = $p_mailbox + ERP_get_default_mailbox();
