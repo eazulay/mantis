@@ -979,6 +979,10 @@ class ERP_mailbox_api
 				return( TRUE );
 			}
 		}
+		elseif ( file_exists_on_bug( $p_part[ 'body' ], $p_bug_id ) )
+		{
+			return( $t_part_name . ' = attachment already exists on this issue' . "\n" );
+		}
 		else
 		{
 			$t_file_number = 0;

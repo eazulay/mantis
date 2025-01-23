@@ -570,8 +570,8 @@ function diskfile_is_name_unique( $p_name, $p_filepath ) {
 	$c_name = $p_filepath . $p_name;
 
 	$query = "SELECT COUNT(*)
-				  FROM $t_file_table
-				  WHERE diskfile=" . db_param();
+			FROM $t_file_table
+			WHERE diskfile=" . db_param();
 	$result = db_query_bound( $query, Array( $c_name ) );
 	$t_count = db_result( $result );
 
@@ -587,8 +587,8 @@ function file_is_name_unique( $p_name, $p_bug_id ) {
 	$t_file_table = db_get_table( 'mantis_bug_file_table' );
 
 	$query = "SELECT COUNT(*)
-				  FROM $t_file_table
-				  WHERE filename=" . db_param() . " AND bug_id=" . db_param();
+			FROM $t_file_table
+			WHERE filename=" . db_param() . " AND bug_id=" . db_param();
 	$result = db_query_bound( $query, Array( $p_name, $p_bug_id ) );
 	$t_count = db_result( $result );
 
@@ -599,6 +599,33 @@ function file_is_name_unique( $p_name, $p_bug_id ) {
 	}
 }
 
+function file_exists_on_bug( $p_content, $p_bug_id ) {
+	$t_file_table = db_get_table( 'mantis_bug_file_table' );
+
+	$query = "SELECT diskfile
+			FROM $t_file_table
+			WHERE bug_id=" . db_param();
+
+	$result = db_query_bound( $query, Array( $p_bug_id ) );
+	$file_count = db_num_rows( $result );
+
+	$t_project_id = bug_get_field( $p_bug_id, 'project_id' );
+
+	for( $i = 0; $i < $file_count; $i++ ) {
+		$row = db_fetch_array( $result );
+
+		$t_local_diskfile = file_normalize_attachment_path( $row['diskfile'], $t_project_id );
+		
+		if( file_exists( $t_local_diskfile ) ) {
+			$t_content = file_get_contents( $t_local_diskfile );
+			if( $t_content == $p_content ) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 /**
  * Add a file to the system using the configured storage method
  *
@@ -606,7 +633,6 @@ function file_is_name_unique( $p_name, $p_bug_id ) {
  * @param array $p_file the uploaded file info, as retrieved from gpc_get_file()
  */
 function file_add( $p_bug_id, $p_file, $p_table = 'bug', $p_title = '', $p_desc = '', $p_user_id = null ) {
-
 	file_ensure_uploaded( $p_file );
 	$t_file_name = $p_file['name'];
 	$t_tmp_file = $p_file['tmp_name'];
