@@ -217,7 +217,7 @@ class ERP_mailbox_api
 									if ( !$this->_test_only && $this->_mail_debug )
 									{
 										//var_dump( $this->_mailbox );
-										echo "\n" . $this->_mailbox['description'];
+										echo "\nProcessing: " . $this->_mailbox['description'];
 									}
 
 									$this->show_memory_usage( 'Start process mailbox' );
