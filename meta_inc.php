@@ -30,3 +30,4 @@
 	<meta http-equiv="Cache-Directive" content="no-cache" />
 <?php } # ! isset( $g_allow_browser_cache )  ?>
 	<meta http-equiv="Expires" content="<?php echo gmdate( 'D, d M Y H:i:s \G\M\T', time() ) ?>" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
