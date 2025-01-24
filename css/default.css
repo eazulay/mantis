@@ -326,3 +326,11 @@ div.main-page-content h4 {
 div.main-page-content > ul {
 	margin-top: 10px;
 }
+
+@media (max-width: 768px) {
+	table {
+        display: block; /* Make tables scroll horizontally */
+        overflow-x: auto;
+        width: 100%;
+    }
+}
