@@ -310,4 +310,5 @@ div.main-page-content > ul { margin-top: 10px; }
 	table { display: block; overflow-x: auto; width: 100%; }
 	#fixed_scroll td:nth-child(3) { display: none; }
 	#bugnote_add_open td:first-child { min-width: 140px; }
+	input[type="text"][size="5"] { min-width: 58px; }
 }
