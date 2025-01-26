@@ -258,7 +258,10 @@
 	addLoadEvent(adjustFixedWidth);
 	window.onresize = adjustFixedWidth;
 	function adjustFixedWidth() {
-		fixedTable.style.width = (window.innerWidth - 25) + 'px';
+		if (window.innerWidth > 768)
+			fixedTable.style.width = (window.innerWidth - 45) + 'px';
+		else
+			fixedTable.style.width = (window.innerWidth - 25) + 'px';
 	}
 	addLoadEvent(setWarningOnNavigate);
 
