@@ -309,6 +309,6 @@ div.main-page-content > ul { margin-top: 10px; }
 	body { margin: 5px; }
 	table { display: block; overflow-x: auto; width: 100%; }
 	#fixed_scroll td:nth-child(3) { display: none; }
-	#bugnote_add_open td:first-child { min-width: 130px; }
-	input[type="text"][size="5"] { min-width: 58px; }
+	#bugnote_add_open td:first-child { min-width: 125px; }
+	input[type="text"][size="5"] { min-width: 56px; }
 }
