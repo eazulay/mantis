@@ -258,7 +258,7 @@
 	addLoadEvent(adjustFixedWidth);
 	window.onresize = adjustFixedWidth;
 	function adjustFixedWidth() {
-		fixedTable.style.width = (window.innerWidth - 85) + 'px';
+		fixedTable.style.width = (window.innerWidth - 5) + 'px';
 	}
 	addLoadEvent(setWarningOnNavigate);
 
