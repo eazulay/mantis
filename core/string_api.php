@@ -486,8 +486,12 @@ function string_insert_hrefs( $p_string ) {
 	else
 		//$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\">\\1</a> [<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">^</a>]'", $p_string );
 		$p_string = preg_replace_callback( $s_url_regex, function($matches) {
+			$limited_length_url = $matches[1];
+			if ( strlen( $limited_length_url ) > 50 ) {
+				$limited_length_url = substr( $limited_length_url, 0, 50 ) . '...';
+			}
 			return sprintf( "<a href=\"%s\">%s</a> [<a href=\"%s\" target=\"_blank\">^</a>]",
-							$matches[1], string_shorten( $matches[1], 50 ), $matches[1] );
+							$matches[1], $limited_length_url, $matches[1] );
 		}, $p_string );
 	if( $t_change_quotes ) {
 		ini_set( 'magic_quotes_sybase', true );
