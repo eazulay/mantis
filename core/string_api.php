@@ -349,22 +349,22 @@ function string_process_bug_link( $p_string, $p_include_anchor = true, $p_detail
 
 	if( !isset( $string_process_bug_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] ) ) {
 		if( $p_include_anchor ) {
-			$string_process_bug_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] = create_function( '$p_array', '
-										if ( bug_exists( (int)$p_array[2] ) && access_has_bug_level( VIEWER, (int)$p_array[2] ) ) {
-											return $p_array[1] . string_get_bug_view_link( (int)$p_array[2], null, ' . ( $p_detail_info ? 'true' : 'false' ) . ', ' . ( $p_fqdn ? 'true' : 'false' ) . ');
-										} else {
-											return $p_array[0];
-										}
-										' );
+			$string_process_bug_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] = function($p_array) use ($p_detail_info, $p_fqdn) {
+				if (bug_exists((int)$p_array[2]) && access_has_bug_level(VIEWER, (int)$p_array[2])) {
+					return $p_array[1] . string_get_bug_view_link((int)$p_array[2], null, $p_detail_info, $p_fqdn);
+				} else {
+					return $p_array[0];
+				}
+			};
 		} else {
-			$string_process_bug_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] = create_function( '$p_array', '
-										# We might as well create the link here even if the bug
-										#  doesnt exist.  In the case above we dont want to do
-										#  the summary lookup on a non-existant bug.  But here, we
-										#  can create the link and by the time it is clicked on, the
-										#  bug may exist.
-										return $p_array[1] . string_get_bug_view_url_with_fqdn( (int)$p_array[2], null );
-										' );
+			$string_process_bug_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] = function($p_array) {
+				#  We might as well create the link here even if the bug
+				#  doesnt exist.  In the case above we dont want to do
+				#  the summary lookup on a non-existant bug.  But here, we
+				#  can create the link and by the time it is clicked on, the
+				#  bug may exist.
+				return $p_array[1] . string_get_bug_view_url_with_fqdn( (int)$p_array[2], null );
+			};
 		}
 	}
 
@@ -405,35 +405,35 @@ function string_process_bugnote_link( $p_string, $p_include_anchor = true, $p_de
 
 	if( !isset( $string_process_bugnote_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] ) ) {
 		if( $p_include_anchor ) {
-			$string_process_bugnote_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] = create_function( '$p_array', '
-										if ( bugnote_exists( (int)$p_array[2] ) ) {
-											$t_bug_id = bugnote_get_field( (int)$p_array[2], \'bug_id\' );
-											$g_project_override = bug_get_field( $t_bug_id, \'project_id\' );
-											if ( bug_exists( $t_bug_id ) && ( access_compare_level( user_get_access_level( auth_get_current_user_id(), bug_get_field( $t_bug_id, \'project_id\' ) ), config_get( \'private_bugnote_threshold\' ) ) || ( bugnote_get_field( (int)$p_array[2], \'reporter_id\' ) == auth_get_current_user_id() ) || bugnote_get_field( (int)$p_array[2], \'view_state\' ) == VS_PUBLIC ) ) {
-												$g_project_override = null;
-												return $p_array[1] . string_get_bugnote_view_link( $t_bug_id, (int)$p_array[2], null, ' . ( $p_detail_info ? 'true' : 'false' ) . ', ' . ( $p_fqdn ? 'true' : 'false' ) . ' );
-											} else {
-												$g_project_override = null;
-												return $p_array[0];
-											}
-										} else {
-											return $p_array[0];
-										}
-										' );
+			$string_process_bugnote_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] = function($p_array) use ($p_detail_info, $p_fqdn) {
+				if ( bugnote_exists( (int)$p_array[2] ) ) {
+					$t_bug_id = bugnote_get_field( (int)$p_array[2], 'bug_id' );
+					//$g_project_override = bug_get_field( $t_bug_id, 'project_id' );
+					if ( bug_exists( $t_bug_id ) && ( access_compare_level( user_get_access_level( auth_get_current_user_id(), bug_get_field( $t_bug_id, 'project_id' ) ), config_get( 'private_bugnote_threshold' ) ) || ( bugnote_get_field( (int)$p_array[2], 'reporter_id' ) == auth_get_current_user_id() ) || bugnote_get_field( (int)$p_array[2], 'view_state' ) == VS_PUBLIC ) ) {
+						//$g_project_override = null;
+						return $p_array[1] . string_get_bugnote_view_link( $t_bug_id, (int)$p_array[2], null, $p_detail_info, $p_fqdn );
+					} else {
+						//$g_project_override = null;
+						return $p_array[0];
+					}
+				} else {
+					return $p_array[0];
+				}
+			};
 		} else {
-			$string_process_bugnote_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] = create_function( '$p_array', '
-										# We might as well create the link here even if the bug
-										#  doesnt exist.  In the case above we dont want to do
-										#  the summary lookup on a non-existant bug.  But here, we
-										#  can create the link and by the time it is clicked on, the
-										#  bug may exist.
-										$t_bug_id = bugnote_get_field( (int)$p_array[2], \'bug_id\' );
-										if ( bug_exists( $t_bug_id ) ) {
-											return $p_array[1] . string_get_bugnote_view_url_with_fqdn( $t_bug_id, (int)$p_array[2], null );
-										} else {
-											return $p_array[0];
-										}
-										' );
+			$string_process_bugnote_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn] = function($p_array) {
+				#  We might as well create the link here even if the bug
+				#  doesnt exist.  In the case above we dont want to do
+				#  the summary lookup on a non-existant bug.  But here, we
+				#  can create the link and by the time it is clicked on, the
+				#  bug may exist.
+				$t_bug_id = bugnote_get_field((int)$p_array[2], 'bug_id');
+				if (bug_exists($t_bug_id)) {
+					return $p_array[1] . string_get_bugnote_view_url_with_fqdn($t_bug_id, (int)$p_array[2], null);
+				} else {
+					return $p_array[0];
+				}
+			};
 		}
 	}
 	$p_string = preg_replace_callback( '/(^|[^\w])' . preg_quote( $t_tag, '/' ) . '(\d+)\b/', $string_process_bugnote_link_callback[$p_include_anchor][$p_detail_info][$p_fqdn], $p_string );
@@ -480,13 +480,14 @@ function string_insert_hrefs( $p_string ) {
 
 	if (gpc_isset('page') && gpc_get('page') == 'HelpNotes/view')
 		//$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">\\1</a>'", $p_string );
-		$p_string = preg_replace_callback( $s_url_regex, function($matches){
+		$p_string = preg_replace_callback( $s_url_regex, function($matches) {
 			return sprintf( "<a href=\"%s\" target=\"_blank\">%s</a>", $matches[1], $matches[1] );
 		}, $p_string );
 	else
 		//$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\">\\1</a> [<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">^</a>]'", $p_string );
-		$p_string = preg_replace_callback( $s_url_regex, function($matches){
-			return sprintf( "<a href=\"%s\">%s</a> [<a href=\"%s\" target=\"_blank\">^</a>]", $matches[1], $matches[1], $matches[1] );
+		$p_string = preg_replace_callback( $s_url_regex, function($matches) {
+			return sprintf( "<a href=\"%s\">%s</a> [<a href=\"%s\" target=\"_blank\">^</a>]",
+							$matches[1], string_shorten( $matches[1], 50 ), $matches[1] );
 		}, $p_string );
 	if( $t_change_quotes ) {
 		ini_set( 'magic_quotes_sybase', true );
