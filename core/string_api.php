@@ -487,8 +487,8 @@ function string_insert_hrefs( $p_string ) {
 		//$p_string = preg_replace( $s_url_regex, "'<a href=\"'.rtrim('\\1','.').'\">\\1</a> [<a href=\"'.rtrim('\\1','.').'\" target=\"_blank\">^</a>]'", $p_string );
 		$p_string = preg_replace_callback( $s_url_regex, function($matches) {
 			$limited_length_url = $matches[1];
-			if ( mb_strlen( $limited_length_url, 'UTF-8' ) > 50 ) {
-				$limited_length_url = mb_substr( $limited_length_url, 0, 50, 'UTF-8' ) . '...';
+			if ( mb_strlen( $limited_length_url, 'UTF-8' ) > 60 ) {
+				$limited_length_url = mb_substr( $limited_length_url, 0, 60, 'UTF-8' ) . '...';
 			}
 			return sprintf( "<a href=\"%s\">%s</a> [<a href=\"%s\" target=\"_blank\">^</a>]",
 							$matches[1], $limited_length_url, $matches[1] );
