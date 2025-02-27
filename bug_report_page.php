@@ -684,13 +684,16 @@
 			e.preventDefault();
 	});
 	function validateMandatory(inputElement, emptyValue='') {
-		if (inputElement && inputElement.value.trim() == emptyValue) {
-			inputElement.classList.add('error');
-			return true;
-		} else {
-			inputElement.classList.remove('error');
-			return false;
+		if (inputElement) {
+			if (inputElement.value.trim() == emptyValue) {
+				inputElement.classList.add('error');
+				return true; // Prevent Submit
+			} else {
+				inputElement.classList.remove('error');
+				return false;
+			}
 		}
+		return false;
 	}
 -->
 </script>
