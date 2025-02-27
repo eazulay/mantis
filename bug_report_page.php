@@ -684,7 +684,7 @@
 			e.preventDefault();
 	});
 	function validateMandatory(inputElement, emptyValue='') {
-		if (inputElement.value.trim() == emptyValue) {
+		if (inputElement && inputElement.value.trim() == emptyValue) {
 			inputElement.classList.add('error');
 			return true;
 		} else {
