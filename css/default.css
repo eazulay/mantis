@@ -1,6 +1,6 @@
 html { scroll-behavior: smooth; }
 body {
-	background-color: #fcfefc; /* #FEFCFA; */
+	background-color: /*#fcfefc;*/  #f0faf0;
 	color: #111;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 9pt;
@@ -72,7 +72,7 @@ span.dependency_unmet	{ color: red; }
 span.dependency_upgrade	{ color: orange; }
 
 table.hide			{ width: 100%; border: solid 0px #ffffff; border-spacing: 0; }
-table.width100		{ width: 100%; border: solid 1px #069040; border-radius: 8px; }
+table.width100		{ width: 100%; border: solid 1px #069040; border-radius: 8px; background: #fff; }
 table.width90		{ width: 90%;  border: solid 1px #069040; margin-left: auto; margin-right: auto; }
 table.width75		{ width: 75%;  border: solid 1px #069040; margin-left: auto; margin-right: auto; }
 table.width60		{ width: 60%;  border: solid 1px #069040; margin-left: auto; margin-right: auto; }
