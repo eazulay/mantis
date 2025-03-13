@@ -465,13 +465,13 @@ function html_top_banner() {
 	if( !is_blank( $t_page ) && file_exists( $t_page ) && !is_dir( $t_page ) ) {
 		include( $t_page );
 	} else if( $t_show_logo ) {
-		if( is_page_name( 'login_page' ) ) {
+/*		if( is_page_name( 'login_page' ) ) {
 			$t_align = 'center';
 		} else {
-			$t_align = 'left';
-		}
+			$t_align = 'right';
+		}*/
 
-		echo '<div align="', $t_align, '">';
+		echo '<div class="floatright">';
 		if( $t_show_url ) {
 			echo '<a href="', config_get( 'logo_url' ), '">';
 		}
@@ -479,6 +479,11 @@ function html_top_banner() {
 		if( $t_show_url ) {
 			echo '</a>';
 		}
+		echo '</div>';
+
+		// GIW Logo
+		echo '<div class="floatleft">';
+		echo '<img border="0" alt="Get IT Write Logo" src="' . helper_mantis_url('images/GIW Logo.png') . '" />';
 		echo '</div>';
 	}
 
