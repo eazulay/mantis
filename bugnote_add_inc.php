@@ -43,12 +43,12 @@
 </tr>
 <tr class="row-2">
 	<td class="category" width="25%">
-		Write a <?php echo lang_get( 'bugnote' ) ?> here:<br>
+		Write a <?php echo lang_get( 'bugnote' ) ?><br>
 <br>
 <span style="font-weight:normal;">
-OR,<br>
+OR<br>
 <br>
-To email someone who does not receive Mantis Notifications, click [Open Email Client] to use your default email program. Mantis will add the email as a Note. Subject with Issue # and cc to Mantis are included so the recipient can click [Reply All] to reply to this Issue.</span>
+To email someone whom Mantis does not notify, click [Open Email Client]. Mantis will add your email as a Note. Issue #, Subject and cc to Mantis are included so a recipient Mantis user can click [Reply All] to add to this Issue.</span>
 	</td>
 	<td width="75%">
 		<textarea name="bugnote_text" cols="80" rows="10"></textarea>
