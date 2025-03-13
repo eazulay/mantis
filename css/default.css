@@ -156,7 +156,7 @@ tr.row-2			{ /*background-color: #FCF5ED;*/ color: #212121; }
 tr.bug-primary > td:nth-child(2n + 3),
 #issue_metadata_closed tr:first-child td.category, #history_open td:not(:first-child),
 #bugnotestats_open table td:not(.category) table td:not(:first-child),
-.with-columns td:not(.form-title):not(:first-child) { border-left: 1px solid #069040; }
+.with-columns > tbody > tr > td:not(.form-title):not(:first-child) { border-left: 1px solid #069040; }
 #bugnotestats_open table td:not(.category) table { border: 1px solid #069040; }
 #bugnotestats > table tr:not(:last-child) > td { border-bottom: 1px solid #069040; }
 .with-paging tr:last-child td { border-top: 1px solid #069040; }

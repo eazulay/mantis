@@ -2171,7 +2171,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 	?>
 		<input type="hidden" name="page_number" value="<?php echo $t_page_number?>" />
 		<input type="hidden" name="view_type" value="<?php echo $t_view_type?>" />
-		<table class="width100" cellspacing="0">
+		<table class="width100 with-columns" cellspacing="0">
 
 		<?php
 		$t_filter_cols = config_get( 'filter_custom_fields_per_row' );
@@ -2220,7 +2220,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			);
 		}
 		?>
-		<tr>
+		<tr class="bottom-border">
 		<th width="15%">ID</th>
 		<th width="15%">Time</th>
 		<th width="20%">People</th>
