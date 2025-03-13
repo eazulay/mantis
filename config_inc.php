@@ -60,7 +60,7 @@ $g_allow_file_cache     = ON;
 
 # --- Branding ---
 $g_window_title			= 'Get-It-Write Tracking System';
-$g_logo_image			= 'images/mantis_logo_small.gif';
+$g_logo_image			= 'images/mantis_logo_transparent.gif';
 $g_favicon_image		= 'images/favicon.ico';
 
 # --- Real names ---
@@ -228,6 +228,6 @@ $g_default_project_view_status = VS_PRIVATE;
 $g_show_project_menu_bar = ON;
 $g_form_security_validation = OFF;
 
-$g_css_include_file = 'css/default.css?v=20250312';
+$g_css_include_file = 'css/default.css?v=20250313';
 
 // $g_relationship_graph_enable = ON;

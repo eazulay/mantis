@@ -83,68 +83,67 @@
 
 //		collapse_open( 'bugnotestats' );
 ?>
-<a name="bugnotestats" id="bugnotestats" /><br />
-
-<form method="post" action="<?php echo form_action_self() ?>">
-	<input type="hidden" name="id" value="<?php echo isset( $f_bug_id ) ? $f_bug_id : 0 ?>" />
-	<table border="0" class="width100" cellspacing="0">
-		<tr>
-			<td class="form-title" colspan="4">
-				<?php
-//					collapse_icon( 'bugnotestats' );
-					echo lang_get( 'time_tracking' )
-				?>
-			</td>
-		</tr>
-		<tr class="row-2">
-			<td class="category" width="25%">
-				<?php
-					$t_filter = array();
-					$t_filter['do_filter_by_date'] = 'on';
-					$t_filter['start_day'] = $t_bugnote_stats_from_d;
-					$t_filter['start_month'] = $t_bugnote_stats_from_m;
-					$t_filter['start_year'] = $t_bugnote_stats_from_y;
-					$t_filter['end_day'] = $t_bugnote_stats_to_d;
-					$t_filter['end_month'] = $t_bugnote_stats_to_m;
-					$t_filter['end_year'] = $t_bugnote_stats_to_y;
-					print_filter_do_filter_by_date(true);
-				?>
-			</td>
-		</tr>
-		<tr class="row-2">
-			<td>
-				<?php // Eyal Azulay added this table row
-					echo lang_get("category");
-					global $t_select_modifier, $t_filter;
-					$t_select_modifier = "Category";
-					$t_filter[FILTER_PROPERTY_CATEGORY] = $t_category;
-					print_filter_show_category();
-				?>
-			</td>
-		</tr>
-<?php
-		if ( $t_cost_col ) {
-?>
-		<tr class="row-1">
-			<td>
-				<?php echo lang_get( 'time_tracking_cost_per_hour' ) ?>:
-				<input type="text" name="bugnote_cost" value="<?php echo $f_bugnote_cost ?>" />
-			</td>
-		</tr>
-<?php
-		}
-?>
-		<tr>
-			<td class="center" colspan="2">
-				<input type="submit" class="button" name="get_bug_stats_button"
-					value="<?php echo lang_get( 'time_tracking_get_info_button' ) ?>" />
-				<input type="submit" class="button" name="export_bug_stats_button"
-					value="<?php echo lang_get( 'time_tracking_export_csv_button' ) ?>" />
-			</td>
-		</tr>
-	</table>
-</form>
-
+<div name="bugnotestats" id="bugnotestats">
+	<br />
+	<form method="post" action="<?php echo form_action_self() ?>">
+		<input type="hidden" name="id" value="<?php echo isset( $f_bug_id ) ? $f_bug_id : 0 ?>" />
+		<table class="width100" cellspacing="0">
+			<tr>
+				<td class="form-title" colspan="4">
+					<?php
+	//					collapse_icon( 'bugnotestats' );
+						echo lang_get( 'time_tracking' )
+					?>
+				</td>
+			</tr>
+			<tr class="row-2">
+				<td class="category" width="25%">
+					<?php
+						$t_filter = array();
+						$t_filter['do_filter_by_date'] = 'on';
+						$t_filter['start_day'] = $t_bugnote_stats_from_d;
+						$t_filter['start_month'] = $t_bugnote_stats_from_m;
+						$t_filter['start_year'] = $t_bugnote_stats_from_y;
+						$t_filter['end_day'] = $t_bugnote_stats_to_d;
+						$t_filter['end_month'] = $t_bugnote_stats_to_m;
+						$t_filter['end_year'] = $t_bugnote_stats_to_y;
+						print_filter_do_filter_by_date(true);
+					?>
+				</td>
+			</tr>
+			<tr class="row-2">
+				<td>
+					<?php // Eyal Azulay added this table row
+						echo lang_get("category");
+						global $t_select_modifier, $t_filter;
+						$t_select_modifier = "Category";
+						$t_filter[FILTER_PROPERTY_CATEGORY] = $t_category;
+						print_filter_show_category();
+					?>
+				</td>
+			</tr>
+	<?php
+			if ( $t_cost_col ) {
+	?>
+			<tr class="row-1">
+				<td>
+					<?php echo lang_get( 'time_tracking_cost_per_hour' ) ?>:
+					<input type="text" name="bugnote_cost" value="<?php echo $f_bugnote_cost ?>" />
+				</td>
+			</tr>
+	<?php
+			}
+	?>
+			<tr>
+				<td class="center" colspan="2">
+					<input type="submit" class="button" name="get_bug_stats_button"
+						value="<?php echo lang_get( 'time_tracking_get_info_button' ) ?>" />
+					<input type="submit" class="button" name="export_bug_stats_button"
+						value="<?php echo lang_get( 'time_tracking_export_csv_button' ) ?>" />
+				</td>
+			</tr>
+		</table>
+	</form>
 <?php
 	endif;
 	if ($f_get_bug_stats_button || $f_export_bug_stats_button){
@@ -186,7 +185,7 @@
 		}else{
 ?>
 <br />
-<table border="0" class="width100" cellspacing="0">
+<table class="width100" cellspacing="0">
 	<tr class="row-category-history">
 		<td>
 			<?php echo lang_get( $t_name_field ) ?>
@@ -274,7 +273,7 @@
 <br />
 <br />
 
-<table border="0" class="width100" cellspacing="0">
+<table id="" class="width100" cellspacing="0">
 	<tr class="row-category-history">
 		<td>
 			<?php echo lang_get( $t_name_field ) ?>
@@ -322,23 +321,7 @@
 </table>
 
 <?php
-		endif;
-	} # end if
-	if ($f_get_bug_stats_button):
-//		collapse_closed( 'bugnotestats' );
-?>
-
-<table class="width100" cellspacing="0">
-	<tr>
-		<td class="form-title" colspan="4">
-			<?php
-//				collapse_icon( 'bugnotestats' );
-				echo lang_get( 'time_tracking' );
-			?>
-		</td>
-	</tr>
-</table>
-
+		endif; ?>
+</div>
 <?php
-//		collapse_end( 'bugnotestats' );
-	endif;
+	} # end if

@@ -38,13 +38,13 @@
 	<br />
 
 <!-- List of custom field -->
-<table class="width100" cellspacing="1">
+<table class="width100 with-columns" cellspacing="0">
 	<tr>
 		<td class="form-title" colspan="6">
 				<?php echo lang_get( 'custom_fields_setup' ) ?>
 		</td>
 	</tr>
-	<tr>
+	<tr class="bottom-border">
 		<td class="category" width="12%">
 			<?php echo lang_get( 'custom_field_name' ) ?>
 		</td>

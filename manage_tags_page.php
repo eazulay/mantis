@@ -129,7 +129,7 @@ $t_result = db_query_bound( $t_query, $t_where_params, $t_per_page, $t_offset );
 <br />
 
 <!--  Tag Table Start -->
-<table class="width100" cellspacing="1">
+<table class="width100 with-columns with-paging" cellspacing="0">
 	<tr>
 		<td class="form-title" colspan="4">
 			<?php

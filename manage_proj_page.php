@@ -45,7 +45,7 @@
 	# Project Menu Form BEGIN 
 ?>
 <br />
-<table class="width100" cellspacing="1">
+<table class="width100 with-columns" cellspacing="0">
 <tr>
 	<td class="form-title" colspan="5">
 		<?php 
@@ -154,9 +154,8 @@
 <br />
 
 <!-- GLOBAL CATEGORIES -->
-<a name="categories" />
-<div align="center">
-<table class="width75" cellspacing="1">
+<div id="categories" align="center">
+<table class="width75 with-columns with-paging" cellspacing="0">
 
 <!-- Title -->
 <tr>

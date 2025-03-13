@@ -52,7 +52,7 @@ ERP_output_config_option( 'select_mailbox', 'hidden', $f_select_mailbox );
 if ( $f_mailbox_action === 'complete_test' )
 {
 ?>
-<table align="center" class="width75" cellspacing="1">
+<table align="center" class="width75" cellspacing="0">
 
 <tr>
 	<td class="left">
@@ -66,7 +66,7 @@ if ( $f_mailbox_action === 'complete_test' )
 }
 ?>
 
-<table align="center" class="width50 nowrap" cellspacing="1">
+<table align="center" class="width50 nowrap" cellspacing="0">
 <?php
 
 ERP_output_config_option( 'mailbox_settings', 'header', 'manage_config' );
@@ -104,7 +104,7 @@ ERP_output_config_option( $f_mailbox_action . '_action', 'submit' );
 <br />
 
 <form action="<?php echo plugin_page( $t_this_page )?>" method="post">
-<table align="center" class="width50 nowrap" cellspacing="1">
+<table align="center" class="width50 nowrap" cellspacing="0">
 <?php
 
 ERP_output_config_option( 'mailboxes', 'header', 'manage_config' );

@@ -38,7 +38,7 @@
 <table class="width75" align="center" cellspacing="1">
 
 <tr>
-<td class="form-title" width="30%"><?php echo lang_get( 'site_information' ) ?></td>
+<td class="form-title" width="30%" colspan="2"><?php echo lang_get( 'site_information' ) ?></td>
 </tr>
 
 <tr <?php echo helper_alternate_class() ?>>
@@ -49,10 +49,6 @@
 <tr <?php echo helper_alternate_class() ?>>
 <td class="category"><?php echo lang_get( 'schema_version' ) ?></td>
 <td><?php echo config_get( 'database_version' ) ?></td>
-</tr>
-
-<tr class="spacer">
-<td></td>
 </tr>
 
 <?php
@@ -74,9 +70,6 @@
 <td><?php echo config_get( 'plugin_path' ) ?></td>
 </tr>
 
-<tr class="spacer">
-<td></td>
-</tr>
 <?php
 }
 

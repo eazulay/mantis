@@ -14,7 +14,7 @@ ERP_print_menu( $t_this_page );
 ?>
 
 <br />
-<table align="center" class="width75" cellspacing="1">
+<table align="center" class="width75" cellspacing="0">
 
 <tr>
 	<td class="left">
@@ -35,7 +35,7 @@ ERP_print_menu( $t_this_page );
 	if ( !extension_loaded( 'mbstring' ) )
 	{
 ?>
-<table align="center" class="width50" cellspacing="1">
+<table align="center" class="width50" cellspacing="0">
 
 <tr>
 	<td class="left">
@@ -56,14 +56,14 @@ ERP_print_menu( $t_this_page );
 	if ( count( array_diff( $t_job_users, array( $t_username ) ) ) > 0 && $t_file_upload_method == DISK )
 	{
 ?>
-<table align="center" class="width75" cellspacing="1">
+<table align="center" class="width75" cellspacing="0">
 
 <tr>
 	<td class="left">
 <?php
 		echo plugin_lang_get( 'job_users' ) . $t_username . '<hr />';
 ?>
-		<table align="center" class="width50" cellspacing="1">
+		<table align="center" class="width50" cellspacing="0">
 			<tr>
 				<th class="left">SAPI <a href="http://www.php.net/php_sapi_name">[?]</a></th>
 				<th class="left">Username</th>
@@ -90,7 +90,7 @@ ERP_print_menu( $t_this_page );
 ?>
 
 <form action="<?php echo plugin_page( $t_this_page . '_edit' )?>" method="post">
-<table align="center" class="width75" cellspacing="1">
+<table align="center" class="width75" cellspacing="0">
 
 <?php
 ERP_output_config_option( 'problems', 'header' );

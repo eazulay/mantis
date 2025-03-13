@@ -68,7 +68,7 @@
 <?php  echo form_security_field( 'profile_update' )?>
 <input type="hidden" name="action" value="add" />
 <table class="width75" cellspacing="0">
-<tr>
+<tr class="bottom-border">
 	<td class="form-title">
 		<input type="hidden" name="user_id" value="<?php echo $t_user_id ?>" />
 		<?php echo lang_get( 'add_profile_title' ) ?>

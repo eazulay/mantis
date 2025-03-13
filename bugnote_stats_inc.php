@@ -115,8 +115,8 @@ if ( ON != config_get('time_tracking_enabled') ) {
 		unset( $t_sort_name );
 ?>
 <br />
-<table border=0 class="width100" cellspacing="0" style="border:none;">
-	<tr class="row-category-history footer">
+<table border=0 class="width100" cellspacing="0">
+	<tr class="row-category-history">
 		<td class="small-caption" style="padding:8px;">
 			<?php echo lang_get( $t_name_field ) ?>
 		</td>

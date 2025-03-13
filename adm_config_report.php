@@ -94,7 +94,7 @@
 ?>
 <br />
 <div align="center">
-<table class="width100" cellspacing="1">
+<table class="width100 with-columns" cellspacing="0">
 
 <!-- Title -->
 <tr>

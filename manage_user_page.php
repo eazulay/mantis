@@ -214,14 +214,14 @@
 
 ?>
 <br />
-<table class="width100" cellspacing="1">
+<table class="width100 with-columns with-paging" cellspacing="0">
 <tr>
 	<td class="form-title" colspan="5">
 		<?php echo lang_get( 'manage_accounts_title' ) ?> [<?php echo $total_user_count ?>]
 		<?php print_button( 'manage_user_create_page.php', lang_get( 'create_new_account_link' ) ) ?>
 		<?php if ( $f_filter === 'UNUSED' ) echo print_button( 'manage_user_prune.php', lang_get( 'prune_accounts' ) ); ?>
 	</td>
-	<td class="center" colspan="3">
+	<td class="form-title center" colspan="3">
 		<form method="post" action="manage_user_page.php">
 		<?php # CSRF protection not required here - form does not result in modifications ?>
 		<input type="hidden" name="sort" value="<?php echo $c_sort ?>" />
