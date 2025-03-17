@@ -73,11 +73,12 @@ span.dependency_unmet	{ color: red; }
 span.dependency_upgrade	{ color: orange; }
 
 table.hide			{ width: 100%; border: solid 0px #ffffff; border-spacing: 0; }
-table.width100		{ width: 100%; border: solid 1px var(--border-color); border-radius: 8px; background: #fdfffe; }
-table.width90		{ width: 90%;  border: solid 1px var(--border-color); margin-left: auto; margin-right: auto; }
-table.width75		{ width: 75%;  border: solid 1px var(--border-color); margin-left: auto; margin-right: auto; border-radius: 8px; background: #fff; }
-table.width60		{ width: 60%;  border: solid 1px var(--border-color); margin-left: auto; margin-right: auto; }
-table.width50		{ width: 50%;  border: solid 1px var(--border-color); margin-left: auto; margin-right: auto; }
+table.width100		{ width: 100%; }
+table.width90		{ width: 90%;  margin-left: auto; margin-right: auto; }
+table.width75		{ width: 75%;  margin-left: auto; margin-right: auto; }
+table.width60		{ width: 60%;  margin-left: auto; margin-right: auto; }
+table.width50		{ width: 50%;  margin-left: auto; margin-right: auto; }
+table.width100, table.width90, table.width75, table.width60, table.width50 { border: solid 1px var(--border-color); border-radius: 8px; background: #fdfffe; }
 
 div.width100		{ width: 100%; border: solid 1px var(--border-color); padding:15px; }
 table.menu			{ width: 100%; border: none; }
@@ -98,7 +99,7 @@ th					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; pa
 tr:not(.row-category) th{  font-variant: small-caps; }
 th:not(:first-child)	{ border-left: 1px solid var(--border-color); }
 table#buglist tr > td:not(:first-child) { border-left: 1px solid var(--border-color); }
-table#buglist tr > td, table#buglist tr > th { border-bottom: 1px solid var(--border-color); }
+table#buglist tr:not(:last-child) > td, table#buglist tr > th { border-bottom: 1px solid var(--border-color); }
 table#buglist td	{ word-wrap: break-word; max-width: 300px; position: relative; }
 table#buglist tr.expandable td div { overflow: hidden; max-height: 74px; transition: max-height 1s; }
 table#buglist tr.expanded td div { overflow: hidden; max-height: 400px; transition: max-height 1s; }
@@ -164,9 +165,9 @@ tr.bug-primary > td:nth-child(2n + 3),
 .with-paging tr:last-child td { border-top: 1px solid var(--border-color); }
 
 /*tr.header, tr.footer{ background-color: #F7EBD9; }*/
-tr.header, tr.footer, td.form-title	{ background-color: #dbf1ed; }
+tr.header, tr.footer, tr:has(td.form-title)	{ background-color: #dbf1ed; }
 tr.header:not(:last-child) > td	{ border-bottom: 1px solid var(--border-color); }
-tr.footer > td					{ border-top: 1px solid var(--border-color); }
+/*tr.footer > td					{ border-top: 1px solid var(--border-color); }*/
 #filter_closed tr.footer > td	{ border-top: none; }
 tr.footer:first-child > td		{ padding: 0; }
 tr.bottom-border > td, tr.bottom-border > th { border-bottom: 1px solid var(--border-color); }
