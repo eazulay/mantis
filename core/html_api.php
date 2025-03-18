@@ -465,6 +465,7 @@ function html_top_banner() {
 	if( !is_blank( $t_page ) && file_exists( $t_page ) && !is_dir( $t_page ) ) {
 		include( $t_page );
 	} else if( $t_show_logo ) {
+		// Mantis Logo
 		echo '<div class="floatleft">';
 		if( $t_show_url ) {
 			echo '<a href="', config_get( 'logo_url' ), '">';
@@ -474,12 +475,12 @@ function html_top_banner() {
 			echo '</a>';
 		}
 		echo '</div>';
-
 		// GIW Logo
 		echo '<div class="floatright">';
 		echo '<img border="0" alt="Get IT Write International Logo" src="' . helper_mantis_url('images/GIW Logo.png') . '" style="border: 2px solid #c4ad85; border-radius: 5px;" />';
 		echo '</div>';
 	}
+	echo '<div style="clear: both;"></div>', "\n";
 
 	event_signal( 'EVENT_LAYOUT_PAGE_HEADER' );
 }

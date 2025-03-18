@@ -48,7 +48,7 @@
 <div align="center">
 <form method="post" action="set_project.php">
 <?php # CSRF protection not required here - form does not result in modifications ?>
-<table class="width50" cellspacing="1">
+<table class="width50" cellspacing="0">
 <tr>
 	<td class="form-title" colspan="2">
 		<input type="hidden" name="ref" value="<?php echo string_html_specialchars( $f_ref ) ?>" />

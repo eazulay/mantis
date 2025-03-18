@@ -49,7 +49,7 @@
 <form method="post" action="<?php print plugin_page('manage_proj_cat_update.php', true);?>">
 <?php echo form_security_field( 'manage_proj_cat_update' ) ?>
 <input type="hidden" name="project_id" value="<?php echo $f_project_id ?>"/>
-<table class="width50" cellspacing="1">
+<table class="width50" cellspacing="0">
 <tr>
 	<td class="form-title" colspan="2">
 		<?php echo lang_get( 'edit_project_category_title' ) ?>

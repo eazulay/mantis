@@ -49,7 +49,7 @@
 	<input type="hidden" name="field_id" value="<?php echo $f_field_id ?>" />
 	<input type="hidden" name="return" value="<?php echo $f_return ?>" />
 
-	<table class="width50" cellspacing="1">
+	<table class="width50" cellspacing="0">
 		<tr>
 			<td class="form-title" colspan="2">
 				<?php echo lang_get( 'edit_custom_field_title' ) ?>

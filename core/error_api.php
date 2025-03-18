@@ -158,7 +158,7 @@ function error_handler( $p_type, $p_error, $p_file, $p_line, $p_context=null ) {
 				}
 			}
 
-			echo '<br /><div align="center"><table class="width50" cellspacing="1">';
+			echo '<br /><div align="center"><table class="width50" cellspacing="0">';
 			echo '<tr><td class="form-title">', $t_error_type, '</td></tr>';
 			echo '<tr><td><p class="center" style="color:red">', $t_error_description, '</p></td></tr>';
 

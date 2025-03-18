@@ -46,7 +46,7 @@
 <div align="center">
 <form name="lost_password_form" method="post" action="lost_pwd.php">
 <?php echo form_security_field( 'lost_pwd' ) ?>
-<table class="width50" cellspacing="1">
+<table class="width50" cellspacing="0">
 <tr>
 	<td class="form-title" colspan="2">
 		<?php echo lang_get( 'lost_password_title' ) ?>

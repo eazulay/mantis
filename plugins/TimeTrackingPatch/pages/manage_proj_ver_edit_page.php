@@ -42,7 +42,7 @@
 <form method="post" action="<?php print plugin_page('manage_proj_ver_update.php', true);?>">
 <?php echo form_security_field( 'manage_proj_ver_update' ) ?>
 <input type="hidden" name="version_id" value="<?php echo string_attribute( $t_version->id ) ?>" />
-<table class="width50" cellspacing="1">
+<table class="width50" cellspacing="0">
 <tr>
 	<td class="form-title" colspan="2">
 		<?php echo lang_get( 'edit_project_version_title' ) ?>

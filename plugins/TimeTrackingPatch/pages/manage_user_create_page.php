@@ -39,7 +39,7 @@
 <div align="center">
 <form method="post" action="<?php print plugin_page('manage_user_create.php')?>">
 <?php echo form_security_field( 'manage_user_create' ) ?>
-<table class="width50" cellspacing="1">
+<table class="width50" cellspacing="0">
 <tr>
 	<td class="form-title" colspan="2">
 		<?php echo lang_get( 'create_new_account_title' ) ?>

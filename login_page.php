@@ -97,7 +97,7 @@
 <div align="center">
 <form name="login_form" method="post" action="login.php">
 <?php # CSRF protection not required here - form does not result in modifications ?>
-<table class="width50" cellspacing="1">
+<table class="width50" cellspacing="0">
 <tr class="header">
 	<td class="form-title">
 		<?php
