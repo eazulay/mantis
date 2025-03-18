@@ -326,4 +326,8 @@ div.main-page-content > ul { margin-top: 10px; }
 	input[type="text"][size="5"] { min-width: 56px; }
 	table.width100, table.width90, table.width75, table.width60 { width: 100%; }
 	table.width50 { width: 80%; }
+	table.width50 thead, table.width50 tbody, table.width50 tr, table.width50 th, table.width50 td { display: block; width: 100%; }
+	table.width50 td:not(:last-child) { border-bottom-width: 0; padding-bottom: 5px; }
+	table.width50 td:not(:first-child) { padding-top: 5px; }
+	table.width50 td input[type="text"], table.width50 td input[type="password"] { width: calc(100% - 42px); }
 }
