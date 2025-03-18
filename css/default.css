@@ -330,4 +330,5 @@ div.main-page-content > ul { margin-top: 10px; }
 	table.width50 td:not(:last-child) { border-bottom-width: 0; padding-bottom: 5px; }
 	table.width50 td:not(:first-child) { padding-top: 5px; }
 	table.width50 td input[type="text"], table.width50 td input[type="password"] { width: calc(100% - 42px); }
+	input, textarea { font-size: 1rem; }
 }
