@@ -168,7 +168,7 @@ tr.bug-primary > td:nth-child(2n + 3),
 tr.header, tr.footer, tr:has(td.form-title)	{ background-color: #dbf1ed; }
 tr.header:not(:last-child) > td		{ border-bottom: 1px solid var(--border-color); }
 table:not(#buglist) tr.footer > td	{ border-top: 1px solid var(--border-color); }
-#filter_closed tr.footer > td		{ border-top: none; }
+#filter_closed tr.footer > td		{ border-top: none !important; }
 tr.footer:first-child > td			{ padding: 0; }
 tr.bottom-border > td, tr.bottom-border > th { border-bottom: 1px solid var(--border-color); }
 
