@@ -480,7 +480,7 @@ function html_top_banner() {
 		echo '<img border="0" alt="Get IT Write International Logo" src="' . helper_mantis_url('images/GIW Logo.png') . '" style="border: 2px solid #c4ad85; border-radius: 5px;" />';
 		echo '</div>';
 	}
-	echo '<div style="clear: both;"></div>', "\n";
+	echo '<div style="width:100%; clear:both;"></div>', "\n";
 
 	event_signal( 'EVENT_LAYOUT_PAGE_HEADER' );
 }
