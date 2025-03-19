@@ -87,10 +87,8 @@ table.menu			{ width: 100%; border: none; }
 @keyframes hide         { from { opacity: 1; filter:alpha(opacity=100); } to { opacity: 0; filter:alpha(opacity=0); } }
 
 tr.row-category th	{ text-align: center; }
-th					{ padding: 8px; text-align: center; color: #212121; vertical-align: top;
-					  font-family: Montserrat, arial, sans-serif; font-size: 0.8125rem; font-weight: 600; }
-tr:not(.row-category) th	{  }
-th:not(:first-child)		{ border-left: 1px solid var(--border-color); }
+th { padding: 8px; text-align: center; color: #212121; vertical-align: top; font-family: Montserrat, arial, sans-serif; font-size: 0.8125rem; font-weight: 600; }
+th:not(:first-child){ border-left: 1px solid var(--border-color); }
 table#buglist tr > td:not(:first-child) { border-left: 1px solid var(--border-color); }
 table#buglist tr:not(:last-child) > td, table#buglist tr > th { border-bottom: 1px solid var(--border-color); }
 table#buglist td	{ word-wrap: break-word; max-width: 300px; position: relative; }
