@@ -3,7 +3,7 @@
 }
 html { scroll-behavior: smooth; }
 body {
-	background-color: #EFF6F5;
+	background-color: #f3f9f8;
 	color: #333;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 0.75rem;
@@ -28,28 +28,28 @@ form				{ display: inline; }
 textarea			{ padding: 5px 8px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 0.8125rem; width: calc(100% - 18px); border-color: var(--border-color); border-width: 1px; border-radius: 5px; }
 input				{ padding: 5px 8px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 0.8125rem; border-color: var(--border-color); border-width: 1px; margin-bottom: 1px; border-radius: 5px; }
 input[type="button"], input[type="submit"], input.button, input.button-small, a.button, button {
-	background-color: #DEF4F7;
-/*	background: -webkit-linear-gradient(#E2E7E6, #E8F2C8);
-	background: -o-linear-gradient(#E2E7E6, #E8F2C8);
-	background: -moz-linear-gradient(#E2E7E6, #E8F2C8);
-	background: linear-gradient(#e8f7f5, #349888);*/
+	background-color: #E9E9ED;
     color: #212121;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgba(255,255,255,0.5) rgba(0,0,0,0.5) rgba(0,0,0,0.5) rgba(255,255,255,0.5);
+	border: 1px solid #67676b;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
 	padding: 4px 8px;
     font-size: 0.8125rem;
+	white-space: nowrap;
 }
 input.button-small button.button-small {
     font-size: 0.75rem;
 }
 input[type="button"]:hover:not(:disabled), input[type="submit"]:hover:not(:disabled), input.button:hover:not(:disabled), input.button-small:hover:not(:disabled), a.button:hover, button:hover:not(:disabled) {
-	background-color: #eef9fb;
+	background-color: #d0d0d7;
+}
+input[type="button"]:active, input[type="submit"]:active, input.button:active, input.button-small:active, a.button:active, button:active {
+	background-color: #d0d0d7;
+	box-shadow: none;
 }
 input[type="submit"]:disabled, input[type="button"]:disabled {
-	color: #788798;
+	color: #d0d0d7;
 	border-color: RGBA(232,245,232,0.3) RGBA(63,118,53,0.3) RGBA(63,118,53,0.3) RGBA(232,245,232,0.3);
 }
 input[type="checkbox"] {
@@ -77,7 +77,7 @@ table.width90		{ width: 90%;  margin-left: auto; margin-right: auto; }
 table.width75		{ width: 75%;  margin-left: auto; margin-right: auto; }
 table.width60		{ width: 60%;  margin-left: auto; margin-right: auto; }
 table.width50		{ width: 50%;  margin-left: auto; margin-right: auto; }
-table.width100, table.width90, table.width75, table.width60, table.width50 { border: solid 1px var(--border-color); border-radius: 8px; background: #fdfffe; }
+table.width100, table.width90, table.width75, table.width60, table.width50 { border: solid 1px var(--border-color); border-radius: 8px; background: #f9fcfc; }
 
 div.width100		{ width: 100%; border: solid 1px var(--border-color); padding:15px; }
 table.menu			{ width: 100%; border: none; }
@@ -113,7 +113,8 @@ table.width90 textarea			{ padding: 4px 8px; }
 input::placeholder, textarea::placeholder { color: #555; }
 table.width90 select			{ min-width: 280px; padding: 7px 8px 8px; }
 table.width90 input.error, table.width90 select.error, table.width90 textarea.error { border: 1px solid #b00; }
-td tr:first-child.vcenter td{ padding: 0px 8px; }
+td tr:first-child.vcenter td{ padding: 0px 10px; }
+tr.footer td input.button	{ margin-left: 10px; margin-right: 10px; }
 .row-2 td.small-caption		{ text-align: center; }
 #history_open .row-2 td.small-caption, #bugnotestats_open .row-2 td.small-caption	{ text-align: left; }
 .row-2 td.small-caption #due_date { width:102px; }
