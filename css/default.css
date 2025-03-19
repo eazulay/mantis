@@ -25,8 +25,8 @@ a > img				{ border: none; }
 
 form				{ display: inline; }
 
-textarea			{ padding: 5px 8px; font-size: 0.8125rem; width: calc(100% - 18px); border-color: var(--border-color); border-width: 1px; border-radius: 5px; }
-input				{ padding: 5px 8px; font-size: 0.8125rem; border-color: var(--border-color); border-width: 1px; margin-bottom: 1px; border-radius: 5px; }
+textarea			{ padding: 5px 8px; font-family: Montserrat, arial, sans-serif; font-size: 0.8125rem; width: calc(100% - 18px); border-color: var(--border-color); border-width: 1px; border-radius: 5px; }
+input				{ padding: 5px 8px; font-family: Montserrat, arial, sans-serif; font-size: 0.8125rem; border-color: var(--border-color); border-width: 1px; margin-bottom: 1px; border-radius: 5px; }
 input[type="button"], input[type="submit"], input.button, input.button-small, a.button, button {
 	background-color: #E9E9ED;
     color: #212121;
