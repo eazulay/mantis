@@ -731,13 +731,13 @@
 		echo '<tr class="bug-primary row-2">';
 		# Bug ID
 		echo '<td class="category" width="7%">', $tpl_show_id ? lang_get( 'issue_id' ) : '', '</td>';
-		echo '<td class="center" width="9%">', $tpl_formatted_bug_id, '</td>';
+		echo '<td width="9%">', $tpl_formatted_bug_id, '</td>';
 		# Date Submitted
 		echo '<td class="category" width="8%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
-		echo '<td class="center" width="11%">', $tpl_date_submitted, '</td>';
+		echo '<td width="11%">', $tpl_date_submitted, '</td>';
 		# Reporter
 		echo '<td class="category" width="7%">', $tpl_show_reporter ? lang_get( 'reporter' ) : '', '</td>';
-		echo '<td class="center" width="14%">';
+		echo '<td width="14%">';
 		if ( $submitter != '' && $submitter != user_get_name( $tpl_bug->reporter_id ) )
 			echo $submitter . ' for ';
 		print_user_with_subject( $tpl_bug->reporter_id, $tpl_bug_id );
@@ -749,11 +749,11 @@
 		}
 		# Category
 		echo '<td class="category" width="7%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
-		echo '<td class="center" width="9%">', $tpl_category, '</td>';
+		echo '<td width="9%">', $tpl_category, '</td>';
 		# Status
 		echo '<td class="category" width="6%" rowspan="2">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
 		if ( $tpl_show_status ) {
-			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="8%" rowspan="2">', $tpl_status, '</td>';
+			echo '<td bgcolor="', get_status_color( $tpl_bug->status ), '" width="8%" rowspan="2">', $tpl_status, '</td>';
 		}
 		echo '</tr>';
 	}
@@ -762,28 +762,28 @@
 		echo '<tr class="bug-primary row-1">';
 		# Project
 		echo '<td class="category">', $tpl_show_project ? lang_get( 'email_project' ) : '', '</td>';
-		echo '<td class="center';
+		echo '<td';
 		if ($tpl_is_root_project)
-			echo ' error';
-		echo '">', $tpl_project_name, '</td>';
+			echo ' class="error"';
+		echo '>', $tpl_project_name, '</td>';
 		# Date Updated
 		echo '<td class="category">', $tpl_show_last_updated ? lang_get( 'last_update' ) : '','</td>';
-		echo '<td class="center">', $tpl_last_updated, '</td>';
+		echo '<td>', $tpl_last_updated, '</td>';
 		# Handler
 		echo '<td class="category">', $tpl_show_handler ? lang_get( 'assigned_to' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		print_user_with_subject( $tpl_bug->handler_id, $tpl_bug_id );
 		echo '';
 		# Platform (now Device/Profile)
 		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_platform ? lang_get( 'platform' ) : '', '</td>';
-			echo '<td class="center">',$tpl_show_platform ? $tpl_platform : '', '</td>';
+			echo '<td>',$tpl_show_platform ? $tpl_platform : '', '</td>';
 		}
 		# Type (Custom field)
 		$t_type_def = custom_field_get_definition( 1 );
 		$tpl_show_type = custom_field_has_read_access( 1, $f_bug_id );
 		echo '<td class="category">', $tpl_show_type ? string_display( lang_get_defaulted( $t_type_def['name'] ) ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_type) # has read access
 			print_custom_field_value( $t_type_def, 1, $f_bug_id );
 		echo '</td>';
@@ -794,34 +794,34 @@
 		echo '<tr class="bug-primary row-2">';
 		# View Status (Visibility)
 		echo '<td class="category">', $tpl_show_view_state ? lang_get( 'view_status' ) : '', '</td>';
-		echo '<td class="center">', $tpl_bug_view_state_enum, '</td>';
+		echo '<td>', $tpl_bug_view_state_enum, '</td>';
 		# Due Date
 		echo '<td class="category">', $tpl_show_due_date ? lang_get( 'due_date' ) : '', '</td>';
 		if ( $tpl_show_due_date ) {
 			if ( $tpl_bug_overdue ) {
 				echo '<td class="overdue">', $tpl_bug_due_date, '</td>';
 			} else {
-				echo '<td class="center">', $tpl_bug_due_date, '</td>';
+				echo '<td>', $tpl_bug_due_date, '</td>';
 			}
 		} else
 			echo '<td />';
 		echo '';
 		# Notes By
 		echo '<td class="category">', 'Notes By', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		include( $tpl_mantis_dir . 'bugnote_userlist_inc.php' );
 		echo '</td>';
 		# Operating System (now OS and Version)
 		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_os ? lang_get( 'os' ) : '', '</td>';
-			echo '<td class="center">', $tpl_os, '</td>';
+			echo '<td>', $tpl_os, '</td>';
 		}
 		# Severity
 		echo '<td class="category">', $tpl_show_severity ? lang_get( 'severity' ) : '', '</td>';
-		echo '<td class="center">', $tpl_severity, '</td>';
+		echo '<td>', $tpl_severity, '</td>';
 		# Priority
 		echo '<td class="category">', $tpl_show_priority ? lang_get( 'priority' ) : '', '</td>';
-		echo '<td class="center">', $tpl_priority, '</td>';
+		echo '<td>', $tpl_priority, '</td>';
 		echo '</tr>';
 	}
 
@@ -832,27 +832,27 @@
 		echo '">';
 		# No. of Notes
 		echo '<td class="category">', lang_get( 'notes' ), '</td>';
-		echo '<td class="center">', $t_bugnote_count == 0 ? lang_get( 'none' ) : $t_bugnote_count, '</td>';
+		echo '<td>', $t_bugnote_count == 0 ? lang_get( 'none' ) : $t_bugnote_count, '</td>';
 		# ETA
 		echo '<td class="category">', $tpl_show_eta ? lang_get( 'eta' ) : '', '</td>';
-		echo '<td class="center">', $tpl_eta, '</td>';
+		echo '<td>', $tpl_eta, '</td>';
 		# User list monitoring the bug
 		echo '<td class="category">', $tpl_show_monitor_box ? lang_get( 'users_monitoring_bug' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_monitor_box )
 			include( $tpl_mantis_dir . 'bug_monitor_list_view_inc.php' );
 		echo '</td>';
 		# OS Version (now Browser)
 		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_os_version ? lang_get( 'os_version' ) : '', '</td>';
-			echo '<td class="center">', $tpl_os_version, '</td>';
+			echo '<td>', $tpl_os_version, '</td>';
 		}
 		# Reproducibility
 		echo '<td class="category">', $tpl_show_reproducibility ? lang_get( 'reproducibility' ) : '', '</td>';
-		echo '<td class="center">', $tpl_reproducibility, '</td>';
+		echo '<td>', $tpl_reproducibility, '</td>';
 		# Resolution
 		echo '<td class="category">', $tpl_show_resolution ? lang_get( 'resolution' ) : '', '</td>';
-		echo '<td class="center">', $tpl_resolution, '</td>';
+		echo '<td>', $tpl_resolution, '</td>';
 		echo '</tr>';
 	}
 
@@ -860,19 +860,19 @@
 		echo '<tr class="bug-primary row-2 bottom-border">';
 		# Product Version
 		echo '<td class="category">', $tpl_show_product_version ? lang_get( 'product_version' ) : '', '</td>';
-		echo '<td class="center">', $tpl_product_version_string, '</td>';
+		echo '<td>', $tpl_product_version_string, '</td>';
 		# Product Build
 		echo '<td class="category">', $tpl_show_product_build ? lang_get( 'product_build' ) : '', '</td>';
-		echo '<td class="center">', $tpl_product_build, '</td>';
+		echo '<td>', $tpl_product_build, '</td>';
 		# Target Version
 		echo '<td class="category">', $tpl_show_target_version ? lang_get( 'target_version' ) : '', '</td>';
-		echo '<td class="center">', $tpl_target_version_string, '</td>';
+		echo '<td>', $tpl_target_version_string, '</td>';
 		# Fixed in Version
 		echo '<td class="category">', $tpl_show_fixed_in_version ? lang_get( 'fixed_in_version' ) : '', '</td>';
-		echo '<td class="center">', $tpl_fixed_in_version_string, '</td>';
+		echo '<td>', $tpl_fixed_in_version_string, '</td>';
 		# Projection
 		echo '<td class="category">', $tpl_show_projection ? lang_get( 'projection' ) : '', '</td>';
-		echo '<td class="center">', $tpl_projection, '</td>';
+		echo '<td>', $tpl_projection, '</td>';
 		echo '</tr>';
 	}
 

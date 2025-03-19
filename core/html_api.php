@@ -851,7 +851,7 @@ function print_menu() {
 function jump_issue_form($fieldsClass = '') {
 	echo '<form method="post" action="' . helper_mantis_url( 'jump_to_bug.php">' );
 	# CSRF protection not required here - form does not result in modifications
-
+	echo '<input type="submit" class="button-'.$fieldsClass.'" value="' . lang_get( 'jump' ) . ':" />&#160;';
 	if( ON == config_get( 'use_javascript' ) ) {
 		$t_bug_label = lang_get( 'issue_id' );
 		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"$fieldsClass\" value=\"$t_bug_label\" onfocus=\"if (this.value == '$t_bug_label') this.value = ''\" onblur=\"if (this.value == '') this.value = '$t_bug_label'\" />&#160;";
@@ -859,7 +859,6 @@ function jump_issue_form($fieldsClass = '') {
 		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"$fieldsClass\" />&#160;";
 	}
 
-	echo '<input type="submit" class="button-'.$fieldsClass.'" value="' . lang_get( 'jump' ) . '" />&#160;';
 	echo '</form>';
 }
 

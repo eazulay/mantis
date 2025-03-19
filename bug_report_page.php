@@ -252,9 +252,9 @@
 	<tr <?php echo helper_alternate_class() ?> id="profile_fields">
 		<td colspan="2" class="none">
 			<?php if( ON == config_get( 'use_javascript' ) ) { ?>
+				<strong style="display:inline-block; vertical-align:top;"><?php echo lang_get( 'or_fill_in' ); ?></strong>
 				<?php collapse_open( 'profile' ); collapse_icon('profile'); ?>
-				<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
-			<table class="width100" cellspacing="0" style="margin:10px 10px 0;">
+			<table class="width100" cellspacing="0" style="margin:10px 3px 0;">
 					<?php } else { ?>
 						<strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
 					<?php } ?>
@@ -270,7 +270,7 @@
 							</select>
 							<?php
 								} else {
-									projax_autocomplete( 'platform_get_with_prefix', 'platform', array( 'value' => $f_platform, 'size' => '32', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
+									projax_autocomplete( 'platform_get_with_prefix', 'platform', array( 'value' => $f_platform, 'size' => '29', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
 								}
 							?>
 						</td>
@@ -287,7 +287,7 @@
 							</select>
 							<?php
 								} else {
-									projax_autocomplete( 'os_get_with_prefix', 'os', array( 'value' => $f_os, 'size' => '32', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
+									projax_autocomplete( 'os_get_with_prefix', 'os', array( 'value' => $f_os, 'size' => '29', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
 								}
 							?>
 						</td>
@@ -306,14 +306,14 @@
 								</select>
 							<?php
 								} else {
-									projax_autocomplete( 'os_build_get_with_prefix', 'os_build', array( 'value' => $f_os_build, 'size' => '32', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
+									projax_autocomplete( 'os_build_get_with_prefix', 'os_build', array( 'value' => $f_os_build, 'size' => '29', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
 								}
 							?>
 						</td>
 					</tr>
 			<?php if( ON == config_get( 'use_javascript' ) ) { ?>
 			</table>
-			<?php collapse_closed( 'profile' ); collapse_icon('profile'); ?> <strong><?php echo lang_get( 'or_fill_in' ); ?></strong>
+			<?php collapse_closed( 'profile' ); collapse_icon('profile'); ?>
 			<?php collapse_end( 'profile' ); ?>
 		<?php } ?>
 		</td>
@@ -465,7 +465,7 @@
 			<?php print_documentation_link( 'summary' ) ?><span class="required">*</span>
 		</td>
 		<td>
-			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" style="width:99%" />
+			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" style="width:calc(100% - 18px);" />
 			<input type="hidden" name="description" value="" />
 		</td>
 	</tr>
@@ -570,7 +570,7 @@
 
 	if ( $t_has_develper_access_level ) { ?>
 	<tr <?php echo helper_alternate_class() ?>>
-		<td class="category">
+		<td class="category" style="padding-top: 0.5em;">
 			<?php print_documentation_link( 'report_stay' ) ?>
 		</td>
 		<td>
@@ -579,11 +579,13 @@
 	</tr>
 <?php }
 ?>
-	<tr class="footer">
-		<td class="left">
+	<tr>
+		<td class="left" colspan="2" style="padding-top: 1em;">
 			<span class="required"> * <?php echo lang_get( 'required' ) ?></span>
 		</td>
-		<td class="center">
+	</tr>
+	<tr class="footer">
+		<td class="center" colspan="2">
 			<input <?php echo helper_get_tab_index() ?> type="submit" class="button" value="<?php echo lang_get( 'submit_report_button' ) ?>" />
 		</td>
 	</tr>
