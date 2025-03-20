@@ -711,12 +711,12 @@ function prepare_custom_menu_options( $p_config ) {
  */
 function print_menu() {
 	if( auth_is_user_authenticated() ) {
-		$t_protected = current_user_get_field( 'protected' );
 		$t_current_project = helper_get_current_project();
 
 		echo '<table class="menu" cellspacing="0">';
 		echo '<tr>';
-		echo '<td class="menu">';
+		echo '<td class="left nowrap" width="15%"></td>';
+		echo '<td class="menu" width="70%">';
 		$t_menu_options = array();
 		$t_admin_menu_options = array();
 
@@ -821,11 +821,6 @@ function print_menu() {
 			}
 		}
 
-		# Account Page (only show accounts that are NOT protected)
-		if( OFF == $t_protected ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'account_page.php">' ) . lang_get( 'account_link' ) . '</a>';
-		}
-
 		# Add custom options
 		$t_custom_options = prepare_custom_menu_options( 'main_menu_custom_options' );
 		$t_menu_options = array_merge( $t_menu_options, $t_custom_options );
@@ -835,22 +830,19 @@ function print_menu() {
 			$t_admin_menu_options[] = '<a href="' . helper_mantis_url( 'billing_page.php">' ) . lang_get( 'time_tracking_billing_link' ) . '</a>';
 		}
 
-		# Logout (no if anonymously logged in)
-		if( !current_user_is_anonymous() ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'logout_page.php">' ) . lang_get( 'logout_link' ) . '</a>';
-		}
 		echo implode( ' | ', $t_menu_options );
 		echo '</td>';
-		echo '<td class="right nowrap">';
+		echo '<td class="right nowrap" width="15%">';
 		jump_issue_form('small');
 		echo '</td>';
 		echo '</tr>';
 		if ( count( $t_admin_menu_options ) > 0 ) {
 			echo '<tr>';
-			echo '<td class="menu">';
+			echo '<td class="left nowrap" width="15%"></td>';
+			echo '<td class="menu" width="70%">';
 			echo implode( ' | ', $t_admin_menu_options );
 			echo '</td>';
-			echo '<td class="right nowrap">';
+			echo '<td class="right" width="15%">';
 			print_recently_visited();
 			echo '</td>';
 			echo '</tr>';
@@ -871,9 +863,9 @@ function jump_issue_form($fieldsClass = '') {
 	echo '<input type="submit" class="button-'.$fieldsClass.'" value="' . lang_get( 'jump' ) . ':" />&#160;';
 	if( ON == config_get( 'use_javascript' ) ) {
 		$t_bug_label = lang_get( 'issue_id' );
-		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"$fieldsClass\" value=\"$t_bug_label\" onfocus=\"if (this.value == '$t_bug_label') this.value = ''\" onblur=\"if (this.value == '') this.value = '$t_bug_label'\" />&#160;";
+		echo "<input type=\"text\" name=\"bug_id\" size=\"4\" class=\"$fieldsClass\" value=\"$t_bug_label\" onfocus=\"if (this.value == '$t_bug_label') this.value = ''\" onblur=\"if (this.value == '') this.value = '$t_bug_label'\" />&#160;";
 	} else {
-		echo "<input type=\"text\" name=\"bug_id\" size=\"10\" class=\"$fieldsClass\" />&#160;";
+		echo "<input type=\"text\" name=\"bug_id\" size=\"4\" class=\"$fieldsClass\" />&#160;";
 	}
 
 	echo '</form>';
@@ -885,10 +877,12 @@ function jump_issue_form($fieldsClass = '') {
  */
 function print_project_menu_bar() {
 	$t_project_ids = current_user_get_accessible_projects();
+	$t_protected = current_user_get_field( 'protected' );
 
 	echo '<table class="menu" cellspacing="0">';
 	echo '<tr>';
-    echo '<td class="menu project-menu">';
+	echo '<td class="right nowrap" width="15%"></td>';
+    echo '<td class="menu project-menu" width="70%">';
     echo '<ul class="project-menu">';
     echo '<li class="menu-item">';
 	echo '<a href="' . helper_mantis_url( 'set_project.php?project_id=' . ALL_PROJECTS ) . '">' . lang_get( 'all_projects' ) . '</a>';
@@ -898,6 +892,19 @@ function print_project_menu_bar() {
 		echo '<a href="' . helper_mantis_url( 'set_project.php?project_id=' . $t_id ) . '">' . string_html_specialchars( project_get_field( $t_id, 'name' ) ) . '</a>';
         print_subproject_menu_bar( $t_id, $t_id . ';' );
         echo '</li>';
+	}
+
+	echo '</td>';
+	echo '<td class="right nowrap" width="15%">';
+
+	# Account Page (only show accounts that are NOT protected)
+	if( OFF == $t_protected ) {
+		echo '<a href="' . helper_mantis_url( 'account_page.php">' ) . lang_get( 'account_link' ) . '</a>';
+	}
+
+	# Logout (no if anonymously logged in)
+	if( !current_user_is_anonymous() ) {
+		echo ' | <a href="' . helper_mantis_url( 'logout_page.php">' ) . lang_get( 'logout_link' ) . '</a>';
 	}
 
 	echo '</td>';

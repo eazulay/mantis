@@ -46,12 +46,12 @@
 	if ( !current_user_is_anonymous() ) {
 		// $t_current_user_id = auth_get_current_user_id();
 		// $t_hide_status = config_get( 'bug_resolved_status_threshold' );
-
+/*
 		echo '<div class="quick-summary-right">';
 		echo lang_get( 'last_visit' ) . ': ';
 		echo date( config_get( 'normal_date_format' ), current_user_get_field( 'last_visit' ) );
 		echo '</div>';
-
+*/
 		echo '<div class="main-page-content">
 	<h4>I want to:</h4>
 	<ul>

@@ -1219,7 +1219,7 @@ $s_updated = 'Updated';
 $s_sticky = 'Show Sticky Issues';
 $s_sort = 'Sort by';
 $s_issue_id = 'Issue #';
-$s_recently_visited = 'Recently Visited';
+$s_recently_visited = 'Recent';
 $s_priority_abbreviation = 'P';
 $s_note_user_id = 'Note By';
 
