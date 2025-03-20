@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
-	--border-color: #5ba6a0;
+	--border-color: #56ab9c;
 }
 html			{ scroll-behavior: smooth; }
 body			{ background-color: #f3f9f8; color: #333; font-family: Inter, Arial, sans-serif; font-size: 0.75rem; margin: 10px 20px; }
@@ -160,7 +160,7 @@ tr.bug-primary > td:nth-child(2n + 3),
 .with-paging tr:last-child td { border-top: 1px solid var(--border-color); }
 
 /*tr.header, tr.footer{ background-color: #F7EBD9; }*/
-tr.header, tr.footer, tr:has(td.form-title), tr:has(th.form-title) { background-color: #ceeae6; }
+tr.header, tr.footer, tr:has(td.form-title), tr:has(th.form-title) { background-color: #d1e8e4; }
 th.form-title, tr.header:not(:last-child) > td	{ border-bottom: 1px solid var(--border-color); }
 table:not(#buglist) tr.footer > td	{ border-top: 1px solid var(--border-color); }
 table.width90 tr.footer > td		{ padding: 8px 12px; }
@@ -191,9 +191,9 @@ td.bugnote-public	{ /*background-color: #F6E6CB;*/ color: #212121; font-weight: 
 	background: -moz-linear-gradient(#FCF5ED, #F6E6CB);
 	background: linear-gradient(#FCF5ED, #F6E6CB);*/
 }
-td.bugnote-private		{ background-color: #d2eace; color: #212121; font-weight: bold; width: 25%; line-height: 1.4; vertical-align: top; }
+td.bugnote-private		{ background-color: #e2f1ee; color: #212121; font-weight: bold; width: 25%; line-height: 1.4; vertical-align: top; }
 td.bugnote-note-public	{ /*background-color: #FEFAF5;*/ color: #212121; width: 75%; vertical-align: top; /*border-left: 1px solid var(--border-color);*/ }
-td.bugnote-note-private	{ background-color: #d2eace; color: #212121; width: 75%; vertical-align: top; }
+td.bugnote-note-private	{ background-color: #e2f1ee; color: #212121; width: 75%; vertical-align: top; }
 tr.bugnote-hashelp td:first-child { border-right: 6px solid #49ab9d; }
 tr.bugnote-hashelp td:last-child strong { color: #007a7c; }
 
