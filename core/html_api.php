@@ -204,6 +204,7 @@ function html_page_top1( $p_page_title = null ) {
  * @return null
  */
 function html_page_top2($p_page_title = null) {
+	global $admin_menu_printed;
 	html_page_top2a();
 
 	if( !db_is_connected() ) {
@@ -219,8 +220,9 @@ function html_page_top2($p_page_title = null) {
 		}
 	}
 
-	//if ($p_page_title != 'Main')
-	print_menu();
+	$admin_menu_printed = false;
+	if( print_menu() )
+		$admin_menu_printed = true;
 
 	event_signal( 'EVENT_LAYOUT_CONTENT_BEGIN' );
 }
@@ -705,7 +707,7 @@ function prepare_custom_menu_options( $p_config ) {
 
 /**
  * Print the main menu
- * @return null
+ * @return bool true if Admin menu was printed, with Recently visited issues
  */
 function print_menu() {
 	if( auth_is_user_authenticated() ) {
@@ -716,6 +718,7 @@ function print_menu() {
 		echo '<tr>';
 		echo '<td class="menu">';
 		$t_menu_options = array();
+		$t_admin_menu_options = array();
 
 		# Main Page
 		$t_menu_options[] = '<a href="' . helper_mantis_url( 'main_page.php' ) . '">' . lang_get( 'main_link' ) . '</a>';
@@ -747,17 +750,17 @@ function print_menu() {
 
 		# Changelog Page
 		if( access_has_project_level( config_get( 'view_changelog_threshold' ) ) ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'changelog_page.php">' ) . lang_get( 'changelog_link' ) . '</a>';
+			$t_admin_menu_options[] = '<a href="' . helper_mantis_url( 'changelog_page.php">' ) . lang_get( 'changelog_link' ) . '</a>';
 		}
 
 		# Roadmap Page
 		if( access_has_project_level( config_get( 'roadmap_view_threshold' ) ) ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'roadmap_page.php">' ) . lang_get( 'roadmap_link' ) . '</a>';
+			$t_admin_menu_options[] = '<a href="' . helper_mantis_url( 'roadmap_page.php">' ) . lang_get( 'roadmap_link' ) . '</a>';
 		}
 
 		# Summary Page
 		if( access_has_project_level( config_get( 'view_summary_threshold' ) ) ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'summary_page.php">' ) . lang_get( 'summary_link' ) . '</a>';
+			$t_admin_menu_options[] = '<a href="' . helper_mantis_url( 'summary_page.php">' ) . lang_get( 'summary_link' ) . '</a>';
 		}
 
 		# Project Documentation Page
@@ -787,7 +790,7 @@ function print_menu() {
 		# Manage Users (admins) or Manage Project (managers) or Manage Custom Fields
 		if( access_has_global_level( config_get( 'manage_site_threshold' ) ) ) {
 			$t_link = helper_mantis_url( 'manage_overview_page.php' );
-			$t_menu_options[] = "<a href=\"$t_link\">" . lang_get( 'manage_link' ) . '</a>';
+			$t_admin_menu_options[] = "<a href=\"$t_link\">" . lang_get( 'manage_link' ) . '</a>';
 		} else {
 			$t_show_access = min( config_get( 'manage_user_threshold' ), config_get( 'manage_project_threshold' ), config_get( 'manage_custom_fields_threshold' ) );
 			if( access_has_global_level( $t_show_access ) || access_has_any_project( $t_show_access ) ) {
@@ -801,7 +804,7 @@ function print_menu() {
 						$t_link = helper_mantis_url( 'manage_proj_page.php' );
 					}
 				}
-				$t_menu_options[] = "<a href=\"$t_link\">" . lang_get( 'manage_link' ) . '</a>';
+				$t_admin_menu_options[] = "<a href=\"$t_link\">" . lang_get( 'manage_link' ) . '</a>';
 			}
 		}
 
@@ -827,7 +830,7 @@ function print_menu() {
 
 		# Time Tracking / Billing
 		if( config_get( 'time_tracking_enabled' ) && access_has_global_level( config_get( 'time_tracking_reporting_threshold' ) ) ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'billing_page.php">' ) . lang_get( 'time_tracking_billing_link' ) . '</a>';
+			$t_admin_menu_options[] = '<a href="' . helper_mantis_url( 'billing_page.php">' ) . lang_get( 'time_tracking_billing_link' ) . '</a>';
 		}
 
 		# Logout (no if anonymously logged in)
@@ -840,8 +843,20 @@ function print_menu() {
 		jump_issue_form('small');
 		echo '</td>';
 		echo '</tr>';
+		if ( count( $t_admin_menu_options ) > 0 ) {
+			echo '<tr>';
+			echo '<td class="menu">';
+			echo implode( ' | ', $t_admin_menu_options );
+			echo '</td>';
+			echo '<td class="right nowrap">';
+			print_recently_visited();
+			echo '</td>';
+			echo '</tr>';
+		}
 		echo '</table>';
+		return count( $t_admin_menu_options ) > 0;
 	}
+	return false;
 }
 
 /**

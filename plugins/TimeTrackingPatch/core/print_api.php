@@ -1633,7 +1633,8 @@ function print_rss( $p_feed_url, $p_title = '' ) {
 
 # Prints the recently visited issues.
 function print_recently_visited() {
-	if( !last_visited_enabled() ) {
+	global $admin_menu_printed;
+	if( !last_visited_enabled() || $admin_menu_printed ) {
 		return;
 	}
 

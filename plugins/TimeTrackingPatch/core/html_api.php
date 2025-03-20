@@ -218,6 +218,7 @@ function html_page_top2() {
 			echo '<br />';
 		}
 	}
+	
 	print_menu();
 
 	event_signal( 'EVENT_LAYOUT_CONTENT_BEGIN' );
@@ -837,7 +838,7 @@ function print_menu() {
 		if( !current_user_is_anonymous() ) {
 			$t_menu_options[] = '<a href="' . helper_mantis_url( 'logout_page.php">' ) . lang_get( 'logout_link' ) . '</a>';
 		}
-		echo implode( $t_menu_options, ' | ' );
+		echo implode( ' | ', $t_menu_options );
 		echo '</td>';
 		echo '<td class="menu right nowrap">';
 		echo '<form method="post" action="' . helper_mantis_url( 'jump_to_bug.php">' );
@@ -1377,10 +1378,9 @@ function html_button_bug_change_status( $p_bug_id ) {
 	$t_enum_list = get_status_option_list( $t_current_access, $t_bug_current_state, false, ( bug_get_field( $p_bug_id, 'reporter_id' ) == auth_get_current_user_id() && ( ON == config_get( 'allow_reporter_close' ) ) ), $t_bug_project_id );
 
 	if( count( $t_enum_list ) > 0 ) {
-
 		# resort the list into ascending order after noting the key from the first element (the default)
-		$t_default_arr = each( $t_enum_list );
-		$t_default = $t_default_arr['key'];
+		reset( $t_enum_list );
+		$t_default = key( $t_enum_list );
 		ksort( $t_enum_list );
 		reset( $t_enum_list );
 
