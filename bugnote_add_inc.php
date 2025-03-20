@@ -48,7 +48,7 @@
 <span style="font-weight:normal;">
 OR<br>
 <br>
-To email someone whom Mantis does not notify, click [Open Email Client]. Mantis will add your email as a Note. Issue #, Subject and cc to Mantis are included so a recipient Mantis user can click [Reply All] to add to this Issue.</span>
+To email someone whom Mantis does not notify, click [Open Email]. Mantis will add your email as a Note. Issue #, Subject and cc to Mantis are included so a recipient Mantis user can click [Reply All] to add to this Issue.</span>
 	</td>
 	<td width="75%">
 		<textarea name="bugnote_text" cols="80" rows="10"></textarea>
@@ -161,7 +161,7 @@ To email someone whom Mantis does not notify, click [Open Email Client]. Mantis 
 <tr class="footer">
 	<td class="center" colspan="2">
 		<input type="submit" class="button" value="<?php echo lang_get( 'add_bugnote_button' ) ?>" />
-		<input type="button" class="button" value="Open Email Client" onclick="window.location='mailto:<?php echo $recipients."?cc=$mantisName <$mantisEmail>&subject=".rawurlencode($tpl_project_name).'%20'.$f_bug_id.':%20'.rawurlencode($tpl_bug->summary); ?>';" />
+		<input type="button" class="button" value="Open Email" onclick="window.location='mailto:<?php echo $recipients."?cc=$mantisName <$mantisEmail>&subject=".rawurlencode($tpl_project_name).'%20'.$f_bug_id.':%20'.rawurlencode($tpl_bug->summary); ?>';" />
 	</td>
 </tr>
 </table>

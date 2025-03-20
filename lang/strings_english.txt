@@ -128,8 +128,8 @@ $s_file_added = 'File Added';
 $s_file_deleted = 'File Deleted';
 $s_bug_deleted = 'Issue Deleted';
 
-$s_make_private = 'Make Private';
-$s_make_public = 'Make Public';
+$s_make_private = 'Hide';
+$s_make_public = 'Show';
 
 $s_create_new_project_link = 'Create New Project';
 
