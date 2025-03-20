@@ -22,7 +22,7 @@ input			{ padding: 5px 8px; font-family: Inter, arial, sans-serif; font-size: 0.
 input[type="button"], input[type="submit"], input.button, input.button-small, a.button, button {
 	background-color: #E9E9ED;
     color: #212121;
-	font-family: Montserrat, arial, sans-serif;
+	font-family: Inter, arial, sans-serif;
 	font-weight: 500;
     font-size: 0.75rem;
 	border: 1px solid #67676b;
