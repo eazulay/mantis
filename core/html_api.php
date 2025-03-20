@@ -503,6 +503,18 @@ function html_login_info() {
 	echo '<td class="login-info-left">';
 	echo '</td>';
 	echo '<td class="login-info-middle">';
+
+	echo lang_get( 'email_project' ), ': ';
+
+	$first = true;
+	foreach( helper_get_current_project_trace() as $t_project ) {
+		if ( !$first )
+			echo ' &gt; ';
+		echo project_get_name( $t_project );
+		$first = false;
+	}
+
+/*
 	$t_show_project_selector = true;
 	if( count( current_user_get_accessible_projects() ) == 1 ) {
 
@@ -532,7 +544,7 @@ function html_login_info() {
 		if( ON !== config_get( 'use_javascript' ) )
 			echo '<input type="submit" class="button-small" value="' . lang_get( 'switch' ) . '" />';
 		echo '</form>';
-	}
+	}*/
 	echo '</td>';
 	echo '<td class="login-info-right">';
 	if( current_user_is_anonymous() ) {
