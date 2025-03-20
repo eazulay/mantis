@@ -841,7 +841,7 @@ function print_menu() {
 		}
 		echo implode( ' | ', $t_menu_options );
 		echo '</td>';
-		echo '<td class="menu right nowrap">';
+		echo '<td class="right nowrap">';
 		jump_issue_form('small');
 		echo '</td>';
 		echo '</tr>';
