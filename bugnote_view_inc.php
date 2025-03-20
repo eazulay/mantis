@@ -186,6 +186,9 @@ $num_notes = count( $t_bugnotes );
 				print_button( 'bugnote_delete.php?bugnote_id=' . $t_bugnote->id, lang_get( 'delete_link' ) );
 			}
 
+			echo '&nbsp; <input type="button" class="button-small" onclick="replyToNote('.$t_bugnote->id.');" value="Reply" />';
+			echo '&nbsp; <input type="button" class="button-small" onclick="copyNote('.$t_bugnote->id.');" value="Copy" />';
+			
 			# users with access to both update and change view status (or the bugnote author) can change public/private status
 			if ( access_has_bug_level( config_get( 'private_bugnote_threshold' ), $f_bug_id ) ) {
 				if ( VS_PRIVATE == $t_bugnote->view_state ) {
@@ -197,9 +200,7 @@ $num_notes = count( $t_bugnotes );
 				}
 			}
 
-			echo '&nbsp; <input type="button" class="button-small" onclick="replyToNote('.$t_bugnote->id.');" value="Reply" />';
-			echo '&nbsp; <input type="button" class="button-small" onclick="copyNote('.$t_bugnote->id.');" value="Copy" />
-		<div class="copy-options hidden">
+			echo '<div class="copy-options hidden">
 			<form method="post" action="bugnote_add.php">
 				<input type="hidden" name="bugnote_text" value="Duplicate of ~'.$t_bugnote->id.":\n". htmlspecialchars($t_bugnote->note, ENT_QUOTES, 'UTF-8').'" />
 				<input type="hidden" name="date_submitted" value="' . date('Y-m-d H:i:s', $t_bugnote->date_submitted) . '" />
