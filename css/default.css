@@ -194,7 +194,7 @@ td.bugnote-public	{ /*background-color: #F6E6CB;*/ color: #212121; font-weight: 
 td.bugnote-private		{ background-color: #e2f1ee; color: #212121; font-weight: bold; width: 25%; line-height: 1.4; vertical-align: top; }
 td.bugnote-note-public	{ /*background-color: #FEFAF5;*/ color: #212121; width: 75%; vertical-align: top; /*border-left: 1px solid var(--border-color);*/ }
 td.bugnote-note-private	{ background-color: #e2f1ee; color: #212121; width: 75%; vertical-align: top; }
-tr.bugnote-hashelp td:first-child { border-right: 6px solid #49ab9d; }
+tr.bugnote-hashelp td:first-child { border-right: 6px solid var(--border-color); }
 tr.bugnote-hashelp td:last-child strong { color: #007a7c; }
 
 td.login-info-left	{ width: 33%; padding: 0; text-align: left; }
