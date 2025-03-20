@@ -500,9 +500,9 @@ function html_login_info() {
 
 	echo '<table class="hide">';
 	echo '<tr>';
-	echo '<td class="login-info-left">';
+	echo '<td class="login-info-left" width="15%">';
 	echo '</td>';
-	echo '<td class="login-info-middle">';
+	echo '<td class="login-info-middle" width="70%">';
 
 	echo lang_get( 'email_project' ), ': ';
 
@@ -514,8 +514,7 @@ function html_login_info() {
 		$first = false;
 	}
 
-/*
-	$t_show_project_selector = true;
+/*	$t_show_project_selector = true;
 	if( count( current_user_get_accessible_projects() ) == 1 ) {
 
 		// >1
@@ -525,7 +524,6 @@ function html_login_info() {
 			$t_show_project_selector = false;
 		}
 	}
-
 	if( $t_show_project_selector ) {
 		echo '<form method="post" name="form_set_project" action="' . helper_mantis_url( 'set_project.php' ) . '">';
 		# CSRF protection not required here - form does not result in modifications
@@ -546,7 +544,7 @@ function html_login_info() {
 		echo '</form>';
 	}*/
 	echo '</td>';
-	echo '<td class="login-info-right">';
+	echo '<td class="login-info-right" width="15%">';
 	if( current_user_is_anonymous() ) {
 		$t_return_page = $_SERVER['SCRIPT_NAME'];
 		if( isset( $_SERVER['QUERY_STRING'] ) ) {
@@ -727,8 +725,8 @@ function print_menu() {
 
 		echo '<table class="menu" cellspacing="0">';
 		echo '<tr>';
-		echo '<td class="left nowrap" width="15%"></td>';
-		echo '<td class="menu" width="70%">';
+		echo '<td class="left nowrap" width="18%"></td>';
+		echo '<td class="menu" width="64%">';
 		$t_menu_options = array();
 		$t_admin_menu_options = array();
 
@@ -844,17 +842,17 @@ function print_menu() {
 
 		echo implode( ' | ', $t_menu_options );
 		echo '</td>';
-		echo '<td class="right nowrap" width="15%">';
+		echo '<td class="right nowrap" width="18%">';
 		jump_issue_form('small');
 		echo '</td>';
 		echo '</tr>';
 		if ( count( $t_admin_menu_options ) > 0 ) {
 			echo '<tr>';
-			echo '<td class="left nowrap" width="15%"></td>';
-			echo '<td class="menu" width="70%">';
+			echo '<td class="left nowrap" width="18%"></td>';
+			echo '<td class="menu" width="64%">';
 			echo implode( ' | ', $t_admin_menu_options );
 			echo '</td>';
-			echo '<td class="right" width="15%">';
+			echo '<td class="right" width="18%">';
 			print_recently_visited();
 			echo '</td>';
 			echo '</tr>';
