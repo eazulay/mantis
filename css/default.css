@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
+	--text-color: #212121;
 	--border-color: #56ab9c;
 }
 html			{ scroll-behavior: smooth; }
-body			{ background-color: #f3f9f8; color: #333; font-family: Inter, Arial, sans-serif; font-size: 0.75rem; margin: 10px 20px; }
+body			{ background-color: #f3f9f8; color: var(--text-color); font-family: Inter, Arial, sans-serif; font-size: 0.75rem; margin: 10px 20px; }
 b				{ font-weight: 600; }
 address 		{ font-size: 0.75rem }
 pre				{ margin-top: 0px; margin-bottom: 0px; }
 small			{ font-size: 0.9167em; }
 a				{ text-decoration: none; }
-a:link    		{ color: #00456A; }
+a:link    		{ color: #005778; }
 a:visited 		{ color: #572333; }
-a:hover			{ color: #00a2ab; }
-a:active 		{ color: #8C2D35; }
+a:hover			{ background-color: #E0F2F1; }
+a:active 		{ color: #B02D45; }
 a.subtle		{ color: blue; text-decoration: none; }
 a.resolved		{ text-decoration: line-through underline; }
 a > img			{ border: none; }
@@ -266,7 +267,7 @@ ul.project-menu ul.sub-menu > li.menu-item:has(ul)::after {
 	top: 4px;
 }
 ul.project-menu ul.sub-menu > li.menu-item:hover {
-    background: #fee;
+    background: #E0F2F1;
 }
 
 div.center			{
@@ -309,7 +310,7 @@ div.quick-summary-right	{ width: 49%; padding: 2px; text-align: right; float: ri
 .avatar				{ float: right; border: 0; }
 
 .progress400		{ position: relative; width: 400px; border: 1px solid #d7d7d7; margin-top: 1em; margin-bottom: 1em; padding: 1px; }
-.progress400 .bar	{ display: block; position: relative; background: #6bba70; text-align: center; font-weight: normal; color: #333; height: 2em; line-height: 2em; }
+.progress400 .bar	{ display: block; position: relative; background: #6bba70; text-align: center; font-weight: normal; color: var(--text-color); height: 2em; line-height: 2em; }
 
 div.main-page-content { width: 710px; margin: 0 auto; font-size: 1.25rem; line-height: 2em; }
 div.main-page-content h4 { margin-top: 30px; margin-bottom: 10px; }
