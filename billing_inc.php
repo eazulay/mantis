@@ -134,7 +134,7 @@
 	<?php
 			}
 	?>
-			<tr>
+			<tr class="footer">
 				<td class="center" colspan="2">
 					<input type="submit" class="button" name="get_bug_stats_button"
 						value="<?php echo lang_get( 'time_tracking_get_info_button' ) ?>" />
@@ -187,14 +187,14 @@
 <br />
 <table class="width100" cellspacing="0">
 	<tr class="row-category-history">
-		<td>
+		<td class="form-title">
 			<?php echo lang_get( $t_name_field ) ?>
 		</td>
-		<td>
+		<td class="form-title">
 			<?php echo lang_get( 'time_tracking' ) ?>
 		</td>
 <?php		if ( $t_cost_col) { ?>
-		<td>
+		<td class="form-title">
 			<?php echo lang_get( 'time_tracking_cost' ) ?>
 		</td>
 <?php	 	} ?>
@@ -255,7 +255,7 @@
 			echo $t_header;
 		else:
 ?>
-	<tr <?php echo helper_alternate_class() ?>>
+	<tr class="footer">
 		<td>
 			<?php echo lang_get( 'total_time' ); ?>
 		</td>
@@ -275,14 +275,14 @@
 
 <table id="" class="width100" cellspacing="0">
 	<tr class="row-category-history">
-		<td>
+		<td class="form-title">
 			<?php echo lang_get( $t_name_field ) ?>
 		</td>
-		<td>
+		<td class="form-title">
 			<?php echo lang_get( 'time_tracking' ) ?>
 		</td>
 <?php		if ( $t_cost_col ) { ?>
-		<td>
+		<td class="form-title">
 			<?php echo lang_get( 'time_tracking_cost' ) ?>
 		</td>
 <?php		} ?>
@@ -305,7 +305,7 @@
 	</tr>
 <?php 		} ?>
 
-	<tr <?php echo helper_alternate_class() ?>>
+	<tr class="footer">
 		<td>
 			<?php echo lang_get( 'total_time' ); ?>
 		</td>
