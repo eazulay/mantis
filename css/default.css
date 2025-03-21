@@ -60,7 +60,7 @@ span.print			{ font-size: 0.75rem; }
 span.required 		{ font-size: 0.75rem; color: #bb0000; }
 span.small 			{ font-size: 0.75rem; font-weight: normal; }
 span.pagetitle		{ font-size: 1rem; font-weight: bold; text-align: center }
-span.bracket-link	{ white-space: nowrap; }
+span.bracket-link	{ white-space: nowrap; font-weight: 500; }
 
 span.dependency_dated	{ color: maroon; }
 span.dependency_met		{ color: green; }
@@ -200,15 +200,10 @@ tr.bugnote-hashelp td:first-child { border-right: 6px solid var(--border-color);
 tr.bugnote-hashelp td:last-child strong { color: #007a7c; }
 
 td.login-info-left	{ padding: 0; text-align: left; }
-td.login-info-middle{ padding: 0 0 2px; text-align: center; font-size: 1rem; font-weight: bold; font-family: Montserrat, arial, sans-serif; }
+td.login-info-middle{ padding: 0 0 2px; text-align: center; font-size: 1.25rem; font-weight: 600; font-family: Montserrat, arial, sans-serif; }
 td.login-info-right	{ padding: 0 0 3px; text-align: right; white-space: nowrap; }
 
-td.menu				{
-	color: #212121;
-	text-align: center;
-	padding: 5px;
-	font-size: 0.9375rem;
-}
+td.menu				{ color: #212121; text-align: center; padding: 5px; font-size: 0.9375rem; font-weight: 500; }
 td.menu a			{ white-space: nowrap; }
 
 td.news-body		{ background-color: #ffffff;         color: #212121; padding: 16px; }
