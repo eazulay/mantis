@@ -63,7 +63,6 @@
 	# Add Profile Form BEGIN
 ?>
 <br />
-<div align="center">
 <form method="post" action="account_prof_update.php">
 <?php  echo form_security_field( 'profile_update' )?>
 <input type="hidden" name="action" value="add" />
@@ -113,7 +112,7 @@
 		<textarea name="description" cols="60" rows="8"></textarea>
 	</td>
 </tr>
-<tr>
+<tr class="footer">
 	<td class="left">
 		<span class="required"> * <?php echo lang_get( 'required' ) ?></span>
 	</td>
@@ -123,7 +122,6 @@
 </tr>
 </table>
 </form>
-</div>
 <?php 
 	# Add Profile Form END
 	# Edit or Delete Profile Form BEGIN
@@ -132,7 +130,6 @@
 	if( $t_profiles ) {
 ?>
 <br />
-<div align="center">
 <form method="post" action="account_prof_update.php">
 <?php  echo form_security_field( 'profile_update' )?>
 <table class="width75" cellspacing="0">
@@ -164,14 +161,13 @@
 		</select>
 	</td>
 </tr>
-<tr>
+<tr class="footer">
 	<td class="center" colspan="2">
 		<input type="submit" class="button" value="<?php echo lang_get( 'submit_button' ) ?>" />
 	</td>
 </tr>
 </table>
 </form>
-</div>
 <?php 
 } # Edit or Delete Profile Form END
 

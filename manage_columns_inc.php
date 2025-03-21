@@ -63,7 +63,6 @@
 	echo '<br />';
 ?>
 
-<div align="center">
 <form name="report_bug_form" method="post" <?php if ( file_allow_bug_upload() ) { echo 'enctype="multipart/form-data"'; } ?> action="manage_config_columns_set.php">
 <?php echo form_security_field( 'manage_config_columns_set' ) ?>
 <table class="width50" cellspacing="0">
@@ -135,7 +134,7 @@
 </tr>
 
 <!-- Submit Button -->
-<tr>
+<tr class="footer">
 	<td class="left">
 		<span class="required"> * <?php echo lang_get( 'required' ) ?></span>
 	</td>
@@ -155,7 +154,6 @@
 
 </table>
 </form>
-</div>
 
 <div align="center">
 <form method="post" action="manage_columns_copy.php">

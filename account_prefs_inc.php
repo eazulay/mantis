@@ -51,7 +51,6 @@
 	# Account Preferences Form BEGIN
 ?>
 <br />
-<div align="center">
 <form method="post" action="account_prefs_update.php">
 <?php echo form_security_field( 'account_prefs_update' ) ?>
 <input type="hidden" name="user_id" value="<?php echo $p_user_id ?>" />
@@ -283,14 +282,13 @@
 	</td>
 </tr>
 <?php event_signal( 'EVENT_ACCOUNT_PREF_UPDATE_FORM', array( $p_user_id ) ); ?>
-<tr>
+<tr class="footer">
 	<td colspan="2" class="center">
 		<input type="submit" class="button" value="<?php echo lang_get( 'update_prefs_button' ) ?>" />
 	</td>
 </tr>
 </table>
 </form>
-</div>
 
 <br />
 

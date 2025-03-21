@@ -81,17 +81,16 @@
 <!-- # Edit Account Form BEGIN -->
 <br />
 <?php if ( $t_force_pw_reset ) { ?>
-<center><div style="color:red; width:75%">
+<div style="color:red; width:75%">
 		<?php
 			echo lang_get( 'verify_warning' );
 			if ( helper_call_custom_function( 'auth_can_change_password', array() ) ) {
 				echo '<br />' . lang_get( 'verify_change_password' );
 			}
 		?>
-</div></center>
+</div>
 <br />
 <?php } ?>
-<div align="center">
 <form method="post" action="account_update.php">
 <?php echo form_security_field( 'account_update' ); ?>
 <table class="width75" cellspacing="0">
@@ -260,7 +259,7 @@
 
 	<?php if ( $t_show_update_button ) { ?>
 	<!-- BUTTONS -->
-	<tr>
+	<tr class="footer">
 		<td class="left">
 			<?php if ( $t_force_pw_reset ) { ?>
 			<span class="required"> * <?php echo lang_get( 'required' ) ?></span>
@@ -274,7 +273,6 @@
 	<?php } ?>
 </table>
 </form>
-</div>
 
 <br />
 <?php # Delete Account Form BEGIN ?>
