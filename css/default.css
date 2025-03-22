@@ -73,7 +73,7 @@ table.width90		{ width: 90%;  margin-left: auto; margin-right: auto; }
 table.width75		{ width: 75%;  margin-left: auto; margin-right: auto; }
 table.width60		{ width: 60%;  margin-left: auto; margin-right: auto; }
 table.width50		{ width: 50%;  margin-left: auto; margin-right: auto; }
-table.width100, table.width90, table.width75, table.width60, table.width50 { border: solid 1px var(--border-color); border-radius: 8px; background: #f9fcfc; }
+table.width100, table.width90, table.width75, table.width60, table.width50 { border: solid 1px var(--border-color); border-radius: 8px; background: #fafdfb; }
 
 div.width100		{ width: 100%; border: solid 1px var(--border-color); padding:15px; }
 table.menu			{ width: 100%; border: none; }
@@ -162,7 +162,7 @@ tr.bug-primary > td:nth-child(2n + 3),
 .with-paging tr:last-child td { border-top: 1px solid var(--border-color); }
 
 /*tr.header, tr.footer{ background-color: #F7EBD9; }*/
-tr.header, tr.footer, tr:has(td.form-title), tr:has(th.form-title) { background-color: #d1e8e4; }
+tr.header, tr.footer, tr:has(td.form-title), tr:has(th.form-title) { background-color: #e2f1ee; }
 th.form-title, tr.header:not(:last-child) > td	{ border-bottom: 1px solid var(--border-color); }
 table:not(#buglist) tr.footer > td	{ border-top: 1px solid var(--border-color); }
 table.width90 tr.footer > td		{ padding: 8px 12px; }
