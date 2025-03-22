@@ -128,7 +128,7 @@ td.category			{ color: #212121; vertical-align: top;
 }
 tr.header > td.category	{ vertical-align: middle; }
 tr.bug-primary td	{ font-size: 0.75rem; vertical-align: top; }
-td.overdue			{ background-color: #ff6060; color: #212121; font-weight: bold; }
+td.overdue			{ color: #ff6060; font-weight: bold; }
 td.disabled			{ background-color: #E2E2DA; color: #4A727F; padding-left: 20px; font-style: italic; font-weight: normal; }
 td.gap				{ background-color: white; padding: 4px; }
 td.error			{ background-color: #ff6060; color: #212121; font-weight: bold; }
