@@ -1255,14 +1255,14 @@ function print_column_summary( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_P
 function print_column_description( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	$t_description = string_display_links( $p_bug->description );
 
-	echo '<td class="left"><div>', $t_description, '</div><a href="#" class="toggle-height">&#x21D5;</a></td>';
+	echo '<td class="markdown left"><div>', $t_description, '</div><a href="#" class="toggle-height">&#x21D5;</a></td>';
 }
 
 // Eyal
 function print_column_last_note( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	$t_last_note = string_display_links( $p_bug->last_note );
 
-	echo '<td class="left"><div>', $t_last_note, '</div><a href="#" class="toggle-height">&#x21D5;</a></td>';
+	echo '<td class="markdown left"><div>', $t_last_note, '</div><a href="#" class="toggle-height">&#x21D5;</a></td>';
 }
 
 /**
@@ -1275,7 +1275,7 @@ function print_column_last_note( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW
 function print_column_steps_to_reproduce( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	$t_steps_to_reproduce = string_display_links( $p_bug->steps_to_reproduce );
 
-	echo '<td class="left">', $t_steps_to_reproduce, '</td>';
+	echo '<td class="markdown left">', $t_steps_to_reproduce, '</td>';
 }
 
 /**
@@ -1288,7 +1288,7 @@ function print_column_steps_to_reproduce( $p_bug, $p_columns_target = COLUMNS_TA
 function print_column_additional_information( $p_bug, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE ) {
 	$t_additional_information = string_display_links( $p_bug->additional_information );
 
-	echo '<td class="left">', $t_additional_information, '</td>';
+	echo '<td class="markdown left">', $t_additional_information, '</td>';
 }
 
 /**

@@ -524,7 +524,7 @@
 	if ( $tpl_show_description ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category">', lang_get( 'description' ), '</td>';
-		echo '<td colspan="3">', $tpl_description, '</td>';
+		echo '<td colspan="3" class="markdown">', $tpl_description, '</td>';
 		echo '</tr>';
 	}
 
@@ -532,7 +532,7 @@
 	if ( $tpl_show_steps_to_reproduce ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category">', lang_get( 'steps_to_reproduce' ), '</td>';
-		echo '<td colspan="3">', $tpl_steps_to_reproduce, '</td>';
+		echo '<td colspan="3" class="markdown">', $tpl_steps_to_reproduce, '</td>';
 		echo '</tr>';
 	}
 
@@ -540,7 +540,7 @@
 	if ( $tpl_show_additional_information ) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category">', lang_get( 'additional_information' ), '</td>';
-		echo '<td colspan="3">', $tpl_additional_information, '</td>';
+		echo '<td colspan="3" class="markdown">', $tpl_additional_information, '</td>';
 		echo '</tr>';
 	}
 

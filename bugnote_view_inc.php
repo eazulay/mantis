@@ -214,7 +214,7 @@ $num_notes = count( $t_bugnotes );
 		}
 		?>
 	</td>
-	<td class="<?php echo $t_bugnote_note_css ?>">
+	<td class="markdown <?php echo $t_bugnote_note_css ?>">
 		<?php
 			switch ( $t_bugnote->note_type ) {
 				case REMINDER:
