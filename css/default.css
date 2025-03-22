@@ -311,10 +311,11 @@ div.main-page-content { width: 710px; margin: 0 auto; font-size: 1.25rem; line-h
 div.main-page-content h4 { margin-top: 30px; margin-bottom: 10px; }
 div.main-page-content > ul { margin-top: 10px; }
 
-.markdown ul								{ padding-left: 1.5em; margin-top: 0; }
+.markdown ul								{ padding-left: 1.5em; }
 .markdown h1, .markdown h2, .markdown h3	{ font-family: Montserrat, arial, sans-serif; }
 .markdown h1:first-child, .markdown h2:first-child, .markdown h3:first-child { margin-top: 0; }
 .markdown h1 + br, .markdown h2 + br, .markdown h3 + br { margin-top: -1em; }
+br + ul { margin-top: 0; }
 
 @media (max-width: 768px) {
 	body { margin: 5px; }
