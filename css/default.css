@@ -134,8 +134,9 @@ td.error			{ background-color: #ff6060; color: #212121; font-weight: bold; }
 
 td.col-1			{ background-color: #F9F9F9; color: #212121; }
 td.col-2			{ background-color: #8FD594; color: #212121; }
-td.form-title		{ font-size: 0.875rem; font-weight: 600; color: #212121; border-bottom: 1px solid var(--border-color); }
-tr:not(:first-child) > td.form-title { border-top: 1px solid var(--border-color); }
+td.form-title		{ font-size: 0.875rem; font-weight: 600; color: #212121; }
+tr:not(:last-child) td.form-title	 { border-bottom: 1px solid var(--border-color); }
+tr:not(:first-child) > td.form-title	{ border-top: 1px solid var(--border-color); }
 td.form-title > form { margin-left: 12px; }
 td.form-title-caps	{ color: #212121; font-weight: bold; text-align: left; text-transform: uppercase; }
 td.nopad			{ padding: 0px; }
