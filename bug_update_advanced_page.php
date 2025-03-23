@@ -153,13 +153,13 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '<tr class="bug-primary row-2">';
 		# Bug ID
 		echo '<td class="category" width="6%">', $tpl_show_id ? lang_get( 'issue_id' ) : '', '</td>';
-		echo '<td class="center" width="8%">', $tpl_formatted_bug_id, '</td>';
+		echo '<td width="11%">', $tpl_formatted_bug_id, '</td>';
 		# Date Submitted
-		echo '<td class="category" width="8%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
-		echo '<td class="center" width="12%">', $tpl_date_submitted, '</td>';
+		echo '<td class="category" width="6%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
+		echo '<td width="11%">', $tpl_date_submitted, '</td>';
 		# Reporter
-		echo '<td class="category" width="7%">', $tpl_show_reporter ? lang_get( 'reporter' ) : '', '</td>';
-		echo '<td class="center" width="12%">';
+		echo '<td class="category" width="6%">', $tpl_show_reporter ? lang_get( 'reporter' ) : '', '</td>';
+		echo '<td width="10%">';
 		if ( $tpl_show_reporter ) {
 			if ( ON == config_get( 'use_javascript' ) ) {
 				$t_username = prepare_user_name( $tpl_bug->reporter_id );
@@ -173,12 +173,12 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '</td>';
 		# Profile
 		if ($category_is_bug) {
-			echo '<td class="category disabled" width="12%">', lang_get( 'profile' ), '</td>';
-			echo '<td width="6%"></td>';
+			echo '<td class="category disabled" width="7%">', lang_get( 'profile' ), '</td>';
+			echo '<td width="9%"></td>';
 		}
 		# Category
-		echo '<td class="category" width="7%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
-		echo '<td class="center" width="8%">';
+		echo '<td class="category" width="6%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
+		echo '<td width="11%">';
 		if ( $tpl_show_category ) {
 			echo '<select ', helper_get_tab_index(), ' name="category_id">';
 			print_category_option_list( $tpl_bug->category_id, $tpl_bug->project_id );
@@ -188,7 +188,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		# Status
 		if ( $tpl_show_status ) {
 			echo '<td class="category" width="6%" rowspan="2">', $tpl_show_status ? lang_get( 'status' ) : '', '</td>';
-			echo '<td class="center" bgcolor="', get_status_color( $tpl_bug->status ), '" width="8%" rowspan="2">';
+			echo '<td bgcolor="', get_status_color( $tpl_bug->status ), '" width="11%" rowspan="2">';
 			print_status_option_list( 'status', $tpl_bug->status,
 								( $tpl_bug->reporter_id == auth_get_current_user_id() &&
 										( ON == config_get( 'allow_reporter_close' ) ) ), $tpl_bug->project_id );
@@ -201,13 +201,13 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '<tr class="bug-primary row-1">';
 		# Project
 		echo '<td class="category">', $tpl_show_project ? lang_get( 'email_project' ) : '', '</td>';
-		echo '<td class="center">', $tpl_project_name, '</td>';
+		echo '<td>', $tpl_project_name, '</td>';
 		# Date Updated
 		echo '<td class="category">', $tpl_show_last_updated ? lang_get( 'last_update' ) : '','</td>';
-		echo '<td class="center">', $tpl_last_updated, '</td>';
+		echo '<td>', $tpl_last_updated, '</td>';
 		# Handler
 		echo '<td class="category">', $tpl_show_handler ? lang_get( 'assigned_to' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( access_has_project_level( config_get( 'update_bug_assign_threshold', config_get( 'update_bug_threshold' ) ) ) ) {
 			echo '<select ', helper_get_tab_index(), ' name="handler_id">';
 			echo '<option value="0"></option>';
@@ -220,14 +220,14 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		# Platform (now Device/Profile)
 		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_platform ? lang_get( 'platform' ) : '', '</td>';
-			echo '<td class="center">';
+			echo '<td>';
 			if ( $tpl_show_platform ) {
 				if ( config_get( 'allow_freetext_in_profile_fields' ) == OFF ) {
 					echo '<select name="platform"><option value=""></option>';
 					print_platform_option_list( $tpl_bug->platform );
 					echo '</select>';
 				} else {
-					projax_autocomplete( 'platform_get_with_prefix', 'platform', array( 'value' => $tpl_bug->platform, 'size' => '16', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
+					projax_autocomplete( 'platform_get_with_prefix', 'platform', array( 'value' => $tpl_bug->platform, 'size' => '10', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
 				}
 			}
 			echo '</td>';
@@ -236,7 +236,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		$t_type_def = custom_field_get_definition( 1 ); // Type
 		$tpl_show_type = ( $t_type_def['display_update'] || $t_type_def['require_update'] ) && custom_field_has_write_access( 1, $tpl_bug_id );
 		echo '<td class="category">', $t_type_def['require_update'] ? '<span class="required">*</span>' : '', $tpl_show_type ? string_display( lang_get_defaulted( $t_type_def['name'] ) ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_type) # has read access
 			//print_custom_field_value( $t_type_def, 1, $f_bug_id );
 			print_custom_field_input( $t_type_def, $tpl_bug_id );
@@ -248,7 +248,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '<tr class="bug-primary row-2">';
 		# View Status (Visibility)
 		echo '<td class="category">', $tpl_show_view_state ? lang_get( 'view_status' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_can_change_view_state ) {
 			echo '<select ', helper_get_tab_index(), ' name="view_state">';
 			print_enum_string_option_list( 'view_state', $tpl_bug->view_state);
@@ -262,12 +262,12 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 			if ( bug_is_overdue( $tpl_bug_id ) )
 				echo '<td class="overdue center">';
 			else
-				echo '<td class="center">';
+				echo '<td>';
 			if ( access_has_bug_level( config_get( 'due_date_update_threshold' ), $tpl_bug_id ) ) {
 				$t_date_to_display = '';
 				if ( !date_is_null( $tpl_bug->due_date ) )
 					$t_date_to_display = date( config_get( 'calendar_date_format' ), $tpl_bug->due_date );
-				echo '<input ', helper_get_tab_index(), ' type="text" id="due_date" name="due_date" size="13" maxlength="16" value="', $t_date_to_display, '">';
+				echo '<input ', helper_get_tab_index(), ' type="text" id="due_date" name="due_date" size="12" maxlength="16" value="', $t_date_to_display, '">';
 				date_print_calendar();
 				date_finish_calendar( 'due_date', 'trigger');
 			} else {
@@ -279,26 +279,26 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '';
 		# Notes By
 		echo '<td class="category">', 'Notes By', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		include( $tpl_mantis_dir . 'bugnote_userlist_inc.php' );
 		echo '</td>';
 		# Operating System (now OS and Version)
 		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_os ? lang_get( 'os' ) : '', '</td>';
-			echo '<td class="center">';
+			echo '<td>';
 			if ( $tpl_show_os ) {
 				if ( config_get( 'allow_freetext_in_profile_fields' ) == OFF ) {
 					echo '<select name="os"><option value=""></option>';
 					print_os_option_list( $tpl_bug->os );
 					echo '</select>';
 				} else
-					projax_autocomplete( 'os_get_with_prefix', 'os', array( 'value' => $tpl_bug->os, 'size' => '16', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
+					projax_autocomplete( 'os_get_with_prefix', 'os', array( 'value' => $tpl_bug->os, 'size' => '10', 'maxlength' => '32', 'tabindex' => helper_get_tab_index_value() ) );
 			}
 			echo '</td>';
 		}
 		# Severity
 		echo '<td class="category">', $tpl_show_severity ? lang_get( 'severity' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_severity ) {
 			echo '<select ', helper_get_tab_index(), ' name="severity">';
 			print_enum_string_option_list( 'severity', $tpl_bug->severity );
@@ -307,7 +307,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '</td>';
 		# Priority
 		echo '<td class="category">', $tpl_show_priority ? lang_get( 'priority' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_priority ) {
 			echo '<select ', helper_get_tab_index(), ' name="priority">';
 			print_enum_string_option_list( 'priority', $tpl_bug->priority );
@@ -321,10 +321,10 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '<tr class="bug-primary row-1">';
 		# No. of Notes
 		echo '<td class="category">', lang_get( 'notes' ), '</td>';
-		echo '<td class="center">', $t_bugnote_count == 0 ? lang_get( 'none' ) : $t_bugnote_count, '</td>';
+		echo '<td>', $t_bugnote_count == 0 ? lang_get( 'none' ) : $t_bugnote_count, '</td>';
 		# ETA
 		echo '<td class="category">', $tpl_show_eta ? lang_get( 'eta' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_eta ) {
 			echo '<select ', helper_get_tab_index(), ' name="eta">';
 			print_enum_string_option_list( 'eta', $tpl_bug->eta );
@@ -333,27 +333,27 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '</td>';
 		# User list monitoring the bug
 		echo '<td class="category disabled">', lang_get( 'users_monitoring_bug' ), '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 //		include( $tpl_mantis_dir . 'bug_monitor_list_view_inc.php' );
 		echo '</td>';
 		# OS Version (now Browser)
 		if ($category_is_bug) {
 			echo '<td class="category">', $tpl_show_os_version ? lang_get( 'os_version' ) : '', '</td>';
-			echo '<td class="center">';
+			echo '<td>';
 			if ( $tpl_show_os_version ) {
 				if ( config_get( 'allow_freetext_in_profile_fields' ) == OFF ) {
 					echo '<select name="os_build"><option value=""></option>';
 					print_os_build_option_list( $tpl_bug->os_build );
 					echo '</select>';
 				} else {
-					projax_autocomplete( 'os_build_get_with_prefix', 'os_build', array( 'value' => $tpl_bug->os_build, 'size' => '16', 'maxlength' => '16', 'tabindex' => helper_get_tab_index_value() ) );
+					projax_autocomplete( 'os_build_get_with_prefix', 'os_build', array( 'value' => $tpl_bug->os_build, 'size' => '10', 'maxlength' => '16', 'tabindex' => helper_get_tab_index_value() ) );
 				}
 			}
 			echo '</td>';
 		}
 		# Reproducibility
 		echo '<td class="category">', $tpl_show_reproducibility ? lang_get( 'reproducibility' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_reproducibility ) {
 			echo '<select ', helper_get_tab_index(), ' name="reproducibility">';
 			print_enum_string_option_list( 'reproducibility', $tpl_bug->reproducibility );
@@ -362,7 +362,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '</td>';
 		# Resolution
 		echo '<td class="category">', $tpl_show_resolution ? lang_get( 'resolution' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_resolution ) {
 			# Resolution
 			echo '<select ', helper_get_tab_index(), ' name="resolution">';
@@ -377,7 +377,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '<tr class="bug-primary row-2">';
 		# Product Version
 		echo '<td class="category">', $tpl_show_product_version ? lang_get( 'product_version' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_product_version ) {
 			echo '<select ', helper_get_tab_index(), ' name="version">';
 			print_version_option_list( $tpl_bug->version, $tpl_bug->project_id, $tpl_product_version_released_mask );
@@ -386,13 +386,13 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '</td>';
 		# Product Build
 		echo '<td class="category">', $tpl_show_product_build ? lang_get( 'product_build' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_product_build )
 			echo '<input type="text" name="build" size="16" maxlength="32" value="', $tpl_product_build_attribute, '" />';
 		echo '</td>';
 		# Target Version
 		echo '<td class="category">', $tpl_show_target_version ? lang_get( 'target_version' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_target_version ) {
 			echo '<select ', helper_get_tab_index(), ' name="target_version">';
 			print_version_option_list( $tpl_bug->target_version, $tpl_bug->project_id, VERSION_ALL );
@@ -401,7 +401,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '</td>';
 		# Fixed in Version
 		echo '<td class="category">', $tpl_show_fixed_in_version ? lang_get( 'fixed_in_version' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_fixed_in_version ) {
 			echo '<select ', helper_get_tab_index(), ' name="fixed_in_version">';
 			print_version_option_list( $tpl_bug->fixed_in_version, $tpl_bug->project_id, VERSION_ALL );
@@ -410,7 +410,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '</td>';
 		# Projection
 		echo '<td class="category">', $tpl_show_projection ? lang_get( 'projection' ) : '', '</td>';
-		echo '<td class="center">';
+		echo '<td>';
 		if ( $tpl_show_projection ) {
 			echo '<select name="projection">';
 			print_enum_string_option_list( 'projection', $tpl_bug->projection );
