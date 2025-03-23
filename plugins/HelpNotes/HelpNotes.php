@@ -124,7 +124,7 @@ class HelpNotesPlugin extends MantisPlugin {
 			$str = preg_replace('/^- (.+)\R?$/mU', '<li>$1</li>', $str);
 			$str = preg_replace('/\R?<\/li>\R?/m', '</li>', $str);
 			$str = preg_replace('/^<li>(.*)<\/li>\R?/m', '<ul><li>$1</li></ul>', $str);
-			$str = preg_replace('/\{\{(.+)\}\}/sU', '<strong>$1</strong>', $str);
+			$str = preg_replace('/\{\{(.+)\}\}/sU', '<b>$1</b>', $str);
 		}
 		return $str;
 	}
