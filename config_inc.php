@@ -200,8 +200,8 @@ $g_time_tracking_without_note = ON;
 
 /* Date Format */
 $g_short_date_format = 'd/m/Y';
-$g_normal_date_format = 'j M Y H:i';
-$g_complete_date_format = 'd-m-y H:i T';
+$g_normal_date_format = 'Y-m-d H:i';
+$g_complete_date_format = 'd M Y H:i T';
 $g_default_timezone = 'Europe/Paris';
 
 /**
