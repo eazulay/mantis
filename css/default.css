@@ -169,7 +169,7 @@ table.width90 tr.footer > td		{ padding: 8px 12px; }
 #filter_closed tr.footer > td		{ border-top: none !important; }
 tr.footer:first-child > td			{ padding: 0; }
 tr.subheader						{ background: #e5f1e2; }
-tr.subheader > th					{ border-bottom: 1px solid var(--border-color); }
+tr.subheader > th, tr.subheader > td{ border-bottom: 1px solid var(--border-color); text-align: center; }
 tr.bottom-border > td, tr.bottom-border > th { border-bottom: 1px solid var(--border-color); }
 
 tr.top-border > td	{ border-top: 1px solid var(--border-color); }

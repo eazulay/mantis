@@ -233,7 +233,7 @@
 		</form>
 	</td>
 </tr>
-<tr class="row-category">
+<tr class="subheader">
 	<td>
 		<?php
 			print_manage_user_sort_link(  'manage_user_page.php', lang_get( 'username' ), 'username', $c_dir, $c_sort, $c_hide, $c_filter );

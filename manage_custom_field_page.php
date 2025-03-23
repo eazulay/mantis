@@ -44,7 +44,7 @@
 				<?php echo lang_get( 'custom_fields_setup' ) ?>
 		</td>
 	</tr>
-	<tr class="bottom-border">
+	<tr class="subheader">
 		<td class="category" width="12%">
 			<?php echo lang_get( 'custom_field_name' ) ?>
 		</td>

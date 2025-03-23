@@ -158,7 +158,7 @@
 	</td>
 </tr>
 <?php # -- Bug list column header row -- ?>
-<tr class="row-category">
+<tr class="subheader">
 <?php
 		foreach( $t_columns as $t_column ) {
 			$t_title_function = 'print_column_title';

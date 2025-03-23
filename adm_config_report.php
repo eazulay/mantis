@@ -102,29 +102,29 @@
 		<?php echo lang_get( 'database_configuration' ) ?>
 	</td>
 </tr>
-		<tr class="row-category">
-			<td class="center">
-				<?php echo lang_get( 'username' ) ?>
-			</td>
-			<td class="center">
-				<?php echo lang_get( 'project_name' ) ?>
-			</td>
-			<td>
-				<?php echo lang_get( 'configuration_option' ) ?>
-			</td>
-			<td class="center">
-				<?php echo lang_get( 'configuration_option_type' ) ?>
-			</td>
-			<td class="center">
-				<?php echo lang_get( 'configuration_option_value' ) ?>
-			</td>
-			<td class="center">
-				<?php echo lang_get( 'access_level' ) ?>
-			</td>
-			<td class="center">
-				<?php echo lang_get( 'actions' ) ?>
-			</td>
-		</tr>
+<tr class="subheader">
+	<td class="center">
+		<?php echo lang_get( 'username' ) ?>
+	</td>
+	<td class="center">
+		<?php echo lang_get( 'project_name' ) ?>
+	</td>
+	<td>
+		<?php echo lang_get( 'configuration_option' ) ?>
+	</td>
+	<td class="center">
+		<?php echo lang_get( 'configuration_option_type' ) ?>
+	</td>
+	<td class="center">
+		<?php echo lang_get( 'configuration_option_value' ) ?>
+	</td>
+	<td class="center">
+		<?php echo lang_get( 'access_level' ) ?>
+	</td>
+	<td class="center">
+		<?php echo lang_get( 'actions' ) ?>
+	</td>
+</tr>
 <?php
 	while ( $row = db_fetch_array( $result ) ) {
 		extract( $row, EXTR_PREFIX_ALL, 'v' );

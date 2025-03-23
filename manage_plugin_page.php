@@ -67,7 +67,7 @@ if ( 0 < count( $t_plugins_installed ) ) {
 </tr>
 
 <!-- Info -->
-<tr class="row-category">
+<tr class="subheader">
 	<td width="20%"><?php echo lang_get( 'plugin' ) ?></td>
 	<td width="35%"><?php echo lang_get( 'plugin_description' ) ?></td>
 	<td width="20%"><?php echo lang_get( 'plugin_depends' ) ?></td>
@@ -95,7 +95,7 @@ foreach ( $t_plugins_installed as $t_basename => $t_plugin ) {
 
 	if ( !is_blank( $t_author ) ) {
 		if ( is_array( $t_author ) ) {
-			$t_author = implode( $t_author, ', ' );
+			$t_author = implode( ', ', $t_author );
 		}
 		if ( !is_blank( $t_contact ) ) {
 			$t_author = '<br />' . sprintf( lang_get( 'plugin_author' ),
@@ -130,7 +130,7 @@ foreach ( $t_plugins_installed as $t_basename => $t_plugin ) {
 	}
 
 	if ( 0 < count( $t_depends ) ) {
-		$t_depends = implode( $t_depends, '<br />' );
+		$t_depends = implode( '<br />', $t_depends );
 	} else {
 		$t_depends = '<span class="small dependency_met">' . lang_get( 'plugin_no_depends' ) . '</span>';
 	}
@@ -176,7 +176,7 @@ if ( 0 < count( $t_plugins_available ) ) {
 </tr>
 
 <!-- Info -->
-<tr class="row-category">
+<tr class="subheader">
 	<td width="25%"><?php echo lang_get( 'plugin' ) ?></td>
 	<td width="45%"><?php echo lang_get( 'plugin_description' ) ?></td>
 	<td width="20%"><?php echo lang_get( 'plugin_depends' ) ?></td>
@@ -196,7 +196,7 @@ foreach ( $t_plugins_available as $t_basename => $t_plugin ) {
 
 	if ( !is_blank( $t_author ) ) {
 		if ( is_array( $t_author ) ) {
-			$t_author = implode( $t_author, ', ' );
+			$t_author = implode( ', ', $t_author );
 		}
 		if ( !is_blank( $t_contact ) ) {
 			$t_author = '<br />' . sprintf( lang_get( 'plugin_author' ),
@@ -227,7 +227,7 @@ foreach ( $t_plugins_available as $t_basename => $t_plugin ) {
 	}
 
 	if ( 0 < count( $t_depends ) ) {
-		$t_depends = implode( $t_depends, '<br />' );
+		$t_depends = implode( '<br />', $t_depends );
 	} else {
 		$t_depends = '<span class="small dependency_met">' . lang_get( 'plugin_no_depends' ) . '</span>';
 	}

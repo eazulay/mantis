@@ -140,7 +140,7 @@ $t_result = db_query_bound( $t_query, $t_where_params, $t_per_page, $t_offset );
 			?>
 		</td>
 	</tr>
-	<tr class="row-category">
+	<tr class="subheader">
 		<td width="25%"><?php echo lang_get( 'tag_name' ) ?></td>
 		<td width="20%"><?php echo lang_get( 'tag_creator' ) ?></td>
 		<td width="20%"><?php echo lang_get( 'tag_created' ) ?></td>

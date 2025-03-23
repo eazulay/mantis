@@ -390,9 +390,15 @@ if ( !function_exists( 'constant_replace' ) )
 		switch ( $p_type )
 		{
 			case 'empty':
-			case 'header':
 ?>
 <tr>
+	<td colspan="3"></td>
+</tr>
+<?php
+			break;
+			case 'header':
+?>
+<tr class="header">
 	<td class="form-title" <?php echo ( ( is_blank( $t_value ) ) ? 'width="100%" colspan="3"' : 'width="60%"' ) ?>>
 		<?php echo ( ( !is_blank( $p_name ) ) ? ( ( $p_type === 'header' ) ? plugin_lang_get( 'plugin_title' ) . ': ' : NULL ) . plugin_lang_get( $p_name ) : '&nbsp;' ) ?>
 	</td>

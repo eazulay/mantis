@@ -58,7 +58,7 @@
 		?>
 	</td>
 </tr>
-<tr class="row-category">
+<tr class="subheader">
 	<td width="20%">
 		<?php 
 			print_manage_project_sort_link( 'manage_proj_page.php', lang_get( 'name' ), 'name', $t_direction, $f_sort );
@@ -168,7 +168,7 @@
 
 	if ( count( $t_categories ) > 0 ) {
 ?>
-		<tr class="row-category">
+		<tr class="subheader">
 			<td>
 				<?php echo lang_get( 'category' ) ?>
 			</td>
