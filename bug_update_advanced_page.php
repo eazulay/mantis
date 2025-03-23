@@ -142,7 +142,7 @@ if ( $tpl_top_buttons_enabled ) {
 event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 
 	# Labels
-	echo '<tr>';
+	echo '<tr class="subheader">';
 	echo '<th colspan="2">ID</th><th colspan="2">Time</th><th colspan="2">People</th>';
 	if ($category_is_bug)
 		echo '<th colspan="2">Environment</th>';
