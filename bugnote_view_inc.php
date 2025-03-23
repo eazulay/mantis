@@ -152,7 +152,7 @@ $num_notes = count( $t_bugnotes );
 				echo '(', get_enum_element( 'access_levels', $t_access_level ), ')';
 			}
 		?></span>
-        <?php if ( VS_PRIVATE == $t_bugnote->view_state ) { ?>
+        <?php if ( false /* VS_PRIVATE == $t_bugnote->view_state */ ) { ?>
         <span class="small">[ <?php echo lang_get( 'private' ) ?> ]</span>
         <?php } ?>
         <br />

@@ -200,7 +200,7 @@ $g_time_tracking_without_note = ON;
 
 /* Date Format */
 $g_short_date_format = 'd/m/Y';
-$g_normal_date_format = 'j M Y \a\t H:i';
+$g_normal_date_format = 'j M Y H:i';
 $g_complete_date_format = 'd-m-y H:i T';
 $g_default_timezone = 'Europe/Paris';
 
@@ -210,7 +210,7 @@ $g_default_timezone = 'Europe/Paris';
  * do NOT include tags that have parameters (eg. <font face="arial">)
  * @global string $g_html_valid_tags
  */
-$g_html_valid_tags		= 'p, li, ul, ol, br, pre, i, b, u, em, strong, h1, h2, h3';
+$g_html_valid_tags = 'p, li, ul, ol, br, pre, i, b, u, em, strong, h1, h2, h3';
 
 /* Default settings */
 $g_default_bug_severity = NICE_TO_HAVE;

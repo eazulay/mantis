@@ -319,7 +319,7 @@ $s_default_access_level = 'Default access level';
 $s_issue_status_percentage = 'Issue Status Percentage';
 
 # Enum Strings
-$s_access_levels_enum_string = '10:viewer,25:raiser,40:updater,55:developer,70:manager,90:administrator';
+$s_access_levels_enum_string = '10:viewer,25:raiser,40:updater,55:developer,70:manager,90:admin';
 $s_project_status_enum_string = '10:development,30:release,50:stable,70:obsolete';
 $s_project_view_state_enum_string = '10:public,50:private';
 $s_view_state_enum_string = '10:public,50:private';
@@ -684,7 +684,7 @@ $s_closed_bug_button = 'Close Issue';
 
 # bugnote_update.php
 $s_bugnote_updated_msg = 'Note has been successfully updated...';
-$s_edited_on = 'edited on:';
+$s_edited_on = 'edited';
 
 # file_api.php
 $s_hide_content = 'Hide Content';
