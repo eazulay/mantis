@@ -260,7 +260,7 @@ event_signal( 'EVENT_UPDATE_BUG_FORM_TOP', array( $tpl_bug_id, true ) );
 		echo '<td class="category">', $tpl_show_due_date ? lang_get( 'due_date' ) : '', '</td>';
 		if ( $tpl_show_due_date ) {
 			if ( bug_is_overdue( $tpl_bug_id ) )
-				echo '<td class="overdue center">';
+				echo '<td class="overdue">';
 			else
 				echo '<td>';
 			if ( access_has_bug_level( config_get( 'due_date_update_threshold' ), $tpl_bug_id ) ) {
