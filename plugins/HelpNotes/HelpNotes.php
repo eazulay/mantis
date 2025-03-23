@@ -111,12 +111,12 @@ class HelpNotesPlugin extends MantisPlugin {
 	}
 	
 	function format_help_string($p_event, $str, $multi_line=false) {
-		$str = preg_replace('/\*\*\*([^ ].+[^ ])\*\*\*/mU', '<strong><em>$1</em></strong>', $str);
-		$str = preg_replace('/___([^ ].+[^ ])___/mU', '<strong><em>$1</em></strong>', $str);
-		$str = preg_replace('/\*\*([^ ].+[^ ])\*\*/mU', '<strong>$1</strong>', $str);
-		$str = preg_replace('/__([^ ].+[^ ])__/mU', '<strong>$1</strong>', $str);
-		$str = preg_replace('/\*([^ ].+?[^ ])\*/mU', '<em>$1</em>', $str);
-		$str = preg_replace('/_([^ ].+[^ ])_/mU', '<em>$1</em>', $str);
+		$str = preg_replace('/\*\*\*([^ ](?:.*[^ ])?)\*\*\*/mU', '<strong><em>$1</em></strong>', $str);
+		$str = preg_replace('/___([^ ](?:.*[^ ])?)___/mU', '<strong><em>$1</em></strong>', $str);
+		$str = preg_replace('/\*\*([^ ](?:.*[^ ])?)\*\*/mU', '<strong>$1</strong>', $str);
+		$str = preg_replace('/__([^ ](?:.*[^ ])?)__/mU', '<strong>$1</strong>', $str);
+		$str = preg_replace('/\*([^ ](?:.*?[^ ])?)\*/mU', '<em>$1</em>', $str);
+		$str = preg_replace('/_([^ ](?:.*[^ ])?)_/mU', '<em>$1</em>', $str);
 		if ($multi_line) {
 			$str = preg_replace('/^### (.+)\R/mU', '<h3>$1</h3>', $str);
 			$str = preg_replace('/^## (.+)\R/mU', '<h2>$1</h2>', $str);
