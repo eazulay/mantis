@@ -277,6 +277,7 @@ div.border			{
 div.quick-summary-left	{ width: 49%; padding: 2px; text-align: left;  float: left; }
 div.quick-summary-right	{ width: 49%; padding: 2px; text-align: right; float: right; font-size: 0.875rem; }
 
+br + form			{ display: block; margin-top: 5px; }
 .center				{ text-align: center; }
 .left				{ text-align: left; }
 .right				{ text-align: right; }
