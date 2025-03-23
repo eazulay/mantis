@@ -21,7 +21,7 @@ a > img			{ border: none; }
 form			{ display: inline; }
 textarea		{ padding: 5px 8px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; width: calc(100% - 18px); border-color: var(--border-color); border-width: 1px; border-radius: 5px; }
 input			{ padding: 5px 8px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; border-color: var(--border-color); border-width: 1px; margin-bottom: 1px; border-radius: 5px; }
-input[type="button"], input[type="submit"], input.button, input.button-small, a.button, button {
+input[type="button"], input[type="submit"], input.button, input.button-small, a.button, button, input[type="file"]::file-selector-button {
 	background-color: #E9E9ED;
     color: #212121;
 	font-family: Inter, arial, sans-serif;
@@ -34,14 +34,14 @@ input[type="button"], input[type="submit"], input.button, input.button-small, a.
 	padding: 4px 8px;
 	white-space: nowrap;
 }
-input[type="file"] { padding: 0; }
+input[type="file"] { padding: 0 0 3px; }
 input.button-small button.button-small {
     font-size: 0.75rem;
 }
-input[type="button"]:hover:not(:disabled), input[type="submit"]:hover:not(:disabled), input.button:hover:not(:disabled), input.button-small:hover:not(:disabled), a.button:hover, button:hover:not(:disabled) {
+input[type="button"]:hover:not(:disabled), input[type="submit"]:hover:not(:disabled), input.button:hover:not(:disabled), input.button-small:hover:not(:disabled), a.button:hover, button:hover:not(:disabled), input[type="file"]:hover:not(:disabled)::file-selector-button {
 	background-color: #d0d0d7;
 }
-input[type="button"]:active, input[type="submit"]:active, input.button:active, input.button-small:active, a.button:active, button:active {
+input[type="button"]:active, input[type="submit"]:active, input.button:active, input.button-small:active, a.button:active, button:active, input[type="file"]:active::file-selector-button {
 	background-color: #d0d0d7;
 	box-shadow: none;
 }
@@ -324,5 +324,5 @@ div.main-page-content > ul { margin-top: 10px; }
 	table.width50 td:not(:last-child) { border-bottom-width: 0; padding-bottom: 5px; }
 	table.width50 td:not(:first-child) { padding-top: 5px; }
 	table.width50 td input[type="text"], table.width50 td input[type="password"] { width: calc(100% - 42px); }
-	input, textarea { font-size: 1rem; }
+	input[type="text"], input[type="password"], textarea { font-size: 1rem; }
 }
