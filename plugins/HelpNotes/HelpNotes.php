@@ -114,9 +114,9 @@ class HelpNotesPlugin extends MantisPlugin {
 		$str = preg_replace('/\*\*\*([^ ](?:.*[^ ])?)\*\*\*/mU', '<strong><em>$1</em></strong>', $str);
 		$str = preg_replace('/___([^ ](?:.*[^ ])?)___/mU', '<strong><em>$1</em></strong>', $str);
 		$str = preg_replace('/\*\*([^ ](?:.*[^ ])?)\*\*/mU', '<strong>$1</strong>', $str);
-		$str = preg_replace('/__([^ ](?:.*[^ ])?)__/mU', '<strong>$1</strong>', $str);
-		$str = preg_replace('/\*([^ ](?:.*?[^ ])?)\*/mU', '<em>$1</em>', $str);
-		$str = preg_replace('/_([^ ](?:.*[^ ])?)_/mU', '<em>$1</em>', $str);
+//		$str = preg_replace('/__([^ ](?:.*[^ ])?)__/mU', '<strong>$1</strong>', $str);
+//		$str = preg_replace('/\*([^ ](?:.*?[^ ])?)\*/mU', '<em>$1</em>', $str);
+//		$str = preg_replace('/_([^ ](?:.*[^ ])?)_/mU', '<em>$1</em>', $str);
 		if ($multi_line) {
 			$str = preg_replace('/^### (.+)\R/mU', '<h3>$1</h3>', $str);
 			$str = preg_replace('/^## (.+)\R/mU', '<h2>$1</h2>', $str);
