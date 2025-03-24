@@ -312,22 +312,22 @@ div.main-page-content > ul { margin-top: 10px; }
 .markdown ul							{ padding-left: 2.5em; margin-top: 0.4em; }
 .markdown ul:first-child				{ margin-top: 0; }
 .markdown li							{ padding-left: 0.4em; }
-.markdown h1, .markdown h2, .markdown h3{ font-family: Montserrat, arial, sans-serif; }
+.markdown h1, .markdown h2, .markdown h3 { font-family: Montserrat, arial, sans-serif; }
 .markdown h1:first-child, .markdown h2:first-child, .markdown h3:first-child { margin-top: 0; }
 .markdown h1 + br, .markdown h2 + br, .markdown h3 + br { margin-top: -1em; }
 
 @media (max-width: 768px) {
-	body { margin: 5px; }
-	table { display: block; overflow-x: auto; width: 100%; }
-	#fixed_scroll { width:calc(100% - 14px); }
-	#fixed_scroll td:nth-child(3) { display: none; }
+	body								{ margin: 5px; }
+	table								{ display: block; overflow-x: auto; width: 100%; }
+	#fixed_scroll						{ width:calc(100% - 14px); }
+	#fixed_scroll td:nth-child(3)		{ display: none; }
 	#bugnote_add_open td:first-child { min-width: 125px; }
-	input[type="text"][size="5"] { min-width: 56px; }
+	input[type="text"][size="5"]		{ min-width: 56px; }
 	table.width100, table.width90, table.width75, table.width60 { width: 100%; }
-	table.width50 { width: 80%; }
+	table.width50						{ width: 80%; }
 	table.width50 thead, table.width50 tbody, table.width50 tr, table.width50 th, table.width50 td { display: block; width: 100%; }
-	table.width50 td:not(:last-child) { border-bottom-width: 0; padding-bottom: 5px; }
-	table.width50 td:not(:first-child) { padding-top: 5px; }
+	table.width50 td:not(:last-child)	{ border-bottom-width: 0; padding-bottom: 5px; }
+	table.width50 td:not(:first-child)	{ padding-top: 5px; }
 	table.width50 td input[type="text"], table.width50 td input[type="password"] { width: calc(100% - 42px); }
 	input[type="text"], input[type="password"], textarea { font-size: 1rem; }
 }
