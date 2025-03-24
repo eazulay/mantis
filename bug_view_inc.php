@@ -254,15 +254,6 @@
 				fixedTable.classList.add('transparent');
 		}
     }
-
-	addLoadEvent(adjustFixedWidth);
-	window.onresize = adjustFixedWidth;
-	function adjustFixedWidth() {
-		if (window.innerWidth > 768)
-			fixedTable.style.width = (window.innerWidth - 50) + 'px';
-		else
-			fixedTable.style.width = (window.innerWidth - 20) + 'px';
-	}
 	addLoadEvent(setWarningOnNavigate);
 
 	document.addEventListener('DOMContentLoaded', function() {

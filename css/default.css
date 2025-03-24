@@ -4,7 +4,7 @@
 	--border-color: #7dbfb3;
 }
 html			{ scroll-behavior: smooth; }
-body			{ background-color: #f3f9f8; color: var(--text-color); font-family: Inter, Arial, sans-serif; font-size: 0.75rem; margin: 10px 20px; }
+body			{ background-color: #f3f9f8; color: var(--text-color); font-family: Inter, Arial, sans-serif; font-size: 0.75rem; margin: 30px 3% 20px; }
 b				{ font-weight: 600; }
 address 		{ font-size: 0.75rem }
 pre				{ margin-top: 0px; margin-bottom: 0px; }
@@ -79,7 +79,7 @@ table.width100, table.width90, table.width75, table.width60, table.width50 { bor
 div.width100		{ width: 100%; border: solid 1px var(--border-color); padding:15px; }
 table.menu			{ width: 100%; border: none; }
 
-#fixed_scroll 		{ position: fixed; top: 0; width:94%; border: solid 2px #000; background: white; z-index: 1000; }
+#fixed_scroll 		{ position: fixed; top: 0; width:calc(94% - 4px); border: solid 2px #000; background: white; z-index: 1000; }
 #fixed_scroll table { width: 100%; }
 .hidden-first 		{ opacity: 0; filter:alpha(opacity=0); }
 .transparent		{ opacity: 0; filter:alpha(opacity=0); -webkit-animation: hide 1s; animation: hide 1s; }
@@ -319,6 +319,7 @@ div.main-page-content > ul { margin-top: 10px; }
 @media (max-width: 768px) {
 	body { margin: 5px; }
 	table { display: block; overflow-x: auto; width: 100%; }
+	#fixed_scroll { width:calc(100% - 14px); }
 	#fixed_scroll td:nth-child(3) { display: none; }
 	#bugnote_add_open td:first-child { min-width: 125px; }
 	input[type="text"][size="5"] { min-width: 56px; }
