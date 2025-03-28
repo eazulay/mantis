@@ -890,6 +890,11 @@
 		echo '</td></tr>';
 	}
 
+	# Separator
+	echo '<tr class="subheader">';
+	echo '<td colspan="', ($category_is_bug ? '12' : '10'), '"></td>';
+	echo '</tr>';
+
 	# Approval
 	echo '<tr ', helper_alternate_class(), '>';
 	echo '<td class="category" colspan="2">', string_display( 'Approval' ), '</td>';
