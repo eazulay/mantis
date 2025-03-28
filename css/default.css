@@ -22,7 +22,7 @@ form			{ display: inline; }
 textarea		{ padding: 4px 8px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; width: calc(100% - 18px); border: 1px solid var(--border-color); border-radius: 5px; }
 input			{ padding: 3px 8px 4px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; border: 1px solid var(--border-color); margin-bottom: 1px; border-radius: 5px; }
 input[type="button"], input[type="submit"], input.button, input.button-small, a.button, button, input[type="file"]::file-selector-button {
-	background-color: #E9E9ED;
+	background-color: #E9EAEA;
     color: #212121;
 	font-family: Inter, arial, sans-serif;
 	font-weight: 500;
