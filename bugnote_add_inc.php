@@ -48,7 +48,7 @@
 <span style="font-weight:normal;">
 OR<br>
 <br>
-To email someone whom Mantis does not notify, click [Open Email]. Mantis will add your email as a Note. Issue #, Subject and cc to Mantis are included so a recipient Mantis user can click [Reply All] to add to this Issue.</span>
+To email someone Mantis does not notify, click [Open Email]. Mantis adds your email as a Note. A recipient Mantis user can click [Reply All] to add to this Issue.</span>
 	</td>
 	<td width="75%">
 		<textarea name="bugnote_text" cols="80" rows="10"></textarea>

@@ -19,8 +19,8 @@ a.resolved		{ text-decoration: line-through underline; }
 a > img			{ border: none; }
 
 form			{ display: inline; }
-textarea		{ padding: 5px 8px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; width: calc(100% - 18px); border-color: var(--border-color); border-width: 1px; border-radius: 5px; }
-input			{ padding: 5px 8px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; border-color: var(--border-color); border-width: 1px; margin-bottom: 1px; border-radius: 5px; }
+textarea		{ padding: 4px 8px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; width: calc(100% - 18px); border: 1px solid var(--border-color); border-radius: 5px; }
+input			{ padding: 3px 8px 4px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; border: 1px solid var(--border-color); margin-bottom: 1px; border-radius: 5px; }
 input[type="button"], input[type="submit"], input.button, input.button-small, a.button, button, input[type="file"]::file-selector-button {
 	background-color: #E9E9ED;
     color: #212121;
@@ -33,9 +33,11 @@ input[type="button"], input[type="submit"], input.button, input.button-small, a.
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 	padding: 4px 8px;
 	white-space: nowrap;
+	display: inline-block;
+  	margin-bottom: 1px;
 	transition: all 400ms;
 }
-input[type="file"] { padding: 0 0 3px; }
+input[type="file"] { padding: 0 0 3px; border:none; }
 input.button-small button.button-small {
     font-size: 0.75rem;
 }
@@ -54,8 +56,8 @@ input[type="checkbox"] {
     position: relative;
     top: 2px;
 }
-input[type="image"] { vertical-align: middle; }
-select				{ border-color: var(--border-color); border-width: 1px; background: #fff; padding: 3px 6px 4px; margin-bottom: 1px; border-radius: 5px; }
+input[type="image"] { vertical-align: middle; margin-bottom: 2px; }
+select				{ border: 1px solid var(--border-color); background: #fff; padding: 3px 6px 4px; margin-bottom: 1px; border-radius: 5px; }
 
 span.print			{ font-size: 0.8125rem; }
 span.required 		{ font-size: 0.8125rem; color: #bb0000; }
@@ -75,6 +77,7 @@ table.width75		{ width: 75%;  margin-left: auto; margin-right: auto; }
 table.width60		{ width: 60%;  margin-left: auto; margin-right: auto; }
 table.width50		{ width: 50%;  margin-left: auto; margin-right: auto; }
 table.width100, table.width90, table.width75, table.width60, table.width50 { border: solid 1px var(--border-color); border-radius: 8px; background: #fafdfb; }
+table#buglist tr:hover > td:not(:has(.issue-status)) { background: #f8fffa; }
 
 div.width100		{ width: 100%; border: solid 1px var(--border-color); padding:15px; }
 table.menu			{ width: 100%; border: none; }
