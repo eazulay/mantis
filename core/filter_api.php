@@ -2220,7 +2220,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			);
 		}
 		?>
-		<tr class="bottom-border">
+		<tr class="header bottom-border">
 		<th width="15%">ID</th>
 		<th width="15%">Time</th>
 		<th width="20%">People</th>

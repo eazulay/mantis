@@ -177,7 +177,6 @@ tr.subheader > th, tr.subheader > td{ border-bottom: 1px solid var(--border-colo
 tr.bottom-border > td, tr.bottom-border > th { border-bottom: 1px solid var(--border-color); }
 
 tr.top-border > td	{ border-top: 1px solid var(--border-color); }
-td#relationship_type_filter_target, td#tag_string_filter_target, td#show_sort_filter_target, td#sticky_issues_filter_target, td#per_page_filter_target { background-color: #F9F9F9; }
 tr.row-category		{ /*background-color: #F6E6CB;*/ color: #212121;
 /*	background: -webkit-linear-gradient(#FCF5ED, #F6E6CB);
 	background: -o-linear-gradient(#FCF5ED, #F6E6CB);
