@@ -304,7 +304,10 @@ div.main-page-content > ul { margin-top: 10px; }
 .markdown ul							{ padding-left: 2.5em; margin-top: 0.4em; }
 .markdown ul:first-child				{ margin-top: 0; }
 .markdown li							{ padding-left: 0.4em; }
-.markdown h1, .markdown h2, .markdown h3 { font-family: Montserrat, arial, sans-serif; }
+.markdown h1, .markdown h2, .markdown h3{ font-family: Montserrat, arial, sans-serif; }
+.markdown h1							{ font-size: 1.5em; }
+.markdown h2							{ font-size: 1.333em;}
+.markdown h3							{ font-size: 1.167em;}
 .markdown h1:first-child, .markdown h2:first-child, .markdown h3:first-child { margin-top: 0; }
 .markdown h1 + br, .markdown h2 + br, .markdown h3 + br { margin-top: -1em; }
 
