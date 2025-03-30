@@ -115,16 +115,17 @@ class HelpNotesPlugin extends MantisPlugin {
 		$str = preg_replace('/\*\*([^ ](?:.*[^ ])?)\*\*/mU', '<strong>$1</strong>', $str);
 		$str = preg_replace('/\*([^ ](?:.*?[^ ])?)\*/mU', '<em>$1</em>', $str);
 		if ($multi_line) {
-			$str = $str . "\n";
+			//$str = $str . "\n";
 			$str = preg_replace('/^- (.+)\R?$/mU', '<li>$1</li>', $str);
 			$str = preg_replace('/\R?<\/li>\R?/m', '</li>', $str);
 			$str = preg_replace('/^<li>(.*)<\/li>\R?/m', '<ul><li>$1</li></ul>' . "\n", $str);
-			$str = preg_replace('/(?:\R)?^###### (.+)\R/m', "\n" . '<h6>$1</h6>', $str);
-			$str = preg_replace('/(?:\R)?^##### (.+)\R/m', "\n" . '<h5>$1</h5>', $str);
-			$str = preg_replace('/(?:\R)?^#### (.+)\R/m', "\n" . '<h4>$1</h4>', $str);
-			$str = preg_replace('/(?:\R)?^### (.+)\R/m', "\n" . '<h3>$1</h3>', $str);
-			$str = preg_replace('/(?:\R)?^## (.+)\R/m', "\n" . '<h2>$1</h2>', $str);
-			$str = preg_replace('/(?:\R)?^# (.+)\R/m', "\n" . '<h1>$1</h1>', $str);
+			$str = preg_replace('/(?:\R)?^###### (.+)\R/mU', "\n" . '<h6>$1</h6>', $str);
+			$str = preg_replace('/(?:\R)?^##### (.+)\R/mU', "\n" . '<h5>$1</h5>', $str);
+			$str = preg_replace('/(?:\R)?^#### (.+)\R/mU', "\n" . '<h4>$1</h4>', $str);
+			$str = preg_replace('/(?:\R)?^### (.+)\R/mU', "\n" . '<h3>$1</h3>', $str);
+			$str = preg_replace('/(?:\R)?^## (.+)\R/mU', "\n" . '<h2>$1</h2>', $str);
+			$str = preg_replace('/(?:\R)?^# (.+)\R/mU', "\n" . '<h1>$1</h1>', $str);
+			$str = preg_replace('/\R<h/mU', '<h', $str);
 			$str = preg_replace('/\{\{(.+)\}\}/sU', '<b>$1</b>', $str);
 		}
 		return $str;
