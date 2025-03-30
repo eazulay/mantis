@@ -618,7 +618,7 @@ $s_bug_updated_msg = 'Issue has been successfully updated...';
 # bug_update_advanced_page.php
 $s_back_to_bug_link = 'Back To Issue';
 $s_update_simple_link = 'Update Simple';
-$s_updating_bug_advanced_title = 'Updating Issue Information';
+$s_updating_bug_advanced_title = 'Edit Issue Info';
 $s_id = 'ID';
 $s_category = 'Category';
 $s_severity = 'Severity';
@@ -648,7 +648,7 @@ $s_sticky_issue = 'Sticky Issue';
 $s_profile = 'Profile';
 
 # bug_update_page.php
-$s_updating_bug_simple_title = 'Updating Issue Information';
+$s_updating_bug_simple_title = 'Edit Issue Info';
 
 # bug_view*
 $s_view_revisions = 'View Revisions';
