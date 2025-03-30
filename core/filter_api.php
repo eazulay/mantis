@@ -2118,8 +2118,7 @@ function output_custom_field_filter( $p_field_index ) {
 	global $t_accessible_custom_fields_names, $t_filters_url, $t_accessible_custom_fields_ids, $t_filter, $t_accessible_custom_fields_types;
 	
 	if( isset( $t_accessible_custom_fields_names[$p_field_index] ) ) {
-		$t_fields = '<label>';
-		$t_fields .= '<a href="' . $t_filters_url . 'custom_field_' . $t_accessible_custom_fields_ids[$p_field_index] . '[]" id="custom_field_' . $t_accessible_custom_fields_ids[$p_field_index] . '_filter">';
+		$t_fields = '<label><a href="' . $t_filters_url . 'custom_field_' . $t_accessible_custom_fields_ids[$p_field_index] . '[]" id="custom_field_' . $t_accessible_custom_fields_ids[$p_field_index] . '_filter">';
 		$t_fields .= string_display( lang_get_defaulted( $t_accessible_custom_fields_names[$p_field_index] ) );
 		$t_fields .= '</a></label>';
 	} else {
@@ -2243,7 +2242,7 @@ function <?php echo $t_js_toggle_func;?>() {
 		}
 	}
 	$t_values .= '</div>';
-	echo '<td>' . $t_fields . $t_values . '</td>';
+	echo '<td>' . $t_fields . "\n" . $t_values . '</td>';
 }
 
 /**
@@ -2281,13 +2280,9 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 
 	$t_view_type = $t_filter['_view_type'];
 
-	$t_tdclass = 'center';
-	$t_trclass = 'row-2';
 	$t_action = 'view_all_set.php?f=3';
 
 	if( $p_for_screen == false ) {
-		$t_tdclass = 'print';
-		$t_trclass = '';
 		$t_action = 'view_all_set.php';
 	}
 	?>
@@ -2303,18 +2298,16 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 ?>
 	<input type="hidden" name="page_number" value="<?php echo $t_page_number?>" />
 	<input type="hidden" name="view_type" value="<?php echo $t_view_type?>" />
-	<table class="width100 with-borders" cellspacing="0">
+	<table class="width100 with-columns" cellspacing="0">
 
 <?php
 	$t_filter_cols = config_get( 'filter_custom_fields_per_row' );
 
 	if( $p_expanded ) {
-		$t_custom_cols = $t_filter_cols;
 		$t_current_user_access_level = current_user_get_access_level();
 		$t_accessible_custom_fields_ids = array();
 		$t_accessible_custom_fields_names = array();
 		$t_accessible_custom_fields_values = array();
-		$t_num_custom_rows = 0;
 		$t_per_row = 0;
 
 		if( ON == config_get( 'filter_by_custom_fields' ) ) {
@@ -2332,7 +2325,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 
 			if( count( $t_accessible_custom_fields_ids ) > 0 ) {
 				$t_per_row = config_get( 'filter_custom_fields_per_row' );
-				$t_num_custom_rows = ceil( (count( $t_accessible_custom_fields_ids ) - 1) / $t_per_row );
+				//$t_num_custom_rows = ceil( (count( $t_accessible_custom_fields_ids ) - 1) / $t_per_row );
 			}
 		}
 
@@ -2352,8 +2345,36 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			);
 		}
 		?>
-	
 		<tr class="header bottom-border">
+			<td class="form-title" colspan="5">
+		<?php echo 'advanced' == $t_view_type ? lang_get( 'advanced_filters' ) : lang_get( 'simple_filters' ); ?>
+				<span class="small">
+		<?php
+			# Switch Simple/Advanced
+			if( ON == config_get( 'dhtml_filters' ) ) {
+				$f_switch_view_link = 'view_all_set.php?type=6&view_type=';
+			} else {
+				$f_switch_view_link = 'view_filters_page.php?view_type=';
+			}
+			$t_view_filters = config_get( 'view_filters' );
+			if(( SIMPLE_ONLY != $t_view_filters ) && ( ADVANCED_ONLY != $t_view_filters ) ) {
+				if( 'advanced' == $t_view_type ) {
+					print_bracket_link( $f_switch_view_link . 'simple', lang_get( 'simple_filters' ) );
+				} else {
+					print_bracket_link( $f_switch_view_link . 'advanced', lang_get( 'advanced_filters' ) );
+				}
+			}
+			# Permalink
+			if( access_has_project_level( config_get( 'create_permalink_threshold' ) ) ) {
+				print_bracket_link( 'permalink_page.php?url=' . urlencode( filter_get_url( $t_filter ) ), lang_get( 'create_filter_link' ),
+				/* new window = */
+				true );
+			}
+		?>
+				</span>
+			</td>
+		</tr>
+		<tr class="subheader">
 			<th width="20%">ID</th>
 			<th width="20%">People</th>
 			<th width="20%">Environment</th>
@@ -2883,7 +2904,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 				</div>
 			</td>
 		</tr>
-		<tr class="row-2<?php if ( !$t_show_build && !$t_show_product_version ) echo ' bottom-border'; ?>">
+		<tr class="<?php if ( !$t_show_build && !$t_show_product_version ) echo 'bottom-border'; ?>">
 
 		</tr>
 
@@ -2914,7 +2935,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		}?>
 		</tr>
 
-		<tr class="row-2 bottom-border">
+		<tr class="bottom-border">
 			<?php if ( $t_show_build ) { ?>
 			<td class="center" valign="top" id="show_build_filter_target">
 							<?php
@@ -3070,10 +3091,10 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		<?php
 	}?>
 
-		<tr class="subheader"><td colspan="5"></td></tr>
+		<tr class="subheader top-border"><td colspan="5"></td></tr>
 
-		<tr>
-			<td><strong>Time</strong></td>
+		<tr class="bottom-border">
+			<td class="subheader"><strong>Time</strong></td>
 
 			<td>
 				<label>
@@ -3157,8 +3178,8 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			<td class="disabled"><?php echo lang_get( 'eta' ); ?></td>
 		</tr>
 
-		<tr class="row-1">
-			<td colspan="2">
+		<tr class="bottom-border">
+			<td>
 				<label>
 					<a href="<?php echo $t_filters_url . FILTER_PROPERTY_RELATIONSHIP_TYPE;?>" id="relationship_type_filter"><?php echo lang_get( 'bug_relationships' )?></a>
 				</label>
@@ -3177,7 +3198,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 				</div>
 			</td>
 
-			<td colspan="2">
+			<td colspan="3">
 				<label>
 					<?php if ( access_has_global_level( config_get( 'tag_view_threshold' ) ) ) { ?>
 					<a href="<?php echo $t_filters_url . FILTER_PROPERTY_TAG_STRING;?>" id="tag_string_filter"><?php echo lang_get( 'tags' )?></a>
@@ -3204,15 +3225,12 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		# get plugin filters
 		$t_plugin_filters = filter_get_plugin_filters();
 		$t_column = 0;
-		$t_fields = '';
 		$t_values = '';
 
 		# output a filter form element for each plugin filter
 		foreach( $t_plugin_filters as $t_field_name => $t_filter_object ) {
-			$t_fields .= '<td class="center" valign="top"> <a href="' . $t_filters_url . $t_field_name .
-				'" id="' . $t_field_name . '_filter">' . string_display_line( $t_filter_object->title ) . '</a> </td>';
-
-			$t_values .= '<td class="center" valign="top" id="' . $t_field_name . '_filter_target"> ';
+			$t_values .= '<td><label><a href="' . $t_filters_url . $t_field_name . '" id="' . $t_field_name . '_filter">' . string_display_line( $t_filter_object->title ) . '</a></label>';
+			$t_values .= '<div id="' . $t_field_name . '_filter_target"> ';
 
 			if ( !isset( $t_filter[ $t_field_name ] ) ) {
 				$t_values .= lang_get( 'any' );
@@ -3257,35 +3275,29 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 				}
 			}
 
-			$t_values .= '</td>';
+			$t_values .= '</div></td>';
 
 			$t_column++;
 
 			# wrap at the appropriate column
 			if ( $t_column >= $t_filter_cols ) {
-				echo '<tr class="', $t_trclass, '">', $t_fields, '</tr>';
-				echo '<tr class="row-1">', $t_values, '</tr>';
-
+				echo '<tr>', $t_values, '</tr>';
 				$t_fields = '';
 				$t_values = '';
 				$t_column = 0;
 			}
 		}
-
 		# output any remaining plugin filters
 		if ( $t_column > 0 ) {
 			if ( $t_column < $t_filter_cols ) {
-				$t_fields .= '<td class="category" colspan="' . ( $t_filter_cols - $t_column ) . '">&#160;</td>';
-				$t_values .= '<td class="center" colspan="' . ( $t_filter_cols - $t_column ) . '">&#160;</td>';
+				$t_values .= '<td colspan="' . ( $t_filter_cols - $t_column ) . '">&#160;</td>';
 			}
-
-			echo '<tr class="', $t_trclass, '">', $t_fields, '</tr>';
-			echo '<tr class="row-1">', $t_values, '</tr>';
+			echo '<tr>', $t_values, '</tr>';
 		}
 
 		if( ON == config_get( 'filter_by_custom_fields' ) ) {
 			if( count( $t_accessible_custom_fields_ids ) > 1 ) {
-				//$t_per_row = config_get( 'filter_custom_fields_per_row' );
+				$t_per_row = config_get( 'filter_custom_fields_per_row' );
 				$t_num_fields = count( $t_accessible_custom_fields_ids );
 
 				for( $i = 2; $i < $t_num_fields; $i++ ) {
@@ -3294,7 +3306,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			}
 		}
 		?>
-		<tr class="subheader">
+		<tr class="subheader top-border">
 			<td colspan="5"></td>
 		</tr>
 		<tr>
@@ -3378,40 +3390,16 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 	?>
 			</td>
 			<td class="center">
-	<?php
-	if( ON == config_get( 'dhtml_filters' ) ) {
-		$f_switch_view_link = 'view_all_set.php?type=6&view_type=';
-	} else {
-		$f_switch_view_link = 'view_filters_page.php?view_type=';
-	}
-
-	$t_view_filters = config_get( 'view_filters' );
-	if(( SIMPLE_ONLY != $t_view_filters ) && ( ADVANCED_ONLY != $t_view_filters ) ) {
-		if( 'advanced' == $t_view_type ) {
-			print_bracket_link( $f_switch_view_link . 'simple', lang_get( 'simple_filters' ) );
-		} else {
-			print_bracket_link( $f_switch_view_link . 'advanced', lang_get( 'advanced_filters' ) );
-		}
-	}
-	?>
 				<input type="submit" name="filter" class="button-small" value="<?php echo lang_get( 'filter_button' )?>" />
 		</form>
 
 	<?php
-	if( access_has_project_level( config_get( 'stored_query_create_threshold' ) ) ) {
-		?>
-					<form method="post" name="save_query" action="query_store_page.php">
-					<?php # CSRF protection not required here - form does not result in modifications ?>
-					<input type="submit" name="save_query_button" class="button-small" value="<?php echo lang_get( 'save_query' )?>" />
-					</form>
-	<?php
-	}
-
-	if( access_has_project_level( config_get( 'create_permalink_threshold' ) ) ) {
-		print_bracket_link( 'permalink_page.php?url=' . urlencode( filter_get_url( $t_filter ) ), lang_get( 'create_filter_link' ),
-		/* new window = */
-		true );
-	} ?>
+	if( access_has_project_level( config_get( 'stored_query_create_threshold' ) ) ) { ?>
+		<form method="post" name="save_query" action="query_store_page.php">
+		<?php # CSRF protection not required here - form does not result in modifications ?>
+			<input type="submit" name="save_query_button" class="button-small" value="<?php echo lang_get( 'save_query' )?>" />
+		</form>
+	<?php } ?>
 			</td>
 			<td class="right">
 	<?php

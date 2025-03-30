@@ -61,7 +61,8 @@ select				{ border: 1px solid var(--border-color); background: #fff; padding: 3p
 
 label				{ font-weight: 600; margin-right: 1em; margin-bottom: 5px; }
 label + div			{ display: inline-block; }
-#filters_form_open td > label { display: inline-block; min-width: 40%; }
+#filters_form_open td > label { display: inline-block; min-width: 37%; vertical-align: top; }
+#filters_form_open td[colspan="3"] > label { min-width: 12%; }
 
 span.print			{ font-size: 0.8125rem; }
 span.required 		{ font-size: 0.8125rem; color: #bb0000; }
@@ -152,14 +153,10 @@ tr.spacer			{ background-color: var(--border-color); height: 1px; }
 tr.spacer td		{ padding: 0; }
 tr.padded-spacer	{ background-color: #F6EBDF; height: 1px; }
 tr.padded-spacer td	{ padding: 2px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-/*tr.row-1			{ background-color: #F9EFE1; }
-tr.row-2			{ background-color: #FCF5ED; }*/
 tr.bug-primary > td:nth-child(2n + 3),
 #issue_metadata_closed tr:first-child td.category, #history_open td:not(:first-child),
 #bugnotestats_open table td:not(.category) table td:not(:first-child),
 .with-columns > tbody > tr > td:not(.form-title):not(:first-child) { border-left: 1px solid var(--border-color); }
-.with-borders > tbody > tr > td:not(.form-title):not(:first-child) { border-left: 1px solid var(--border-color); }
-.with-borders > tbody > tr:not(:last-child) > td { border-bottom: 1px solid var(--border-color); }
 #bugnotestats_open table td:not(.category) table { border: 1px solid var(--border-color); }
 #bugnotestats > table tr:not(:last-child) > td { border-bottom: 1px solid var(--border-color); }
 .with-paging tr:last-child td { border-top: 1px solid var(--border-color); }
@@ -171,7 +168,7 @@ table:not(#buglist) tr.footer > td	{ border-top: 1px solid var(--border-color); 
 table.width90 tr.footer > td		{ padding: 8px 12px; }
 #filter_closed tr.footer > td		{ border-top: none !important; }
 tr.footer:first-child > td			{ padding: 0; }
-tr.subheader						{ background: #e5f1e2; }
+tr.subheader, td.subheader			{ background: #e5f1e2; }
 tr.subheader > th, tr.subheader > td{ border-bottom: 1px solid var(--border-color); text-align: center; }
 tr.bottom-border > td, tr.bottom-border > th { border-bottom: 1px solid var(--border-color); }
 

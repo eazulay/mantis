@@ -216,7 +216,7 @@ $g_html_valid_tags = 'p, li, ul, ol, br, pre, i, b, u, em, strong, h1, h2, h3';
 $g_default_bug_severity = NICE_TO_HAVE;
 $g_default_bugnote_order = 'DESC';
 $g_default_bug_reproducibility = REPRODUCIBILITY_NOTAPPLICABLE;
-$g_filter_custom_fields_per_row = 6;
+$g_filter_custom_fields_per_row = 5;
 $g_default_bug_priority = NONE;
 $g_bug_readonly_status_threshold = CLOSED;
 $g_update_readonly_bug_threshold = UPDATER;
@@ -228,6 +228,6 @@ $g_default_project_view_status = VS_PRIVATE;
 $g_show_project_menu_bar = ON;
 $g_form_security_validation = OFF;
 
-$g_css_include_file = 'css/default.css?v=20250328';
+$g_css_include_file = 'css/default.css?v=20250330';
 
 // $g_relationship_graph_enable = ON;
