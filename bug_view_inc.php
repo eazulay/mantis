@@ -782,7 +782,7 @@
 	}
 
 	if ( $tpl_show_view_state || $tpl_show_due_date || $tpl_show_handler || $tpl_show_os || $tpl_show_severity || $tpl_show_priority ) {
-		echo '<tr class="bug-primary row-2">';
+		echo '<tr class="bug-primary">';
 		# View Status (Visibility)
 		echo '<td class="category">', $tpl_show_view_state ? lang_get( 'view_status' ) : '', '</td>';
 		echo '<td>', $tpl_bug_view_state_enum, '</td>';
@@ -817,10 +817,7 @@
 	}
 
 	if ( $tpl_show_eta || $tpl_show_os_version || $tpl_show_reproducibility || $tpl_show_resolution ) {
-		echo '<tr class="bug-primary row-1';
-		if ( !($tpl_show_product_version || $tpl_show_product_build || $tpl_show_target_version || $tpl_show_fixed_in_version || $tpl_show_projection) )
-			echo ' bottom-border';
-		echo '">';
+		echo '<tr class="bug-primary">';
 		# No. of Notes
 		echo '<td class="category">', lang_get( 'notes' ), '</td>';
 		echo '<td>', $t_bugnote_count == 0 ? lang_get( 'none' ) : $t_bugnote_count, '</td>';
@@ -848,7 +845,7 @@
 	}
 
 	if ( $tpl_show_product_version || $tpl_show_product_build || $tpl_show_target_version || $tpl_show_fixed_in_version || $tpl_show_projection ) {
-		echo '<tr class="bug-primary row-2 bottom-border">';
+		echo '<tr class="bug-primary">';
 		# Product Version
 		echo '<td class="category">', $tpl_show_product_version ? lang_get( 'product_version' ) : '', '</td>';
 		echo '<td>', $tpl_product_version_string, '</td>';
@@ -868,7 +865,7 @@
 	}
 
 	# Separator
-	echo '<tr class="subheader">';
+	echo '<tr class="padded-spacer">';
 	echo '<td colspan="', ($category_is_bug ? '12' : '10'), '"></td>';
 	echo '</tr>';
 

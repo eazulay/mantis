@@ -3095,7 +3095,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		<?php
 	}?>
 
-		<tr class="subheader top-border"><td colspan="5"></td></tr>
+		<tr class="padded-spacer"><td colspan="5"></td></tr>
 
 		<tr class="bottom-border">
 			<td class="subheader"><strong>Time</strong></td>
@@ -3313,8 +3313,8 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		<?php
 			}
 		} ?>
-		
-		<tr class="subheader top-border">
+
+		<tr class="padded-spacer">
 			<td colspan="5"></td>
 		</tr>
 		<tr>

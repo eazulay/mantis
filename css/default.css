@@ -147,11 +147,11 @@ td.print			{ font-size: 0.75rem; text-align: left; padding: 2px; }
 td.print-category	{ font-size: 0.75rem; font-weight: bold; text-align: right; padding: 2px; }
 td.print-overdue		{ font-size: 0.75rem; font-weight: bold; padding: 2px; }
 td.print-bottom		{ border-bottom: 1px solid #212121; }
-td.print-spacer		{ background-color: #F6EBDF; font-size: 1px; line-height: 0.1; padding: 0px; }
+td.print-spacer		{ background-color: #e5f1e2; font-size: 1px; line-height: 0.1; padding: 0px; }
 
 tr.spacer			{ background-color: var(--border-color); height: 1px; }
 tr.spacer td		{ padding: 0; }
-tr.padded-spacer	{ background-color: #F6EBDF; height: 1px; }
+tr.padded-spacer	{ background-color: #e5f1e2; }
 tr.padded-spacer td	{ padding: 2px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
 tr.bug-primary > td:nth-child(2n + 3),
 #issue_metadata_closed tr:first-child td.category, #history_open td:not(:first-child),
