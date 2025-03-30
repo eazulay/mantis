@@ -3302,14 +3302,18 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		if( ON == config_get( 'filter_by_custom_fields' ) ) {
 			if( count( $t_accessible_custom_fields_ids ) > 1 ) {
 				$t_per_row = config_get( 'filter_custom_fields_per_row' );
-				$t_num_fields = count( $t_accessible_custom_fields_ids );
-
+				$t_num_fields = count( $t_accessible_custom_fields_ids ); ?>
+		<tr>
+		<?php
 				for( $i = 2; $i < $t_num_fields; $i++ ) {
 					output_custom_field_filter( $i );
 				}
-			}
-		}
 		?>
+		</tr>
+		<?php
+			}
+		} ?>
+		
 		<tr class="subheader top-border">
 			<td colspan="5"></td>
 		</tr>
