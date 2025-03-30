@@ -234,9 +234,10 @@ function collapse_cache_token() {
 			$t_pair = explode(',', $t_pair);
 
 			if (false !== $t_pair && count($t_pair) == 2){
-				$g_collapse_cache_token[$t_pair[0]] = true == $t_pair[1];
-/*					( $t_pair[0] == 'filter'
-						? false				// Ignore previous Filter collapse state
+				$g_collapse_cache_token[$t_pair[0]] = (true == $t_pair[1]);
+/*	2025.03.30 Decided to no longer ignore Filter collapse state
+					( $t_pair[0] == 'filter'
+						? false
 						: true == $t_pair[1]
 					);*/
 				$t_update = true;
