@@ -867,6 +867,11 @@
 		echo '</tr>';
 	}
 
+	# Separator
+	echo '<tr class="subheader">';
+	echo '<td colspan="', ($category_is_bug ? '12' : '10'), '"></td>';
+	echo '</tr>';
+
 	# Custom Fields
 	$t_custom_fields_found = false;
 	$t_related_custom_field_ids = custom_field_get_linked_ids( $tpl_bug->project_id );
@@ -878,7 +883,8 @@
 			continue;
 		if( !custom_field_has_read_access( $t_id, $f_bug_id ) )
 			continue;
-		# has read access
+
+		# Info Required From
 
 		$t_custom_fields_found = true;
 		$t_def = custom_field_get_definition( $t_id );
@@ -889,11 +895,6 @@
 		print_custom_field_value( $t_def, $t_id, $f_bug_id );
 		echo '</td></tr>';
 	}
-
-	# Separator
-	echo '<tr class="subheader">';
-	echo '<td colspan="', ($category_is_bug ? '12' : '10'), '"></td>';
-	echo '</tr>';
 
 	# Approval
 	echo '<tr ', helper_alternate_class(), '>';
