@@ -171,6 +171,7 @@ tr.footer:first-child > td			{ padding: 0; }
 tr.subheader, td.subheader			{ background: #e5f1e2; }
 tr.subheader > th, tr.subheader > td{ border-bottom: 1px solid var(--border-color); text-align: center; }
 tr.bottom-border > td, tr.bottom-border > th { border-bottom: 1px solid var(--border-color); }
+tr.subtotal > td					{ background: #e5f1e2; font-weight: bold; }
 
 tr.top-border > td	{ border-top: 1px solid var(--border-color); }
 tr.row-category td	{  text-align:center; border-bottom: 1px solid var(--border-color); }
@@ -301,17 +302,16 @@ div.main-page-content { width: 710px; margin: 0 auto; font-size: 1.125rem; line-
 div.main-page-content h4 { margin-top: 30px; margin-bottom: 10px; }
 div.main-page-content > ul { margin-top: 10px; }
 
-.markdown ul							{ padding-left: 2.5em; margin-top: 0.4em; }
-.markdown ul:first-child				{ margin-top: 0; }
-.markdown li							{ padding-left: 0.4em; }
+.markdown ul				{ padding-left: 2.5em; margin-top: 0.4em; }
+.markdown ul:first-child	{ margin-top: 0; }
+.markdown li				{ padding-left: 0.4em; }
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 { font-family: Montserrat, arial, sans-serif; margin-top: 1em; margin-bottom: 0.5em; }
-.markdown h1							{ font-size: 1.5em; }
-.markdown h2							{ font-size: 1.333em;}
-.markdown h3							{ font-size: 1.167em;}
-.markdown h3							{ font-size: 1.083em;}
-.markdown h4							{ font-size: 1em;}
-.markdown h5							{ font-size: 0.917em;}
-.markdown h6							{ font-size: 0.833em;}
+.markdown h1				{ font-size: 1.5em; }
+.markdown h2				{ font-size: 1.333em;}
+.markdown h3				{ font-size: 1.167em;}
+.markdown h4				{ font-size: 1.083em;}
+.markdown h5				{ font-size: 1em;}
+.markdown h6				{ font-size: 0.917em;}
 .markdown h1:first-child, .markdown h2:first-child, .markdown h3:first-child, .markdown h4:first-child, .markdown h5:first-child, .markdown h6:first-child { margin-top: 0; }
 .markdown h1 + br, .markdown h2 + br, .markdown h3 + br, .markdown h4 + br, .markdown h5 + br, .markdown h6 + br, .markdown ul + br { margin-top: -1em; }
 

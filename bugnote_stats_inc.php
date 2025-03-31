@@ -115,14 +115,14 @@ if ( ON != config_get('time_tracking_enabled') ) {
 		unset( $t_sort_name );
 ?>
 <br />
-<table border=0 class="width100" cellspacing="0">
-	<tr class="row-category-history">
-		<td class="small-caption" style="padding:8px;">
+<table class="width100" cellspacing="0">
+	<tr class="subheader">
+		<th>
 			<?php echo lang_get( $t_name_field ) ?>
-		</td>
-		<td class="small-caption" style="padding:8px;">
+		</th>
+		<th>
 			<?php echo lang_get( 'time_tracking' ) ?>
-		</td>
+		</th>
 	</tr>
 
 <?php
@@ -134,21 +134,21 @@ if ( ON != config_get('time_tracking_enabled') ) {
 ?>
 
 	<tr <?php echo helper_alternate_class() ?>>
-		<td class="small-caption">
+		<td class="center">
 			<?php echo string_display_line( $t_item[$t_name_field] ) ?>
 		</td>
-		<td class="small-caption">
+		<td class="center">
 			<?php echo $t_item['sum_time_tracking'] ?>
 		</td>
 	</tr>
 <?php
 		} # end for loop
 ?>
-	<tr class="footer">
-		<td class="small-caption">
+	<tr class="subtotal">
+		<td class="center">
 			<?php echo lang_get( 'total_time' ) ?>
 		</td>
-		<td class="small-caption">
+		<td class="center">
 			<?php echo db_minutes_to_hhmm ( $t_sum_in_minutes ) ?>
 		</td>
 	</tr>
