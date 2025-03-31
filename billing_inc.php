@@ -186,17 +186,17 @@
 ?>
 <br />
 <table class="width100" cellspacing="0">
-	<tr class="row-category-history">
-		<td class="form-title">
+	<tr class="subheader">
+		<th>
 			<?php echo lang_get( $t_name_field ) ?>
-		</td>
-		<td class="form-title">
+		</th>
+		<th>
 			<?php echo lang_get( 'time_tracking' ) ?>
-		</td>
+		</th>
 <?php		if ( $t_cost_col) { ?>
-		<td class="form-title">
+		<th>
 			<?php echo lang_get( 'time_tracking_cost' ) ?>
-		</td>
+		</th>
 <?php	 	} ?>
 	</tr>
 <?php
@@ -224,7 +224,7 @@
 				}else{
 					//$t_item['sum_time_tracking'] = db_minutes_to_hhmm( $t_item['sum_time_tracking'] );
 					$t_link = string_get_bug_view_link( $t_item['bug_id'] );
-					echo '<tr class="row-category-history"><td colspan="3">' .
+					echo '<tr class="print-category"><td colspan="3">' .
 						$t_item['project_name'] . " " . $t_link . ": " . string_display( $t_item['summary'] ) . "</td></tr>";
 				}
 				$t_prev_id = $t_item['bug_id'];
@@ -232,14 +232,14 @@
 			if ($f_get_bug_stats_button){
 ?>
 	<tr <?php echo helper_alternate_class() ?>>
-		<td>
+		<td class="center">
 			<?php echo $t_item[$t_name_field] ?>
 		</td>
-		<td>
+		<td class="center">
 			<?php echo db_minutes_to_hhmm( $t_item['sum_time_tracking'] ); ?>
 		</td>
 <?php			if ($t_cost_col) { ?>
-		<td>
+		<td class="center">
 			<?php echo string_attribute( number_format( $t_item['cost'], 2 ) ); ?>
 		</td>
 <?php			} ?>
@@ -255,17 +255,17 @@
 			echo $t_header;
 		else:
 ?>
-	<tr class="footer">
-		<td>
+	<tr class="subtotal">
+		<th>
 			<?php echo lang_get( 'total_time' ); ?>
-		</td>
-		<td>
+		</th>
+		<th>
 			<?php echo db_minutes_to_hhmm( $t_sum_in_minutes ); ?>
-		</td>
+		</th>
 <?php		if ( $t_cost_col ) { ?>
-		<td>
+		<th>
 			<?php echo string_attribute( number_format( $t_sum_in_minutes * $f_bugnote_cost / 60, 2 ) ); ?>
-		</td>
+		</th>
 <?php 		} ?>
 	</tr>
 </table>
@@ -274,48 +274,48 @@
 <br />
 
 <table id="" class="width100" cellspacing="0">
-	<tr class="row-category-history">
-		<td class="form-title">
+	<tr class="subheader">
+		<th>
 			<?php echo lang_get( $t_name_field ) ?>
-		</td>
-		<td class="form-title">
+		</th>
+		<th>
 			<?php echo lang_get( 'time_tracking' ) ?>
-		</td>
+		</th>
 <?php		if ( $t_cost_col ) { ?>
-		<td class="form-title">
+		<th>
 			<?php echo lang_get( 'time_tracking_cost' ) ?>
-		</td>
+		</th>
 <?php		} ?>
 	</tr>
 
 <?php		foreach ( $t_user_summary as $t_username => $t_total_time ) {
 ?>
 	<tr <?php echo helper_alternate_class() ?>>
-		<td>
+		<td class="center">
 			<?php echo $t_username; ?>
 		</td>
-		<td>
+		<td class="center">
 			<?php echo db_minutes_to_hhmm($t_total_time); ?>
 		</td>
 <?php 			if ( $t_cost_col ) { ?>
-		<td>
+		<td class="center">
 			<?php echo string_attribute( number_format( $t_total_time * $f_bugnote_cost / 60, 2 ) ); ?>
 		</td>
 <?php 			} ?>
 	</tr>
 <?php 		} ?>
 
-	<tr class="footer">
-		<td>
+	<tr class="subtotal">
+		<th>
 			<?php echo lang_get( 'total_time' ); ?>
-		</td>
-		<td>
+		</th>
+		<th>
 			<?php echo db_minutes_to_hhmm( $t_sum_in_minutes ); ?>
-		</td>
+		</th>
 <?php		if ( $t_cost_col ) { ?>
-		<td>
+		<th>
 			<?php echo string_attribute( number_format( $t_sum_in_minutes * $f_bugnote_cost / 60, 2 ) ); ?>
-		</td>
+		</th>
 <?php		} ?>
 	</tr>
 </table>

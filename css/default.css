@@ -158,10 +158,8 @@ tr.bug-primary > td:nth-child(2n + 3),
 #bugnotestats_open table td:not(.category) table td:not(:first-child),
 .with-columns > tbody > tr > td:not(.form-title):not(:first-child) { border-left: 1px solid var(--border-color); }
 #bugnotestats_open table td:not(.category) table { border: 1px solid var(--border-color); }
-#bugnotestats > table tr:not(:last-child) > td { border-bottom: 1px solid var(--border-color); }
 .with-paging tr:last-child td { border-top: 1px solid var(--border-color); }
 
-/*tr.header, tr.footer{ background-color: #F7EBD9; }*/
 tr.header, tr.footer, tr:has(td.form-title), tr:has(th.form-title) { background-color: #e2f1ee; }
 th.form-title, tr.header:not(:last-child) > td	{ border-bottom: 1px solid var(--border-color); }
 table:not(#buglist) tr.footer > td	{ border-top: 1px solid var(--border-color); }
@@ -171,7 +169,7 @@ tr.footer:first-child > td			{ padding: 0; }
 tr.subheader, td.subheader			{ background: #e5f1e2; }
 tr.subheader > th, tr.subheader > td{ border-bottom: 1px solid var(--border-color); text-align: center; }
 tr.bottom-border > td, tr.bottom-border > th { border-bottom: 1px solid var(--border-color); }
-tr.subtotal > td					{ background: #e5f1e2; font-weight: bold; }
+tr.subtotal > td, tr.subtotal > th	{ background: #e5f1e2; font-weight: 600; border-top: 1px solid var(--border-color); }
 
 tr.top-border > td	{ border-top: 1px solid var(--border-color); }
 tr.row-category td	{  text-align:center; border-bottom: 1px solid var(--border-color); }

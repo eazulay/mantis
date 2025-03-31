@@ -114,7 +114,7 @@ if ( ON != config_get('time_tracking_enabled') ) {
 		array_multisort( $t_sort_name, $t_bugnote_stats );
 		unset( $t_sort_name );
 ?>
-<br />
+
 <table class="width100" cellspacing="0">
 	<tr class="subheader">
 		<th>
@@ -145,12 +145,12 @@ if ( ON != config_get('time_tracking_enabled') ) {
 		} # end for loop
 ?>
 	<tr class="subtotal">
-		<td class="center">
+		<th>
 			<?php echo lang_get( 'total_time' ) ?>
-		</td>
-		<td class="center">
+		</th>
+		<th>
 			<?php echo db_minutes_to_hhmm ( $t_sum_in_minutes ) ?>
-		</td>
+		</th>
 	</tr>
 </table>
 
