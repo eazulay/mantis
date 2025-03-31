@@ -108,7 +108,7 @@ function ToggleDiv( p_div ) {
 		t_cookie = t_cookie + "|" + p_div + ",0";
 	}
 
-	requestAnimationFrame(function() {
+	requestAnimationFrame(function() { // Try to avoid Chrome hanging for two seconds
 		SetCookie("collapse_settings", t_cookie);
 	});
 
