@@ -80,9 +80,7 @@ function SetCookie(p_cookie, p_value) {
 
 	t_expires.setTime(t_expires.getTime() + (365 * 24 * 60 * 60 * 1000));
 
-	setTimeout(function() {
-		document.cookie = t_cookie_name + "=" + p_value + "; expires=" + t_expires.toUTCString() + ";";
-	}, 0);
+	document.cookie = t_cookie_name + "=" + p_value + "; expires=" + t_expires.toUTCString() + ";";
 }
 
 /*
@@ -110,7 +108,9 @@ function ToggleDiv( p_div ) {
 		t_cookie = t_cookie + "|" + p_div + ",0";
 	}
 
-	SetCookie("collapse_settings", t_cookie);
+	setTimeout(function() {
+		SetCookie("collapse_settings", t_cookie);
+	}, 1);
 
 	return (t_open_div.className === "");
 }
