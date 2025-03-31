@@ -80,7 +80,9 @@ function SetCookie(p_cookie, p_value) {
 
 	t_expires.setTime(t_expires.getTime() + (365 * 24 * 60 * 60 * 1000));
 
-	document.cookie = t_cookie_name + "=" + p_value + "; expires=" + t_expires.toUTCString() + ";";
+	setTimeout(function() {
+		document.cookie = t_cookie_name + "=" + p_value + "; expires=" + t_expires.toUTCString() + ";";
+	}, 0);
 }
 
 /*
