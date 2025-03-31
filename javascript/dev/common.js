@@ -108,9 +108,10 @@ function ToggleDiv( p_div ) {
 		t_cookie = t_cookie + "|" + p_div + ",0";
 	}
 
-	setTimeout(function() {
+	new Promise(function(resolve) {
 		SetCookie("collapse_settings", t_cookie);
-	}, 1);
+		resolve();
+	});
 
 	return (t_open_div.className === "");
 }
