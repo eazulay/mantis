@@ -468,7 +468,7 @@ function html_top_banner() {
 		include( $t_page );
 	} else if( $t_show_logo ) {
 		// Mantis Logo
-		echo '<div class="floatleft">';
+		echo '<div class="floatright" style="margin-bottom: 10px;">';
 		if( $t_show_url ) {
 			echo '<a href="', config_get( 'logo_url' ), '">';
 		}
@@ -478,8 +478,8 @@ function html_top_banner() {
 		}
 		echo '</div>';
 		// GIW Logo
-		echo '<div class="floatright">';
-		echo '<img border="0" alt="Get IT Write International Logo" src="' . helper_mantis_url('images/GIW Logo.png') . '" style="border: 1px solid #054c32; border-radius: 5px;" />';
+		echo '<div class="floatleft companylogo">';
+		echo '<img border="0" alt="Get IT Write International Logo" src="' . helper_mantis_url('images/GIW Logo.png') . '" style="border: 1px solid #af9f75;" />';
 		echo '</div>';
 	}
 	echo '<div style="width:100%; clear:both;"></div>', "\n";
@@ -497,12 +497,10 @@ function html_login_info() {
 	$t_access_level = get_enum_element( 'access_levels', current_user_get_access_level() );
 	$t_now = date( config_get( 'complete_date_format' ) );
 	$t_realname = current_user_get_field( 'realname' );
-
-	echo '<table class="hide">';
-	echo '<tr>';
-	echo '<td class="login-info-left" width="15%">';
-	echo '</td>';
-	echo '<td class="login-info-middle" width="70%">';
+?>
+<div class="grid">
+	<div class="grid-middle project-current">
+<?php
 
 	echo lang_get( 'email_project' ), ': ';
 
@@ -543,8 +541,10 @@ function html_login_info() {
 			echo '<input type="submit" class="button-small" value="' . lang_get( 'switch' ) . '" />';
 		echo '</form>';
 	}*/
-	echo '</td>';
-	echo '<td class="login-info-right" width="15%">';
+?>
+	</div>
+	<div class="grid-right">
+<?php
 	if( current_user_is_anonymous() ) {
 		$t_return_page = $_SERVER['SCRIPT_NAME'];
 		if( isset( $_SERVER['QUERY_STRING'] ) ) {
@@ -568,9 +568,10 @@ function html_login_info() {
 		echo '</a>';
 	}
 	echo "<br><span class=\"italic\">$t_now</span>";
-	echo '</td>';
-	echo '</tr>';
-	echo '</table>';
+?>
+	</div>
+</div>
+<?php
 }
 
 /**
@@ -722,11 +723,10 @@ function prepare_custom_menu_options( $p_config ) {
 function print_menu() {
 	if( auth_is_user_authenticated() ) {
 		$t_current_project = helper_get_current_project();
-
-		echo '<table class="menu" cellspacing="0">';
-		echo '<tr>';
-		echo '<td class="left nowrap" width="18%"></td>';
-		echo '<td class="menu" width="64%">';
+?>
+<div class="grid">
+	<div class="grid-middle menu">
+<?php
 		$t_menu_options = array();
 		$t_admin_menu_options = array();
 
@@ -841,21 +841,30 @@ function print_menu() {
 		}
 
 		echo implode( ' | ', $t_menu_options );
-		echo '</td>';
-		echo '<td class="right nowrap" width="18%">';
+?>
+	</div>
+	<div class="grid-right nowrap">
+<?php
 		jump_issue_form('small');
-		echo '</td>';
-		echo '</tr>';
+?>
+	</div>
+</div>
+<?php
 		if ( count( $t_admin_menu_options ) > 0 ) {
-			echo '<tr>';
-			echo '<td class="left nowrap" width="18%"></td>';
-			echo '<td class="menu" width="64%">';
+?>
+<div class="grid">
+	<div class="grid-middle menu">
+<?php
 			echo implode( ' | ', $t_admin_menu_options );
-			echo '</td>';
-			echo '<td class="right" width="18%">';
+?>
+	</div>
+	<div class="grid-right">
+<?php
 			print_recently_visited();
-			echo '</td>';
-			echo '</tr>';
+?>
+	</div>
+</div>
+<?php
 		}
 		echo '</table>';
 		return count( $t_admin_menu_options ) > 0;
@@ -888,13 +897,12 @@ function jump_issue_form($fieldsClass = '') {
 function print_project_menu_bar() {
 	$t_project_ids = current_user_get_accessible_projects();
 	$t_protected = current_user_get_field( 'protected' );
-
-	echo '<table class="menu" cellspacing="0">';
-	echo '<tr>';
-	echo '<td class="right nowrap" width="15%"></td>';
-    echo '<td class="menu project-menu" width="70%">';
-    echo '<ul class="project-menu">';
-    echo '<li class="menu-item">';
+?>
+<div class="grid">
+	<div class="grid-middle">
+		<ul class="project-menu menu">
+			<li class="menu-item">
+<?php
 	echo '<a href="' . helper_mantis_url( 'set_project.php?project_id=' . ALL_PROJECTS ) . '">' . lang_get( 'all_projects' ) . '</a>';
     echo '</li>';
 	foreach( $t_project_ids as $t_id ) {
@@ -903,10 +911,11 @@ function print_project_menu_bar() {
         print_subproject_menu_bar( $t_id, $t_id . ';' );
         echo '</li>';
 	}
-
-	echo '</td>';
-	echo '<td class="right nowrap" width="15%">';
-
+?>
+		</ul>
+	</div>
+	<div class="grid-right">
+<?php
 	# Account Page (only show accounts that are NOT protected)
 	if( OFF == $t_protected ) {
 		echo '<a href="' . helper_mantis_url( 'account_page.php">' ) . lang_get( 'account_link' ) . '</a>';
@@ -916,10 +925,10 @@ function print_project_menu_bar() {
 	if( !current_user_is_anonymous() ) {
 		echo ' | <a href="' . helper_mantis_url( 'logout_page.php">' ) . lang_get( 'logout_link' ) . '</a>';
 	}
-
-	echo '</td>';
-	echo '</tr>';
-	echo '</table>';
+?>
+	</div>
+</div>
+<?php
 }
 
 /**
