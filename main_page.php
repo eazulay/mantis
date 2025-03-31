@@ -58,7 +58,7 @@
 		<li>';
 		print_link('bug_report_page.php', 'Raise a New Issue');
 		echo '</li>
-		<li>Add a Note to: ';
+		<li>Add a Note to an Issue:<br>';
 		jump_issue_form('small');
 		echo '<form id="filters_form)closed" method="post" name="filters_closed" action="view_all_set.php?f=3&type=1">
 		<span class="small">or find by Keyword:</span> <input type="text" size="20" name="', FILTER_PROPERTY_FREE_TEXT, '" />
