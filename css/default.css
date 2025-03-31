@@ -37,7 +37,7 @@ input[type="button"], input[type="submit"], input.button, input.button-small, a.
   	margin-bottom: 1px;
 	transition: all 400ms;
 }
-input[type="file"] { padding: 0 0 3px; border:none; }
+input[type="file"] { padding: 0 0 3px; border:none; font-size: 0.75rem; }
 input.button-small button.button-small {
     font-size: 0.75rem;
 }
@@ -66,7 +66,7 @@ label + div			{ display: inline-block; }
 
 span.print			{ font-size: 0.8125rem; }
 span.required 		{ font-size: 0.8125rem; color: #bb0000; }
-span.small 			{ font-size: 0.8125em; font-weight: normal; }
+span.small 			{ font-size: 0.9167em; font-weight: normal; }
 span.pagetitle		{ font-size: 1rem; font-weight: bold; text-align: center }
 span.bracket-link	{ white-space: nowrap; font-weight: 500; }
 

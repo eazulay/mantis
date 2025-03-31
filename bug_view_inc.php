@@ -555,7 +555,7 @@
 			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
 			echo 'Add attachment: ';
 			echo '<input name="file" type="file" size="40" />';
-			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
+			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> &nbsp;';
 			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
 			echo '</form><br>';
 		}
@@ -578,7 +578,7 @@
 			echo '<input type="hidden" name="max_file_size" value="', $t_max_file_size, '" />';
 			echo 'Add attachment: ';
 			echo '<input name="file" type="file" size="40" />';
-			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> ';
+			echo '<input type="submit" class="button" value="', lang_get( "upload_file_button" ), '"/> &nbsp;';
 			echo '<span class="small">(', lang_get( 'max_file_size' ), ': ', number_format( $t_max_file_size/1000 ), 'k)</span>';
 			echo '</form>';
 		}
