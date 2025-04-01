@@ -301,7 +301,7 @@ div.main-page-content		{ background: var(--section-background); width: fit-conte
 div.main-page-content h4	{ margin-top: 30px; margin-bottom: 10px; }
 div.main-page-content > ul	{ margin-top: 10px; }
 
-.companylogo img			{ box-shadow: 2px 2px 2px rgba(0,0,0,0.5); border-radius: 5px; position: absolute; z-index: -1; }
+.companylogo img			{ box-shadow: 2px 2px 2px rgba(0,0,0,0.5); border-radius: 5px; position: absolute; z-index: -1; max-height: 98px; }
 
 .markdown ul				{ padding-left: 2.5em; margin-top: 0.4em; }
 .markdown ul:first-child	{ margin-top: 0; }
@@ -334,4 +334,5 @@ div.main-page-content > ul	{ margin-top: 10px; }
 	.grid			{ grid-template-columns: 1fr; gap: 0; }
 	.grid-middle	{ grid-column: 1; grid-row: 2; }
 	.grid-right		{ grid-column: 1; grid-row: 1; }
+	.companylogo img { max-width: 45%; max-height: 90px; }
 }
