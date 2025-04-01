@@ -2,6 +2,7 @@
 :root {
 	--text-color: #212121;
 	--border-color: #7dbfb3;
+	--section-background: #fafdfb;
 }
 html			{ scroll-behavior: smooth; }
 body			{ background-color: #f3f9f8; color: var(--text-color); font-family: Inter, Arial, sans-serif; font-size: 0.75rem; margin: 30px 3% 20px; }
@@ -81,7 +82,7 @@ table.width90		{ width: 90%;  margin-left: auto; margin-right: auto; }
 table.width75		{ width: 75%;  margin-left: auto; margin-right: auto; }
 table.width60		{ width: 60%;  margin-left: auto; margin-right: auto; }
 table.width50		{ width: 50%;  margin-left: auto; margin-right: auto; }
-table.width100, table.width90, table.width75, table.width60, table.width50 { border: solid 1px var(--border-color); border-radius: 8px; background: #fafdfb; }
+table.width100, table.width90, table.width75, table.width60, table.width50 { border: solid 1px var(--border-color); border-radius: 8px; background: var(--section-background); }
 table#buglist tr:hover > td:not(:has(.issue-status)) { background: #f8fffa; }
 
 div.width100		{ width: 100%; border: solid 1px var(--border-color); padding:15px; }
@@ -296,7 +297,7 @@ div.quick-summary-right	{ width: 49%; padding: 2px; text-align: right; float: ri
 .progress400		{ position: relative; width: 400px; border: 1px solid #d7d7d7; margin-top: 1em; margin-bottom: 1em; padding: 1px; }
 .progress400 .bar	{ display: block; position: relative; background: #6bba70; text-align: center; font-weight: normal; color: var(--text-color); height: 2em; line-height: 2em; }
 
-div.main-page-content		{ width: fit-content; margin: 30px auto; font-size: 1rem; line-height: 2em; padding: 8px 40px 20px; border: 1px solid var(--border-color); border-radius: 8px; }
+div.main-page-content		{ background: var(--section-background); width: fit-content; margin: 30px auto; font-size: 1rem; line-height: 2em; padding: 8px 40px 20px; border: 1px solid var(--border-color); border-radius: 8px; }
 div.main-page-content h4	{ margin-top: 30px; margin-bottom: 10px; }
 div.main-page-content > ul	{ margin-top: 10px; }
 
