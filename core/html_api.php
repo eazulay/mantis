@@ -479,7 +479,7 @@ function html_top_banner() {
 		echo '</div>';
 		// GIW Logo
 		echo '<div class="floatleft companylogo">';
-		echo '<img border="0" alt="Get IT Write International Logo" src="' . helper_mantis_url('images/GIW Logo.png') . '" style="border: 1px solid #af9f75;" />';
+		echo '<img border="0" alt="Get IT Write International Logo" src="' . helper_mantis_url('images/GIW Logo x98.png') . '" style="border: 1px solid #af9f75;" />';
 		echo '</div>';
 	}
 	echo '<div style="width:100%; clear:both;"></div>', "\n";
