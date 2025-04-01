@@ -293,7 +293,7 @@
 		if (textArea.value == '')
 			textArea.value = 'Re ~'+noteID+': ';
 		";
-	if ($tpl_bug->status == $t_feedback) {
+	if ($tpl_bug->status == $t_feedback && !access_has_global_level( ADMINISTRATOR )) {
 		echo "var newStatus =  document.getElementsByName('new_status');
 		if (newStatus) {
 			newStatus = newStatus[0];
@@ -301,7 +301,7 @@
 			submitChangeStatus(0);
 		}
 	";
-	}else{
+	} else {
 		echo "noteAddDiv.scrollIntoView();
 		setTimeout(function() {
 			textArea.focus();
