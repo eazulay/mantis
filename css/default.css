@@ -319,6 +319,7 @@ div.main-page-content > ul	{ margin-top: 10px; }
 @media (max-width: 768px) {
 	body								{ margin: 5px; }
 	table								{ display: block; overflow-x: auto; width: 100%; }
+	#bugnotestats_open table td:not(.category) table { display: table; }
 	#fixed_scroll						{ width:calc(100% - 14px); }
 	#fixed_scroll td:nth-child(3)		{ display: none; }
 	#bugnote_add_open td:first-child { min-width: 125px; }
