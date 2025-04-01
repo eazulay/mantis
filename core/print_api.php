@@ -1323,16 +1323,16 @@ function print_button( $p_action_page, $p_label, $p_args_to_post = null ) {
 
 # print brackets around a pre-prepared link (i.e. '<a href' html tag).
 function print_bracket_link_prepared( $p_link ) {
-	echo '<span class="bracket-link">[&#160;' . $p_link . '&#160;]</span> ';
+	echo '<span class="bracket-link">[' . $p_link . ']</span> ';
 }
 
 # print the bracketed links used near the top
 # if the $p_link is blank then the text is printed but no link is created
 # if $p_new_window is true, link will open in a new window, default false.
 function print_bracket_link( $p_link, $p_url_text, $p_new_window = false, $p_class = '' ) {
-	echo '<span class="bracket-link">[&#160;';
+	echo '<span class="bracket-link">[';
 	print_link( $p_link, $p_url_text, $p_new_window, $p_class );
-	echo '&#160;]</span> ';
+	echo ']</span> ';
 }
 
 # print a HTML link
