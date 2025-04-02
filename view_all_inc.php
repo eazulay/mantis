@@ -260,6 +260,19 @@ $(document).ready(function() {
 		}
 		return false;
 	});
+
+	$(window).scroll(function() {
+		var filterOpen = $('#filter_open');
+		if (filterOpen.hasClass('hidden'))
+			return;
+		var filterOpenTop = filterOpen.offset().top;
+		var filterOpenHeight = filterOpen.height() - filterOpen.find('tr.footer').height();
+		var scrollTop = $(window).scrollTop();
+		if (scrollTop >= filterOpenTop + filterOpenHeight) {
+			ToggleDiv('filter');
+			$window.scrollTop(scrollTop);
+		}
+	});
 });
 </script>
 

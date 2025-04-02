@@ -165,6 +165,9 @@ tr.header, tr.footer, tr:has(td.form-title), tr:has(th.form-title) { background-
 th.form-title, tr.header:not(:last-child) > td	{ border-bottom: 1px solid var(--border-color); }
 table:not(#buglist) tr.footer > td	{ border-top: 1px solid var(--border-color); }
 table.width90 tr.footer > td		{ padding: 8px 12px; }
+#filter_closed						{ position: sticky; top: -15px; z-index: 1; }
+#buglist tr:first-child				{ position: sticky; top: 40px; z-index: 1; }
+#buglist tr:nth-child(2)			{ position: sticky; top: 70px; z-index: 1; }
 #filter_closed tr.footer > td		{ border-top: none !important; }
 tr.footer:first-child > td			{ padding: 0; }
 tr.subheader, td.subheader			{ background: #e5f1e2; }
@@ -335,4 +338,6 @@ div.main-page-content > ul	{ margin-top: 10px; }
 	.grid-middle	{ grid-column: 1; grid-row: 2; }
 	.grid-right		{ grid-column: 1; grid-row: 1; }
 	.companylogo img { max-width: 45%; max-height: 90px; }
+	#buglist tr:first-child				{ position: relative; top: 0; z-index: 0; }
+	#buglist tr:nth-child(2)			{ position: relative; top: 0; z-index: 0; }
 }
