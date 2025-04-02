@@ -123,6 +123,7 @@ td tr:first-child.vcenter td	{ padding: 0px 10px; }
 tr.footer > td > input.button	{ margin-left: 10px; margin-right: 10px; }
 .row-2 td.small-caption			{ text-align: center; }
 #history_open .row-2 td.small-caption, #bugnotestats_open .row-2 td.small-caption	{ text-align: left; }
+#bugnotes_open > table > tbody > tr:not(.header,.spacer) > td { padding-bottom: 8px; }
 .row-2 td.small-caption #due_date { width:102px; }
 td.center			{ text-align: center; }
 td.center > table	{ margin-left: auto; margin-right: auto; }
