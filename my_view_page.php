@@ -68,7 +68,7 @@
 
 	$t_project_id = helper_get_current_project();
 ?>
-
+<br>
 <div align="center">
 <?php
 	$t_status_legend_position = config_get( 'status_legend_position' );

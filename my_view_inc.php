@@ -410,10 +410,10 @@ $box_title = lang_get( 'my_view_title_' . $t_box_title );
 <table class="width100" cellspacing="1">
 <?php
 # -- Navigation header row --?>
-<tr>
+<tr class="header">
 <?php
 # -- Viewing range info --?>
-	<td class="form-title" colspan="2">
+	<td colspan="2">
 <?php
 print_link( 'view_all_set.php?type=1&temporary=y&' . $url_link_parameters[$t_box_title], $box_title, false, 'subtle' );
 echo '&#160;';
