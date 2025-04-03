@@ -50,8 +50,9 @@ input[type="button"]:active, input[type="submit"]:active, input.button:active, i
 	box-shadow: none;
 }
 input[type="submit"]:disabled, input[type="button"]:disabled {
-	color: #d0d0d7;
-	border-color: RGBA(232,245,232,0.3) RGBA(63,118,53,0.3) RGBA(63,118,53,0.3) RGBA(232,245,232,0.3);
+	color: #868698;
+	border-color: #d4d4d6;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
 }
 input[type="checkbox"] {
     position: relative;

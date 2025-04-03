@@ -1773,16 +1773,16 @@ document.getElementById( span ).style.display = displayType;
 
 				$t_image_url = $t_attachment['download_url'] . '&amp;show_inline=1' . form_security_param( 'file_show_inline' );
 
-				echo "\n<br />$t_href_start<img alt=\"$t_title\" $t_preview_style src=\"$t_image_url\" />$t_href_end";
+				echo "\n<br>$t_href_start<img alt=\"$t_title\" $t_preview_style src=\"$t_image_url\" />$t_href_end";
 				$image_previewed = true;
 			}
 		}
-
-		echo "<br />\n";
+		echo "<br>\n";
 		$i++;
 	}
 
 	if ( $t_attachments_count > 0 ) {
+		echo "<br>\n";
 		echo '<input type="submit" id="fileDeleteBtn" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" />';
 		echo "<script type=\"text/javascript\" language=\"JavaScript\">
 <!--
