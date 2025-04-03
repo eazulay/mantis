@@ -223,6 +223,18 @@ $g_update_readonly_bug_threshold = UPDATER;
 $g_private_bugnote_threshold = MANAGER;
 $g_reminder_receive_threshold = VIEWER;
 $g_default_project_view_status = VS_PRIVATE;
+$g_my_view_boxes = array (
+	'assigned'      => '1',
+	'unassigned'    => '2',
+	'reported'      => '3',
+	'resolved'      => '4',
+	'recent_mod'	=> '0',
+	'monitored'		=> '6',
+	'feedback'		=> '5',
+	'verify'		=> '0',
+	'my_comments'	=> '0'
+);
+
 
 /* Enable/disable features */
 $g_show_project_menu_bar = ON;

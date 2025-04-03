@@ -32,6 +32,10 @@
 	auth_ensure_user_authenticated();
 
 	$t_current_user_id = auth_get_current_user_id();
+	$t_current_user_name = user_get_name($t_current_user_id);
+	$username_dot_pos = strpos($t_current_user_name, '.');
+	if ( $username_dot_pos !== false )
+		$t_current_user_name = substr($t_current_user_name, $username_dot_pos + 1);
 
 	# Improve performance by caching category data in one pass
 	category_get_all_rows( helper_get_current_project() );
@@ -44,7 +48,7 @@
 	html_page_top1( lang_get( 'my_view_link' ) );
 
 	if ( current_user_get_pref( 'refresh_delay' ) > 0 ) {
-		html_meta_redirect( 'my_view_page.php', current_user_get_pref( 'refresh_delay' )*60 );
+		html_meta_redirect( 'my_view_page.php', current_user_get_pref( 'refresh_delay' ) * 60 );
 	}
 
 	html_page_top2();
@@ -81,7 +85,7 @@
 	$t_boxes_position = config_get( 'my_view_boxes_fixed_position' );
 	$t_counter = 0;
 
-	while (list ($t_box_title, $t_box_display) = each ($t_boxes)) {
+	foreach ($t_boxes as $t_box_title => $t_box_display) {
 		# don't display bugs that are set as 0
 		if ($t_box_display == 0) {
 			$t_number_of_boxes = $t_number_of_boxes - 1;
@@ -157,7 +161,6 @@
 	}
 
 ?>
-
 </table>
 <?php
 	if ( $t_status_legend_position == STATUS_LEGEND_POSITION_BOTTOM || $t_status_legend_position == STATUS_LEGEND_POSITION_BOTH ) {

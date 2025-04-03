@@ -284,7 +284,7 @@ $c_filter['feedback'] = array(
 	),
 	FILTER_PROPERTY_HIGHLIGHT_CHANGED => $t_default_show_changed,
 	FILTER_PROPERTY_REPORTER_ID => Array(
-		'0' => $t_current_user_id,
+		'0' => META_FILTER_ANY,
 	),
 	FILTER_PROPERTY_HANDLER_ID => Array(
 		'0' => META_FILTER_ANY,
@@ -304,8 +304,15 @@ $c_filter['feedback'] = array(
 	FILTER_PROPERTY_MONITOR_USER_ID => Array(
 		'0' => META_FILTER_ANY,
 	),
-);
-$url_link_parameters['feedback'] = FILTER_PROPERTY_REPORTER_ID . '=' . $t_current_user_id . '&' . FILTER_PROPERTY_STATUS_ID . '=' . config_get( 'bug_feedback_status' ) . '&' . FILTER_PROPERTY_HIDE_STATUS_ID . '=' . $t_hide_status_default;
+	'custom_fields' => Array(
+		'2' => Array(
+			'0' => $t_current_user_name
+		)
+	),
+	FILTER_PROPERTY_SORT_FIELD_NAME => 'priority,last_updated',
+	FILTER_PROPERTY_SORT_DIRECTION => 'DESC,ASC',
+	);
+$url_link_parameters['feedback'] = FILTER_PROPERTY_STATUS_ID . '=' . config_get( 'bug_feedback_status' ) . '&custom_field_2=' . $t_current_user_name . '&' . FILTER_PROPERTY_SORT_FIELD_NAME . '=priority,last_updated' . '&' . FILTER_PROPERTY_SORT_DIRECTION . '=DESC,ASC';
 
 $c_filter['verify'] = array(
 	FILTER_PROPERTY_CATEGORY => Array(
@@ -380,6 +387,7 @@ $c_filter['my_comments'] = array(
 );
 
 $url_link_parameters['my_comments'] = FILTER_PROPERTY_NOTE_USER_ID. '=' . META_FILTER_MYSELF . '&' . FILTER_PROPERTY_HIDE_STATUS_ID . '=' . $t_hide_status_default;
+
 $rows = filter_get_bug_rows( $f_page_number, $t_per_page, $t_page_count, $t_bug_count, $c_filter[$t_box_title] );
 
 # Improve performance by caching category data in one pass

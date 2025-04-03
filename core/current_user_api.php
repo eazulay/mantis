@@ -77,7 +77,7 @@ function current_user_get_field( $p_field_name ) {
  *
  * @param pref_name	Name of user preference as in the preferences table
  * 				definition.
- * @return Get the value of the specified preference for current user.
+ * @return null|bool|int|float|string Get the value of the specified preference for current user.
  * @access public
  */
 function current_user_get_pref( $p_pref_name ) {

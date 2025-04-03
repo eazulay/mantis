@@ -1037,7 +1037,7 @@ $s_my_view_title_reported = 'Reported by Me';
 $s_my_view_title_assigned = 'Assigned to Me (Unresolved)';
 $s_my_view_title_resolved = 'Resolved';
 $s_my_view_title_monitored = 'Monitored by Me';
-$s_my_view_title_feedback = 'Failed UAT';
+$s_my_view_title_feedback = 'Action/Info Required from Me';
 $s_my_view_title_verify = 'Awaiting Confirmation of Resolution from Me';
 $s_my_view_title_my_comments = 'Issues I Have Commented On';
 
