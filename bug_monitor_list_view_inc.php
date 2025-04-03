@@ -44,7 +44,8 @@ if ( access_has_bug_level( config_get( 'show_monitor_list_threshold' ), $f_bug_i
 			}
 			$print_i++;
 		}
-		echo '<br />';
+		if ($print_i > 0)
+			echo '<br />';
 	}
 
 	if ( access_has_bug_level( config_get( 'monitor_add_others_bug_threshold' ), $f_bug_id ) ) {
