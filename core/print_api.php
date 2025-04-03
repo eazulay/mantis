@@ -1782,8 +1782,7 @@ document.getElementById( span ).style.display = displayType;
 	}
 
 	if ( $t_attachments_count > 0 ) {
-		echo "<br>\n";
-		echo '<input type="submit" id="fileDeleteBtn" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" />';
+		echo '<input type="submit" id="fileDeleteBtn" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" style="margin-top:4px;" />';
 		echo "<script type=\"text/javascript\" language=\"JavaScript\">
 <!--
 		var fileSelectCount = 0;
