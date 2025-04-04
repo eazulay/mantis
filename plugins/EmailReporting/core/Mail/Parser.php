@@ -386,15 +386,12 @@ class ERP_Mail_Parser
 
 			// Let's select the plaintext body if we can find it
 			// It must only have 2 parts. Most likely one is text/html and one is text/plain
-			if (
-				count( $parts ) === 2 && !isset( $parts[ $i ]->parts ) && !isset( $parts[ $i+1 ]->parts ) &&
+			if( count( $parts ) === 2 && !isset( $parts[ $i ]->parts ) && !isset( $parts[ $i+1 ]->parts ) &&
 				'text' === strtolower( $parts[ $i+1 ]->ctype_primary ) &&
 				in_array( strtolower( $parts[ $i+1 ]->ctype_secondary ), array( 'plain', 'html' ), TRUE ) &&
-				strtolower( $parts[ $i ]->ctype_secondary ) !== strtolower( $parts[ $i+1 ]->ctype_secondary )
-			)
+				strtolower( $parts[ $i ]->ctype_secondary ) !== strtolower( $parts[ $i+1 ]->ctype_secondary ) )
 			{
-				if ( strtolower( $parts[ $i ]->ctype_secondary ) !== 'plain' )
-				{
+				if ( strtolower( $parts[ $i ]->ctype_secondary ) !== 'plain' ) {
 					$i++;
 				}
 
