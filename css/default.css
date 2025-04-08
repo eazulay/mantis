@@ -4,6 +4,7 @@
 	--border-color: #7dbfb3;
 	--section-background: #fafdfb;
 }
+*				{ box-sizing: border-box; }
 html			{ scroll-behavior: smooth; }
 body			{ background-color: #f3f9f8; color: var(--text-color); font-family: Inter, Arial, sans-serif; font-size: 0.75rem; margin: 30px 3% 20px; }
 b				{ font-weight: 600; }
@@ -168,9 +169,11 @@ th.form-title, tr.header:not(:last-child) > td	{ border-bottom: 1px solid var(--
 table:not(#buglist) tr.footer > td	{ border-top: 1px solid var(--border-color); }
 table.width90 tr.footer > td		{ padding: 8px 12px; }
 #filter_closed						{ position: sticky; top: -15px; z-index: 1; }
+#filter_closed.stuck table.width100 { border-radius: 0; }
 #buglist tr:first-child				{ position: sticky; top: 40px; z-index: 1; }
 #buglist tr:nth-child(2)			{ position: sticky; top: 70px; z-index: 1; }
 #filter_closed tr.footer > td		{ border-top: none !important; }
+#filter_closed tr.footer select		{ margin-bottom: 0; }
 tr.footer:first-child > td			{ padding: 0; }
 tr.subheader, td.subheader			{ background: #e5f1e2; }
 tr.subheader > th, tr.subheader > td{ border-bottom: 1px solid var(--border-color); text-align: center; }

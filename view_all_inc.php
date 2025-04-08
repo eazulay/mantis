@@ -262,12 +262,15 @@ $(document).ready(function() {
 	});
 
 	$(window).scroll(function() {
+		var scrollTop = $(window).scrollTop();
+		var filterClosed = $('#filter_closed');
+		filterClosed.toggleClass('stuck', scrollTop >= filterClosed.offset().top);
+		
 		var filterOpen = $('#filter_open');
 		if (filterOpen.hasClass('hidden'))
 			return;
 		var filterOpenTop = filterOpen.offset().top;
 		var filterOpenHeight = filterOpen.height() - filterOpen.find('tr.footer').height();
-		var scrollTop = $(window).scrollTop();
 		if (scrollTop >= filterOpenTop + filterOpenHeight) {
 			ToggleDiv('filter');
 			$window.scrollTop(scrollTop);
