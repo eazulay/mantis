@@ -291,7 +291,7 @@
 		var noteAddDiv = document.getElementById('bugnote_add_open');
 		var textArea = noteAddDiv.querySelector('textarea');
 		if (textArea.value == '')
-			textArea.value = 'Re ~'+noteID+': ';
+			textArea.value = '*Re ~' + noteID + ':*' + \"\\n\\n\";
 		";
 	if ($tpl_bug->status == $t_feedback && !access_has_global_level( ADMINISTRATOR )) {
 		echo "var newStatus =  document.getElementsByName('new_status');
@@ -324,8 +324,8 @@
 			var noteAddDiv = document.getElementById('bugnote_add_open');
 			var textArea = noteAddDiv.querySelector('textarea');
 			var noteText = noteRow.querySelector('input[name=\"bugnote_text\"]').value;
-			if (noteText.substring(0, 12) == 'Duplicate of'){
-				noteText = 'Update/Extension'+noteText.substring(9);
+			if (noteText.substring(0, 13) == '*Duplicate of'){
+				noteText = '*Update/Extension'+noteText.substring(9);
 				textArea.value = noteText;
 				var copyOptions = noteRow.querySelector('.copy-options');
 				copyOptions.classList.toggle('hidden');

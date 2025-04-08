@@ -67,7 +67,7 @@
 	form_security_purge( 'bugnote_add' );
 
 	if ( $f_source_bugnote_id > 0 ) {
-		bugnote_set_text( $f_source_bugnote_id, "Duplicated to #" . $f_bug_id . ".\n" . bugnote_get_text( $f_source_bugnote_id ));
+		bugnote_set_text( $f_source_bugnote_id, "*Duplicated to #" . $f_bug_id . ".*\n\n" . bugnote_get_text( $f_source_bugnote_id ));
 		$t_url = string_get_bug_view_url( $f_return_to_bug_id, auth_get_current_user_id() );
 		print_successful_redirect( $t_url . "#c" . $f_source_bugnote_id );
 	} else {
