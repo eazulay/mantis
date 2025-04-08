@@ -1278,13 +1278,10 @@ class ERP_mailbox_api
 	{
 		if ( $this->_mail_debug )
 		{
-			if ( is_dir( $this->_mail_debug_directory ) && is_writeable( $this->_mail_debug_directory ) )
-			{
+			if ( is_dir( $this->_mail_debug_directory ) && is_writeable( $this->_mail_debug_directory ) ) {
 				$t_file_name = $this->_mail_debug_directory . '/' . $message_type . '_' . time() . '_' . md5( microtime() );
 				file_put_contents( $t_file_name, ( ( is_array( $p_msg ) ) ? var_export( $p_msg, TRUE ) : $p_msg ) );
-			}
-			else
-			{
+			} else {
 				$this->custom_error( 'Mail debug directory does not exist or is not writable.', FALSE );
 			}
 		}
