@@ -110,22 +110,40 @@ class HelpNotesPlugin extends MantisPlugin {
 		}
 	}
 	
+	/* Format help strings and add support for Markdown code */
 	function format_help_string($p_event, $str, $multi_line=false) {
 		$str = preg_replace('/\*\*\*([^ ](?:.*[^ ])?)\*\*\*/mU', '<strong><em>$1</em></strong>', $str);
 		$str = preg_replace('/\*\*([^ ](?:.*[^ ])?)\*\*/mU', '<strong>$1</strong>', $str);
 		$str = preg_replace('/\*([^ ](?:.*?[^ ])?)\*/mU', '<em>$1</em>', $str);
 		if ($multi_line) {
-			//$str = $str . "\n";
-			$str = preg_replace('/^- (.+)\R?$/mU', '<li>$1</li>', $str);
-			$str = preg_replace('/\R?<\/li>\R?/m', '</li>', $str);
-			$str = preg_replace('/^<li>(.*)<\/li>\R?/m', '<ul><li>$1</li></ul>' . "\n", $str);
-			$str = preg_replace('/(?:\R)?^###### (.+)\R/mU', "\n" . '<h6>$1</h6>', $str);
-			$str = preg_replace('/(?:\R)?^##### (.+)\R/mU', "\n" . '<h5>$1</h5>', $str);
-			$str = preg_replace('/(?:\R)?^#### (.+)\R/mU', "\n" . '<h4>$1</h4>', $str);
-			$str = preg_replace('/(?:\R)?^### (.+)\R/mU', "\n" . '<h3>$1</h3>', $str);
-			$str = preg_replace('/(?:\R)?^## (.+)\R/mU', "\n" . '<h2>$1</h2>', $str);
-			$str = preg_replace('/(?:\R)?^# (.+)\R/mU', "\n" . '<h1>$1</h1>', $str);
-			$str = preg_replace('/\R<h/mU', '<h', $str);
+			$depth = 0;
+			do {
+				$depth++;
+				$strPrev = $str;
+				$str = preg_replace('/^  ([^\r\n]+)/m', "<div$depth>\n$1\n</div$depth>", $str);
+				$str = preg_replace('/<\/div' . $depth . '>\R<div' . $depth . '>\R?/', '', $str);
+				$depth++;
+				$str = preg_replace('/^(\d+\.\d*\.?) ([^\r\n]+)/m', "<div$depth>\n<span>$1</span> $2\n</div$depth>", $str);
+				$str = preg_replace('/<\/div' . $depth . '>\R<div' . $depth . '>\R?/', '', $str);
+				$str = preg_replace('/^- ([^\r\n]+)\R?/m', "<li>$1</li>", $str);
+				$str = preg_replace('/^<li>(.*)<\/li>\R?/m', '<ul><li>$1</li></ul>' . "\n", $str);
+				$str = preg_replace('/<\/ul>\R<div' . $depth . '>/', "</ul><div$depth>", $str);
+				$depth--;
+				$str = preg_replace('/<\/ul>\R<div' . $depth . '>/', "</ul><div$depth>", $str);
+				$depth++;
+				$str = preg_replace('/(?:\R)?^###### (.+)\R/mU', "\n" . '<h6>$1</h6>', $str);
+				$str = preg_replace('/(?:\R)?^##### (.+)\R/mU', "\n" . '<h5>$1</h5>', $str);
+				$str = preg_replace('/(?:\R)?^#### (.+)\R/mU', "\n" . '<h4>$1</h4>', $str);
+				$str = preg_replace('/(?:\R)?^### (.+)\R/mU', "\n" . '<h3>$1</h3>', $str);
+				$str = preg_replace('/(?:\R)?^## (.+)\R/mU', "\n" . '<h2>$1</h2>', $str);
+				$str = preg_replace('/(?:\R)?^# (.+)\R/mU', "\n" . '<h1>$1</h1>', $str);
+				$str = preg_replace('/\R<h/mU', '<h', $str);
+			} while ($str != $strPrev);
+			for ($i = $depth; $i > 0; $i--) {
+				$str = preg_replace('/<div' . $i . '>(.+)<\/div' . $i . '>/sU', '<div>$1</div>', $str);
+			}
+			$str = preg_replace('/<div>\R/', '<div>', $str);
+			$str = preg_replace('/\R<\/div>\R\R?/', '</div>', $str);
 			$str = preg_replace('/\{\{(.+)\}\}/sU', '<b>$1</b>', $str);
 		}
 		return $str;
