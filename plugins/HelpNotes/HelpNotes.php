@@ -120,7 +120,7 @@ class HelpNotesPlugin extends MantisPlugin {
 			do {
 				$depth++;
 				$strPrev = $str;
-				$str = preg_replace('/^  ([^\r\n]+)/m', "<div$depth>\n$1\n</div$depth>", $str);
+				$str = preg_replace('/^&#160;&#160;([^\r\n]+)/m', "<div$depth>\n$1\n</div$depth>", $str);
 				$str = preg_replace('/<\/div' . $depth . '>\R<div' . $depth . '>\R?/', '', $str);
 				$depth++;
 				$str = preg_replace('/^(\d+\.\d*\.?) ([^\r\n]+)/m', "<div$depth>\n<span>$1</span> $2\n</div$depth>", $str);
