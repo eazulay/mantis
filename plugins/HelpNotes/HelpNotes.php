@@ -131,12 +131,12 @@ class HelpNotesPlugin extends MantisPlugin {
 				$depth--;
 				$str = preg_replace('/<\/ul>\R<div' . $depth . '>/', "</ul><div$depth>", $str);
 				$depth++;
-				$str = preg_replace('/(?:\R)?^###### (.+)\R/mU', "\n" . '<h6>$1</h6>', $str);
-				$str = preg_replace('/(?:\R)?^##### (.+)\R/mU', "\n" . '<h5>$1</h5>', $str);
-				$str = preg_replace('/(?:\R)?^#### (.+)\R/mU', "\n" . '<h4>$1</h4>', $str);
-				$str = preg_replace('/(?:\R)?^### (.+)\R/mU', "\n" . '<h3>$1</h3>', $str);
-				$str = preg_replace('/(?:\R)?^## (.+)\R/mU', "\n" . '<h2>$1</h2>', $str);
-				$str = preg_replace('/(?:\R)?^# (.+)\R/mU', "\n" . '<h1>$1</h1>', $str);
+				$str = preg_replace('/(?:\R)?^###### (.+)\R?/m', "\n" . '<h6>$1</h6>', $str);
+				$str = preg_replace('/(?:\R)?^##### (.+)\R?/m', "\n" . '<h5>$1</h5>', $str);
+				$str = preg_replace('/(?:\R)?^#### (.+)\R?/m', "\n" . '<h4>$1</h4>', $str);
+				$str = preg_replace('/(?:\R)?^### (.+)\R?/m', "\n" . '<h3>$1</h3>', $str);
+				$str = preg_replace('/(?:\R)?^## (.+)\R?/m', "\n" . '<h2>$1</h2>', $str);
+				$str = preg_replace('/(?:\R)?^# (.+)\R?/m', "\n" . '<h1>$1</h1>', $str);
 				$str = preg_replace('/\R<h/mU', '<h', $str);
 			} while ($str != $strPrev);
 			for ($i = $depth; $i > 0; $i--) {
