@@ -12,10 +12,10 @@ address 		{ font-size: 0.75rem }
 pre				{ margin-top: 0px; margin-bottom: 0px; }
 small			{ font-size: 0.9167em; }
 a				{ text-decoration: none; }
-a:link    		{ color: #005778; }
-a:visited 		{ color: #572333; }
-a:hover			{ background-color: #E0F2F1; }
-a:active 		{ color: #B02D45; }
+a:link    		{ color: #0056B4; }
+a:visited 		{ color: #BB4488; }
+a:hover			{ background-color: #e5e5e5; }
+a:active 		{ color: #0b93ff; }
 a.subtle		{ color: blue; text-decoration: none; }
 a.resolved		{ text-decoration: line-through underline; }
 a > img			{ border: none; }
