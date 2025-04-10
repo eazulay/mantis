@@ -645,7 +645,7 @@ function string_get_bugnote_view_link( $p_bug_id, $p_bugnote_id, $p_user_id = nu
 			$t_reporter = string_attribute( user_get_name( bugnote_get_field( $p_bugnote_id, 'reporter_id' ) ) );
 			$t_update_date = string_attribute( date( config_get( 'normal_date_format' ), ( bugnote_get_field( $p_bugnote_id, 'last_modified' ) ) ) );
 			$t_time_tracking = string_attribute( bugnote_get_field( $p_bugnote_id, 'time_tracking' ) ); // Eyal: Added in Issue 532
-			$t_link .= ' title="' . bug_format_id( $t_bug_id ) . ': [' . $t_update_date . '] ' . $t_reporter . (  $t_time_tracking > 0 && access_has_bug_level( config_get( 'time_tracking_view_threshold' ), $t_bug_id ) ? "\n".lang_get('time_tracking_time_spent').' '.db_minutes_to_hhmm($t_time_tracking) : '' ) . '"';
+			$t_link .= ' title="' . bug_format_id( $t_bug_id ) . ': [' . $t_update_date . '] ' . $t_reporter . (  $t_time_tracking > 0 && access_has_bug_level( config_get( 'time_tracking_view_threshold' ), $t_bug_id ) ? " (".lang_get('time_tracking_time_spent').' '.db_minutes_to_hhmm($t_time_tracking).")" : '' ) . '"';
 		}
 		$t_link .= '>~' . $p_bugnote_id . '</a>'; // Eyal: Issue 1120 changed from following line
 	} else {
