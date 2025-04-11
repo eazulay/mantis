@@ -262,17 +262,19 @@
 			const targetElement = document.querySelector(location.hash);
 			if (targetElement){
 				const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
-				window.scrollTo({
-					top: elementTop - headerHeight,
-					behavior: 'smooth'
-				});
+				setTimeout(function(){
+					window.scrollTo({
+						top: elementTop - headerHeight,
+						behavior: 'smooth'
+					});
+				}, 50);
 			}
 		}
 		// Adjust scroll when page loads with hash
 		if (window.location.hash)
 			setTimeout(function(){
 				adjustScroll();
-			}, 50);
+			}, 100);
 		// Adjust scroll when hash changes (clicking an internal link)
 		window.addEventListener('hashchange', adjustScroll);
 	});
