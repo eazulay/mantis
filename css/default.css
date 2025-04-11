@@ -125,7 +125,7 @@ td tr:first-child.vcenter td	{ padding: 0px 10px; }
 tr.footer > td > input.button	{ margin-left: 10px; margin-right: 10px; }
 .row-2 td.small-caption			{ text-align: center; }
 #history_open .row-2 td.small-caption, #bugnotestats_open .row-2 td.small-caption	{ text-align: left; }
-#bugnotes_open > table > tbody > tr:not(.header,.spacer) > td { padding-bottom: 8px; }
+#bugnotes_open > table > tbody > tr:not(.header,.spacer) > td { padding-bottom: 10px; }
 .row-2 td.small-caption #due_date { width:102px; }
 td.center			{ text-align: center; }
 td.center > table	{ margin-left: auto; margin-right: auto; }
@@ -325,6 +325,8 @@ div.main-page-content > ul	{ margin-top: 10px; }
 .markdown h6				{ font-size: 0.917em;}
 .markdown h1:first-child, .markdown h2:first-child, .markdown h3:first-child, .markdown h4:first-child, .markdown h5:first-child, .markdown h6:first-child { margin-top: 0; }
 .markdown h1 + br, .markdown h2 + br, .markdown h3 + br, .markdown h4 + br, .markdown h5 + br, .markdown h6 + br, .markdown ul + br { margin-top: -1em; }
+.markdown table				{ border-collapse: collapse; }
+.markdown table, .markdown th, .markdown td { border: 1px solid var(--border-color); padding: 6px 8px; }
 
 @media (max-width: 768px) {
 	body								{ margin: 5px; }
