@@ -112,27 +112,34 @@ class HelpNotesPlugin extends MantisPlugin {
 	
 	/* Format help strings and add support for Markdown code */
 	function format_help_string($p_event, $str, $multi_line=false) {
-		$eol = '(?:<br \/>\n|\n|$)';
 		$str = preg_replace('/\*\*\*([^ ](?:.*[^ ])?)\*\*\*/mU', '<strong><em>$1</em></strong>', $str);
 		$str = preg_replace('/\*\*([^ ](?:.*[^ ])?)\*\*/mU', '<strong>$1</strong>', $str);
 		$str = preg_replace('/\*([^ ](?:.*?[^ ])?)\*/mU', '<em>$1</em>', $str);
 		if ($multi_line) {
+			$eol = '(?:<br \/>\n|\n|$)'; // End of lines include <br /> tags, which are added by Mantis Formatting plugin before this function is called
 			$str = str_replace("\r\n", "\n", $str);
 			$depth = 0;
 			do {
 				$depth++;
 				$strPrev = $str;
+				// Handle indented blocks (begin with two spaces)
 				$str = preg_replace('/^&#160;&#160;([^\n]+)/m', "<div$depth>\n$1\n</div$depth>", $str);
-				$str = preg_replace('/<\/div' . $depth . '>\R<div' . $depth . '>\R?/', '', $str);
+				$str = preg_replace('/<\/div' . $depth . '>\n<div' . $depth . '>\n?/', '', $str);
 				$depth++;
+				// Handle numbered blocks (indent them the same as indented blocks)
 				$str = preg_replace('/^(\d+\.\d*\.?) ([^\n]+)/m', "<div$depth>\n<span>$1</span> $2\n</div$depth>", $str);
-				$str = preg_replace('/<\/div' . $depth . '>\R<div' . $depth . '>\R?/', '', $str);
+				$str = preg_replace('/<\/div' . $depth . '>\n<div' . $depth . '>\n?/', '', $str);
+				// Handle lists
 				$str = preg_replace('/^- ([^\n]+)\n?/m', "<li>$1</li>", $str);
 				$str = preg_replace('/^<li>(.*)<\/li>\n?/m', "<ul><li>$1</li></ul>\n", $str);
 				$str = preg_replace('/<\/ul>\n<div' . $depth . '>/', "</ul><div$depth>", $str);
 				$depth--;
 				$str = preg_replace('/<\/ul>\n<div' . $depth . '>/', "</ul><div$depth>", $str);
 				$depth++;
+				// Handle blockquotes
+				$str = preg_replace('/^&gt; (.+)$/m', "<blockquote>$1</blockquote>", $str);
+				$str = preg_replace('/(<\/blockquote>\n<blockquote>)/', '', $str);
+				// Handle Headers
 				$str = preg_replace('/^###### (.+)\n?/m', "\n<h6>$1</h6>", $str);
 				$str = preg_replace('/^##### (.+)\n?/m', "\n<h5>$1</h5>", $str);
 				$str = preg_replace('/^#### (.+)\n?/m', "\n<h4>$1</h4>", $str);
