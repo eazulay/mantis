@@ -311,12 +311,11 @@ div.main-page-content > ul	{ margin-top: 10px; }
 
 .companylogo img			{ border-radius: 5px; position: absolute; z-index: -1; max-height: 98px; }
 
-.markdown div				{ margin-left: 1em; }
-.markdown ul				{ padding-left: 2em; margin-top: 0.4em; }
-.markdown ul + div			{ margin-top: -0.8em; }
+.markdown div				{ margin: 0.1em 0 0.1em 1em; }
+.markdown ul				{ padding-left: 2em; margin: 0.35em 0; }
 .markdown ul:first-child	{ margin-top: 0; }
 .markdown li				{ padding-left: 0.4em; }
-.markdown blockquote		{ margin-left: 1em; border-left: 6px solid #ccc; padding-left: 0.7em; }
+.markdown blockquote		{ margin: 0 1em; border-left: 6px solid #ccc; padding: 0.3em 0.7em; }
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 { font-family: Montserrat, arial, sans-serif; margin-top: 1em; margin-bottom: 0.5em; font-weight: 600; }
 .markdown h1				{ font-size: 1.333em; }
 .markdown h2				{ font-size: 1.25em;}
