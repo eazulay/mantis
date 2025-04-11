@@ -1134,13 +1134,13 @@ $s_submission_thanks_msg = 'Thank you for your submission.';
 # report_bug_advanced_page.php
 $s_simple_report_link = 'Simple Report';
 $s_enter_report_details_title = 'Enter Issue Details';
-$s_required = 'required';
+$s_required = 'Required';
 $s_select_category = 'Select Category';
 $s_select_reproducibility = 'Select Repeatability';
 $s_select_severity = 'Select Severity';
 $s_or_fill_in = 'Or:';
 $s_assign_to = 'Assign To';
-$s_additional_information = 'Extra Info';
+$s_additional_information = 'Extra Info/Resources';
 $s_submit_report_button = 'Submit Issue';
 $s_check_report_more_bugs = 'check to raise more Issues';
 
