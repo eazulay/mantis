@@ -259,15 +259,15 @@
 	document.addEventListener('DOMContentLoaded', function() {
 		function adjustScroll() {
 			const headerHeight = document.querySelector('#fixed_scroll').offsetHeight;
+			if (headerHeight < 31)
+				headerHeight = 31;
 			const targetElement = document.querySelector(location.hash);
 			if (targetElement){
 				const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
-				setTimeout(function(){
-					window.scrollTo({
-						top: elementTop - headerHeight,
-						behavior: 'smooth'
-					});
-				}, 50);
+				window.scrollTo({
+					top: elementTop - headerHeight,
+					behavior: 'smooth'
+				});
 			}
 		}
 		// Adjust scroll when page loads with hash
