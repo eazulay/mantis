@@ -23,6 +23,7 @@ a > img			{ border: none; }
 form			{ display: inline; }
 textarea		{ padding: 4px 8px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; width: calc(100% - 18px); border: 1px solid var(--border-color); border-radius: 5px; }
 input			{ padding: 3px 8px 4px; font-family: Inter, arial, sans-serif; font-size: 0.8125rem; border: 1px solid var(--border-color); margin-bottom: 1px; border-radius: 5px; }
+input.fullwidth	{ width: calc(100% - 18px); }
 input[type="button"], input[type="submit"], input.button, input.button-small, a.button, button, input[type="file"]::file-selector-button {
 	background-color: #E9EAEA;
     color: var(--text-color);
@@ -59,6 +60,7 @@ input[type="checkbox"] {
     position: relative;
     top: 2px;
 }
+input:invalid { border: 1px solid #b00; }
 input[type="image"] { vertical-align: middle; margin-bottom: 2px; }
 select				{ border: 1px solid var(--border-color); background: #fff; padding: 3px 6px 4px; margin-bottom: 1px; border-radius: 5px; }
 
@@ -112,12 +114,13 @@ table#buglist td .toggle-height { position: absolute; right: 2px; bottom: 2px; f
 td 					{ font-size: 0.75rem; padding: 6px 12px; text-align: left; }
 tr.header + tr > td { padding-top: 12px; }
 table.width90 td	{ padding: 2px 12px 2px 0; }
-table.width90 > tbody > tr > td:first-child			 	{ padding: 2px 12px; }
+table.width90 > tbody > tr > td:first-child	{ padding: 2px 12px; }
 table.width90 tr:has(th) + tr > td			{ padding-top: 15px !important; }
 table.width90 tr:has(+ tr.footer) > td		{ padding-bottom: 15px !important; }
 input::placeholder, textarea::placeholder	{ color: #555; }
 table.width90 select						{ min-width: 280px; }
-table.width90 input.error, table.width90 select.error, table.width90 textarea.error { border: 1px solid #b00; }
+table.width90 input.error, table.width90 select.error, table.width90 textarea.error, em.error { border: 1px solid #b00; }
+em.error									{ padding: 2px 4px; border-radius: 8px; margin-left: -4px; }
 table.width90 table.width100				{ border: none; }
 div#profile_open, div#profile_closed		{ display: inline-block; margin-bottom: 10px; }
 div#profile_open							{ width: 94%; }
@@ -183,7 +186,7 @@ tr:has(.form-title) + tr.subheader > td, tr:has(.form-title) + tr.subheader > th
 tr.subheader > th.form-title, tr.subheader > td.form-title	{ border-bottom: none; }
 tr.bottom-border > td, tr.bottom-border > th			{ border-bottom: 1px solid var(--border-color); }
 tr.subtotal > td, tr.subtotal > th						{ background: #e5f1e2; font-weight: 600; border-top: 1px solid var(--border-color); }
-tbody > tr:first-child > td, tbody > tr:first-child > th{ padding-top: 15px !important; }
+tbody > tr:first-child > td, tbody > tr:first-child > th, tbody > tr.first-visible > td	{ padding-top: 15px !important; }
 tbody > tr:last-child > td, tbody > tr:last-child > th	{ padding-bottom: 15px; }
 #profile_open tbody > tr:first-child > td				{ padding-top: 0px !important; }
 #profile_open tbody > tr:last-child > td				{ padding-bottom: 0px; }

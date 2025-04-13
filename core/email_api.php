@@ -980,7 +980,7 @@ function email_send( $p_email_data ) {
 	$reporting_mailboxes = config_get('plugin_EmailReporting_mailboxes', false);
 	if ($reporting_mailboxes !== false && isset($t_email_data->metadata['project_id'])){
 		$current_project_id = $t_email_data->metadata['project_id'];
-		echo "Project ID = ".$current_project_id."\n<br>";
+		//echo "Project ID = ".$current_project_id."\n<br>";
 		foreach( $reporting_mailboxes as $mailbox ){
 			$project_id = $current_project_id;
 			while ($project_id > 0 && $project_id != $mailbox['project_id'])

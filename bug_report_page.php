@@ -375,7 +375,7 @@ if ( $tpl_show_due_date ) {
 	</td>
 	<td>
 	<?php
-		print "<input ".helper_get_tab_index()." type=\"text\" id=\"due_date\" name=\"due_date\" size=\"26\" maxlength=\"16\" value=\"".$t_date_to_display."\" />";
+		print "<input ".helper_get_tab_index()." type=\"text\" id=\"due_date\" name=\"due_date\" size=\"24\" maxlength=\"16\" value=\"".$t_date_to_display."\" />";
 		date_print_calendar();
 	?>
 	</td>
@@ -448,7 +448,7 @@ if( $f_master_bug_id > 0 ) { ?>
 		</td>
 	</tr>
 <?php */ ?>
-	<tr id="aim" style="display:none;">
+	<tr id="aim">
 		<td class="category">
 			Aim <span class="required">*</span>
 		</td>
@@ -456,7 +456,7 @@ if( $f_master_bug_id > 0 ) { ?>
 			<textarea <?php echo helper_get_tab_index() ?> name="aim" cols="80" rows="2"></textarea>
 		</td>
 	</tr>
-	<tr id="question" style="display:none;">
+	<tr id="question" style="display:none;" class="first-visible">
 		<td class="category">
 			Question <span class="required">*</span>
 		</td>
@@ -525,14 +525,14 @@ if( $f_master_bug_id > 0 ) { ?>
 			<?php print_documentation_link( 'summary' ) ?> (Issue Title)<span class="required">*</span>
 		</td>
 		<td>
-			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" style="width:calc(100% - 18px);" />
+			<input <?php echo helper_get_tab_index() ?> type="text" name="summary" maxlength="128" value="<?php echo string_attribute( $f_summary ) ?>" class="fullwidth" />
 			<input type="hidden" name="description" value="" />
 		</td>
 	</tr>
 </tbody>
 <thead>
 	<tr class="subheader">
-		<th colspan="2">Location</th>
+		<th colspan="2">Location <span class="required">*</span></th>
 	</tr>
 </thead>
 <tbody>
@@ -547,12 +547,52 @@ if( $f_master_bug_id > 0 ) { ?>
 			</td>
 		</tr>
 <?php } */ ?>
-	<tr id="steps" style="display:none;">
+	<tr>
+		<td class="category" colspan="2">
+			<em id="location_mandatory_message">Fill in at least one Location field; more if that might help.</em>
+			<input type="hidden" name="steps_to_reproduce" value="" />
+		</td>
+	</tr>
+	<tr id="url">
 		<td class="category">
-			Process <span class="required">*</span>
+			URL
 		</td>
 		<td>
-			<textarea <?php echo helper_get_tab_index() ?> name="steps" cols="80" rows="4" placeholder="Here's what I did, step by step…"></textarea>
+			<input <?php echo helper_get_tab_index() ?> type="url" name="url" class="fullwidth" />
+		</td>
+	</tr>
+	<tr id="path">
+		<td class="category">
+			Path
+		</td>
+		<td>
+			<input <?php echo helper_get_tab_index() ?> type="text" name="path" class="fullwidth" placeholder="E.g., Menu > View Issues" />
+		</td>
+	</tr>
+	<tr id="page_field">
+		<td class="category">
+			Page, Field
+		</td>
+		<td>
+			<input <?php echo helper_get_tab_index() ?> type="text" name="page_field" class="fullwidth" placeholder="E.g., View Issues; click [Reset Filter] and Select 'All Open'" />
+		</td>
+	</tr>
+	<tr id="process">
+		<td class="category">
+			Process
+		</td>
+		<td>
+			<textarea <?php echo helper_get_tab_index() ?>
+				name="process" cols="80" rows="4" value="<?php echo string_textarea( $f_steps_to_reproduce ) ?>" placeholder="Steps taken or desired (for a bug, say at which step you encountered the problem).">
+			</textarea>
+		</td>
+	</tr>
+	<tr id="multiple">
+		<td class="category">
+			Multiple/Systemwide
+		</td>
+		<td>
+			<input <?php echo helper_get_tab_index() ?> type="text" name="multiple" class="fullwidth" />
 		</td>
 	</tr>
 </tbody>
@@ -625,13 +665,13 @@ if( $f_master_bug_id > 0 ) { ?>
     const aim_row = document.querySelector('#aim');
     const question_row = document.querySelector('#question');
     const motivation_row = document.querySelector('#motivation');
-    const steps_row = document.querySelector('#steps');
     const expectation_row = document.querySelector('#expectation');
     const outcome_row = document.querySelector('#outcome');
     const error_message_row = document.querySelector('#error_message');
     const other_approaches_row = document.querySelector('#other_approaches');
     const last_success_row = document.querySelector('#last_success');
     const recent_changes_row = document.querySelector('#recent_changes');
+	const location_mandatory_message = document.querySelector('#location_mandatory_message');
 	let isBug = false;
 	let isQuery = false;
     window.document.report_bug_form.category_id.addEventListener('change', e => {
@@ -650,7 +690,6 @@ if( $f_master_bug_id > 0 ) { ?>
 		aim_row.querySelector('textarea').placeholder = isBug ? 'I wanted to…' : 'I want to do/see…';
 		question_row.style.display = isQuery ? 'table-row' : 'none';
 		motivation_row.style.display = isBug ? 'none' : 'table-row';
-		steps_row.style.display = isBug ? 'table-row' : 'none';
 		expectation_row.style.display = isBug ? 'table-row' : 'none';
 		outcome_row.style.display = isQuery ? 'none' : 'table-row';
 		outcome_row.querySelector('textarea').placeholder = isBug ? 'Instead, this happened…' : 'I want these results… (request a preferred format if relevant)';
@@ -670,7 +709,7 @@ if( $f_master_bug_id > 0 ) { ?>
 		description_fld.value = "";
 		if (isBug) {
 			description_fld.value = "**Aim:** " + window.document.report_bug_form.aim.value.trim() + "\n" +
-			"**Steps:** " + window.document.report_bug_form.steps.value.trim() + "\n" +
+			"**process:** " + window.document.report_bug_form.process.value.trim() + "\n" +
 			"**Expectation:** " + window.document.report_bug_form.expectation.value.trim() + "\n" +
 			"**Outcome:** " + window.document.report_bug_form.outcome.value.trim();
 			if (window.document.report_bug_form.error_message.value.trim())
@@ -699,6 +738,35 @@ if( $f_master_bug_id > 0 ) { ?>
 			preventSubmit = validateMandatory(window.document.report_bug_form.motivation) || preventSubmit;
 			preventSubmit = validateMandatory(window.document.report_bug_form.outcome) || preventSubmit;
 		}
+		const steps_to_reproduce_fld = window.document.report_bug_form.steps_to_reproduce;
+		steps_to_reproduce_fld.value = "";
+		if (window.document.report_bug_form.steps_to_reproduce.value.trim())
+			steps_to_reproduce_fld.value = "\n**URL:** " + window.document.report_bug_form.url.value.trim();
+		if (window.document.report_bug_form.path.value.trim())
+			steps_to_reproduce_fld.value += "\n**Path:** " + window.document.report_bug_form.path.value.trim();
+		if (window.document.report_bug_form.page_field.value.trim())
+			steps_to_reproduce_fld.value += "\n**Page, Field:** " + window.document.report_bug_form.page_field.value.trim();
+		if (window.document.report_bug_form.process.value.trim())
+			steps_to_reproduce_fld.value += "\n**Process:** " + window.document.report_bug_form.process.value.trim();
+		if (window.document.report_bug_form.multiple.value.trim())
+			steps_to_reproduce_fld.value += "\n**Multiple/Systemwide:** " + window.document.report_bug_form.multiple.value.trim();
+		if (steps_to_reproduce_fld.value)
+			steps_to_reproduce_fld.value = steps_to_reproduce_fld.value.substr(1); // Remove leading newline
+
+		var atLeastOneLocation = (
+			window.document.report_bug_form.url.value.trim() ||
+			window.document.report_bug_form.path.value.trim() ||
+			window.document.report_bug_form.page_field.value.trim() ||
+			window.document.report_bug_form.process.value.trim() ||
+			window.document.report_bug_form.multiple.value.trim()
+		);
+		if (!atLeastOneLocation){
+			location_mandatory_message.classList.add('error');
+			preventSubmit = true;
+		} else {
+			location_mandatory_message.classList.remove('error');
+		}
+
 		if (preventSubmit)
 			e.preventDefault();
 	});
