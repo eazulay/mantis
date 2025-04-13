@@ -240,6 +240,6 @@ $g_my_view_boxes = array (
 $g_show_project_menu_bar = ON;
 $g_form_security_validation = OFF;
 
-$g_css_include_file = 'css/default.css?v=20250413';
+$g_css_include_file = 'css/default.css?v=20250413a';
 
 // $g_relationship_graph_enable = ON;

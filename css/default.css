@@ -186,8 +186,8 @@ tr:has(.form-title) + tr.subheader > td, tr:has(.form-title) + tr.subheader > th
 tr.subheader > th.form-title, tr.subheader > td.form-title	{ border-bottom: none; }
 tr.bottom-border > td, tr.bottom-border > th			{ border-bottom: 1px solid var(--border-color); }
 tr.subtotal > td, tr.subtotal > th						{ background: #e5f1e2; font-weight: 600; border-top: 1px solid var(--border-color); }
-tbody > tr:first-child > td, tbody > tr:first-child > th, tbody > tr.first-visible > td	{ padding-top: 15px !important; }
-tbody > tr:last-child > td, tbody > tr:last-child > th	{ padding-bottom: 15px; }
+table.width90 > tbody > tr:first-child > td, table.width90 > tbody > tr:first-child > th, tbody > tr.first-visible > td	{ padding-top: 15px; }
+table.width90 > tbody > tr:last-child > td, tbody > tr:last-child > th	{ padding-bottom: 15px; }
 #profile_open tbody > tr:first-child > td				{ padding-top: 0px !important; }
 #profile_open tbody > tr:last-child > td				{ padding-bottom: 0px; }
 
