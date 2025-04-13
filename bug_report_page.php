@@ -108,7 +108,7 @@
 		$f_priority				= gpc_get_int( 'priority', config_get( 'default_bug_priority' ) );
 		$f_summary				= gpc_get_string( 'summary', '' );
 		$f_description			= gpc_get_string( 'description', '' );
-		$f_steps_to_reproduce	= gpc_get_string( 'steps_to_reproduce', config_get( 'default_bug_steps_to_reproduce' ) );
+		$f_steps_to_reproduce	= trim( gpc_get_string( 'steps_to_reproduce', config_get( 'default_bug_steps_to_reproduce' ) ) );
 		$f_additional_info		= gpc_get_string( 'additional_info', config_get ( 'default_bug_additional_info' ) );
 		$f_view_state			= gpc_get_int( 'view_state', config_get( 'default_bug_view_status' ) );
 		$f_due_date				= gpc_get_string( 'due_date', '');
@@ -583,8 +583,8 @@ if( $f_master_bug_id > 0 ) { ?>
 		</td>
 		<td>
 			<textarea <?php echo helper_get_tab_index() ?>
-				name="process" cols="80" rows="4" value="<?php echo string_textarea( $f_steps_to_reproduce ) ?>" placeholder="Steps taken or desired (for a bug, say at which step you encountered the problem).">
-			</textarea>
+				name="process" cols="80" rows="4" placeholder="Steps taken or desired (for a bug, say at which step you encountered the problem)."
+			><?php echo string_textarea( $f_steps_to_reproduce ) ?></textarea>
 		</td>
 	</tr>
 	<tr id="multiple">
