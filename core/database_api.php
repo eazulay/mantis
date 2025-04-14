@@ -700,7 +700,7 @@ function db_prepare_string( $p_string ) {
 		case 'odbc_mssql':
 			break;
 		case 'mysql':
-			return mysql_real_escape_string( $p_string );
+			return mysqli_real_escape_string( $g_db->getConnection(), $p_string );
 		case 'mysqli':
 			# For some reason mysqli_escape_string( $p_string ) always returns an empty
 			# string.  This is happening with PHP v5.0.2.
@@ -710,7 +710,7 @@ function db_prepare_string( $p_string ) {
 		case 'postgres64':
 		case 'postgres7':
 		case 'pgsql':
-			return pg_escape_string( $p_string );
+			return pg_escape_string( $g_db->getConnection(), $p_string );
 		default:
 			error_parameters( 'db_type', $t_db_type );
 			trigger_error( ERROR_CONFIG_OPT_INVALID, ERROR );
@@ -738,11 +738,9 @@ function db_prepare_binary_string( $p_string ) {
 		case 'postgres64':
 		case 'postgres7':
 		case 'pgsql':
-			return '\'' . pg_escape_bytea( $p_string ) . '\'';
-			break;
+			return '\'' . pg_escape_bytea( $g_db->getConnection(), $p_string ) . '\'';
 		default:
 			return '\'' . db_prepare_string( $p_string ) . '\'';
-			break;
 	}
 }
 

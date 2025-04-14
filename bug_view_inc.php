@@ -877,7 +877,7 @@
 
 	foreach( $t_related_custom_field_ids as $t_id ) {
 		if( $t_id == 1 ||	// Type
-			$t_id == 2 && $tpl_bug->status != $t_feedback || // Info Required
+			$t_id == 2 && $tpl_bug->status != $t_feedback && $tpl_bug->status != APPROVAL || // Info Required or Approval Required
 			$t_id >=3 && $t_id <=8 ) // Authorization related
 			continue;
 		if( !custom_field_has_read_access( $t_id, $f_bug_id ) )

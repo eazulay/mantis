@@ -114,6 +114,8 @@ $g_reauthentication_expiry = 20*60;
  */
 $g_enable_eta = ON;
 
+$g_eta_enum_string = '10:none,20:< 1 day,30:2-3 days,40:< 1 week,50:< 1 month,60:> 1 month';
+
 /**
  * Enable or disable usage of the Projection field.
  * @global int $g_enable_projection
