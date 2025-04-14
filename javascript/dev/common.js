@@ -98,19 +98,17 @@ function ToggleDiv( p_div ) {
 		g_collapse_clear = 0;
 	}
 
-	if (t_open_div.className == "hidden"){
+	if (t_open_div.className == "hidden") {
 		t_open_div.className = "";
 		t_closed_div.className = "hidden";
 		t_cookie = t_cookie + "|" + p_div + ",1";
-	}else{
+	} else {
 		t_closed_div.className = "";
 		t_open_div.className = "hidden";
 		t_cookie = t_cookie + "|" + p_div + ",0";
 	}
 
-	requestAnimationFrame(function() { // Try to avoid Chrome hanging for two seconds
-		SetCookie("collapse_settings", t_cookie);
-	});
+	SetCookie("collapse_settings", t_cookie);
 
 	return (t_open_div.className === "");
 }
