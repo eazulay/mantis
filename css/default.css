@@ -337,7 +337,7 @@ div.main-page-content > ul	{ margin-top: 10px; }
 .markdown h1:first-child, .markdown h2:first-child, .markdown h3:first-child, .markdown h4:first-child, .markdown h5:first-child, .markdown h6:first-child { margin-top: 0; }
 .markdown h1 + br, .markdown h2 + br, .markdown h3 + br, .markdown h4 + br, .markdown h5 + br, .markdown h6 + br, .markdown ul + br { margin-top: -1em; }
 .markdown table				{ border-collapse: collapse; }
-.markdown table, .markdown th, .markdown td { border: 1px solid var(--border-color); padding: 6px 8px; }
+.markdown th, .markdown td { border: 1px solid var(--border-color); padding: 6px 8px; }
 
 @media (max-width: 768px) {
 	body								{ margin: 5px; }
