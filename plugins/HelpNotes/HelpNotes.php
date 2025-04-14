@@ -114,7 +114,7 @@ class HelpNotesPlugin extends MantisPlugin {
 	function format_help_string($p_event, $str, $multi_line=false) {
 		$str = preg_replace('/\*\*\*([^ ](?:.*[^ ])?)\*\*\*/mU', '<strong><em>$1</em></strong>', $str);
 		$str = preg_replace('/\*\*([^ ](?:.*[^ ])?)\*\*/mU', '<strong>$1</strong>', $str);
-		$str = preg_replace('/\*([^ ](?:.*?[^ ])?)\*/mU', '<em>$1</em>', $str);
+		$str = preg_replace('/\*([^ ](?:.*[^ ])?)\*/mU', '<em>$1</em>', $str);
 		if ($multi_line) {
 			$eol = '(?:<br \/>\n|\n|$)'; // End of lines include <br /> tags, which are added by Mantis Formatting plugin before this function is called
 			$str = str_replace("\r\n", "\n", $str);
