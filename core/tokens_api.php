@@ -189,10 +189,10 @@ function token_delete_by_owner( $p_user_id = null ) {
  * @return integer Token ID
  */
 function token_create( $p_type, $p_value, $p_expiry = TOKEN_EXPIRY, $p_user_id = null ) {
-	$c_type = db_prepare_int( $p_type );
+	$c_type = (int) $p_type;
 	$c_timestamp = db_now();
 	$c_expiry = time() + $p_expiry;
-	$c_user_id = db_prepare_int( $p_user_id == null ? auth_get_current_user_id() : $p_user_id );
+	$c_user_id = (int) ( $p_user_id == null ? auth_get_current_user_id() : $p_user_id );
 
 	$t_tokens_table = db_get_table( 'mantis_tokens_table' );
 
