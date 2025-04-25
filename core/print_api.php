@@ -1782,15 +1782,19 @@ document.getElementById( span ).style.display = displayType;
 	}
 
 	if ( $t_attachments_count > 0 ) {
-		echo '<input type="submit" id="fileDeleteBtn" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" style="margin-top:4px;" />';
+		echo '<input type="submit" id="fileDeleteBtn" value="' . lang_get( 'file_delete_selected_button' ) . '" class="button" style="margin:18px 0 5px;" />';
 		echo "<script type=\"text/javascript\" language=\"JavaScript\">
 <!--
 		var fileSelectCount = 0;
 		var fileDeleteBtn = document.getElementById(\"fileDeleteBtn\");
+		var attachmentsTbodyElement = fileDeleteBtn.closest('tbody');
 		fileDeleteBtn.disabled = (fileSelectCount == 0);
+		
 		function toggleDeleteFile(event) {
 			fileSelectCount = fileSelectCount + (event.target.checked ? 1 : -1);
 			fileDeleteBtn.disabled = (fileSelectCount == 0);
+			var deleteIssueBtn = attachmentsTbodyElement.lastElementChild.querySelector('form[action=\"bug_actiongroup_page.php\"] input[type=\"submit\"]');
+			deleteIssueBtn.disabled = (fileSelectCount > 0);
 		}
  -->
 </script>";
