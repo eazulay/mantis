@@ -1395,15 +1395,17 @@ function html_button( $p_action, $p_button_text, $p_fields = null, $p_method = '
 	if ( $t_method == 'post' ) {
 		echo form_security_field( $t_form_name[0] );
 	}
-
+	$buttonClasses = "button";
 	foreach( $p_fields as $key => $val ) {
 		$key = string_attribute( $key );
 		$val = string_attribute( $val );
-
 		echo "	<input type=\"hidden\" name=\"$key\" value=\"$val\" />\n";
+		if ($key == 'action' && $val == 'DELETE') {
+			$buttonClasses .= " danger";
+		}
 	}
 
-	echo "	<input type=\"submit\" class=\"button\" value=\"$p_button_text\" />\n";
+	echo "	<input type=\"submit\" class=\"$buttonClasses\" value=\"$p_button_text\" />\n";
 	echo "</form>\n";
 }
 
@@ -1759,13 +1761,13 @@ function html_buttons_view_bug_page($p_bug_id, $p_metadata_section = false) {
 			echo '</td>';
 		}
 
+		helper_call_custom_function('print_bug_view_page_custom_buttons', array($p_bug_id));
+
 		# DELETE button
-		echo '<td class="center">';
+		echo '<td class="right" style="position:absolute; right:4%;">';
 		html_button_bug_delete($p_bug_id);
 		echo '</td>';
 	}
-
-	helper_call_custom_function('print_bug_view_page_custom_buttons', array($p_bug_id));
 
 	echo '</tr></table>';
 }

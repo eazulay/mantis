@@ -56,6 +56,13 @@ input[type="submit"]:disabled, input[type="button"]:disabled {
 	border-color: #d4d4d6;
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
 }
+input[type="submit"].danger:not(:disabled) {
+	color: #b00;
+}
+input[type="submit"].danger:hover:not(:disabled) {
+	color: #fff;
+	background-color: #b00;
+}
 input[type="checkbox"] {
     position: relative;
     top: 2px;
