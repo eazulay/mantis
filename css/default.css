@@ -330,6 +330,7 @@ div.main-page-content > ul	{ margin-top: 10px; }
 .companylogo img			{ border-radius: 5px; position: absolute; z-index: -1; max-height: 98px; }
 
 .markdown div				{ margin: 0.1em 0 0.1em 1em; }
+.markdown div > span		{ display: inline-block; min-width: 1.4em; }
 .markdown ul				{ padding-left: 2em; margin: 0.35em 0; }
 .markdown ul:first-child	{ margin-top: 0; }
 .markdown li				{ padding-left: 0.4em; }
