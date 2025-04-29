@@ -410,7 +410,10 @@ class ERP_Mail_Parser
 					$t_body_charset = $parts[ $i ]->ctype_parameters[ 'charset' ];
 				}
 
-				echo "\nbody_charset = $t_body_charset\n";
+				if ( $t_body_charset == 'iso-8859-1' ) {
+					$t_body_charset = 'windows-1252';
+					echo "\nChange body_charset from iso-8859-1 to $t_body_charset\n";
+				}
 
 				$this->setBody( $parts[ $i ]->body, $parts[ $i ]->ctype_primary, $parts[ $i ]->ctype_secondary, $t_body_charset );
 			}
