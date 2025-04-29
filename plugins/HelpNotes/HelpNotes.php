@@ -140,12 +140,12 @@ class HelpNotesPlugin extends MantisPlugin {
 				$str = preg_replace('/^&gt; (.+)$/m', "<blockquote>$1</blockquote>", $str);
 				$str = preg_replace('/(<\/blockquote>\n<blockquote>)/', '', $str);
 				// Handle Headers
-				$str = preg_replace('/^###### (.+)\n?/m', "\n<h6>$1</h6>", $str);
-				$str = preg_replace('/^##### (.+)\n?/m', "\n<h5>$1</h5>", $str);
-				$str = preg_replace('/^#### (.+)\n?/m', "\n<h4>$1</h4>", $str);
-				$str = preg_replace('/^### (.+)\n?/m', "\n<h3>$1</h3>", $str);
-				$str = preg_replace('/^## (.+)\n?/m', "\n<h2>$1</h2>", $str);
-				$str = preg_replace('/^# (.+)\n?/m', "\n<h1>$1</h1>", $str);
+				$str = preg_replace('/^###### (.+)\n?/m', "\n<h6>$1</h6>\n", $str);
+				$str = preg_replace('/^##### (.+)\n?/m', "\n<h5>$1</h5>\n", $str);
+				$str = preg_replace('/^#### (.+)\n?/m', "\n<h4>$1</h4>\n", $str);
+				$str = preg_replace('/^### (.+)\n?/m', "\n<h3>$1</h3>\n", $str);
+				$str = preg_replace('/^## (.+)\n?/m', "\n<h2>$1</h2>\n", $str);
+				$str = preg_replace('/^# (.+)\n?/m', "\n<h1>$1</h1>\n", $str);
 				$str = preg_replace('/\R<h/mU', '<h', $str);
 				// Handle Tables
 				$str = preg_replace_callback(
