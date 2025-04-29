@@ -1237,9 +1237,9 @@ class simple_html_dom
                     }
                     else
                     {
-                        // If there is a meta tag, and they don't specify the character set, research says that it's typically Windows-1252
-                        if (is_object($debugObject)) {$debugObject->debugLog(2, 'meta content-type tag couldn\'t be parsed. using Windows-1252 default.');}
-                        $charset = 'Windows-1252';
+                        // If there is a meta tag, and they don't specify the character set, research says that it's typically ISO-8859-1
+                        if (is_object($debugObject)) {$debugObject->debugLog(2, 'meta content-type tag couldn\'t be parsed. using iso-8859 default.');}
+                        $charset = 'ISO-8859-1';
                     }
                 }
             }
