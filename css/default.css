@@ -212,8 +212,8 @@ td.bugnote-public		{ font-weight: bold; width: 25%; line-height: 1.4; vertical-a
 td.bugnote-private		{ background-color: #e2f1ee; font-weight: bold; width: 25%; line-height: 1.4; vertical-align: top; }
 td.bugnote-note-public	{ width: 75%; vertical-align: top; }
 td.bugnote-note-private	{ background-color: #e2f1ee; width: 75%; vertical-align: top; }
-tr.bugnote-hashelp td:first-child { border-right: 6px solid var(--border-color); }
-tr.bugnote-hashelp td:last-child b { color: #007a7c; }
+tr.bugnote-hashelp > td:first-child { border-right: 6px solid var(--border-color); }
+tr.bugnote-hashelp > td:last-child b { color: #007a7c; }
 
 .grid				{ display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; }
 .grid-middle		{ grid-column: 2; justify-self: center; }
