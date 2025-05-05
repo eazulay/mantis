@@ -329,23 +329,25 @@ div.main-page-content > ul	{ margin-top: 10px; }
 
 .companylogo img			{ border-radius: 5px; position: absolute; z-index: -1; max-height: 98px; }
 
+.markdown					{ line-height: 1.25em; }
 .markdown div				{ margin: 0.1em 0 0.1em 1em; }
 .markdown div > span		{ display: inline-block; min-width: 1.4em; }
 .markdown ul				{ padding-left: 2em; margin: 0.35em 0; }
 .markdown ul:first-child	{ margin-top: 0; }
 .markdown li				{ padding-left: 0.4em; }
 .markdown blockquote		{ margin: 0 1em; border-left: 6px solid #ccc; padding: 0.3em 0.7em; }
-.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 { font-family: Montserrat, arial, sans-serif; margin-top: 1em; margin-bottom: 0.5em; font-weight: 600; }
-.markdown h1				{ font-size: 1.333em; }
-.markdown h2				{ font-size: 1.25em;}
-.markdown h3				{ font-size: 1.167em;}
-.markdown h4				{ font-size: 1.083em;}
-.markdown h5				{ font-size: 1em;}
-.markdown h6				{ font-size: 0.917em;}
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 { font-family: Inter, arial, sans-serif; margin-top: 0.4em; margin-bottom: 0.2em; }
+.markdown h1				{ font-size: 1.167em; font-weight: 700; color: #054c32; }
+.markdown h2				{ font-size: 1.083em; font-weight: 700; color: #054c32; }
+.markdown h3				{ font-size: 1.083em; font-weight: 600; }
+.markdown h4				{ font-size: 1.083em; font-weight: 500; }
+.markdown h5				{ font-size: 1em; font-weight: 500;}
+.markdown h6				{ font-size: 0.917em; font-weight: 500; }
 .markdown h1:first-child, .markdown h2:first-child, .markdown h3:first-child, .markdown h4:first-child, .markdown h5:first-child, .markdown h6:first-child { margin-top: 0; }
 .markdown h1 + br, .markdown h2 + br, .markdown h3 + br, .markdown h4 + br, .markdown h5 + br, .markdown h6 + br, .markdown ul + br { margin-top: -1em; }
 .markdown table				{ border-collapse: collapse; }
 .markdown th, .markdown td { border: 1px solid var(--border-color); padding: 6px 8px; }
+.markdown hr				{ margin: 2px 0; max-width: 24px; border: 1px solid #ccc; }
 
 @media (max-width: 768px) {
 	body								{ margin: 5px; }
