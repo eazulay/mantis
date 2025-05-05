@@ -502,7 +502,7 @@ function html_login_info() {
 	<div class="grid-middle project-current">
 <?php
 
-	echo lang_get( 'email_project' ), ': ';
+	echo '<span>', lang_get( 'email_project' ), ':</span> ';
 
 	$first = true;
 	foreach( helper_get_current_project_trace() as $t_project ) {

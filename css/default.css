@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 :root {
 	--text-color: #212121;
 	--border-color: #7dbfb3;
@@ -142,7 +142,7 @@ td.center			{ text-align: center; }
 td.center > table	{ margin-left: auto; margin-right: auto; }
 td.left				{ text-align: left; }
 td.right			{ text-align: right; }
-td.category			{ color: var(--text-color); vertical-align: top; font-weight: 600; line-height: 2em; }
+td.category			{ color: var(--text-color); vertical-align: top; font-weight: 600; }
 tr.header > td.category	{ vertical-align: middle; }
 tr.header > td		{ padding: 6px 12px !important; }
 tr.bug-primary td	{ font-size: 0.75rem; vertical-align: top; }
@@ -219,7 +219,8 @@ tr.bugnote-hashelp > td:last-child b { color: #007a7c; }
 .grid-middle		{ grid-column: 2; justify-self: center; }
 .grid-right			{ text-align: right; grid-column: 3; justify-self: end; }
 
-.project-current	{ padding: 5px 0 2px; text-align: center; font-size: 1.25rem; font-weight: 600; font-family: Montserrat, arial, sans-serif; }
+.project-current	{ padding: 5px 0 2px; text-align: center; font-size: 1.25rem; font-weight: 600; font-family: "Plus Jakarta Sans", sans-serif; color: #054c32; }
+.project-current > span { font-weight: 400; }
 .menu				{ color: var(--text-color); text-align: center; padding: 5px; font-size: 0.9375rem; font-weight: 500; }
 .menu a				{ white-space: nowrap; }
 
@@ -233,7 +234,7 @@ img.delete-icon		{ position: relative; top: 5px; border: 0; }
 ul.project-menu, ul.project-menu ul.sub-menu {
     list-style: none;
     margin: 0;
-	font-family: Montserrat, arial, sans-serif;
+	font-family: "Plus Jakarta Sans", sans-serif;
 }
 ul.project-menu > li.menu-item {
     display: inline;
