@@ -140,7 +140,7 @@ class IssueAddTest extends SoapBase {
 		$issueToAdd = $this->getIssueToAdd( 'IssueAddTest.testCreateIssueWithRareFields' );
 
 		$issueToAdd['projection'] = array( 'id' => 90 );    // redesign
-		$issueToAdd['eta'] = array( 'id' => 60 );           // > 1 month
+		$issueToAdd['eta'] = array( 'id' => 60 );           // > 4 weeks
 		$issueToAdd['resolution'] = array( 'id' => 80 );    // suspended
 		$issueToAdd['status'] = array( 'id' => 40 );        // confirmed
 		$issueToAdd['fixed_in_version'] = 'fixed version';

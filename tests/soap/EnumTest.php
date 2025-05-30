@@ -205,15 +205,15 @@ class EnumTest extends SoapBase {
 
 		$etas = EnumTest::ObjectRefsToAssoc( $etaObjectRefs );
 
-		// '10:none,20:< 1 day,30:2-3 days,40:< 1 week,50:< 1 month,60:> 1 month'
+		// '10:None,12:Tiny ≤ 30 min,14:Quick 30 min - 2 h,16:Minor 2-4 h,20:Small 4-8 h,30:Medium 1-2 d,40:Large 2-5 d,45:Substantial 1-2 w,50:Major 2-4 w,60:Extensive > 4 w'
 
 		$this->assertEquals( 6, count( $etas ) );
-		$this->assertEquals( 'none', $etas[10] );
-		$this->assertEquals( '< 1 day', $etas[20] );
-		$this->assertEquals( '2-3 days', $etas[30] );
-		$this->assertEquals( '< 1 week', $etas[40] );
-		$this->assertEquals( '< 1 month', $etas[50] );
-		$this->assertEquals( '> 1 month', $etas[60] );
+		$this->assertEquals( 'None', $etas[10] );
+		$this->assertEquals( 'Small 4-8 h', $etas[20] );
+		$this->assertEquals( 'Medium 1-2 d', $etas[30] );
+		$this->assertEquals( 'Large 2-5 d', $etas[40] );
+		$this->assertEquals( 'Major 2-4 w', $etas[50] );
+		$this->assertEquals( 'Extensive > 4 w', $etas[60] );
 	}
 
 	/**

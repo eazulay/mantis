@@ -114,7 +114,7 @@ $g_reauthentication_expiry = 20*60;
  */
 $g_enable_eta = ON;
 
-$g_eta_enum_string = '10:none,20:< 1 day,30:2-3 days,40:< 1 week,50:< 1 month,60:> 1 month';
+$g_eta_enum_string = '10:None,12:Tiny ≤ 0.5 h,14:Quick 0.5–2 h,16:Minor 2–4 h,20:Small 4–8 h,30:Medium 1–2 d,40:Large 2–5 d,45:Substantial 1–2 w,50:Major 2–4 w,60:Extensive > 4 w';
 
 /**
  * Enable or disable usage of the Projection field.
