@@ -67,7 +67,11 @@
 	form_security_purge( 'bugnote_add' );
 
 	if ( $f_source_bugnote_id > 0 ) {
-		bugnote_set_text( $f_source_bugnote_id, "*Duplicated to #" . $f_bug_id . ".*\n\n" . bugnote_get_text( $f_source_bugnote_id ));
+		$source_note_text = bugnote_get_text( $f_source_bugnote_id );
+		$first_note_line = strtok( $source_note_text, "\n" );
+		$first_line_len = strlen( $first_note_line );
+		$note_starts_with_meta = $first_line_len > 2 && $first_note_line[0] == '*' && $first_note_line[1] != '*' && $first_note_line[$first_line_len - 1] == '*';
+		bugnote_set_text( $f_source_bugnote_id, "*Duplicated to #" . $f_bug_id . ".*\n" . ($note_starts_with_meta ? "" : "\n") . $source_note_text );
 		$t_url = string_get_bug_view_url( $f_return_to_bug_id, auth_get_current_user_id() );
 		print_successful_redirect( $t_url . "#c" . $f_source_bugnote_id );
 	} else {

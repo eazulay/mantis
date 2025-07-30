@@ -199,14 +199,17 @@ $num_notes = count( $t_bugnotes );
 					print_button( 'bugnote_set_view_state.php?private=1&bugnote_id=' . $t_bugnote->id, lang_get( 'make_private' ) );
 				}
 			}
-
+			$source_note_text = htmlspecialchars($t_bugnote->note, ENT_QUOTES, 'UTF-8');
+			$first_note_line = strtok( $source_note_text, "\n" );
+			$first_line_len = strlen( $first_note_line );
+			$note_starts_with_meta = $first_line_len > 2 && $first_note_line[0] == '*' && $first_note_line[1] != '*' && $first_note_line[$first_line_len - 1] == '*';
 			echo '<div class="copy-options hidden">
 			<form method="post" action="bugnote_add.php">
-				<input type="hidden" name="bugnote_text" value="*Duplicate of ~'.$t_bugnote->id.":*\n\n". htmlspecialchars($t_bugnote->note, ENT_QUOTES, 'UTF-8').'" />
+				<input type="hidden" name="bugnote_text" value="*Duplicate of ~' . $t_bugnote->id . ":*\n" . ($note_starts_with_meta ? "" : "\n") . $source_note_text . '" />
 				<input type="hidden" name="date_submitted" value="' . date('Y-m-d H:i:s', $t_bugnote->date_submitted) . '" />
 				<input type="hidden" name="source_bugnote_id" value="'.$t_bugnote->id.'" />
 				<input type="hidden" name="return_to_bug_id" value="'.$f_bug_id.'" />
-				<Label>To: <input type="number" name="bug_id" min="1" value="'.$f_bug_id.'" /></Label>
+				<Label style="margin-top:5px; display:inline-block;">To: <input type="number" name="bug_id" min="1" size="7" value="'.$f_bug_id.'" /></Label>
 				<input type="submit" class="button-small" onclick="copyNoteOverride(event,'.$t_bugnote->id.','.$f_bug_id.');" value="Apply" />
 			</form>
 		</div>
