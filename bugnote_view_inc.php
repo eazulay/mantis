@@ -200,7 +200,7 @@ $num_notes = count( $t_bugnotes );
 				}
 			}
 			$source_note_text = htmlspecialchars($t_bugnote->note, ENT_QUOTES, 'UTF-8');
-			$first_note_line = strtok( $source_note_text, "\n" );
+			$first_note_line = strtok( $source_note_text, "\r\n" );
 			$first_line_len = strlen( $first_note_line );
 			$note_starts_with_meta = $first_line_len > 2 && $first_note_line[0] == '*' && $first_note_line[1] != '*' && $first_note_line[$first_line_len - 1] == '*';
 			echo '<div class="copy-options hidden">

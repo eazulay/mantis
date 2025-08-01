@@ -68,7 +68,7 @@
 
 	if ( $f_source_bugnote_id > 0 ) {
 		$source_note_text = bugnote_get_text( $f_source_bugnote_id );
-		$first_note_line = strtok( $source_note_text, "\n" );
+		$first_note_line = strtok( $source_note_text, "\r\n" );
 		$first_line_len = strlen( $first_note_line );
 		$note_starts_with_meta = $first_line_len > 2 && $first_note_line[0] == '*' && $first_note_line[1] != '*' && $first_note_line[$first_line_len - 1] == '*';
 		bugnote_set_text( $f_source_bugnote_id, "*Duplicated to #" . $f_bug_id . ".*\n" . ($note_starts_with_meta ? "" : "\n") . $source_note_text );
