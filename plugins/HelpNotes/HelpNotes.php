@@ -116,11 +116,11 @@ class HelpNotesPlugin extends MantisPlugin {
 		// So we need to handle both clean URLs and HTML links
 		
 		// First handle standard markdown: ![alt](url) or ![alt](file:123)
-		$str = preg_replace_callback('/!\[([^\]]*)\]\(([^)]+?)(?:\s+&quot;([^&]*)&quot;)?\)/',
+		$str = preg_replace_callback('/!\[([^\]]*)\]\(([^)]+?)(?:\s+&quot;(.*?)&quot;)?\)/',
 			array($this, 'process_inline_image'), $str);
 		
 		// Then handle shorthand syntax: !(url) or !(file:123) - no alt text needed, optional title
-		$str = preg_replace_callback('/!\(([^)]+?)(?:\s+&quot;([^&]*)&quot;)?\)/',
+		$str = preg_replace_callback('/!\(([^)]+?)(?:\s+&quot;(.*?)&quot;)?\)/',
 			array($this, 'process_shorthand_image'), $str);
 		
 		$str = preg_replace('/\*\*\*([^ ](?:.*[^ ])?)\*\*\*/mU', '<strong><em>$1</em></strong>', $str);
