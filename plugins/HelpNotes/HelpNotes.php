@@ -112,6 +112,17 @@ class HelpNotesPlugin extends MantisPlugin {
 	
 	/* Format help strings and add support for Markdown code */
 	function format_help_string($p_event, $str, $multi_line=false) {
+		// Handle inline images - this might run after URLs have been converted to links
+		// So we need to handle both clean URLs and HTML links
+		
+		// First handle standard markdown: ![alt](url) or ![alt](file:123)
+		$str = preg_replace_callback('/!\[([^\]]*)\]\(([^)]+?)(?:\s+"([^"]*)")?\)/',
+			array($this, 'process_inline_image'), $str);
+		
+		// Then handle shorthand syntax: !(url) or !(file:123) - no alt text needed
+		$str = preg_replace_callback('/!\(([^)]+?)\)/',
+			array($this, 'process_shorthand_image'), $str);
+		
 		$str = preg_replace('/\*\*\*([^ ](?:.*[^ ])?)\*\*\*/mU', '<strong><em>$1</em></strong>', $str);
 		$str = preg_replace('/\*\*([^ ](?:.*[^ ])?)\*\*/mU', '<strong>$1</strong>', $str);
 		$str = preg_replace('/\*([^ ](?:.*[^ ])?)\*/mU', '<em>$1</em>', $str);
@@ -214,6 +225,166 @@ class HelpNotesPlugin extends MantisPlugin {
 			$str = preg_replace('/\{\{(.+)\}\}/sU', '<b>$1</b>', $str);
 		}
 		return $str;
+	}
+	
+	/**
+	 * Process inline image markdown syntax following MantisBT patterns
+	 */
+	private function process_inline_image($matches) {
+		$alt_text = $matches[1];
+		$url_or_file = trim($matches[2]);
+		$title = isset($matches[3]) ? $matches[3] : '';
+		
+		// Check if it's a MantisBT attachment reference (file:123)
+		if (preg_match('/^file:(\d+)$/', $url_or_file, $file_matches)) {
+			return $this->process_attachment_image($file_matches[1], $alt_text, $title);
+		} else {
+			// Standard web URL
+			return $this->process_web_image($url_or_file, $alt_text, $title);
+		}
+	}
+	
+	/**
+	 * Process shorthand image syntax: !(url) or !(file:123)
+	 * This is a simplified version without alt text for convenience
+	 */
+	private function process_shorthand_image($matches) {
+		$url_or_file = trim($matches[1]);
+		
+		// Only process if it looks like a URL or file reference to avoid false positives
+		if (preg_match('/^file:\d+$/', $url_or_file) || 
+			preg_match('/^https?:\/\//', $url_or_file) ||
+			preg_match('/<a[^>]*href=["\']https?:\/\//', $url_or_file)) {
+			
+			// Call the main image processor with empty alt text and title
+			return $this->process_inline_image(array('', '', $url_or_file, ''));
+		}
+		
+		// If it doesn't look like URL/file reference, return unchanged to avoid false positives
+		return $matches[0];
+	}
+	
+	/**
+	 * Process MantisBT attachment image using the same methodology as print_api.php
+	 */
+	private function process_attachment_image($file_id, $alt_text, $title) {
+		$file_id = (int)$file_id;
+		
+		try {
+			// Get bug_id and user_id using MantisBT's API (same as file_api.php:265)
+			$bug_id = file_get_field($file_id, 'bug_id', 'bug');
+			if ($bug_id === false) {
+				return '[Attachment not found: file:' . $file_id . ']';
+			}
+			
+			$user_id = file_get_field($file_id, 'user_id', 'bug');
+			
+			// Use MantisBT's permission check (same as file_api.php:265)
+			if (!file_can_view_bug_attachments($bug_id, (int)$user_id)) {
+				return '[Access denied: file:' . $file_id . ']';
+			}
+			
+			// Check download permissions (same as file_api.php:282)
+			if (!file_can_download_bug_attachments($bug_id, (int)$user_id)) {
+				return '[Download not allowed: file:' . $file_id . ']';
+			}
+			
+			// Get file info for validation
+			$filename = file_get_field($file_id, 'filename', 'bug');
+			$filesize = file_get_field($file_id, 'filesize', 'bug');
+			
+			// Check file exists (same logic as file_api.php:293)
+			$diskfile = file_get_field($file_id, 'diskfile', 'bug');
+			$project_id = bug_get_field($bug_id, 'project_id');
+			$diskfile_path = file_normalize_attachment_path($diskfile, $project_id);
+			$file_exists = config_get('file_upload_method') != DISK || file_exists($diskfile_path);
+			
+			if (!$file_exists) {
+				return '[File missing: file:' . $file_id . ']';
+			}
+			
+			// Use MantisBT's image detection logic (same as file_api.php:299-306)
+			$display_name = file_get_display_name($filename);
+			$file_ext = strtolower(file_get_extension($display_name));
+			$preview_image_ext = config_get('preview_image_extensions');
+			
+			// Check if it's a supported image type
+			if (!in_array($file_ext, $preview_image_ext, true) || $filesize == 0) {
+				return '[Not a supported image: file:' . $file_id . ']';
+			}
+			
+			// Build image URL (same as print_api.php:1774 and file_api.php:286)
+			$download_url = "file_download.php?file_id={$file_id}&type=bug";
+			$image_url = $download_url . '&amp;show_inline=1' . form_security_param('file_show_inline');
+			
+			// Use filename for alt text if none provided
+			if (empty($alt_text)) {
+				$alt_text = $display_name;
+			}
+			
+			// Title comes from markdown syntax only, not from database
+			return $this->build_img_tag($image_url, $alt_text, $title);
+			
+		} catch (Exception $e) {
+			return '[Error loading attachment: file:' . $file_id . ']';
+		}
+	}
+	
+	/**
+	 * Process standard web image URL
+	 */
+	private function process_web_image($url, $alt_text, $title) {
+		// Check if URL has already been converted to HTML link by MantisCoreFormatting
+		if (preg_match('/<a[^>]*href=["\']([^"\']+)["\'][^>]*>/', $url, $matches)) {
+			// Extract the actual URL from the HTML link
+			$actual_url = $matches[1];
+		} else {
+			$actual_url = $url;
+		}
+		
+		// Basic URL validation
+		if (!filter_var($actual_url, FILTER_VALIDATE_URL)) {
+			return '[Invalid URL: ' . htmlspecialchars($url) . ']';
+		}
+		
+		// Security: Only allow http/https URLs
+		$parsed = parse_url($actual_url);
+		if (!in_array($parsed['scheme'], array('http', 'https'))) {
+			return '[Invalid URL scheme: ' . htmlspecialchars($actual_url) . ']';
+		}
+		
+		return $this->build_img_tag($actual_url, $alt_text, $title);
+	}
+	
+	/**
+	 * Build HTML img tag using MantisBT's styling methodology (print_api.php:1756-1776)
+	 */
+	private function build_img_tag($src, $alt_text, $title) {
+		// Use same styling logic as print_api.php:1756-1771
+		$preview_style = 'border: 0;';
+		
+		$max_width = config_get('preview_max_width');
+		if (isset($max_width)) {
+			$preview_style .= ' max-width:' . $max_width;
+			if (is_numeric($max_width)) {
+				$preview_style .= 'px';
+			}
+			$preview_style .= ';';
+		}
+		
+		$max_height = config_get('preview_max_height');
+		if (isset($max_height)) {
+			$preview_style .= ' max-height:' . $max_height;
+			if (is_numeric($max_height)) {
+				$preview_style .= 'px';
+			}
+			$preview_style .= ';';
+		}
+		
+		$style_attr = 'style="' . $preview_style . '"';
+		$title_attr = $title ? ' title="' . string_attribute($title) . '"' : '';
+		
+		return '<img alt="' . string_attribute($alt_text) . '" ' . $style_attr . ' src="' . string_attribute($src) . '"' . $title_attr . ' />';
 	}
 	
 	function help_notes_menu() {
