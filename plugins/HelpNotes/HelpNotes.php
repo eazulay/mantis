@@ -116,11 +116,11 @@ class HelpNotesPlugin extends MantisPlugin {
 		// So we need to handle both clean URLs and HTML links
 		
 		// First handle standard markdown: ![alt](url) or ![alt](file:123)
-		$str = preg_replace_callback('/!\[([^\]]*)\]\(([^)]+?)(?:\s+"([^"]*)")?\)/',
+		$str = preg_replace_callback('/!\[([^\]]*)\]\(([^)]+?)(?:\s+&quot;([^&]*)&quot;)?\)/',
 			array($this, 'process_inline_image'), $str);
 		
-		// Then handle shorthand syntax: !(url) or !(file:123) - no alt text needed
-		$str = preg_replace_callback('/!\(([^)]+?)\)/',
+		// Then handle shorthand syntax: !(url) or !(file:123) - no alt text needed, optional title
+		$str = preg_replace_callback('/!\(([^)]+?)(?:\s+&quot;([^&]*)&quot;)?\)/',
 			array($this, 'process_shorthand_image'), $str);
 		
 		$str = preg_replace('/\*\*\*([^ ](?:.*[^ ])?)\*\*\*/mU', '<strong><em>$1</em></strong>', $str);
@@ -245,19 +245,20 @@ class HelpNotesPlugin extends MantisPlugin {
 	}
 	
 	/**
-	 * Process shorthand image syntax: !(url) or !(file:123)
+	 * Process shorthand image syntax: !(url) or !(file:123) or !(url "title")
 	 * This is a simplified version without alt text for convenience
 	 */
 	private function process_shorthand_image($matches) {
 		$url_or_file = trim($matches[1]);
+		$title = isset($matches[2]) ? $matches[2] : '';
 		
 		// Only process if it looks like a URL or file reference to avoid false positives
 		if (preg_match('/^file:\d+$/', $url_or_file) || 
 			preg_match('/^https?:\/\//', $url_or_file) ||
 			preg_match('/<a[^>]*href=["\']https?:\/\//', $url_or_file)) {
 			
-			// Call the main image processor with empty alt text and title
-			return $this->process_inline_image(array('', '', $url_or_file, ''));
+			// Call the main image processor with empty alt text but include title
+			return $this->process_inline_image(array('', '', $url_or_file, $title));
 		}
 		
 		// If it doesn't look like URL/file reference, return unchanged to avoid false positives
