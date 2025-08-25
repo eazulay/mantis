@@ -27,6 +27,7 @@ build/
 .project
 .settings
 .user.ini
+.claude
 
 #debug
 pi.php
