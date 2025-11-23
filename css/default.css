@@ -99,7 +99,7 @@ table#buglist tr:hover > td:not(:has(.issue-status)) { background: #f8fffa; }
 div.width100		{ width: 100%; border: solid 1px var(--border-color); padding:15px; }
 /*table.menu			{ width: 100%; border: none; }*/
 
-#fixed_scroll 		{ position: fixed; top: 0; width:calc(94% - 4px); border: solid 2px #000; background: white; z-index: 1000; }
+#fixed_scroll 		{ position: fixed; top: 0; width: 94%; border: solid 2px #000; background: white; z-index: 1000; }
 #fixed_scroll table { width: 100%; }
 .hidden-first 		{ opacity: 0; filter:alpha(opacity=0); }
 .transparent		{ opacity: 0; filter:alpha(opacity=0); -webkit-animation: hide 1s; animation: hide 1s; }

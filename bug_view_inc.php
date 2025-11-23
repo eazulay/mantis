@@ -327,7 +327,7 @@
 			var textArea = noteAddDiv.querySelector('textarea');
 			var noteText = noteRow.querySelector('input[name=\"bugnote_text\"]').value;
 			if (noteText.substring(0, 13) == '*Duplicate of'){
-				noteText = '*Update/Extension'+noteText.substring(10);
+				noteText = '*Update'+noteText.substring(10);
 				textArea.value = noteText;
 				var copyOptions = noteRow.querySelector('.copy-options');
 				copyOptions.classList.toggle('hidden');

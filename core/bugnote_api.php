@@ -49,6 +49,7 @@ class BugnoteData {
 	var $id;
 	var $bug_id;
 	var $reporter_id;
+	var $bugnote_text_id;
 	var $note;
 	var $view_state;
 	var $date_submitted;
@@ -285,6 +286,7 @@ function bugnote_delete_all( $p_bug_id ) {
  */
 function bugnote_get_text( $p_bugnote_id ) {
 	$t_bugnote_text_id = bugnote_get_field( $p_bugnote_id, 'bugnote_text_id' );
+	var_dump($t_bugnote_text_id);
 	$t_bugnote_text_table = db_get_table( 'mantis_bugnote_text_table' );
 
 	# grab the bugnote text
@@ -440,6 +442,7 @@ function bugnote_get_all_bugnotes( $p_bug_id ) {
 
 			$t_bugnote->id = $row['id'];
 			$t_bugnote->bug_id = $row['bug_id'];
+			$t_bugnote->bugnote_text_id = $row['bugnote_text_id'];
 			$t_bugnote->note = $row['note'];
 			$t_bugnote->view_state = $row['view_state'];
 			$t_bugnote->reporter_id = $row['reporter_id'];

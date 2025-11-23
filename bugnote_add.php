@@ -75,5 +75,16 @@
 		$t_url = string_get_bug_view_url( $f_return_to_bug_id, auth_get_current_user_id() );
 		print_successful_redirect( $t_url . "#c" . $f_source_bugnote_id );
 	} else {
+		if ( strpos( $f_bugnote_text, "*Update of ~") === 0 ) {
+			preg_match('/^\*Update of ~(\d+):\*/', $f_bugnote_text, $matches);
+			if (isset($matches[1])) {
+				$t_source_note_id = intval($matches[1]);
+				$source_note_text = bugnote_get_field( $t_source_note_id, 'note' );
+				$first_note_line = strtok( $source_note_text, "\r\n" );
+				$first_line_len = strlen( $first_note_line );
+				$note_starts_with_meta = $first_line_len > 2 && $first_note_line[0] == '*' && $first_note_line[1] != '*' && $first_note_line[$first_line_len - 1] == '*';
+				bugnote_set_text( $t_source_note_id, "*Superseded by ~" . $t_bugnote_id . ".*\n" . ($note_starts_with_meta ? "" : "\n") . $source_note_text );
+			}
+		}
 		print_successful_redirect_to_bug( $f_bug_id );
 	}
