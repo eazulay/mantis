@@ -608,7 +608,10 @@ function bugnote_set_bug_id( $p_bugnote_id, $p_bug_id, $record_move = false ) {
 		db_query_bound( $query, Array( $c_bug_id, $c_bugnote_id ) );
 
 		$old_text = bugnote_get_text( $p_bugnote_id );
-		$new_text = "*Note moved from #" . $t_bug_id . "*\n\n" . $old_text;
+		$first_note_line = strtok( $old_text, "\r\n" );
+		$first_line_len = strlen( $first_note_line );
+		$note_starts_with_meta = $first_line_len > 2 && $first_note_line[0] == '*' && $first_note_line[1] != '*' && $first_note_line[$first_line_len - 1] == '*';
+		$new_text = "*Note moved from #" . $t_bug_id . "*\n" . ($note_starts_with_meta ? "" : "\n") . $old_text;
 		bugnote_set_text( $p_bugnote_id, $new_text );
 
 		return true;
