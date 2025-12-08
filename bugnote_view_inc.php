@@ -205,7 +205,7 @@ $num_notes = count( $t_bugnotes );
 			$note_starts_with_meta = $first_line_len > 2 && $first_note_line[0] == '*' && $first_note_line[1] != '*' && $first_note_line[$first_line_len - 1] == '*';
 			echo '<div class="copy-options hidden">
 			<form method="post" action="bugnote_add.php">
-				<input type="hidden" name="bugnote_text" value="*Duplicate of ~' . $t_bugnote->id . ":*\n" . ($note_starts_with_meta ? "" : "\n") . $source_note_text . '" />
+				<input type="hidden" name="bugnote_text" value="*Copy of ~' . $t_bugnote->id . ":*\n" . ($note_starts_with_meta ? "" : "\n") . $source_note_text . '" />
 				<input type="hidden" name="date_submitted" value="' . date('Y-m-d H:i:s', $t_bugnote->date_submitted) . '" />
 				<input type="hidden" name="source_bugnote_id" value="'.$t_bugnote->id.'" />
 				<input type="hidden" name="return_to_bug_id" value="'.$f_bug_id.'" />

@@ -326,7 +326,7 @@
 			var noteAddDiv = document.getElementById('bugnote_add_open');
 			var textArea = noteAddDiv.querySelector('textarea');
 			var noteText = noteRow.querySelector('input[name=\"bugnote_text\"]').value;
-			if (noteText.substring(0, 13) == '*Duplicate of'){
+			if (noteText.substring(0, 13) == '*Copy of'){
 				noteText = '*Update'+noteText.substring(10);
 				textArea.value = noteText;
 				var copyOptions = noteRow.querySelector('.copy-options');
