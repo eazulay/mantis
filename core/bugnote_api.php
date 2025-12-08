@@ -608,7 +608,7 @@ function bugnote_set_bug_id( $p_bugnote_id, $p_bug_id, $record_move = false ) {
 		db_query_bound( $query, Array( $c_bug_id, $c_bugnote_id ) );
 
 		$old_text = bugnote_get_text( $p_bugnote_id );
-		$new_text = "[Note moved from #" . $t_bug_id . "]\n\n" . $old_text;
+		$new_text = "*Note moved from #" . $t_bug_id . "*\n\n" . $old_text;
 		bugnote_set_text( $p_bugnote_id, $new_text );
 
 		return true;
