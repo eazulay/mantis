@@ -151,7 +151,7 @@ class HelpNotesPlugin extends MantisPlugin {
 				$str = preg_replace('/^&gt; (.+)$/m', "<blockquote>$1</blockquote>", $str);
 				$str = preg_replace('/(<\/blockquote>\n<blockquote>)/', '', $str);
 				// Handle hrs
-				$str = preg_replace('/\n?---<br \/>\n/', "<hr />", $str);
+				$str = preg_replace('/\n?-{3,}'.$eol.'/', "<hr />", $str);
 				// Handle Headers
 				$str = preg_replace('/^###### (.+)\n?/m', "\n<h6>$1</h6>\n", $str);
 				$str = preg_replace('/^##### (.+)\n?/m', "\n<h5>$1</h5>\n", $str);
