@@ -201,6 +201,7 @@ class HelpNotesPlugin extends MantisPlugin {
 								// Body rows (after detecting a divider line)
 								$html .= "<tr>";
 								foreach ($cells as $i => $cell) {
+									$cell = str_replace("&lt;br&gt;","<br>", $cell);
 									if (isset($alignment[$i])) {
 										$html .= "<td class=\"{$alignment[$i]}\">$cell</td>";
 									} else {
