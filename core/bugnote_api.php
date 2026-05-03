@@ -286,7 +286,6 @@ function bugnote_delete_all( $p_bug_id ) {
  */
 function bugnote_get_text( $p_bugnote_id ) {
 	$t_bugnote_text_id = bugnote_get_field( $p_bugnote_id, 'bugnote_text_id' );
-	var_dump($t_bugnote_text_id);
 	$t_bugnote_text_table = db_get_table( 'mantis_bugnote_text_table' );
 
 	# grab the bugnote text
