@@ -356,6 +356,13 @@ function mc_error_handler( $p_type, $p_error, $p_file, $p_line, $p_context ) {
 		return;
 	}
 
+	# Non-fatal notices (e.g. "Array to string conversion" raised by the
+	# bundled nusoap library, which predates PHP 7) shouldn't abort an
+	# otherwise-successful webservice response.
+	if( $p_type == E_NOTICE || $p_type == E_USER_NOTICE || $p_type == E_DEPRECATED ) {
+		return;
+	}
+
 	$t_lang_pushed = false;
 
 	# flush any language overrides to return to user's natural default
