@@ -1518,7 +1518,13 @@ function mci_is_webservice_call( $p_service, $p_data )
 if ( isset( $HTTP_RAW_POST_DATA ) ) {
 	$t_input = $HTTP_RAW_POST_DATA;
 } else {
-	$t_input = implode( "\r\n", file( 'php://input' ) );
+	# Read the raw body byte-for-byte. The previous implode("\r\n", file(...))
+	# approach split on every "\n" in the body and re-joined lines with an
+	# extra "\r\n", corrupting any "\n" byte in the request (e.g. inside a
+	# submitted note's text) into a doubled newline once the XML parser's
+	# line-ending normalization collapsed the resulting "\r\n\r\n"/"\n\r\n"
+	# sequences. See mantis_soap.md "Known quirks" for the full writeup.
+	$t_input = file_get_contents( 'php://input' );
 }
 
 # only include the MantisBT / MantisConnect related files, if the current
