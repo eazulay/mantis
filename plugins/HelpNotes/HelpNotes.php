@@ -4,7 +4,7 @@ class HelpNotesPlugin extends MantisPlugin {
 		$this->name = 'Help Notes';								# Proper name of plugin
 		$this->description = 'Mark notes containing useful help';# Short description of the plugin
 		$this->page = '';										# Default plugin page
-		$this->version = '1.0';									# Plugin version string
+		$this->version = '2.0';									# Plugin version string
 		$this->requires = array(								# Plugin dependencies, array of basename => version pairs
 			'MantisCore' => '1.2.0',							# Should always depend on an appropriate version of MantisBT
 			);
