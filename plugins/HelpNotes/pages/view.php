@@ -106,14 +106,22 @@ function selectElement(element) {
 	}
 	?>
 <br>
-<table id="buglist" class="width100" cellspacing="1">
+<table id="buglist" class="width100" cellspacing="1" style="table-layout: fixed;">
+<colgroup>
+	<col style="width: 70px;">
+	<col style="width: 70px;">
+	<col style="width: 20%;">
+	<col style="width: 130px;">
+	<col style="width: 130px;">
+	<col>
+</colgroup>
 	<tr>
 		<td class="form-title" colspan="6"><span class="floatleft">View Help Notes</span></td>
 	</tr>
 	<tr class='row-category'>
 		<th class="form-title">Issue</th>
 		<th class="form-title">Note</th>
-		<th class="form-title" style="min-width:15%;">Issue Summary</th>
+		<th class="form-title">Issue Summary</th>
 		<th class="form-title">Created</th>
 		<th class="form-title">Edited</th>
 		<th class="form-title">Help</th>
@@ -132,7 +140,7 @@ function selectElement(element) {
 		<td>".string_display_links($summary)."</td>
 		<td style='white-space: nowrap'>".date($date_format, $t_bugnote->date_submitted)."</td>
 		<td style='white-space: nowrap'>".date($date_format, $t_bugnote->last_modified)."</td>
-		<td ondblclick='selectElement(this)'>";
+		<td class='markdown' ondblclick='selectElement(this)'>";
 				$note_content = $t_bugnote->note;
 				if (preg_match_all('/\{\{(.+)\}\}/sU', $note_content, $matches))
 					$note_content =  implode("</p><p>", $matches[1]);
