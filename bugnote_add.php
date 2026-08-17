@@ -84,6 +84,9 @@
 				$first_line_len = strlen( $first_note_line );
 				$note_starts_with_meta = $first_line_len > 2 && $first_note_line[0] == '*' && $first_note_line[1] != '*' && $first_note_line[$first_line_len - 1] == '*';
 				bugnote_set_text( $t_source_note_id, "*Superseded by ~" . $t_bugnote_id . ".*\n" . ($note_starts_with_meta ? "" : "\n") . $source_note_text );
+				if ( class_exists( 'HelpNotesPlugin' ) ) {
+					HelpNotesPlugin::transfer_todo_on_supersede( $t_source_note_id, $t_bugnote_id );
+				}
 			}
 		}
 		print_successful_redirect_to_bug( $f_bug_id );

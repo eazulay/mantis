@@ -214,6 +214,7 @@ td.bugnote-note-public	{ width: 75%; vertical-align: top; }
 td.bugnote-note-private	{ background-color: #e2f1ee; width: 75%; vertical-align: top; }
 tr.bugnote-hashelp > td:first-child { border-right: 6px solid var(--border-color); }
 tr.bugnote-hashelp > td:last-child b { color: #007a7c; }
+tr.bugnote-hastodo > td:last-child { border-left: 6px solid #d98c00; }
 
 .grid				{ display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; }
 .grid-middle		{ grid-column: 2; justify-self: center; }
@@ -336,6 +337,8 @@ div.main-page-content > ul	{ margin-top: 10px; }
 .markdown ul				{ padding-left: 2em; margin: 0.35em 0; }
 .markdown ul:first-child	{ margin-top: 0; }
 .markdown li				{ padding-left: 0.4em; }
+.markdown li input.todo-item { margin-right: 0.3em; }
+tr.bugnote-hastodo .markdown ul { list-style: none; padding-left: 0; }
 .markdown blockquote		{ margin: 0 1em; border-left: 6px solid #ccc; padding: 0.3em 0.7em; }
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 { font-family: Inter, arial, sans-serif; margin-top: 0.4em; margin-bottom: 0.2em; }
 .markdown h1				{ font-size: 1.167em; font-weight: 700; color: #054c32; }

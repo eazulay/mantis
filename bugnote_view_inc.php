@@ -127,7 +127,9 @@ $num_notes = count( $t_bugnotes );
 		$t_bugnote_row_css = '';
 		if (class_exists('HelpNotesPlugin')){
 			if ($t_bugnote->has_help)
-				$t_bugnote_row_css = ' bugnote-hashelp';
+				$t_bugnote_row_css .= ' bugnote-hashelp';
+			if ($t_bugnote->has_todo)
+				$t_bugnote_row_css .= ' bugnote-hastodo';
 		}
 ?>
 <tr class="bugnote<?php echo $t_bugnote_row_css ?>" id="c<?php echo $t_bugnote->id ?>">
@@ -140,9 +142,10 @@ $num_notes = count( $t_bugnotes );
         ?>
 		<span style="font-weight:bold;"><a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?></a></span>
         <br />
-		<?php # Has Help
+		<?php # Has Help / To Do
 		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)) {
 			echo '<div style="float:right; clear:right;"><label for="has_help_'.$t_bugnote->id.'" style="font-weight:normal;">Help</label> <input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"></div>';
+			echo '<div style="float:right; clear:right;"><label for="has_todo_'.$t_bugnote->id.'" style="font-weight:normal;">To Do</label> <input type="checkbox" id="has_todo_'.$t_bugnote->id.'" name="has_todo['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_todo ? ' checked' : '').' onchange="hasTodoChanged(this);"></div>';
 		}
 		echo print_user( $t_bugnote->reporter_id );
 		?>
@@ -288,6 +291,70 @@ $num_notes = count( $t_bugnotes );
 		else
 			rowEl.classList.remove('bugnote-hashelp');
     }
+
+    function hasTodoChanged(cb) {
+        var bugnoteId = cb.id.substr(9);
+        var queryString = 'entrypoint=bugnote_update_hastodo&note_id=' + bugnoteId + '&has_todo=' + (cb.checked ? '1' : '0');
+        // Always reload rather than patching the DOM in place: flagging a note To Do may convert
+        // legacy **DONE** markers, and unflagging it needs to undo renderTodoCheckboxes()'s DOM
+        // changes (injected <input> elements, stripped "✓ " text) - a reload is simpler and more
+        // robust than trying to reverse that transform in place.
+        // AjaxSave's callback fires on every readystatechange, not just completion (unlike
+        // AjaxLoad), so we must gate on readyState 4 ourselves or the reload races the save.
+        AjaxSave(queryString, function () {
+            if (liveReq.readyState !== 4 || liveReq.status !== 200) return;
+            window.location.hash = 'c' + bugnoteId;
+            window.location.reload();
+        }, []);
+    }
+
+    var canEditTodo = <?php echo access_has_global_level(DEVELOPER) ? 'true' : 'false'; ?>;
+
+    function renderTodoCheckboxes() {
+        document.querySelectorAll('tr.bugnote-hastodo').forEach(function (row) {
+            var index = 0;
+            row.querySelectorAll('td.markdown li').forEach(function (li) {
+                if (li.dataset.todoDone) { index++; return; }
+                li.dataset.todoDone = '1';
+                var first = li.firstChild;
+                var checked = false;
+                if (first && first.nodeType === Node.TEXT_NODE) {
+                    var m = first.textContent.match(/^\s*✓\s*/);
+                    if (m) { checked = true; first.textContent = first.textContent.slice(m[0].length); }
+                }
+                var cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.className = 'todo-item';
+                cb.checked = checked;
+                cb.dataset.todoIndex = index;
+                if (canEditTodo) {
+                    cb.addEventListener('change', function () { todoItemChanged(cb); });
+                } else {
+                    cb.disabled = true;
+                }
+                li.insertBefore(document.createTextNode(' '), li.firstChild);
+                li.insertBefore(cb, li.firstChild);
+                index++;
+            });
+        });
+    }
+
+    function todoItemChanged(cb) {
+        var row = cb.closest('tr[id^="c"]');
+        if (!row) {
+            cb.checked = !cb.checked;
+            return;
+        }
+        var bugnoteId = row.id.substr(1);
+        var queryString = 'entrypoint=bugnote_toggle_todo_item&note_id=' + bugnoteId + '&index=' + cb.dataset.todoIndex + '&checked=' + (cb.checked ? '1' : '0');
+        AjaxSave(queryString, function () {
+            if (liveReq.readyState !== 4 || liveReq.status !== 200) return;
+            window.location.hash = 'c' + bugnoteId;
+            window.location.reload();
+        }, []);
+    }
+
+    renderTodoCheckboxes();
 
     var selectedNotesCount = 0;
     var selectedNotes = [];
