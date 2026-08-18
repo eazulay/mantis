@@ -31,3 +31,6 @@ build/
 
 #debug
 pi.php
+
+# Claude Code project guidance (local-only, not part of the published fork)
+CLAUDE.md
