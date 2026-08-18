@@ -68,7 +68,10 @@ $t_query = "SELECT bn.id AS bugnote_id, bn.bug_id, bnt.note
 $t_result = db_query_bound( $t_query, array() );
 
 $t_todo_marker_regex = '/^\s*(?:#{1,6}\s*|\*\*)\s*TO[\s-]?DO\b/i';
-$t_update_of_regex = '/^\*Update of ~\d+:?\*$/';
+// Tolerant of chained ancestor references (e.g. "*Update of ~200, ~150, ~90:*"), which turned out
+// to be the common case in practice (49 notes), not the single-reference machine-generated format
+// this originally assumed - also tolerates a missing "~", extra spaces/commas, and doubled "**".
+$t_update_of_regex = '/^\*Update of (?:~?\d+[,:\s]*)+\*+$/';
 $t_superseded_by_regex = '/^\*Superseded by ~\d+\.?\*$/';
 
 /**
