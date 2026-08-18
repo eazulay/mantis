@@ -20,6 +20,7 @@ class HelpNotesPlugin extends MantisPlugin {
 			'EVENT_HELPNOTES_UPDATE_HASHELP' => EVENT_TYPE_OUTPUT,
 			'EVENT_HELPNOTES_UPDATE_HASTODO' => EVENT_TYPE_OUTPUT,
 			'EVENT_HELPNOTES_TOGGLE_TODO_ITEM' => EVENT_TYPE_OUTPUT,
+			'EVENT_HELPNOTES_UPDATE_HASARCHIVED' => EVENT_TYPE_OUTPUT,
 		);
 	}
 
@@ -34,6 +35,7 @@ class HelpNotesPlugin extends MantisPlugin {
 			'EVENT_HELPNOTES_UPDATE_HASHELP' => 'update_bugnote_hashelp',
 			'EVENT_HELPNOTES_UPDATE_HASTODO' => 'update_bugnote_hastodo',
 			'EVENT_HELPNOTES_TOGGLE_TODO_ITEM' => 'toggle_bugnote_todo_item',
+			'EVENT_HELPNOTES_UPDATE_HASARCHIVED' => 'update_bugnote_hasarchived',
 			'EVENT_DISPLAY_FORMATTED' => 'format_help_string',
 			'EVENT_MENU_FILTER' => 'help_notes_menu',
 		);
@@ -107,6 +109,7 @@ class HelpNotesPlugin extends MantisPlugin {
 			$t_bugnote = $p_bugnotes[$i];
 			$t_bugnote->has_help = 0;
 			$t_bugnote->has_todo = 0;
+			$t_bugnote->has_archived = 0;
 			$t_notes_arr[$t_bugnote->id] = $i;
 			$t_notes_str .= ','.$t_bugnote->id;
 		}
@@ -119,10 +122,11 @@ class HelpNotesPlugin extends MantisPlugin {
 				$p_bugnotes[$t_notes_arr[$t_row['bugnote_id']]]->has_help = $t_row['has_help'];
 			}
 			$t_todo_table = plugin_table('bugnote_todo');
-			$t_query = "SELECT bugnote_id, has_todo FROM $t_todo_table WHERE bugnote_id IN ($t_notes_str)";
+			$t_query = "SELECT bugnote_id, has_todo, has_archived FROM $t_todo_table WHERE bugnote_id IN ($t_notes_str)";
 			$t_result = db_query_bound( $t_query, array() );
 			while ( $t_row = db_fetch_array( $t_result ) ) {
 				$p_bugnotes[$t_notes_arr[$t_row['bugnote_id']]]->has_todo = $t_row['has_todo'];
+				$p_bugnotes[$t_notes_arr[$t_row['bugnote_id']]]->has_archived = $t_row['has_archived'];
 			}
 		}
 		return $p_bugnotes;
@@ -145,7 +149,9 @@ class HelpNotesPlugin extends MantisPlugin {
 	/**
 	 * Shared by the form-submit save path, the inline AJAX toggle, and the same-issue "Copy Note"
 	 * flag transfer below: writes the has_todo flag, and on a 0 -> 1 transition, converts legacy
-	 * "**DONE**"-marked bullet lines to the new "✓" marker.
+	 * "**DONE**"-marked bullet lines to the new "✓" marker. Preserves the existing has_archived
+	 * value across a 1 -> 1 re-save (e.g. re-submitting the edit form), but always clears it when
+	 * has_todo goes to 0 - "Archived" only has meaning while the note is still flagged To Do.
 	 */
 	static function set_bugnote_todo_flag($p_bugnote_id, $p_has_todo) {
 		// Explicit basename: plugin_table() defaults to plugin_get_current(), which is only set
@@ -154,14 +160,17 @@ class HelpNotesPlugin extends MantisPlugin {
 		// default would resolve to an empty basename (e.g. "..._plugin__bugnote_todo_table").
 		$t_todo_table = plugin_table('bugnote_todo', 'HelpNotes');
 		$t_was_todo = false;
-		$t_query = "SELECT has_todo FROM $t_todo_table WHERE bugnote_id=" . db_param();
+		$t_was_archived = false;
+		$t_query = "SELECT has_todo, has_archived FROM $t_todo_table WHERE bugnote_id=" . db_param();
 		$t_result = db_query_bound($t_query, array($p_bugnote_id));
 		if (db_num_rows($t_result) > 0) {
 			$t_row = db_fetch_array($t_result);
 			$t_was_todo = (bool)$t_row['has_todo'];
+			$t_was_archived = (bool)$t_row['has_archived'];
 		}
-		$t_query = "REPLACE INTO $t_todo_table (bugnote_id, has_todo) values(" . db_param() . "," . db_param() . ")";
-		db_query_bound($t_query, array($p_bugnote_id, $p_has_todo));
+		$t_has_archived = $p_has_todo ? $t_was_archived : false;
+		$t_query = "REPLACE INTO $t_todo_table (bugnote_id, has_todo, has_archived) values(" . db_param() . "," . db_param() . "," . db_param() . ")";
+		db_query_bound($t_query, array($p_bugnote_id, $p_has_todo, $t_has_archived));
 
 		if ($p_has_todo && !$t_was_todo) {
 			$t_old_text = bugnote_get_text($p_bugnote_id);
@@ -169,6 +178,16 @@ class HelpNotesPlugin extends MantisPlugin {
 			if ($t_new_text !== $t_old_text) {
 				bugnote_set_text($p_bugnote_id, $t_new_text);
 			}
+		}
+	}
+
+	function update_bugnote_hasarchived($p_event, $p_bugnote_id, $has_archived) {
+		if (access_has_global_level(DEVELOPER)){
+			$t_todo_table = plugin_table('bugnote_todo', 'HelpNotes');
+			// Only meaningful (and only ever rendered) for a note that's already flagged has_todo=1,
+			// so an UPDATE (not REPLACE INTO) is correct - the row is guaranteed to already exist.
+			$t_query = "UPDATE $t_todo_table SET has_archived=" . db_param() . " WHERE bugnote_id=" . db_param() . " AND has_todo=" . db_param();
+			db_query_bound($t_query, array($has_archived, $p_bugnote_id, 1));
 		}
 	}
 
@@ -204,6 +223,17 @@ class HelpNotesPlugin extends MantisPlugin {
 
 	function toggle_bugnote_todo_item($p_event, $p_bugnote_id, $p_index, $p_checked) {
 		if (access_has_global_level(DEVELOPER)){
+			// Defense in depth: the checkbox is only ever rendered editable (not disabled) for a
+			// non-archived To Do note, but re-check server-side in case that's bypassed.
+			$t_todo_table = plugin_table('bugnote_todo', 'HelpNotes');
+			$t_query = "SELECT has_archived FROM $t_todo_table WHERE bugnote_id=" . db_param();
+			$t_result = db_query_bound($t_query, array($p_bugnote_id));
+			if (db_num_rows($t_result) > 0) {
+				$t_row = db_fetch_array($t_result);
+				if ($t_row['has_archived']) {
+					return;
+				}
+			}
 			$t_old_text = bugnote_get_text($p_bugnote_id);
 			$t_count = -1;
 			$t_index = $p_index;
@@ -559,6 +589,9 @@ class HelpNotesPlugin extends MantisPlugin {
 				bugnote_id		I		NOTNULL UNSIGNED PRIMARY,
 				has_todo		L		NOTNULL DEFAULT '0'
 				" ) ),
+			array( 'AddColumnSQL', array( plugin_table( 'bugnote_todo' ), "
+				has_archived	L		NOTNULL DEFAULT '0'
+				" ) ),
 		);
 	}
 }
@@ -583,5 +616,12 @@ function xmlhttprequest_bugnote_toggle_todo_item() {
 	$f_checked = gpc_get_int( 'checked' );
 
 	event_signal( 'EVENT_HELPNOTES_TOGGLE_TODO_ITEM', array( $f_bugnote_id, $f_index, $f_checked ) );
+}
+
+function xmlhttprequest_bugnote_update_hasarchived() {
+	$f_bugnote_id = gpc_get_int( 'note_id' );
+	$f_has_archived = gpc_get_int( 'has_archived' );
+
+	event_signal( 'EVENT_HELPNOTES_UPDATE_HASARCHIVED', array( $f_bugnote_id, $f_has_archived ) );
 }
 ?>

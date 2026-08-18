@@ -54,7 +54,7 @@ foreach( $t_issues as $t_issue ) {
 	$t_bugnotes = bugnote_get_all_visible_bugnotes( $issue_id, $t_bugnote_order, 0, $t_user_id );
 	$t_bugnotes = event_signal( 'EVENT_HELPNOTES_POPULATE', array( $f_bug_id, $t_bugnotes ) );
 	foreach( $t_bugnotes as $t_bugnote ) {
-		if ($t_bugnote->has_todo){
+		if ($t_bugnote->has_todo && !$t_bugnote->has_archived){
 			$line = array();
 			$line[] = $issue_id;
 			$line[] = $t_bugnote->id;

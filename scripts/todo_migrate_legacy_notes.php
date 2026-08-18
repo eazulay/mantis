@@ -3,14 +3,17 @@
 # One-off migration for the HelpNotes plugin's "To Do" feature.
 #
 # Scans bugnote text for the legacy "**TO DO**" (or "## TO DO", etc.) convention, tolerating one
-# or more leading "*Update of ~N:*" meta lines (from the same-issue "Copy Note" flow) followed by
-# a blank line before the marker - but NOT any other leading meta line (e.g. "*Superseded by
-# ~N:*"), which disqualifies the note even if "TO DO" appears later. Notes already flagged
-# has_todo=1 are skipped entirely, so re-running this script is a no-op for them - safe to run
-# repeatedly as more notes get authored using the old convention. For each remaining match: flags
-# the note has_todo=1, and runs the same HelpNotesPlugin::convert_done_markers() conversion the
-# live "flag as To Do" checkbox uses, turning "- text **DONE**" bullet lines into "- ✓ text"
-# (skipping "**NOT DONE**" negations).
+# or more leading meta lines - each either "*Update of ~N:*" (the same-issue "Copy Note" flow) or
+# "*Superseded by ~N.*" (this note has itself been replaced by a newer one) - followed by a blank
+# line before the marker. Any OTHER leading meta line (e.g. "*Copied to #N.*") disqualifies the
+# note even if "TO DO" appears later. A note whose skipped meta lines include a "*Superseded by*"
+# is flagged has_archived=1 instead of the normal editable state, since it's a stale/replaced
+# checklist, not the active one. Notes already flagged has_todo=1 are skipped entirely, so
+# re-running this script is a no-op for them - safe to run repeatedly as more notes get authored
+# using the old convention. For each remaining match: flags the note has_todo=1 (and has_archived=1
+# if superseded), and runs the same HelpNotesPlugin::convert_done_markers() conversion the live
+# "flag as To Do" checkbox uses, turning "- text **DONE**" bullet lines into "- ✓ text" (skipping
+# "**NOT DONE**" negations).
 #
 # Usage:
 #   php scripts/todo_migrate_legacy_notes.php                 Preview only, no writes.
@@ -66,23 +69,36 @@ $t_result = db_query_bound( $t_query, array() );
 
 $t_todo_marker_regex = '/^\s*(?:#{1,6}\s*|\*\*)\s*TO[\s-]?DO\b/i';
 $t_update_of_regex = '/^\*Update of ~\d+:?\*$/';
+$t_superseded_by_regex = '/^\*Superseded by ~\d+\.?\*$/';
 
 /**
- * True if $p_text's TO DO marker is on the literal first line, or is preceded only by one or
- * more "*Update of ~N:*" lines (the same-issue "Copy Note" convention) followed by exactly one
- * blank line. Any other leading meta line (e.g. "*Superseded by ~N:*") disqualifies the note even
- * if "TO DO" appears later - returns the matched marker line for the preview, or null.
+ * Returns array('marker_line' => ..., 'is_archived' => bool) if $p_text's TO DO marker is
+ * recognized, or null if not. The marker may be on the literal first line, or preceded by one or
+ * more leading meta lines - each either "*Update of ~N:*" or "*Superseded by ~N.*" - followed by
+ * exactly one blank line. Any OTHER leading meta line (e.g. "*Copied to #N.*") disqualifies the
+ * note even if "TO DO" appears later. is_archived is true if any of the skipped meta lines was a
+ * "*Superseded by*" - that note is no longer the active/current checklist.
  */
 function todo_migrate_find_marker_line( $p_text ) {
-	global $t_todo_marker_regex, $t_update_of_regex;
+	global $t_todo_marker_regex, $t_update_of_regex, $t_superseded_by_regex;
 	$t_lines = explode( "\n", str_replace( "\r\n", "\n", $p_text ) );
 	$i = 0;
-	$t_skipped_update_of = false;
-	while ( $i < count( $t_lines ) && preg_match( $t_update_of_regex, trim( $t_lines[$i] ) ) ) {
-		$i++;
-		$t_skipped_update_of = true;
+	$t_skipped_meta = false;
+	$t_is_archived = false;
+	while ( $i < count( $t_lines ) ) {
+		$t_trimmed = trim( $t_lines[$i] );
+		if ( preg_match( $t_update_of_regex, $t_trimmed ) ) {
+			$i++;
+			$t_skipped_meta = true;
+		} else if ( preg_match( $t_superseded_by_regex, $t_trimmed ) ) {
+			$i++;
+			$t_skipped_meta = true;
+			$t_is_archived = true;
+		} else {
+			break;
+		}
 	}
-	if ( $t_skipped_update_of ) {
+	if ( $t_skipped_meta ) {
 		if ( $i < count( $t_lines ) && trim( $t_lines[$i] ) === '' ) {
 			$i++;
 		} else {
@@ -92,20 +108,21 @@ function todo_migrate_find_marker_line( $p_text ) {
 	if ( !isset( $t_lines[$i] ) || !preg_match( $t_todo_marker_regex, $t_lines[$i] ) ) {
 		return null;
 	}
-	return trim( $t_lines[$i] );
+	return array( 'marker_line' => trim( $t_lines[$i] ), 'is_archived' => $t_is_archived );
 }
 
 $t_candidates = array();
 while ( $t_row = db_fetch_array( $t_result ) ) {
 	$t_text = $t_row['note'];
-	$t_marker_line = todo_migrate_find_marker_line( $t_text );
-	if ( $t_marker_line === null ) {
+	$t_match = todo_migrate_find_marker_line( $t_text );
+	if ( $t_match === null ) {
 		continue;
 	}
 	$t_candidates[] = array(
 		'bugnote_id' => $t_row['bugnote_id'],
 		'bug_id' => $t_row['bug_id'],
-		'marker_line' => $t_marker_line,
+		'marker_line' => $t_match['marker_line'],
+		'is_archived' => $t_match['is_archived'],
 		'old_text' => $t_text,
 		'new_text' => HelpNotesPlugin::convert_done_markers( $t_text ),
 	);
@@ -125,12 +142,16 @@ function todo_migrate_print_line_diff( $p_old, $p_new ) {
 	}
 }
 
-echo count( $t_candidates ) . " candidate note(s) found (matches a legacy TO DO marker, allowing leading \"*Update of ~N:*\" lines).\n\n";
+echo count( $t_candidates ) . " candidate note(s) found (matches a legacy TO DO marker, allowing leading \"*Update of ~N:*\" / \"*Superseded by ~N.*\" lines).\n\n";
 
 $t_conversion_count = 0;
+$t_archived_count = 0;
 foreach ( $t_candidates as $t_candidate ) {
-	echo "----- bugnote #{$t_candidate['bugnote_id']} (issue #{$t_candidate['bug_id']}) -----\n";
+	echo "----- bugnote #{$t_candidate['bugnote_id']} (issue #{$t_candidate['bug_id']})" . ( $t_candidate['is_archived'] ? " [Archived]" : "" ) . " -----\n";
 	echo "Marker line: {$t_candidate['marker_line']}\n";
+	if ( $t_candidate['is_archived'] ) {
+		$t_archived_count++;
+	}
 	if ( $t_candidate['old_text'] !== $t_candidate['new_text'] ) {
 		$t_conversion_count++;
 		echo "  DONE marker conversion:\n";
@@ -141,7 +162,7 @@ foreach ( $t_candidates as $t_candidate ) {
 	echo "\n";
 }
 
-echo "Summary: " . count( $t_candidates ) . " note(s) would be flagged has_todo=1, $t_conversion_count of them have DONE markers to convert.\n\n";
+echo "Summary: " . count( $t_candidates ) . " note(s) would be flagged has_todo=1 ($t_archived_count of them as Archived, superseded), $t_conversion_count of them have DONE markers to convert.\n\n";
 
 if ( !$t_apply ) {
 	echo "Dry run only - no changes written. Re-run with --apply --user=<username> to write the above.\n";
@@ -150,13 +171,13 @@ if ( !$t_apply ) {
 
 echo "Applying...\n";
 foreach ( $t_candidates as $t_candidate ) {
-	$t_query = "REPLACE INTO $t_todo_table (bugnote_id, has_todo) values(" . db_param() . "," . db_param() . ")";
-	db_query_bound( $t_query, array( $t_candidate['bugnote_id'], 1 ) );
+	$t_query = "REPLACE INTO $t_todo_table (bugnote_id, has_todo, has_archived) values(" . db_param() . "," . db_param() . "," . db_param() . ")";
+	db_query_bound( $t_query, array( $t_candidate['bugnote_id'], 1, $t_candidate['is_archived'] ? 1 : 0 ) );
 
 	if ( $t_candidate['old_text'] !== $t_candidate['new_text'] ) {
 		bugnote_set_text( $t_candidate['bugnote_id'], $t_candidate['new_text'] );
 	}
 }
-echo "Done - flagged " . count( $t_candidates ) . " note(s) as To Do, converted $t_conversion_count.\n";
+echo "Done - flagged " . count( $t_candidates ) . " note(s) as To Do ($t_archived_count as Archived), converted $t_conversion_count.\n";
 
 exit( 0 );

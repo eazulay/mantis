@@ -133,7 +133,7 @@ function selectElement(element) {
 		$t_bugnotes = bugnote_get_all_visible_bugnotes( $issue_id, $t_bugnote_order, 0, $t_user_id );
 		$t_bugnotes = event_signal( 'EVENT_HELPNOTES_POPULATE', array( $f_bug_id, $t_bugnotes ) );
 		foreach( $t_bugnotes as $t_bugnote ) {
-			if ($t_bugnote->has_todo){
+			if ($t_bugnote->has_todo && !$t_bugnote->has_archived){
 				echo "	<tr valign='top'>
 		<td>".string_get_bug_view_link($issue_id, $t_user_id)."</td>
 		<td>".string_get_bugnote_view_link($issue_id, $t_bugnote->id, $t_user_id)."</td>

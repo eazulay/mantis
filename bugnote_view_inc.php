@@ -130,6 +130,8 @@ $num_notes = count( $t_bugnotes );
 				$t_bugnote_row_css .= ' bugnote-hashelp';
 			if ($t_bugnote->has_todo)
 				$t_bugnote_row_css .= ' bugnote-hastodo';
+			if ($t_bugnote->has_archived)
+				$t_bugnote_row_css .= ' bugnote-archived';
 		}
 ?>
 <tr class="bugnote<?php echo $t_bugnote_row_css ?>" id="c<?php echo $t_bugnote->id ?>">
@@ -142,10 +144,15 @@ $num_notes = count( $t_bugnotes );
         ?>
 		<span style="font-weight:bold;"><a href="<?php echo string_get_bugnote_view_url($t_bugnote->bug_id, $t_bugnote->id); ?>" title="<?php echo lang_get('bugnote_link_title'); ?>"><?php echo $t_bugnote_id_formatted; ?></a></span>
         <br />
-		<?php # Has Help / To Do
+		<?php # Has Help / To Do / Archived
 		if (class_exists('HelpNotesPlugin') && access_has_global_level(DEVELOPER)) {
 			echo '<div style="float:right; clear:right;"><label for="has_help_'.$t_bugnote->id.'" style="font-weight:normal;">Help</label> <input type="checkbox" id="has_help_'.$t_bugnote->id.'" name="has_help['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_help ? ' checked' : '').' onchange="hasHelpChanged(this);"></div>';
 			echo '<div style="float:right; clear:right;"><label for="has_todo_'.$t_bugnote->id.'" style="font-weight:normal;">To Do</label> <input type="checkbox" id="has_todo_'.$t_bugnote->id.'" name="has_todo['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_todo ? ' checked' : '').' onchange="hasTodoChanged(this);"></div>';
+			# Only meaningful (and only ever shown) once a note is already flagged To Do - freezes
+			# its checklist as read-only for everyone, including Developers, once ticked.
+			if ($t_bugnote->has_todo) {
+				echo '<div style="float:right; clear:right;"><label for="has_archived_'.$t_bugnote->id.'" style="font-weight:normal;">Archived</label> <input type="checkbox" id="has_archived_'.$t_bugnote->id.'" name="has_archived['.$t_bugnote->id.']" value="1"'.($t_bugnote->has_archived ? ' checked' : '').' onchange="hasArchivedChanged(this);"></div>';
+			}
 		}
 		echo print_user( $t_bugnote->reporter_id );
 		?>
@@ -308,10 +315,24 @@ $num_notes = count( $t_bugnotes );
         }, []);
     }
 
+    function hasArchivedChanged(cb) {
+        var bugnoteId = cb.id.substr(13); // "has_archived_".length
+        var queryString = 'entrypoint=bugnote_update_hasarchived&note_id=' + bugnoteId + '&has_archived=' + (cb.checked ? '1' : '0');
+        AjaxSave(queryString, function () {
+            if (liveReq.readyState !== 4 || liveReq.status !== 200) return;
+            window.location.hash = 'c' + bugnoteId;
+            window.location.reload();
+        }, []);
+    }
+
     var canEditTodo = <?php echo access_has_global_level(DEVELOPER) ? 'true' : 'false'; ?>;
 
     function renderTodoCheckboxes() {
         document.querySelectorAll('tr.bugnote-hastodo').forEach(function (row) {
+            // An archived note's checklist stays visible as checkboxes but is frozen read-only
+            // for everyone, including Developers - not just canEditTodo (page-level access), but
+            // also per-row archived state.
+            var rowCanEdit = canEditTodo && !row.classList.contains('bugnote-archived');
             var index = 0;
             row.querySelectorAll('td.markdown li').forEach(function (li) {
                 if (li.dataset.todoDone) { index++; return; }
@@ -327,7 +348,7 @@ $num_notes = count( $t_bugnotes );
                 cb.className = 'todo-item';
                 cb.checked = checked;
                 cb.dataset.todoIndex = index;
-                if (canEditTodo) {
+                if (rowCanEdit) {
                     cb.addEventListener('change', function () { todoItemChanged(cb); });
                 } else {
                     cb.disabled = true;
