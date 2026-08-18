@@ -340,12 +340,25 @@ function html_title( $p_page_title = null ) {
 }
 
 /**
+ * Build a "?<mtime>" cache-busting query string for a Mantis-root-relative CSS URL, based on the
+ * file's actual last-modified time - so a plain refresh (not just Ctrl+F5) picks up CSS edits,
+ * with no version number to remember to bump by hand.
+ * @param string $p_relative_url Mantis-root-relative path, e.g. 'css/default.css'
+ * @return string '?<unix-timestamp>', or '' if the file can't be found
+ */
+function html_css_cache_bust_param( $p_relative_url ) {
+	$t_path = config_get_global( 'absolute_path' ) . $p_relative_url;
+	$t_mtime = @filemtime( $t_path );
+	return $t_mtime === false ? '' : '?' . $t_mtime;
+}
+
+/**
  * (5) Print the link to include the css file
  * @return null
  */
 function html_css() {
 	$t_css_url = config_get( 'css_include_file' );
-	echo "\t", '<link rel="stylesheet" type="text/css" href="', string_sanitize_url( helper_mantis_url( $t_css_url ), true ), '" />', "\n";
+	echo "\t", '<link rel="stylesheet" type="text/css" href="', string_sanitize_url( helper_mantis_url( $t_css_url ), true ), html_css_cache_bust_param( $t_css_url ), '" />', "\n";
 
 	# Add right-to-left css if needed
 	if( lang_get( 'directionality' ) == 'rtl' ) {

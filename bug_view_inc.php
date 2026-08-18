@@ -331,6 +331,13 @@
 				textArea.value = noteText;
 				var copyOptions = noteRow.querySelector('.copy-options');
 				copyOptions.classList.toggle('hidden');
+				// Pre-tick To Do on the add-note form if the source note is currently a To Do
+				// note, so the checkbox reflects what will happen on submit and can be unticked
+				// beforehand - unticking it means this copy won't become a To Do note either.
+				if (noteRow.classList.contains('bugnote-hastodo')) {
+					var todoCb = document.getElementById('has_todo');
+					if (todoCb) { todoCb.checked = true; }
+				}
 				noteAddDiv.scrollIntoView();
 				setTimeout(function() {
 					textArea.focus();

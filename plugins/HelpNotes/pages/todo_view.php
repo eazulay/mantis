@@ -20,7 +20,7 @@
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="<?php echo string_sanitize_url( helper_mantis_url( $t_css_url ), true ); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo string_sanitize_url( helper_mantis_url( $t_css_url ), true ) . html_css_cache_bust_param( $t_css_url ); ?>" />
 	<script type="text/javascript"><!--
 		if (document.layers){ document.write("<style>td{padding:0px;}<\/style>"); }
 	// --></script>

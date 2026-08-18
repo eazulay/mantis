@@ -183,34 +183,60 @@ class HelpNotesPlugin extends MantisPlugin {
 
 	function update_bugnote_hasarchived($p_event, $p_bugnote_id, $has_archived) {
 		if (access_has_global_level(DEVELOPER)){
-			$t_todo_table = plugin_table('bugnote_todo', 'HelpNotes');
-			// Only meaningful (and only ever rendered) for a note that's already flagged has_todo=1,
-			// so an UPDATE (not REPLACE INTO) is correct - the row is guaranteed to already exist.
-			$t_query = "UPDATE $t_todo_table SET has_archived=" . db_param() . " WHERE bugnote_id=" . db_param() . " AND has_todo=" . db_param();
-			db_query_bound($t_query, array($has_archived, $p_bugnote_id, 1));
+			self::set_bugnote_archived_flag($p_bugnote_id, $has_archived);
 		}
 	}
 
 	/**
+	 * Shared by the inline AJAX toggle and the same-issue "Copy Note" supersede transfer below.
+	 * Only meaningful (and only ever rendered/called) for a note that's already flagged has_todo=1,
+	 * so an UPDATE (not REPLACE INTO) is correct - the row is guaranteed to already exist, and the
+	 * "AND has_todo=1" guards against archiving a note that isn't (or is no longer) flagged To Do.
+	 */
+	static function set_bugnote_archived_flag($p_bugnote_id, $p_has_archived) {
+		$t_todo_table = plugin_table('bugnote_todo', 'HelpNotes');
+		$t_query = "UPDATE $t_todo_table SET has_archived=" . db_param() . " WHERE bugnote_id=" . db_param() . " AND has_todo=" . db_param();
+		db_query_bound($t_query, array($p_has_archived, $p_bugnote_id, 1));
+	}
+
+	/**
 	 * Called from bugnote_add.php's same-issue "Copy Note" handling (the "*Update of ~N:*" /
-	 * "*Superseded by ~..." convention): if the note being superseded was flagged To Do, move the
-	 * flag onto its replacement instead of leaving both notes flagged - the superseded copy is
-	 * stale and flagging only the new one makes it less likely to be edited by mistake.
+	 * "*Superseded by ~..." convention): if the note being superseded was flagged To Do, archive it
+	 * (keep has_todo=1, set has_archived=1) rather than un-flagging it entirely - so the superseded
+	 * checklist stays visible/read-only instead of degrading to plain text, and nobody edits the
+	 * wrong (stale) copy by mistake. Only does this if the NEW note is also currently flagged To
+	 * Do - bugnote_view_inc.php's copyNoteOverride() pre-ticks the add-note form's To Do checkbox
+	 * when the source is a To Do note, but the submitter can untick it before submitting to signal
+	 * "this copy isn't meant to continue the checklist", in which case the source note's To
+	 * Do/Archived state is left completely untouched. By the time this runs, EVENT_BUGNOTE_ADD has
+	 * already saved the new note's has_todo from the submitted form (see bugnote_add.php), so it
+	 * can just be read back here rather than assumed.
 	 */
 	static function transfer_todo_on_supersede($p_source_bugnote_id, $p_new_bugnote_id) {
 		$t_todo_table = plugin_table('bugnote_todo', 'HelpNotes');
 		$t_query = "SELECT has_todo FROM $t_todo_table WHERE bugnote_id=" . db_param();
+
 		$t_result = db_query_bound($t_query, array($p_source_bugnote_id));
-		$t_was_todo = false;
+		$t_source_was_todo = false;
 		if (db_num_rows($t_result) > 0) {
 			$t_row = db_fetch_array($t_result);
-			$t_was_todo = (bool)$t_row['has_todo'];
+			$t_source_was_todo = (bool)$t_row['has_todo'];
 		}
-		if (!$t_was_todo) {
+		if (!$t_source_was_todo) {
 			return;
 		}
-		self::set_bugnote_todo_flag($p_source_bugnote_id, false);
-		self::set_bugnote_todo_flag($p_new_bugnote_id, true);
+
+		$t_result = db_query_bound($t_query, array($p_new_bugnote_id));
+		$t_new_is_todo = false;
+		if (db_num_rows($t_result) > 0) {
+			$t_row = db_fetch_array($t_result);
+			$t_new_is_todo = (bool)$t_row['has_todo'];
+		}
+		if (!$t_new_is_todo) {
+			return;
+		}
+
+		self::set_bugnote_archived_flag($p_source_bugnote_id, true);
 	}
 
 	/**
