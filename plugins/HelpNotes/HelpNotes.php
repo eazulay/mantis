@@ -51,7 +51,7 @@ class HelpNotesPlugin extends MantisPlugin {
 			// this.form.elements['bugnote_text'] rather than a fixed id/container, since this same
 			// hook (and this checkbox) is also rendered on bug_change_status_page.php and
 			// bug_update_advanced_page.php, which don't share bugnote_add_inc.php's form structure.
-			$t_todo_onchange = 'var t=this.form.elements[\'bugnote_text\']; if(t){if(this.checked){if(!t.value.trim()){t.value=\'**TO DO**\';}}else{if(t.value.trim()==\'**TO DO**\'){t.value=\'\';}}}';
+			$t_todo_onchange = 'var t=this.form.elements[\'bugnote_text\']; if(t){if(this.checked){if(!t.value.trim()){t.value=\'**TO DO**\n\';}}else{if(t.value.trim()==\'**TO DO**\'){t.value=\'\';}}}';
 			echo '<tr ' . helper_alternate_class() . '><td class="category" colspan="', is_page_name('bug_update_page.php') ? '2' : '1', '">Contains To Do</td>
 <td colspan="' . ($update_issue_table_columns - 2) . '"><input type="hidden" name="has_todo" value="0"> <input type="checkbox" id="has_todo" name="has_todo" value="1"'.($has_todo==1?' checked':'').' onchange="' . $t_todo_onchange . '"> <label for="has_todo">To Do</label></td></tr>';
 		}
