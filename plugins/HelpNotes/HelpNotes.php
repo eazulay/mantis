@@ -316,9 +316,37 @@ class HelpNotesPlugin extends MantisPlugin {
 	
 	/* Format help strings and add support for Markdown code */
 	function format_help_string($p_event, $str, $multi_line=false) {
+		// Pull fenced/inline code out into placeholder tokens before any other markdown rule
+		// runs, so things like ** or # inside code aren't reinterpreted as formatting - then
+		// restore the rendered <pre>/<code> HTML at the very end, once everything else is done.
+		$code_placeholders = array();
+		if ($multi_line) {
+			// Note text can carry \r\n line endings (e.g. browser textarea submission), which
+			// nl2br() turns into "<br />\r\n" - normalize before matching line-break separators.
+			$str = str_replace("\r\n", "\n", $str);
+			$str = preg_replace_callback(
+				'/^```([A-Za-z0-9_+-]*)(?:<br \/>\n|\n)(.*?)(?:<br \/>\n|\n)```(?:<br \/>\n|\n|$)/ms',
+				function($m) use (&$code_placeholders) {
+					$token = "\x01CB" . count($code_placeholders) . "\x02";
+					$code_placeholders[$token] = $this->process_code_block($m);
+					return $token;
+				},
+				$str
+			);
+		}
+		$str = preg_replace_callback(
+			'/`([^`\r\n]+?)`/',
+			function($m) use (&$code_placeholders) {
+				$token = "\x01CI" . count($code_placeholders) . "\x02";
+				$code_placeholders[$token] = '<code>' . $m[1] . '</code>';
+				return $token;
+			},
+			$str
+		);
+
 		// Handle inline images - this might run after URLs have been converted to links
 		// So we need to handle both clean URLs and HTML links
-		
+
 		// First handle standard markdown: ![alt](url) or ![alt](file:123)
 		$str = preg_replace_callback('/!\[([^\]]*)\]\(([^)]+?)(?:\s+&quot;(.*?)&quot;)?\)/',
 			array($this, 'process_inline_image'), $str);
@@ -332,7 +360,6 @@ class HelpNotesPlugin extends MantisPlugin {
 		$str = preg_replace('/\*([^ ](?:.*[^ ])?)\*/mU', '<em>$1</em>', $str);
 		if ($multi_line) {
 			$eol = '(?:<br \/>\n|\n|$)'; // End of lines include <br /> tags, which are added by Mantis Formatting plugin before this function is called
-			$str = str_replace("\r\n", "\n", $str);
 			$depth = 0;
 			do {
 				$depth++;
@@ -429,9 +456,25 @@ class HelpNotesPlugin extends MantisPlugin {
 			$str = preg_replace('/\R<\/div>\R\R?/', '</div>', $str);
 			$str = preg_replace('/\{\{(.+)\}\}/sU', '<b>$1</b>', $str);
 		}
+		if ($code_placeholders) {
+			$str = strtr($str, $code_placeholders);
+		}
 		return $str;
 	}
-	
+
+	/**
+	 * Render a fenced code block (```lang ... ```) into its final HTML. Split out from
+	 * format_help_string() since it's invoked from a preg_replace_callback closure there.
+	 */
+	private function process_code_block($m) {
+		$lang = trim($m[1]);
+		$code = str_replace(array("<br />\n", "<br/>\n"), "\n", $m[2]);
+		$code = rtrim($code, "\n");
+		$class = 'codeblock' . ($lang !== '' ? ' has-lang' : '');
+		$header = $lang !== '' ? '<div class="codeblock-lang">' . $lang . '</div>' : '';
+		return '<pre class="' . $class . '">' . $header . '<code>' . $code . '</code></pre>';
+	}
+
 	/**
 	 * Process inline image markdown syntax following MantisBT patterns
 	 */

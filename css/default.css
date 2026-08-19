@@ -3,6 +3,10 @@
 	--text-color: #212121;
 	--border-color: #7dbfb3;
 	--section-background: #fafdfb;
+	--code-background: #1e2b2a;
+	--code-text-color: #d8e6e1;
+	--code-header-background: #2f4a45;
+	--code-border-color: #3a5049;
 }
 *				{ box-sizing: border-box; }
 html			{ scroll-behavior: smooth; }
@@ -353,6 +357,10 @@ tr.bugnote-hastodo .markdown ul { list-style: none; padding-left: 0; }
 .markdown table				{ border-collapse: collapse; }
 .markdown th, .markdown td { border: 1px solid var(--border-color); padding: 6px 8px; }
 .markdown hr				{ margin: 2px 0; max-width: 24px; border: 1px solid #ccc; }
+.markdown code				{ font-family: Consolas, "Courier New", monospace; font-size: 0.9em; color: var(--text-color); background: #e5f1ee; border: 1px solid var(--border-color); border-radius: 4px; padding: 0.1em 0.35em; }
+.markdown pre.codeblock	{ margin: 0.4em 0; border: 1px solid var(--code-border-color); border-radius: 6px; background: var(--code-background); overflow-x: auto; }
+.markdown pre.codeblock .codeblock-lang { font-family: Consolas, "Courier New", monospace; font-size: 0.75rem; font-weight: 600; padding: 0.35em 0.8em; background: var(--code-header-background); color: var(--code-text-color); border-radius: 5px 5px 0 0; margin: 0; }
+.markdown pre.codeblock code { display: block; font-size: 0.8125rem; color: var(--code-text-color); background: none; border: none; border-radius: 0; padding: 0.6em 0.8em; white-space: pre; }
 
 @media (max-width: 768px) {
 	body								{ margin: 5px; }
