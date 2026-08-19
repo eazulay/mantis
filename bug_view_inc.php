@@ -328,6 +328,12 @@
 			var noteText = noteRow.querySelector('input[name=\"bugnote_text\"]').value;
 			if (noteText.substring(0, 8) == '*Copy of'){
 				noteText = '*Update'+noteText.substring(5);
+				// If the copied note is itself an \"Update of ~..\" note, merge its chain of
+				// note IDs into this note's header instead of nesting a second header in the body.
+				var chainMatch = noteText.match(/^\*Update of (~\d+(?:, ~\d+)*):\*\\r?\\n\*Update of (~\d+(?:, ~\d+)*):\*\\r?\\n\\r?\\n([\s\S]*)$/);
+				if (chainMatch) {
+					noteText = '*Update of ' + chainMatch[1] + ', ' + chainMatch[2] + ':*\\n\\n' + chainMatch[3];
+				}
 				textArea.value = noteText;
 				var copyOptions = noteRow.querySelector('.copy-options');
 				copyOptions.classList.toggle('hidden');

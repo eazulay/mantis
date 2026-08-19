@@ -76,7 +76,10 @@
 		print_successful_redirect( $t_url . "#c" . $f_source_bugnote_id );
 	} else {
 		if ( strpos( $f_bugnote_text, "*Update of ~") === 0 ) {
-			preg_match('/^\*Update of ~(\d+):\*/', $f_bugnote_text, $matches);
+			// Header may be a merged chain (e.g. "*Update of ~11, ~2, ~1:*") from superseding a
+			// note that was itself an update - only the first (immediate) ID is the note being
+			// superseded now, the rest were already superseded by it.
+			preg_match('/^\*Update of ~(\d+)/', $f_bugnote_text, $matches);
 			if (isset($matches[1])) {
 				$t_source_note_id = intval($matches[1]);
 				$source_note_text = bugnote_get_field( $t_source_note_id, 'note' );
